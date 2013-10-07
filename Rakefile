@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Autoformbot::Application.load_tasks
+AutoFormBot::Application.load_tasks

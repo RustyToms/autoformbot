@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Autoformbot::Application.config.secret_token = '24e4c9d202fe56da36498eff8c0ca58b764de891f39a0e56edd5d7b85e28edc8dc04d2d477c924fa4cea20d82eeecc4caeeb52dec9e119f2ad649f24108432cf'
+AutoFormBot::Application.config.secret_token = '294428ef094a8290a6224c240cc4973e4ecf3a67da7cf4f96bb08fb93b9835cb211a3e8126f27c17ac0bbed2d7f7cca453329cac932be4f433eeee393e21f0d2'
