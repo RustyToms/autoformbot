@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  account_id: 1
+  field_array: MyText
+  name: MyString
+  form_text: MyText
+
+two:
+  account_id: 1
+  field_array: MyText
+  name: MyString
+  form_text: MyText

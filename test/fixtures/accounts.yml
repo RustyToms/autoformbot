@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  url_name: MyString
+  plan_type: MyString
+
+two:
+  url_name: MyString
+  plan_type: MyString

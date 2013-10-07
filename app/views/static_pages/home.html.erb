@@ -2,5 +2,16 @@
 
 <p>Watcha wanna do?</p>
 
-<a href="<%= new_user_session_url %>">Sign In!</a>
-<a href="<%= new_user_registration_url %>">Sign Up!</a>
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+  </li>
+<% else %>
+  <li>
+    <a href="<%= new_user_session_url %>">Sign In!</a>
+  </li>
+
+  <li>
+    <a href="<%= new_user_registration_url %>">Sign Up!</a>
+  </li>
+<% end %>

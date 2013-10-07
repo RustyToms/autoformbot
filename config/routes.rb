@@ -1,7 +1,11 @@
 AutoFormBot::Application.routes.draw do
   devise_for :users
 
-  # get "static_pages/home"
+  resource :static_page, only: [] do
+    member do
+      get "home"
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -8,4 +8,17 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
+
+  has_many :user_accounts
+  has_many :userforms
+  has_many :accounts, through: :user_accounts, source: :account
+  has_many :forms, through: :userforms, source: :form
+  has_many :results, through: :accounts, source: :results
+
+
+
+
+  # ensure that the creator of an account is admin, and admin of all forms in account
+  # ensure that the creator of a form is admin of that form
+  # possibly make getter/setter methods for form ownership, reporting not just forms from UserForm join table, but all forms from associated accounts with admin authority.  These getter/setters would replace associations?  Would includes work with this?
 end
