@@ -1,0 +1,21 @@
+<h1>Form Manager</h1>
+
+<a href="<%= new_form_url %>">Create a new Form!</a>
+
+<%@forms.each do |form|%>
+  <div class="form-summary">
+    <%= form.name %>
+    <div class="form-links">
+      <ul>
+        <li><a href="<%= edit_form_url(form.id) %>">Edit</a></li>
+        <li><a href="<%= form_url %>">View</a></li>
+        <li>Analytics</li>
+        <li>Notifications</li>
+        <li>Form Rules</li>
+        <li>Code</li>
+        <li>Duplicate</li>
+        <li>"<%= button_to "Delete", form, method: :delete %>"</li>
+      </ul>
+    </div>
+  </div>
+<% end %>

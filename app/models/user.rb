@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :user_accounts
-  has_many :userforms
+  has_many :user_forms
   has_many :accounts, through: :user_accounts, source: :account
-  has_many :forms, through: :userforms, source: :form
+  has_many :forms, through: :user_forms, source: :form
   has_many :results, through: :accounts, source: :results
 
 

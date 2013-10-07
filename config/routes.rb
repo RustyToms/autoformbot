@@ -1,11 +1,31 @@
 AutoFormBot::Application.routes.draw do
   devise_for :users
 
+  match 'user_root' => 'forms#index', as: :user_root
+
   resource :static_page, only: [] do
     member do
       get "home"
     end
   end
+
+  resources :forms
+
+
+
+
+  root :to => "static_pages#home"
+
+
+
+
+
+
+
+
+
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -56,7 +76,6 @@ AutoFormBot::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "static_pages#home"
 
   # See how all your routes lay out with "rake routes"
 
