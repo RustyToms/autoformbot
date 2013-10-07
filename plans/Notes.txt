@@ -7,7 +7,6 @@ General Notes:  Most of the actual pages seem to be for explaining the app, many
     Duplicate to show off CSS, probably won't include most functionality.  Links that don't go anywhere should turn grey on hover.
 
     - Login /login (secure.wufoo.com/login/)
-
     Yup.  Logout is a popup?  After successful login direct to form manager.  After login, the first part of the url is the username.
 
     - SignUp  (secure.wufoo.com/signup/:accountplanid)
