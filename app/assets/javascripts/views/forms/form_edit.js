@@ -55,16 +55,23 @@ AFB.Views.FormEdit = Backbone.View.extend({
     console.log("unfocused");
     // $(event.target).removeClass("focused");
     $(event.target).addClass("reset");
-    this.$('form').submit();
   },
 
   updateModel: function(event){
     event.preventDefault();
     console.log("in updateModel")
+    $field = $(event.target)
     console.log(event.target)
+    if ($field.attr('name') === "form[name]") {
+      this.model.set('name', $field.val());
+    }
+
   },
 
   cleanUp: function(){
     this.undelegateEvents();
   }
 })
+
+
+//  sync model on save!
