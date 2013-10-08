@@ -4,7 +4,10 @@ AFB.Views.FormNew = Backbone.View.extend({
   },
 
   initialize: function(){
-    console.log('FormNew View initialized')
+    console.log('FormNew View initialized');
+    this.model.set('form_text', JST["forms/edit_form"]({
+      form: this.model
+    }));
   },
 
   render: function(sidebar){
@@ -24,7 +27,8 @@ AFB.Views.FormNew = Backbone.View.extend({
   },
 
   parseClick: function(event) {
-    var id = $(event.target).attr("id");
+    console.log("in parseClick");
+    var id = $(event.target).closest(".formEl").attr("id");
     if (id === "title-description") {
       var editTitle = new AFB.Views.FormEditTitle({
         model: this.model
