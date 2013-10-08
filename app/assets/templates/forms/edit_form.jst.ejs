@@ -1,20 +1,12 @@
 
 <div class="main" >
   <div class="form-edit-box" >
-    <div class="formEl reset" id="title-description" ><input
-      id="formName"
-      type="text"
-      name="form[name]"
-      onclick="this.select();"
-      value="Untitled Form"></input>
+    <div class="formEl reset" id="title-description" >
+      <h2 id="formName"><%= form.get("name") %></h2>
 
-      <input
-        id="formDescription"
-        type="text"
-        name="form[description]"
-        onclick="this.select();"
-        value="Click here to change the form name and description">
-      </input>
+      <p id="formDescription" >
+        Click here to change the form name and description
+      </p>
     </div>
   </div>
 
