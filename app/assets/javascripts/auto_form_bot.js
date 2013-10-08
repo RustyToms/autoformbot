@@ -1,9 +1,12 @@
-window.AutoFormBot =
-  Models: {}
-  Collections: {}
-  Views: {}
-  Routers: {}
-  initialize: -> alert 'Hello from Backbone!'
+window.AFB = AutoFormBot = {
+  Models: {},
+  Collections: {},
+  Views: {},
+  Routers: {},
+  initialize: function($rootEl){
+    console.log("AutoFormBot initialized")
 
-$(document).ready ->
-  AutoFormBot.initialize()
+
+  }
+}
+

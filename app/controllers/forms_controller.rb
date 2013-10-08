@@ -14,7 +14,9 @@ class FormsController < ApplicationController
 
 
   def new
-
+    @form = Form.new
+    @form.account_id = current_user.account.id
+    render :new
   end
 
 

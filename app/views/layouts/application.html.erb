@@ -9,7 +9,7 @@
 <body>
   <% if user_signed_in? %>
     <li>
-    Signed in as "<%= @user.email %>"
+    Signed in as "<%= current_user.email %>"
     <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
     </li>
   <% end %>
