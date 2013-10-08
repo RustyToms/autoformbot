@@ -1,16 +1,17 @@
 <!-- <link rel="stylesheet" href="/assets/stylesheets/forms/new.css" type="text/css" charset="utf-8"> -->
 <div id='content'>
 
-  <div class="sidebar" id="input-options">
-    <%= render partial: "inputs" %>
-  </div>
-
 </div>
 
-
+<script type="application/json" id="bootstrapped_form_json">
+<%= @form.to_json.html_safe %>
+</script>
 
 <script>
 $(function(){
-  window.AFB.initialize($('#content'))
+  var form = JSON.parse($('#bootstrapped_form_json').html());
+  console.log(form);
+
+  window.AFB.initialize($('#content'), form)
 });
 </script>
