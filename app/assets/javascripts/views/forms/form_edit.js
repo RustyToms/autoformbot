@@ -1,7 +1,6 @@
 AFB.Views.FormEdit = Backbone.View.extend({
   events: {
 
-    "change" : "updateModel"
   },
 
   initialize: function(){

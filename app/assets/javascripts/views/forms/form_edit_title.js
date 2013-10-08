@@ -15,7 +15,24 @@ AFB.Views.FormEditTitle = Backbone.View.extend({
   },
 
   updateName: function(){
-    var name = $('#new-form-name').val()
-    this.model.set('name', name);
+    this.newName = $('#new-form-name').val();
+    this.newDescription = $('#new-form-description').val();
+    this.model.set('name', this.newName);
+    this.updateFormHtml();
+    masterView = new AFB.Views.FormMaster({
+      model: this.model
+    });
+    masterView.render();
+
+  },
+
+  updateFormHtml: function(){
+    this.$el.empty();
+    this.$el.html(this.model.get('form_text'));
+    console.log("newName is " + this.newName);
+    $('#formName').html(this.newName);
+    $('#formDescription').html(this.newDescription);
+    console.log(this.$el.html());
+    this.model.set('form_text', this.$el.html());
   }
 })

@@ -10,10 +10,13 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   formNew: function(){
-    that = this;
     console.log("In FormRouter#formNew")
-    var newForm = new AFB.Views.FormNew({
-      model: that.model
+    this.model.set('form_text', JST["forms/edit_form"]({
+      form: this.model
+    }));
+
+    var newForm = new AFB.Views.FormMaster({
+      model: this.model
     });
     this.$rootEl.append(newForm.render().$el);
   },
