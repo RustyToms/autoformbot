@@ -2,9 +2,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
   events: {
     // "mouseenter .field" : "onHover",
     // "mouseleave .field" : "onBlur",
-    // "click" : "resetFocus",
-    "click .title-description" : "focused",
-    "focusout .title-description" : "unfocused",
+    "click" : "resetFocus",
+    "click #title-description" : "focused",
+    "focusout #title-description" : "unfocused",
     "change" : "updateModel"
   },
 
@@ -34,18 +34,19 @@ AFB.Views.FormEdit = Backbone.View.extend({
   //   }
   // },
   //
-  // resetFocus: function(){
-  //   console.log("resetting focus");
-  //   $target = $('.in-use');
-  //   $target.addClass("reset");
-  //   $target.removeClass("in-use");
-  // },
+  resetFocus: function(event){
+    console.log("resetting focus");
+    this.$lastFocused &&
+    ($(event.target).closest('.formEl').attr('id') != this.$lastFocused.attr('id')) &&
+    this.$lastFocused.addClass("reset");
+    this.$lastFocused = $(event.target).closest('.formEl');
+    console.log(this.$lastFocused);
+  },
 
   focused: function (event) {
     console.log(event.target);
     console.log("focused");
-
-    $(event.target).removeClass("reset");
+    $(event.target).closest('.formEl').removeClass("reset");
     // $(event.target).addClass("in-use");
   },
 
