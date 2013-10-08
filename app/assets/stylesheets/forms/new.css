@@ -21,19 +21,23 @@
   display: block;
   margin: 10px auto;
   text-align: center;
-  width: 250px;
+  font-size: 30px;
+  width: 80%;
 }
 
-/*.main #formName:focus {
+.main #formDescription {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  width: 80%;
+}
 
-}*/
-
-.main .reset {
+/*.main .reset {
   border: 0;
   background-color: inherit;
-}
+}*/
 
-.reset {
+.reset * {
   margin: 0;
   padding: 0;
   border: 0;

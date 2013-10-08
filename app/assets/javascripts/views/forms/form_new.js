@@ -5,10 +5,14 @@ AFB.Views.FormNew = Backbone.View.extend({
 
   render: function(){
     this.$el.empty();
-    var sidebar = new AFB.Views.FormSidebarInputs()
+    var sidebar = new AFB.Views.FormSidebarInputs({
+      model: this.model
+    })
     this.$el.append(sidebar.render().$el);
 
-    var editForm = new AFB.Views.FormEdit()
+    var editForm = new AFB.Views.FormEdit({
+      model: this.model,
+    })
     this.$el.append(editForm.render().$el);
 
     return this;
