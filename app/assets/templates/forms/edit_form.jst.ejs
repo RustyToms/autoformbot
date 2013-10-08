@@ -1,16 +1,24 @@
 
 <div class="main" >
-  <div class="formEl reset" id="title-description" ><input
-    id="formName"
-    type="text"
-    name="form[name]"
-    onclick="this.select();"
-    value="Untitled Form"></input>
-
-    <input
-      id="formDescription"
+  <div class="form-edit-box" >
+    <div class="formEl reset" id="title-description" ><input
+      id="formName"
       type="text"
-      name="form[description]"
+      name="form[name]"
       onclick="this.select();"
-      value="Click here to change the form name and description"></input></div>
+      value="Untitled Form"></input>
+
+      <input
+        id="formDescription"
+        type="text"
+        name="form[description]"
+        onclick="this.select();"
+        value="Click here to change the form name and description">
+      </input>
+    </div>
+  </div>
+
+  <div class='save-or-add'>
+    <button id='save-button'>Save!</button>
+  </div>
 </div>

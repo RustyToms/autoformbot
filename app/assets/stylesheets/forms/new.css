@@ -9,7 +9,6 @@
 }
 
 .main {
-  background-color: #CCFFFF;
   width: 50%;
   height: auto;
   min-height: 450px;
@@ -17,7 +16,18 @@
   float: left;
 }
 
-.main #formName {
+.form-edit-box {
+  background-color: #FFFFCC;
+  min-height: 348px;
+  border: 2px solid blue;
+}
+
+.save-or-add {
+  background-color: #CCFFFF;
+  min-height: 98px;
+}
+
+#formName {
   display: block;
   margin: 10px auto;
   text-align: center;
@@ -25,7 +35,7 @@
   width: 80%;
 }
 
-.main #formDescription {
+#formDescription {
   display: block;
   margin: 10px auto;
   text-align: center;
