@@ -23,12 +23,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.$rootEl.empty();
     console.log("In FormRouter#formNew");
     this.model = new AFB.Models.Form();
-    this.model.set({
-      account_id: window.ACCOUNT_ID,
-      form_text: JST["forms/edit_form"]({
-        form: this.model
-      })
-    });
+    this.setUpModel()
     AFB.formCollection.add(this.model);
 
     var newForm = new AFB.Views.FormMaster({
@@ -36,6 +31,14 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       model: this.model,
     });
     newForm.render();
+  },
+
+  setUpModel: function(){
+    var html = JST["forms/new_form_seed"]();
+    this.model.set({
+      account_id: window.ACCOUNT_ID,
+      form_text: html
+    });
   },
 
   formSidebarInputs: function(){

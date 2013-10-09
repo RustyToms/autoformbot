@@ -10,7 +10,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   render: function(){
     this.$el.empty();
-    this.$el.html(this.model.get('form_text'));
+    this.$el.html(JST["forms/edit_form"]());
+    this.$el.find('.main').prepend(this.model.get('form_text'));
     return this;
   },
 
