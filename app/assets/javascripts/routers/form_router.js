@@ -37,7 +37,8 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     var html = JST["forms/new_form_seed"]();
     this.model.set({
       account_id: window.ACCOUNT_ID,
-      form_text: html
+      form_text: html,
+      name: "Untitled Form"
     });
   },
 
