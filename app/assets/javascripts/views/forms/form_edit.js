@@ -1,8 +1,4 @@
 AFB.Views.FormEdit = Backbone.View.extend({
-  events: {
-
-  },
-
   initialize: function(){
     console.log('FormEdit View initialized');
 
@@ -11,14 +7,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   render: function(){
     this.$el.empty();
     this.$el.html(this.model.get('form_text'));
-
     return this;
-  },
-
-
-
-  cleanUp: function(){
-    this.undelegateEvents();
   }
 })
 

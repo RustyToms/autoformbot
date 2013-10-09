@@ -1,3 +1,51 @@
 // Place all the styles related to the Forms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.sidebar {
+  background-color: lightblue;
+  border: 2px dotted blue;
+  width: 25%;
+  height: 450px;
+  float: left;
+}
+
+.main {
+  width: 50%;
+  height: auto;
+  min-height: 450px;
+  border: 2px solid blue;
+  float: left;
+}
+
+.form-edit-box {
+  background-color: #FFFFCC;
+  min-height: 348px;
+  border: 2px solid blue;
+}
+
+.save-or-add {
+  background-color: #CCFFFF;
+  min-height: 98px;
+}
+
+#title-description {
+  margin: 10px auto;
+}
+
+#formName {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  font-size: 30px;
+  width: 80%;
+}
+
+#formDescription {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  width: 80%;
+}

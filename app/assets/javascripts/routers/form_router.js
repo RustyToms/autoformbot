@@ -6,7 +6,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   routes: {
-    'forms/new': "formNew"
+    '': "formNew"
   },
 
   formNew: function(){

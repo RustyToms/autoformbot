@@ -10,9 +10,6 @@ window.AFB = AutoFormBot = {
     new AFB.Routers.FormRouter($rootEl, formModel);
 
     Backbone.history.start();
-
-    Backbone.history.navigate("forms/new", {trigger: true});
-
   }
 }
 

@@ -9,12 +9,14 @@ AFB.Views.FormEditTitle = Backbone.View.extend({
   },
 
   render: function(){
+    console.log("rendering FormEditTitle view")
     this.$el.empty();
     this.$el.html(JST['forms/edit_title']())
     return this
   },
 
   updateName: function(){
+    console.log("updateName running")
     this.newName = $('#new-form-name').val();
     this.newDescription = $('#new-form-description').val();
     this.model.set('name', this.newName);
@@ -27,12 +29,11 @@ AFB.Views.FormEditTitle = Backbone.View.extend({
   },
 
   updateFormHtml: function(){
+    console.log("updateFormHtml running")
     this.$el.empty();
     this.$el.html(this.model.get('form_text'));
-    console.log("newName is " + this.newName);
     $('#formName').html(this.newName);
     $('#formDescription').html(this.newDescription);
-    console.log(this.$el.html());
     this.model.set('form_text', this.$el.html());
   }
 })
