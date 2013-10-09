@@ -7,7 +7,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
   initialize: function(){
     that = this;
     console.log('FormMaster View initialized');
-    console.log(that.collection);
     this.listenTo(AFB.formCollection, 'change', function(){
       that.render();
     });

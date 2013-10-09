@@ -15,10 +15,11 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   index: function(){
     console.log("in FormRouter#index");
     this.$rootEl.empty();
-    var indexForm = new AFB.Views.FormIndex({
+    this.view && this.view.remove();
+    this.view = new AFB.Views.FormIndex({
       collection: AFB.formCollection
     })
-    this.$rootEl.html(indexForm.render().$el)
+    this.$rootEl.html(this.view.render().$el)
   },
 
   formNew: function(){
@@ -27,12 +28,12 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.model = new AFB.Models.Form();
     this.setUpModel()
     AFB.formCollection.add(this.model);
-
-    var newForm = new AFB.Views.FormMaster({
+    this.view && this.view.remove();
+    this.view = new AFB.Views.FormMaster({
       el: this.$rootEl,
-      model: this.model,
+      model: this.model
     });
-    newForm.render();
+    this.view.render();
   },
 
   setUpModel: function(){
@@ -44,20 +45,25 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     });
   },
 
-  formSidebarInputs: function(){
-    console.log("In FormRouter#formSidebarInputs");
-  },
-
-  formEdit: function(){
-    console.log("In FormRouter#formEdit");
-  },
-
   formShow: function(id) {
+    this.$rootEl.empty();
+    this.view && this.view.remove();
     console.log("in FormRouter#formShow for form #" + id);
+    console.log(AFB.formCollection.get(id))
+    this.view = showFormView = new AFB.Views.FormShow({
+      model: AFB.formCollection.get(id),
+      el: this.$rootEl
+    })
+    this.view.render();
   },
 
   formEdit: function(id) {
     console.log("in FormRouter#formEdit for form #" + id);
-
+    this.view && this.view.remove();
+    this.view = new AFB.Views.FormMaster({
+      el: this.$rootEl,
+      model: AFB.formCollection.get(id)
+    });
+    this.view.render();
   }
 })
