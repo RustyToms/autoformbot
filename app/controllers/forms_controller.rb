@@ -22,7 +22,12 @@ class FormsController < ApplicationController
 
 
   def create
-
+    @form = Form.new(params["form"])
+    if @form.save
+      render json: @form
+    else
+      render json: @form.errors.full_messages, status: :unprocessable_entity
+    end
   end
 
 
@@ -32,7 +37,16 @@ class FormsController < ApplicationController
 
 
   def update
-
+    @form = Form.find(params[:form][:id])
+    if @form && @form.save
+      render json: @form
+    else
+      if @form
+        render json: @form.errors.full_messages, status: :unprocessable_entity
+      else
+        render json: params, status: :unprocessable_entity, status: :not_found
+      end
+    end
   end
 
   def destroy

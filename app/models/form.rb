@@ -6,6 +6,7 @@ class Form < ActiveRecord::Base
   has_many :user_forms
   has_many :users, through: :user_forms, source: :user
 
+  before_validation :set_name
   validates :account_id, :name, presence: true
   validates_uniqueness_of :name, scope: :account_id
 

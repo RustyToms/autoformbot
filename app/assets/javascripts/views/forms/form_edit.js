@@ -1,4 +1,8 @@
 AFB.Views.FormEdit = Backbone.View.extend({
+  events: {
+    "click #save-button" : "saveForm"
+  },
+
   initialize: function(){
     console.log('FormEdit View initialized');
 
@@ -8,6 +12,19 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.$el.empty();
     this.$el.html(this.model.get('form_text'));
     return this;
+  },
+
+  saveForm: function(){
+    this.model.save({
+      success: function(){
+        console.log("save successful");
+      },
+      error: function(response){
+        console.log("error");
+        console.log(response);
+        console.log(response.errors.full_messages)
+      }
+    });
   }
 })
 

@@ -5,7 +5,6 @@ AFB.Views.FormEditTitle = Backbone.View.extend({
 
   initialize: function(){
     console.log("initializing FormEditTitle view")
-
   },
 
   render: function(){
@@ -21,7 +20,6 @@ AFB.Views.FormEditTitle = Backbone.View.extend({
     this.newDescription = $('#new-form-description').val();
     this.updateHtml();
     this.model.set({name: this.newName, form_text: this.$el.html()});
-
   },
 
   updateHtml: function(){

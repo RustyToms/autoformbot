@@ -3,11 +3,11 @@ window.AFB = AutoFormBot = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function($rootEl, form){
+  initialize: function($rootEl, forms){
     console.log("AutoFormBot initialized")
-    var formModel = new AFB.Models.Form(form)
+    AFB.formCollection = new AFB.Collections.Forms(forms)
 
-    new AFB.Routers.FormRouter($rootEl, formModel);
+    new AFB.Routers.FormRouter($rootEl);
 
     Backbone.history.start();
   }

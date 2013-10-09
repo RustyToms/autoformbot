@@ -1,21 +1,20 @@
-<h1>Form Manager</h1>
+<div id='content'>
 
-<a href="<%= new_form_url %>">Create a new Form!</a>
+</div>
 
-<%@forms.each do |form|%>
-  <div class="form-summary">
-    <%= form.name %>
-    <div class="form-links">
-      <ul>
-        <li><a href="<%= edit_form_url(form.id) %>">Edit</a></li>
-        <li><a href="<%= form_url %>">View</a></li>
-        <li>Analytics</li>
-        <li>Notifications</li>
-        <li>Form Rules</li>
-        <li>Code</li>
-        <li>Duplicate</li>
-        <li>"<%= button_to "Delete", form, method: :delete %>"</li>
-      </ul>
-    </div>
-  </div>
-<% end %>
+<script type="application/json"
+  id="bootstrapped_form_json"
+  data-account-id=<%= current_user.account.id %>>
+  <%= @forms.to_json.html_safe %>
+</script>
+
+<script>
+$(function(){
+  var $bootstrap = $('#bootstrapped_form_json');
+  window.ACCOUNT_ID = $bootstrap.data('accountId');
+  var forms = JSON.parse($bootstrap.html());
+  console.log(forms);
+
+  window.AFB.initialize($('#content'), forms)
+});
+</script>
