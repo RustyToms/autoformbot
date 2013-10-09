@@ -19,7 +19,9 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.view = new AFB.Views.FormIndex({
       collection: AFB.formCollection
     })
+    checkIt2 = this.$rootEl;
     this.$rootEl.html(this.view.render().$el)
+    checkIt3 = this.$rootEl;
   },
 
   formNew: function(){
@@ -30,10 +32,9 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     AFB.formCollection.add(this.model);
     this.view && this.view.remove();
     this.view = new AFB.Views.FormMaster({
-      el: this.$rootEl,
       model: this.model
     });
-    this.view.render();
+    this.$rootEl.html(this.view.render().$el);
   },
 
   setUpModel: function(){
@@ -52,18 +53,16 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log(AFB.formCollection.get(id))
     this.view = showFormView = new AFB.Views.FormShow({
       model: AFB.formCollection.get(id),
-      el: this.$rootEl
     })
-    this.view.render();
+    this.$rootEl.html(this.view.render().$el);
   },
 
   formEdit: function(id) {
     console.log("in FormRouter#formEdit for form #" + id);
     this.view && this.view.remove();
     this.view = new AFB.Views.FormMaster({
-      el: this.$rootEl,
       model: AFB.formCollection.get(id)
     });
-    this.view.render();
+    this.$rootEl.html(this.view.render().$el);
   }
 })

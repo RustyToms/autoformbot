@@ -8,10 +8,12 @@ AFB.Views.FormIndex = Backbone.View.extend({
   },
 
   render: function(){
+    console.log("rendering FormIndex view")
     this.$el.empty()
     this.$el.html(JST["forms/index"]({
       forms: AFB.formCollection
     }))
+    checkIt = this;
     return this;
   },
 

@@ -24,6 +24,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
       model: this.model
     })
     this.$el.append(this.editForm.render().$el);
+
+    return this;
   },
 
   makeSidebarView: function(sidebar){
