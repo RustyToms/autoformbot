@@ -16,6 +16,8 @@ class Form < ActiveRecord::Base
       form_names << form.name
     end
 
+    return true unless form_names.include?(self.name)
+
     untitled = "Untitled Form 1"
     n = 2
 
@@ -26,6 +28,7 @@ class Form < ActiveRecord::Base
     end
 
     self.name = untitled
+    return true
   end
 
 end
