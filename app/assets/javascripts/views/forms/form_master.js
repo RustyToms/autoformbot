@@ -1,6 +1,7 @@
 AFB.Views.FormMaster = Backbone.View.extend({
   events: {
-    "click .formEl" : "parseClick"
+    "click .formEl" : "parseClickForm",
+    "click #all-fields-sidebar" : "parseClickInputs"
   },
 
   initialize: function(){
@@ -37,8 +38,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
     }
   },
 
-  parseClick: function(event) {
-    console.log("in parseClick");
+  parseClickForm: function(event) {
+    console.log("in parseClickForm");
+    event.preventDefault();
     var id = $(event.target).closest(".formEl").attr("id");
     if (id === "title-description") {
       var editTitle = new AFB.Views.FormEditTitle({
@@ -47,5 +49,22 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
       this.render(editTitle)
     }
+  },
+
+  parseClickInputs: function(event) {
+    event.preventDefault();
+    console.log("in parseClickInputs");
+    var fieldChoices = {
+      "textbox" : "FormSidebarTextbox",
+      "checkbox" : "FormSidebarCheckbox",
+      "telnum" : "FormSidebarTelnum",
+      "dropdown" : "FormSidebarDropdown"
+    };
+
+    var selection = $(event.target).data('inputType');
+    var newSidebar = new AFB.Views[fieldChoices[selection]]({
+      model: this.model
+    });
+    newSidebar.render();
   }
 })

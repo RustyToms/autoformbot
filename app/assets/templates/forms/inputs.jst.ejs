@@ -1,21 +1,41 @@
-<div class="sidebar" >
+<div class="sidebar" id="all-fields-sidebar">
 
 <h2>Choose a Field!</h2>
 
-  <button id="text-box-button" style="padding:8px">Text Box
-    <input type="text" size="10" style="width:70px; height:12px; font-size: 8" value="Text here!"></button>
+  <button
+    id="text-box-button"
+    data-input-type="textbox"
+    style="padding:8px">
+      Text Box
+    <input type="text" size="10" style="width:70px; height:12px; font-size: 8" value="Text here!">
+  </button>
 
-    <button id="check-box-button" style="padding:8px">Check Box
-    <input type="checkbox" style="width:8px; height:8px" checked></button>
+    <button
+      id="check-box-button"
+      data-input-type="checkbox"
+      style="padding:8px">
+        Check Box
+      <input type="checkbox" style="width:8px; height:8px" checked>
+    </button>
 
-    <button id="tel-num-button" style="padding:8px">Telephone Number
-    <input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength=3 value="555">-<input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength=3 value="555">-<input type="text" size="10" style="width:28px; height:12px; font-size: 8" maxlength=4 value="1234"></button>
+    <button
+      id="tel-num-button"
+      data-input-type="telnum"
+      style="padding:8px">
+        Telephone Number
+      <input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength=3 value="555">-<input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength=3 value="555">-<input type="text" size="10" style="width:28px; height:12px; font-size: 8" maxlength=4 value="1234">
+    </button>
 
-  <button id="dropdown-button" style="padding:8px">Dropdown Selector
+  <button
+    id="dropdown-button"
+    data-input-type="dropdown"
+    style="padding:8px">
+      Dropdown Selector
     <select size='1'>
       <option>Option1</option>
       <option>Option2</option>
       <option>Option3</option>
     </select>
   </button>
+
 </div>
