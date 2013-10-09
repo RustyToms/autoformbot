@@ -5,17 +5,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   initialize: function(){
-    that = this;
     console.log('FormMaster View initialized');
-    this.listenTo(AFB.formCollection, 'change', function(){
-      that.render();
-    });
   },
 
-  render: function(sidebar){
+  render: function(newSidebar){
     console.log('rendering FormMaster view');
     this.$el.empty();
-    this.makeSidebarView(sidebar);
+    this.makeSidebarView(newSidebar);
     console.log(this.sidebar);
     this.$el.append(this.sidebar.render().$el);
 
@@ -24,14 +20,15 @@ AFB.Views.FormMaster = Backbone.View.extend({
       model: this.model
     })
     this.$el.append(this.editForm.render().$el);
-
+    console.log("el should be:");
+    console.log(this.$el.html());
     return this;
   },
 
-  makeSidebarView: function(sidebar){
+  makeSidebarView: function(newSidebar){
     this.sidebar && this.sidebar.remove();
-    if (sidebar){
-      this.sidebar = sidebar;
+    if (newSidebar){
+      this.sidebar = newSidebar;
     } else {
       this.sidebar = new AFB.Views.FormSidebarInputs({
         model: this.model
@@ -66,6 +63,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
     var newSidebar = new AFB.Views[fieldChoices[selection]]({
       model: this.model
     });
-    newSidebar.render();
+    this.render(newSidebar);
   }
 })

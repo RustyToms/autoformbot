@@ -4,8 +4,11 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   initialize: function(){
+    var that = this;
     console.log('FormEdit View initialized');
-
+    this.listenTo(this.model, 'change', function(){
+      that.render();
+    });
   },
 
   render: function(){
@@ -28,6 +31,3 @@ AFB.Views.FormEdit = Backbone.View.extend({
     });
   }
 })
-
-
-//  sync model on save!

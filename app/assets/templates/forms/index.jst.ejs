@@ -4,7 +4,11 @@
 
 <%forms.each(function(form){ %>
   <div class="form-summary">
-    <%= form.get('name') %>
+
+    <a href="#forms/<%= form.get('id') %>/edit">
+      <%= form.get('name') %>
+    </a>
+
     <div class="form-links">
       <ul>
         <li><a href="#forms/<%= form.get('id') %>/edit">Edit</a></li>

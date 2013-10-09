@@ -49,3 +49,20 @@
   text-align: center;
   width: 80%;
 }
+
+.form-summary {
+  background-color: #C6EFF7;
+}
+
+.form-summary:nth-child(3n) {
+ background-color: #95E5F5;
+}
+
+.form-summary:nth-child(3n - 2) {
+ background-color: #FFFFCC;
+}
+
+.form-links li {
+  display: inline;
+  margin: 0 10px;
+}

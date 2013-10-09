@@ -2,44 +2,106 @@
 <html>
 <head></head>
 <body>
-  <div style="width:25%; height:25%; background-color: oldlace; border: 1px darkblue solid">
-    <button id="text-box-button" style="padding:8px">Text Box
-    <input type="text" size="10" style="width:70px; height:12px; font-size: 8" value="Text here!"></button>
+  <div><div class="sidebar" id="all-fields-sidebar">
 
-    <button id="check-box-button" style="padding:8px">Check Box
-    <input type="checkbox" style="width:8px; height:8px" checked></button>
+  <h2>Choose a Field!</h2>
 
-    <button id="tel-num-button" style="padding:8px">Telephone Number
-    <input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength=3 value="555">-<input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength=3 value="555">-<input type="text" size="10" style="width:28px; height:12px; font-size: 8" maxlength=4 value="1234"></button>
+    <button id="text-box-button" data-input-type="textbox" style="padding:8px">
+        Text Box
+      <input type="text" size="10" style="width:70px; height:12px; font-size: 8" value="Text here!">
+    </button>
 
-  <button id="dropdown-button" style="padding:8px">Dropdown Selector
-    <select size='1'>
-      <option>Option1</option>
-      <option>Option2</option>
-      <option>Option3</option>
-    </select>
-  </button>
-</div>
+      <button id="check-box-button" data-input-type="checkbox" style="padding:8px">
+          Check Box
+        <input type="checkbox" style="width:8px; height:8px" checked="">
+      </button>
 
-<div class="main">
-  <div class="form-edit-box">
+      <button id="tel-num-button" data-input-type="telnum" style="padding:8px">
+          Telephone Number
+        <input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength="3" value="555">-<input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength="3" value="555">-<input type="text" size="10" style="width:28px; height:12px; font-size: 8" maxlength="4" value="1234">
+      </button>
+
+    <button id="dropdown-button" data-input-type="dropdown" style="padding:8px">
+        Dropdown Selector
+      <select size="1">
+        <option>Option1</option>
+        <option>Option2</option>
+        <option>Option3</option>
+      </select>
+    </button>
+
+  </div>
+  </div><div>
+  <div class="main"><div class="form-edit-box">
     <div class="formEl" id="title-description">
-      <h2 id="formName">asdf</h2>
+      <h2 id="formName">titled form</h2>
 
-      <p id="formDescription"><textarea id="new-form-description"></textarea></p>
+      <p id="formDescription">fdlgkjsdfg</p>
+    </div>
+  <div class="formEl" id="textbox"><input type="text"></div><div class="formEl" id="textbox"><input type="text"></div><label for="textbox" id="textbox-label"></label><div class="formEl" id="textbox"><input type="text"></div><label for="textbox" id="textbox-label"></label><div class="formEl" id="textbox"><input type="text"></div></div>
+
+    <div class="save-or-add">
+      <button id="save-button">Save!</button>
     </div>
   </div>
+  </div> form_master.js?body=1:28
+  FormEdit View initialized form_edit.js?body=1:7
+  el should be: form_master.js?body=1:27
+  <div><div class="sidebar" id="all-fields-sidebar">
 
-  <div class="save-or-add">
-    <button id="save-button">Save!</button>
+  <h2>Choose a Field!</h2>
+
+    <button id="text-box-button" data-input-type="textbox" style="padding:8px">
+        Text Box
+      <input type="text" size="10" style="width:70px; height:12px; font-size: 8" value="Text here!">
+    </button>
+
+      <button id="check-box-button" data-input-type="checkbox" style="padding:8px">
+          Check Box
+        <input type="checkbox" style="width:8px; height:8px" checked="">
+      </button>
+
+      <button id="tel-num-button" data-input-type="telnum" style="padding:8px">
+          Telephone Number
+        <input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength="3" value="555">-<input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength="3" value="555">-<input type="text" size="10" style="width:28px; height:12px; font-size: 8" maxlength="4" value="1234">
+      </button>
+
+    <button id="dropdown-button" data-input-type="dropdown" style="padding:8px">
+        Dropdown Selector
+      <select size="1">
+        <option>Option1</option>
+        <option>Option2</option>
+        <option>Option3</option>
+      </select>
+    </button>
+
   </div>
-</div>
+  </div><div><div class="sidebar" id="all-fields-sidebar">
 
-<br>
+  <h2>Customize your Textbox</h2>
 
-<form style="width: 50%">
+  <label>Label
+    <input type="text" name="textbox-label">
+  </label>
 
-  <input type='submit' value='Submit'>
-</form>
+  <label>Width
+    <input type="text" data-attribute="width" name="textbox-label">
+  </label>
+
+  </div>
+  </div><div>
+  <div class="main"><div class="form-edit-box">
+    <div class="formEl" id="title-description">
+      <h2 id="formName">titled form</h2>
+
+      <p id="formDescription">fdlgkjsdfg</p>
+    </div>
+  <div class="formEl" id="textbox"><input type="text"></div><div class="formEl" id="textbox"><input type="text"></div><label for="textbox" id="textbox-label"></label><div class="formEl" id="textbox"><input type="text"></div><label for="textbox" id="textbox-label"></label><div class="formEl" id="textbox"><input type="text"></div></div>
+
+    <div class="save-or-add">
+      <button id="save-button">Save!</button>
+    </div>
+  </div>
+  </div>
 </body>
 </html>
