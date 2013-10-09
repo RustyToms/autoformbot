@@ -3,7 +3,8 @@ class FormsController < ApplicationController
 
   def index
     @user = current_user
-    @forms = @user.forms
+    @account = current_user.account
+    @forms = @account.forms
     render :index
   end
 
@@ -23,6 +24,7 @@ class FormsController < ApplicationController
 
   def create
     @form = Form.new(params[:form])
+
     if @form.save
       render json: @form
     else

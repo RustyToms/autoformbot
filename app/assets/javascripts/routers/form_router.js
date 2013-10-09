@@ -7,7 +7,9 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   routes: {
     '' : "index",
     'index' : "index",
-    'forms/new' : "formNew"
+    'forms/new' : "formNew",
+    "forms/:id" : "formShow",
+    "forms/:id/edit" : "formEdit"
   },
 
   index: function(){
@@ -48,5 +50,14 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 
   formEdit: function(){
     console.log("In FormRouter#formEdit");
+  },
+
+  formShow: function(id) {
+    console.log("in FormRouter#formShow for form #" + id);
+  },
+
+  formEdit: function(id) {
+    console.log("in FormRouter#formEdit for form #" + id);
+
   }
 })

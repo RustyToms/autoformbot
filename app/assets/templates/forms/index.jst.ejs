@@ -2,13 +2,13 @@
 
 <button id='create-form-button'>Create a new Form!</button>
 
-<%_.each(forms, function(form){ %>
+<%forms.each(function(form){ %>
   <div class="form-summary">
-    <%= form.name %>
+    <%= form.get('name') %>
     <div class="form-links">
       <ul>
-        <li><a href="<%= edit_form_url(form.id) %>">Edit</a></li>
-        <li><a href="<%= form_url %>">View</a></li>
+        <li><a href="#forms/<%= form.get('id') %>/edit">Edit</a></li>
+        <li><a href="#forms/<%= form.get('id') %>">View</a></li>
         <li>Analytics</li>
         <li>Notifications</li>
         <li>Form Rules</li>
