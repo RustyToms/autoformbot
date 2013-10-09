@@ -9,18 +9,26 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   render: function(sidebar){
     this.$el.empty();
-    (!sidebar) && (sidebar = new AFB.Views.FormSidebarInputs({
-      model: this.model
-    }))
+    this.makeSidebarView(sidebar);
 
-    this.$el.append(sidebar.render().$el);
+    this.$el.append(this.sidebar.render().$el);
 
-    var editForm = new AFB.Views.FormEdit({
+    this.editForm && this.editForm.remove();
+    this.editForm = new AFB.Views.FormEdit({
       model: this.model
     })
-    this.$el.append(editForm.render().$el);
+    this.$el.append(this.editForm.render().$el);
+  },
 
-    return this;
+  makeSidebarView: function(sidebar){
+    this.sidebar && this.sidebar.remove();
+    if (sidebar){
+      this.sidebar = sidebar;
+    } else {
+      this.sidebar = new AFB.Views.FormSidebarInputs({
+        model: this.model
+      });
+    }
   },
 
   parseClick: function(event) {

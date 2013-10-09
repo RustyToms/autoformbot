@@ -16,9 +16,10 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     }));
 
     var newForm = new AFB.Views.FormMaster({
+      el: this.$rootEl,
       model: this.model
     });
-    this.$rootEl.append(newForm.render().$el);
+    newForm.render();
   },
 
   formSidebarInputs: function(){
