@@ -4,13 +4,17 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   initialize: function(){
+    that = this;
     console.log('FormMaster View initialized');
+    this.listenTo(this.model, 'change', function(){
+      that.render();
+    });
   },
 
   render: function(sidebar){
     this.$el.empty();
     this.makeSidebarView(sidebar);
-
+    console.log(this.sidebar);
     this.$el.append(this.sidebar.render().$el);
 
     this.editForm && this.editForm.remove();
