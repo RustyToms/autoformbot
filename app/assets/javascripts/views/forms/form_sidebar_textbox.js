@@ -4,9 +4,9 @@ AFB.Views.FormSidebarTextbox = Backbone.View.extend({
   },
 
   initialize: function(){
-    AFB.removeActiveEdits(this.model);
     this.$el.html(
-      "<div class='formEl editing' id='textbox' >" +
+      "<div class='formEl editing' id='textbox'" +
+        "data-sidebar='FormSidebarTextbox'>" +
         "<label for='textbox' id='textbox-label'></label>" +
         "<input type='text' id='textbox'/>" +
       "</div>"
@@ -30,18 +30,6 @@ AFB.Views.FormSidebarTextbox = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarTextbox#updateValues");
-    var $form = $(this.model.get('form_text'));
-
-    var target = $(event.target).attr('name');
-    var value = $(event.target).val()
-    var attribute = $(event.target).data('attribute')
-    if (attribute) {
-      $form.find('.editing #' + target).attr(attribute, value);
-    } else {
-      $form.find('#' + target).html(value);
-    }
-
-    form = $('<div>').append($form.clone()).html();
-    this.model.set('form_text', form)
+    AFB.Views.FormMaster.updateValues(event, this.model);
   }
 })

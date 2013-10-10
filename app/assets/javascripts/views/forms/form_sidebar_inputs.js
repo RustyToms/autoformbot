@@ -6,7 +6,6 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
   initialize: function(){
     console.log("initializing FormSidebarInputs view")
     this.parentView = this.options.parentView
-    AFB.removeActiveEdits(this.model);
   },
 
   render: function(){

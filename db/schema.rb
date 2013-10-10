@@ -23,12 +23,11 @@ ActiveRecord::Schema.define(:version => 20131007175859) do
   add_index "accounts", ["url_name"], :name => "index_accounts_on_url_name"
 
   create_table "forms", :force => true do |t|
-    t.integer  "account_id",  :null => false
-    t.text     "field_array"
-    t.string   "name",        :null => false
+    t.integer  "account_id", :null => false
+    t.string   "name",       :null => false
     t.text     "form_text"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "forms", ["account_id"], :name => "index_forms_on_account_id"
@@ -47,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20131007175859) do
 
   create_table "user_accounts", :force => true do |t|
     t.integer  "user_id",      :null => false
-    t.integer  "account_id",   :null => false
+    t.integer  "account_id"
     t.string   "account_auth", :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
@@ -57,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20131007175859) do
   add_index "user_accounts", ["user_id"], :name => "index_user_accounts_on_user_id"
 
   create_table "user_forms", :force => true do |t|
-    t.integer  "form_id",    :null => false
+    t.integer  "form_id"
     t.integer  "user_id",    :null => false
     t.string   "form_auth",  :null => false
     t.datetime "created_at", :null => false

@@ -1,9 +1,11 @@
 AFB.Views.FormEdit = Backbone.View.extend({
   events: {
-    "click #save-button" : "saveForm"
+    "click .formEl" : "parseClickForm",
+    "click #save-button" : "serverSaveForm"
   },
 
   initialize: function(){
+    this.parentView = this.options.parentView;
     var that = this;
     console.log('FormEdit View initialized');
     this.listenTo(this.model, 'change', function(){
@@ -18,7 +20,12 @@ AFB.Views.FormEdit = Backbone.View.extend({
     return this;
   },
 
-  saveForm: function(){
+  localSaveForm: function(){
+    var form = this.$el.find('.main').html();
+    this.model.set('form_text', form);
+  },
+
+  serverSaveForm: function(){
     this.model.save({},{
       success: function(response){
         console.log("save successful");
@@ -29,5 +36,21 @@ AFB.Views.FormEdit = Backbone.View.extend({
         console.log(response.errors.full_messages)
       }
     });
+  },
+
+  parseClickForm: function(event) {
+    console.log("in parseClickForm");
+    AFB.Views.FormMaster.removeActiveEdits(this.model);
+
+    $formEl = $(event.target).closest(".formEl");
+    $formEl.addClass("editing");
+    this.localSaveForm();
+
+    var sidebarName = $formEl.data("sidebar");
+    console.log(sidebarName);
+    sidebar = new AFB.Views[sidebarName]({
+      model: this.model
+    });
+    this.parentView.render(sidebar);
   }
 })

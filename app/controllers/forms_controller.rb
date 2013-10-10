@@ -49,7 +49,12 @@ class FormsController < ApplicationController
   end
 
   def destroy
-
+    @form = Form.find(params[:id])
+    if @form.destroy
+      render json: @form
+    else
+      render json: @form, status: :unprocessable_entity
+    end
   end
 
 
