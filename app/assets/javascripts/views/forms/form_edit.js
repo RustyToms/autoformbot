@@ -14,6 +14,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   render: function(){
+    console.log("rendering FormEdit view")
     this.$el.empty();
     this.$el.html(JST["forms/edit_form"]());
     this.$el.find('.main').prepend(this.model.get('form_text'));
@@ -41,11 +42,11 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   parseClickForm: function(event) {
     console.log("in parseClickForm");
-    AFB.Views.FormMaster.removeActiveEdits(this.model);
 
     $formEl = $(event.target).closest(".formEl");
-    $formEl.addClass("editing");
+    $formEl.addClass("start-editing");
     this.localSaveForm();
+    AFB.Views.FormMaster.removeActiveEdits(this.model);
 
     var sidebarName = $formEl.data("sidebar");
     console.log(sidebarName);
