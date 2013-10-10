@@ -1,7 +1,7 @@
 AutoFormBot::Application.routes.draw do
   devise_for :users
 
-  match "AutoFormBot" => 'forms#index', as: :user_root
+  match "AutoFormBot" => 'accounts#check_for_account', as: :user_root
 
   resource :static_page, only: [] do
     member do
@@ -11,6 +11,7 @@ AutoFormBot::Application.routes.draw do
 
   resources :forms
 
+  resources :accounts
 
 
 

@@ -10,9 +10,18 @@
   <% if user_signed_in? %>
     <li>
     Signed in as "<%= current_user.email %>"
-    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+    <%= link_to('Log Out', destroy_user_session_path, :method => :delete) %>
     </li>
   <% end %>
+
+  <ul class="color-swatches group">
+    <li style="background-color: #8FCBFB;">$blue</li>
+    <li style="background-color: #D1E7FD;">$faded-blue</li>
+    <li style="background-color: #EFFAFF;">$very-pale-blue</li>
+    <li style="background-color: #D2FFB3;">$light-green</li>
+    <li style="background-color: #DCF8CD;">$pale-green</li>
+    <li style="background-color: #FFFFC2;">$pale-yellow</li>
+  </ul>
 
   <% flash.each do |name, msg| %>
     <% if msg.is_a?(String) %>

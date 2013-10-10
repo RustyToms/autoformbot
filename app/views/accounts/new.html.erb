@@ -1,0 +1,30 @@
+<h1>Create your AutoFormBot account!</h1>
+
+<form action="<%= accounts_url %>" method="POST">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="form_authenticity_token">
+
+  <label>Your url (no spaces):
+    <input type="text" name="account[url_name]"/>
+  </label>
+
+  <br>
+
+  <div class="plan_description">
+    <h2>Please choose one of our affordable plans</h2>
+    <% @plan_types.each do |plan_name, cost| %>
+      <input
+        type=radio
+        name="account[plan_type]"
+        value="<%= plan_name %>"
+        checked/>
+        <%= "#{plan_name}: $#{cost} per month" %>
+        <br>
+    <% end %>
+  </div>
+
+  <input type="submit" value="Create Account!">
+
+</form>

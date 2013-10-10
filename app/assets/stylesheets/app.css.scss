@@ -1,0 +1,79 @@
+/*******************************************************************
+FONTS
+*******************************************************************/
+
+
+/*******************************************************************
+Colors
+*******************************************************************/
+$blue: #8FCBFB;
+$faded-blue: #D1E7FD;
+$very-pale-blue: #EFFAFF;
+$light-green: #D2FFB3;
+$pale-green: #DCF8CD;
+$pale-yellow: #FFFFC2;
+
+/*******************************************************************/
+body, main, section, nav, div, ul, li, h1, h2, h3, h4, a, span {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+  font: inherit;
+  font-size: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+ul.color-swatches li{
+  height: 15px;
+  display: inline-block;
+  padding: 5px;
+  width: 125px;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+.group:after{
+  content: "";
+  clear: both;
+  display: table;
+}
+
+main {
+  width: 85%;
+  min-width: 900px;
+  background-color: #e1feff;
+  margin: auto;
+}
+
+.header {
+  background-color: #1ff8ff;
+}
+
+.title-bar {
+  display: inline-block;
+  float: left;
+  padding: 5px 10px;
+}
+
+.nav-bar {
+  float: right;
+}
+.header li{
+  list-style: none;
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+}

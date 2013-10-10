@@ -2,10 +2,6 @@ class FormsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @user = current_user
-    @account = current_user.account
-    @forms = @account.forms
-    render :index
   end
 
 
