@@ -1,6 +1,6 @@
 AFB.Views.FormEditTitle = Backbone.View.extend({
   events: {
-    "keyup input" : "updateValues"
+    "keyup" : "updateValues"
   },
 
   initialize: function(){

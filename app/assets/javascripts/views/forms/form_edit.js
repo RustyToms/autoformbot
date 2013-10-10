@@ -21,7 +21,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   localSaveForm: function(){
-    var form = this.$el.find('.main').html();
+    var $form = this.$el.find('.form-edit-box');
+    var form = $('<div>').append($form.clone()).html();
     this.model.set('form_text', form);
   },
 
