@@ -1,7 +1,4 @@
 AFB.Views.FormMaster = Backbone.View.extend({
-  events: {
-    // "click .formEl" : "parseClickForm"
-  },
 
   initialize: function(){
     console.log('FormMaster View initialized');
@@ -37,21 +34,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
       });
     }
   }
-
-
-  // parseClickForm: function(event) {
-  //   console.log("in parseClickForm");
-  //   $formEl = $(event.target).closest(".formEl");
-  //
-  //   var id = $formEl.attr("id");
-  //   if (id === "title-description") {
-  //     var editTitle = new AFB.Views.FormEditTitle({
-  //       model: this.model
-  //     })
-  //
-  //     this.render(editTitle)
-  //   }
-  // }
 })
 
 AFB.Views.FormMaster.updateValues = function(event, model) {
