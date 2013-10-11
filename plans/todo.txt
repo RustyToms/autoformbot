@@ -1,6 +1,0 @@
-  # Make account name prefix of url
-  # make form url extensions be by form name instead of form id
-  # ensure that the creator of an account is admin, and admin of all forms in account
-  # ensure that the creator of a form is admin of that form
-  # possibly make getter/setter methods for form ownership, reporting not just forms from UserForm join table, but all forms from associated accounts with admin authority.  These getter/setters would replace associations?  Would includes work with this?
-  # add method which automatically checks to see if name exists, and if not gives it a name of "untitled form", looping through account's forms to see if there is another with this name, adding an integer to the end each time.
