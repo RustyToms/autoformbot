@@ -2,7 +2,6 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
   initialize: function(){
     console.log("initializing FormSidebarInputs view")
     this.parentView = this.options.parentView
-    // this.$el.empty();
     this.$el = $(JST['forms/inputs']());
   },
 

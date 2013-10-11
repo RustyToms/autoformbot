@@ -1,17 +1,29 @@
+<% $field = (field || {}) %>
+
 <div class="sidebar" id="all-fields-sidebar">
 
 <h2>Customize your Textbox</h2>
 
-<label>Label
+<label>Label:
   <input type='text'
-    name='textbox-label'>
-</label>
+    name='textbox-label'
+    value='<%= $field.find('#textbox-label').html() %>'>
+</label><br>
 
-<label>Width
+<label>Width:
   <input
     type='text'
     data-attribute='size'
+    value='<%= $field.find('#textbox').attr('size') %>'
     name='textbox'/>
-</label>
+</label><br>
+
+<label>Prefilled content:
+  <input
+    type='text'
+    data-attribute='value'
+    value='<%= $field.find('#textbox').val() %>'
+    name='textbox'/>
+</label><br>
 
 </div>
