@@ -12,21 +12,21 @@ AFB.Views.FormMaster = Backbone.View.extend({
   render: function(newSidebar){
     console.log('rendering FormMaster view');
     this.$el.empty();
-    this.makeSidebarView(newSidebar);
+    this.$el.append(this.makeSidebarView(newSidebar));
 
-    this.editForm && this.editForm.remove();
+    // this.editForm && this.editForm.remove();
     this.editForm = new AFB.Views.FormEdit({
       parentView: this,
       model: this.model
     })
-    this.$el.append(this.editForm.render().$el);
+    this.$el.append(this.editForm.render().$el.html());
 
     return this;
   },
 
   makeSidebarView: function(newSidebar){
     console.log("making sidebar");
-    this.sidebar && this.sidebar.remove();
+    // this.sidebar && this.sidebar.remove();
 
     if (newSidebar){
       this.sidebar = newSidebar;
@@ -39,9 +39,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
       });
     }
 
-    var $sidebar = $('<div>').html(JST['forms/sidebar_seed']());
-    $sidebar.find('.sidebar_window').append(this.sidebar.render().$el);
-    this.$el.append($sidebar.html());
+    var $sidebar = $(JST['forms/sidebar_seed']());
+    return $sidebar.append(this.sidebar.render().$el);
   },
 
   newSidebar: function(event){
@@ -71,7 +70,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   sidebarValues: function(event){
     this.sidebar.updateValues && this.sidebar.updateValues(event);
-  }
+  },
+
 })
 
 AFB.Views.FormMaster.updateValues = function(event, model) {

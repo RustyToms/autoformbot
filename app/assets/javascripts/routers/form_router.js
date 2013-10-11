@@ -2,6 +2,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   initialize: function($rootEl){
     console.log('formrouter initialized');
     this.$rootEl = $rootEl;
+    this.$seedEl = $("<section class='body group'></section>")
   },
 
   routes: {
@@ -14,27 +15,29 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 
   index: function(){
     console.log("in FormRouter#index");
-    this.$rootEl.empty();
-    this.view && this.view.remove();
+    this.cleanRootEl();
+    // this.view && this.view.remove();
     this.view = new AFB.Views.FormIndex({
-      collection: AFB.formCollection
+      collection: AFB.formCollection,
+      el: this.$seedEl
     })
 
-    this.$rootEl.html(this.view.render().$el)
+    this.$rootEl.append(this.view.render().$el);
 
   },
 
   formNew: function(){
-    this.$rootEl.empty();
+    this.cleanRootEl();
     console.log("In FormRouter#formNew");
     this.model = new AFB.Models.Form();
     this.setUpModel()
     AFB.formCollection.add(this.model);
-    this.view && this.view.remove();
+    // this.view && this.view.remove();
     this.view = new AFB.Views.FormMaster({
-      model: this.model
+      model: this.model,
+      el: this.$seedEl
     });
-    this.$rootEl.html(this.view.render().$el);
+    this.$rootEl.append(this.view.render().$el);
   },
 
   setUpModel: function(){
@@ -47,22 +50,35 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   formShow: function(id) {
-    this.$rootEl.empty();
-    this.view && this.view.remove();
+    this.cleanRootEl();
+    // this.view && this.view.remove();
     console.log("in FormRouter#formShow for form #" + id);
     console.log(AFB.formCollection.get(id))
     this.view = showFormView = new AFB.Views.FormShow({
       model: AFB.formCollection.get(id),
+      el: this.$seedEl
     })
-    this.$rootEl.html(this.view.render().$el);
+    this.$rootEl.append(this.view.render().$el);
   },
 
   formEdit: function(id) {
+    this.cleanRootEl();
     console.log("in FormRouter#formEdit for form #" + id);
-    this.view && this.view.remove();
+    // this.view && this.view.remove();
     this.view = new AFB.Views.FormMaster({
-      model: AFB.formCollection.get(id)
+      model: AFB.formCollection.get(id),
+      el: this.$seedEl
     });
-    this.$rootEl.html(this.view.render().$el);
+    this.$rootEl.append(this.view.render().$el);
+  },
+
+  cleanRootEl: function(){
+    this.$rootEl.empty();
+    this.$rootEl.unbind();
+    this.$rootEl.off();
+    this.$rootEl.undelegate();
+    console.log("$rootEl is");
+    console.log(this.$rootEl.prop('outerHTML'));
+    this.initialize(this.$rootEl);
   }
 })

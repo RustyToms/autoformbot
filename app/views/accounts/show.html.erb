@@ -14,8 +14,8 @@
       </ul>
     </nav>
   </section>
-  <section class='body'>
-  </section>
+  <div class='backbone-render'>
+  </div>
 
 </main>
 
@@ -32,6 +32,6 @@ $(function(){
   var forms = JSON.parse($bootstrap.html());
   console.log(forms);
 
-  window.AFB.initialize($('.body'), forms)
+  window.AFB.initialize($('.backbone-render'), forms)
 });
 </script>

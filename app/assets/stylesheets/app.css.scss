@@ -13,6 +13,7 @@ body, main, section, nav, div, ul, li, h1, h2, h3, h4, a, span {
 body {
   font-family: sans-serif;
   font-size: 16px;
+  display: block;
 }
 
 ul.color-swatches li{
@@ -39,8 +40,10 @@ h2 {
 main {
   width: 85%;
   min-width: 900px;
+  min-height: 800px;
   background-color: #e1feff;
   margin: auto;
+  display: block;
 }
 
 .header {

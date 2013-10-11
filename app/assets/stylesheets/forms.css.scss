@@ -6,19 +6,39 @@
 .editing {
   background-color: $light-green;
 }
-.sidebar {
+
+.body {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar_window {
   background-color: lightblue;
-  border: 2px dotted blue;
   width: 25%;
-  height: 450px;
+  height: 100%;
   float: left;
 }
 
+.sidebar {
+  border: 2px dotted blue;
+}
+
+.sidebar_header {
+  background-color: $very-pale-blue;
+  font-size: 12px;
+}
+
+.sidebar_header a {
+  display: inline-block;
+  width: 32%;
+  text-align: center;
+}
+
 .main {
-  width: 50%;
-  height: auto;
-  min-height: 450px;
-  border: 2px solid blue;
+  width: 75%;
+  height: 100%;
+//  min-height: 450px;
   float: left;
 }
 
@@ -32,7 +52,7 @@
 
 .save-or-add {
   background-color: #CCFFFF;
-  min-height: 98px;
+  min-height: 48px;
 }
 
 #title-description {
