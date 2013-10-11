@@ -3,29 +3,27 @@ AFB.Views.FormSidebarTextbox = Backbone.View.extend({
     "keyup input" : "updateValues"
   },
 
+  field: ("<div class='formEl editing' id='textbox'" +
+            "data-sidebar='FormSidebarTextbox'>" +
+            "<label for='textbox' id='textbox-label'></label>" +
+            "<input type='text' id='textbox'/>" +
+          "</div>"),
+
   initialize: function(){
-    this.$el.html(
-      "<div class='formEl editing' id='textbox'" +
-        "data-sidebar='FormSidebarTextbox'>" +
-        "<label for='textbox' id='textbox-label'></label>" +
-        "<input type='text' id='textbox'/>" +
-      "</div>"
-    );
+  },
+
+  addField: function(){
+    var form = this.model.get('form_text');
+    $form = $(form).append(this.field);
+    form = $('<div>').append($form.clone()).html();
+    this.model.set('form_text', form)
   },
 
   render: function(){
     console.log("rendering FormSidebarTextbox");
-    this.addToForm();
     this.$el.html(JST['forms/textbox_options']());
 
     return this;
-  },
-
-  addToForm: function(){
-    var form = this.model.get('form_text');
-    $form = $(form).append(this.$el.html());
-    form = $('<div>').append($form.clone()).html();
-    this.model.set('form_text', form)
   },
 
   updateValues: function(event){

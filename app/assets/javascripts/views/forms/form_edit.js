@@ -28,6 +28,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   serverSaveForm: function(){
+    var name = $(this.model.get('form_text')).find('#formName').html();
+    this.model.set('name', name);
     this.model.save({},{
       success: function(response){
         console.log("save successful");
