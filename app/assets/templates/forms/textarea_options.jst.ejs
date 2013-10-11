@@ -8,7 +8,7 @@
   <input type='text'
     name='textarea-label'
     value='<%= $field.find('#textarea-label').html() %>'>
-</label>
+</label><br>
 
 <label>Height (in number of lines)
   <input
@@ -16,7 +16,7 @@
     data-attribute='rows'
     value='<%= $field.find('#textarea').attr('rows') %>'
     name='textarea'/>
-</label>
+</label><br>
 
 <label>Width (in number of characters)
   <input
@@ -24,12 +24,12 @@
     data-attribute='cols'
     value='<%= $field.find('#textarea').attr('cols') %>'
     name='textarea'/>
-</label>
+</label><br>
 
 <label>Prefilled content
   <input
     type='text'
-    value='<%= $field.find('#textarea').val() %>'
+    value='<%= $field.find('#textarea').html() %>'
     name='textarea'/>
 </label>
 
