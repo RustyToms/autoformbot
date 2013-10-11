@@ -57,7 +57,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     AFB.Views.FormMaster.removeActiveEdits(this.model);
 
     var sidebarName = $formEl.data("sidebar");
-    console.log(sidebarName);
+    console.log("new sidebar should be " + sidebarName);
     sidebar = new AFB.Views[sidebarName]({
       model: this.model
     });

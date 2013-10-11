@@ -33,6 +33,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
     if (newSidebar){
       this.sidebar = newSidebar;
+      console.log("new sidebar is " + this.sidebar);
 
     } else {
       AFB.Views.FormMaster.removeActiveEdits(this.model);
@@ -41,11 +42,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
         model: this.model,
       });
     }
-    return this.$sidebarEl.append(this.sidebar.$el);
+    return this.$sidebarEl.append(this.sidebar.render().$el);
   },
 
   newSidebar: function(event){
     event.preventDefault();
+    console.log("target sidebar view is");
+    console.log($(event.target).attr("id"));
     switch($(event.target).attr("id")) {
     case "move-to-add-fields":
       this.render();
