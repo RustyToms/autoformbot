@@ -1,6 +1,8 @@
 AFB.Views.FormMaster = Backbone.View.extend({
   events: {
-    "click .sidebar_header" : "newSidebar"
+    "click .sidebar_header" : "newSidebar",
+    "click .sidebar" : "sidebarClick",
+    "keyup .sidebar" : "sidebarValues"
   },
 
   initialize: function(){
@@ -61,6 +63,14 @@ AFB.Views.FormMaster = Backbone.View.extend({
       console.log("hit newSidebar switch default");
       this.render();
     };
+  },
+
+  sidebarClick: function(event){
+    this.sidebar.parseClick && this.sidebar.parseClick(event);
+  },
+
+  sidebarValues: function(event){
+    this.sidebar.updateValues && this.sidebar.updateValues(event);
   }
 })
 

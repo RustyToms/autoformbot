@@ -19,9 +19,9 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.view = new AFB.Views.FormIndex({
       collection: AFB.formCollection
     })
-    // checkIt2 = this.$rootEl;
+
     this.$rootEl.html(this.view.render().$el)
-    // checkIt3 = this.$rootEl;
+
   },
 
   formNew: function(){

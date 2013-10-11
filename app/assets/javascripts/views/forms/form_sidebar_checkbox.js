@@ -1,17 +1,21 @@
 AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
-  initialize: function(){
-    this.$el.html(
-      "<div class='formEl' id='checkbox' >" +
-        "<input type='checkbox' />" +
-      "</div>"
-    )
+  field: (
+    "<div class='formEl editing' id='checkbox'" +
+      "data-sidebar='FormSidebarCheckbox' >" +
+      "<input type='checkbox' />" +
+    "</div>"
+  ),
+
+  addField: function(){
+    var form = this.model.get('form_text');
+    $form = $(form).append(this.field);
+    form = $('<div>').append($form.clone()).html();
+    this.model.set('form_text', form)
   },
 
   render: function(){
     console.log("rendering FormSidebarCheckbox");
-    var form = this.model.get('form_text');
-    $form = $(form).append(this.$el.html());
-    form = $('<div>').append($form.clone()).html();
-    this.model.set('form_text', form)
+
+    return this;
   }
 })

@@ -1,14 +1,9 @@
 AFB.Views.FormSidebarInputs = Backbone.View.extend({
-  events: {
-    "click .sidebar button" : "parseClickInputs",
-    "click" : "parseClickInputs"
-  },
-
   initialize: function(){
     console.log("initializing FormSidebarInputs view")
     this.parentView = this.options.parentView
-    this.$el.empty();
-    this.$el.html(JST['forms/inputs']());
+    // this.$el.empty();
+    this.$el = $(JST['forms/inputs']());
   },
 
   render: function(){
@@ -16,7 +11,7 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
     return this;
   },
 
-  parseClickInputs: function(event) {
+  parseClick: function(event) {
     event.preventDefault();
     console.log("in FormSidebarInputs#parseClickInputs");
     var fieldChoices = {
@@ -27,6 +22,10 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
     };
 
     var selection = $(event.target).data('inputType');
+    if(!selection){
+      console.log("no target")
+      return
+    }
     var newSidebar = new AFB.Views[fieldChoices[selection]]({
       model: this.model
     });
