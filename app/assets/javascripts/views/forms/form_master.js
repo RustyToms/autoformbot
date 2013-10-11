@@ -13,7 +13,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   render: function(newSidebar){
     console.log('rendering FormMaster view');
-    this.cleanEl();
+    this.$el.empty();
     this.$el.append(this.makeSidebarView(newSidebar));
 
     this.editForm && this.editForm.remove();
@@ -23,7 +23,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       el: this.$formEditEl
     })
     this.$el.append(this.editForm.render().$el);
-
+    this.initialize();
     return this;
   },
 
@@ -42,6 +42,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
         model: this.model,
       });
     }
+
+    console.log(this.sidebar.render().$el.prop('outerHTML'));
     return this.$sidebarEl.append(this.sidebar.render().$el);
   },
 
