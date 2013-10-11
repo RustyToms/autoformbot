@@ -1,7 +1,7 @@
 AFB.Views.FormSidebarTextarea = Backbone.View.extend({
   field: ("<div class='formEl editing' id='textarea'" +
             "data-sidebar='FormSidebarTextarea'>" +
-            "<label for='textarea' id='textarea-label'></label>" +
+            "<label for='textarea' id='textarea-label'></label><br>" +
             "<textarea rows='10' cols='50' id='textarea'></textarea>" +
           "</div>"),
 
