@@ -2,7 +2,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   initialize: function($rootEl){
     console.log('formrouter initialized');
     this.$rootEl = $rootEl;
-    this.$seedEl = $("<section class='body group'></section>")
+    this.$seedEl = $("<section class='body group'></section>");
   },
 
   routes: {
@@ -75,8 +75,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.$rootEl.unbind();
     this.$rootEl.off();
     this.$rootEl.undelegate();
-    console.log("$rootEl is");
-    console.log(this.$rootEl.prop('outerHTML'));
+
     this.initialize(this.$rootEl);
   }
 })

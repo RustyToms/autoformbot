@@ -14,16 +14,22 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   render: function(){
-    console.log("rendering FormEdit view")
-    this.$el.empty();
-    this.$el.html(JST["forms/edit_form"]());
-    this.$el.find('.main').prepend(this.model.get('form_text'));
+    console.log("rendering FormEdit view");
+    formText = (this.model.get('form_text'));
+    if(this.$el.find('.form-edit-box').html()){
+      console.log("replacing previous text")
+      this.$el.find('.form-edit-box').replaceWith(formText);
+    } else {
+      console.log("adding formText for the first time")
+      this.$el.prepend(formText);
+    }
+
     return this;
   },
 
   localSaveForm: function(){
     var $form = this.$el.find('.form-edit-box');
-    var form = $('<div>').append($form.clone()).html();
+    var form = $form.prop('outerHTML');
     this.model.set('form_text', form);
   },
 
