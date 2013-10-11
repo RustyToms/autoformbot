@@ -14,7 +14,9 @@ AFB.Views.FormSidebarTextarea = Backbone.View.extend({
 
   render: function(){
     console.log("rendering FormSidebarTextarea");
-    this.$el.html(JST['forms/textarea_options']());
+    this.$el.html(JST['forms/textarea_options']({
+      field: this.options.field
+    }));
 
     return this;
   },

@@ -1,16 +1,20 @@
+<% var $field = (field || $('<div></div>')) %>
+
 <div class="sidebar" id="all-fields-sidebar">
 
 <h2>Customize your Textarea</h2>
 
 <label>Label
   <input type='text'
-    name='textarea-label'>
+    name='textarea-label'
+    value='<%= $field.find('#textarea-label').html() %>'>
 </label>
 
 <label>Height (in number of lines)
   <input
     type='text'
     data-attribute='rows'
+    value='<%= $field.find('#textarea').attr('rows') %>'
     name='textarea'/>
 </label>
 
@@ -18,12 +22,14 @@
   <input
     type='text'
     data-attribute='cols'
+    value='<%= $field.find('#textarea').attr('cols') %>'
     name='textarea'/>
 </label>
 
 <label>Prefilled content
   <input
     type='text'
+    value='<%= $field.find('#textarea').val() %>'
     name='textarea'/>
 </label>
 
