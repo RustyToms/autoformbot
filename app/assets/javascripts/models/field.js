@@ -1,3 +1,3 @@
-AFB.Models.Field = new Backbone.Model.extend({
+AFB.Models.Field = Backbone.Model.extend({
   
 })

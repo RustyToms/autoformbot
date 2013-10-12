@@ -43,7 +43,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
       });
     }
 
-    console.log(this.sidebar.render().$el.prop('outerHTML'));
     return this.$sidebarEl.append(this.sidebar.render().$el);
   },
 
@@ -86,8 +85,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.$el.undelegate();
 
     this.initialize;
-  }
-
+  },
+	
 })
 
 AFB.Views.FormMaster.updateValues = function(event, model) {

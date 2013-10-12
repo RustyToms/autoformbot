@@ -15,7 +15,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   render: function(){
     console.log("rendering FormEdit view");
-    formText = (this.model.get('form_text'));
+    // var formText = (this.model.get('form_text'));
+		var formText = this.parseFields();
+		
     if(this.$el.find('.form-edit-box').html()){
       console.log("replacing previous text")
       this.$el.find('.form-edit-box').replaceWith(formText);
@@ -63,5 +65,40 @@ AFB.Views.FormEdit = Backbone.View.extend({
       field: $formEl
     });
     this.parentView.render(sidebar);
-  }
-})
+  },
+	
+	parseFields: function(){
+		var fields = this.model.get('fields');
+		var formText = "";
+		that = this;
+		
+		console.log(fields);
+		
+		_.each(fields, function(field) {
+			console.log("field is");
+			console.log(field);
+			formText = formText.concat(that.parseField(field));	
+			console.log("this field is " + that.parseField(field));	
+		});
+		console.log ("formText from parseFields is " + formText);
+		return formText;
+	},
+	
+	parseField: function(field) {
+		console.log("parsing field")
+		var $fieldText = $(field.get('outerHtml'));
+		 
+		_.each(field.get('fieldAttr'), function(f) {
+			f.call($fieldText);
+		});
+		// 
+		// _.each(field.get('properties'), function(property) {
+		// 	$fieldText.prop(property);
+		// });
+		// 
+		// var childHtml = _.each(field.get('kids'), this.parseField);
+		// $fieldText.html(field.get('innerHtml').concat(childHtml));
+		// 
+		return $fieldText.prop('outerHTML');
+	}
+});
