@@ -1,9 +1,5 @@
 AFB.Views.FormSidebarTextbox = Backbone.View.extend({
-  field: ("<div class='formEl editing' id='textbox'" +
-            "data-sidebar='FormSidebarTextbox'>" +
-            "<label for='textbox' id='textbox-label'></label>" +
-            "<input type='text' id='textbox'/>" +
-          "</div>"),
+  field: (JST['forms/fields/textbox']()),
 
   addField: function(){
     var form = this.model.get('form_text');
@@ -14,7 +10,7 @@ AFB.Views.FormSidebarTextbox = Backbone.View.extend({
 
   render: function(){
     console.log("rendering FormSidebarTextbox");
-    this.$el.html(JST['forms/textbox_options']({
+    this.$el.html(JST['forms/sidebars/textbox_options']({
       field: this.options.field
     }));
 

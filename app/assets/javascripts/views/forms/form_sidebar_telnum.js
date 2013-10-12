@@ -1,12 +1,5 @@
 AFB.Views.FormSidebarTelnum = Backbone.View.extend({
-  field: (
-    "<div class='formEl editing' id='telnum'" +
-      "data-sidebar='FormSidebarTelnum' >" +
-         "<input type='text' size='3' maxlength=3 style='text-align: center'>-"+
-         "<input type='text' size='3' maxlength=3 style='text-align: center'>-"+
-         "<input type='text' size='4' maxlength=4 style='text-align: center'>" +
-      "</div>"
-  ),
+  field: (JST['forms/fields/telnum']()),
 
   addField: function(){
     var form = this.model.get('form_text');

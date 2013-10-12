@@ -7,7 +7,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   initialize: function(){
     console.log('FormMaster View initialized');
-    this.$sidebarEl = $(JST['forms/sidebar_seed']());
+    this.$sidebarEl = $(JST['forms/sidebars/sidebar_seed']());
     this.$formEditEl = $(JST["forms/edit_form"]());
   },
 
