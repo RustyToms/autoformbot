@@ -1,0 +1,18 @@
+Make field models - done
+store form elements in models
+create form elements from models
+save models with form
+create field models from html
+parse form into field models
+mark up external form into parsable form
+
+set form to return results
+set results to be sent to my server
+provide code for form
+
+report results
+report singular result
+
+allow other users to be added to account
+
+add more form fields

@@ -11,7 +11,9 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
 
   render: function(){
     console.log("rendering FormSidebarDropdown");
-    this.$el.html("<div class='sidebar'><h2>Nothing here yet</h2></div>")
+    this.$el.html(JST['forms/sidebars/dropdown_options']({
+      field: this.options.field
+    }));
     return this;
   }
 })
