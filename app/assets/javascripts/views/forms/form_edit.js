@@ -111,6 +111,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
 		console.log("finished setting html");
 		console.log($fieldText.html());
 		console.log($fieldText.prop('outerHTML') || "");
+				myOwnEl = $fieldText.get(0);
+				console.log(myOwnEl.innerHTML);
 		return ($fieldText.prop('outerHTML') || "");
 	}
 });
