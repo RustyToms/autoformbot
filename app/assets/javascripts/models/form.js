@@ -3,7 +3,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 	
 	createForm: function(){
 		this.set('fields', [new AFB.Models.Field({
-				outerHtml: "<div></div>",
+				outerHtml: "<form></form>",
 				innerHtml: "",
 				fieldAttr: [
 				  function(){ this.addClass("form-edit-box")}

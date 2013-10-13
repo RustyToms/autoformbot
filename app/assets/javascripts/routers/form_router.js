@@ -80,5 +80,9 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.$rootEl.undelegate();
 
     this.initialize(this.$rootEl);
-  }
+  },
+	
+	textToFieldModel: function(text){
+		
+	}
 })

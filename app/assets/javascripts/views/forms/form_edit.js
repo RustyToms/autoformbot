@@ -11,12 +11,12 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.listenTo(this.model, 'change', function(){
       that.render();
     });
+		this.model.set('form_text', this.parseFields());
   },
 
   render: function(){
     console.log("rendering FormEdit view");
-    // var formText = (this.model.get('form_text'));
-		var formText = this.parseFields();
+    var formText = (this.model.get('form_text'));
 		
     if(this.$el.find('.form-edit-box').html()){
       console.log("replacing previous text")
@@ -36,9 +36,14 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   serverSaveForm: function(){
-    var name = $(this.model.get('form_text')).find('#formName').html();
-    this.model.set('name', name);
-    this.model.save({},{
+    var name = this.$el.find('#formName').html();
+		myName = name;
+    myModel1 = this.model;
+		this.model.save({
+			name: name, 
+			form_text: this.model.get('form_text'),
+			fields: this.model.get('fields')
+		},{
       success: function(response){
         console.log("save successful");
       },
@@ -48,6 +53,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
         console.log(response.errors.full_messages)
       }
     });
+		myModel = this.model
   },
 
   parseClickForm: function(event) {

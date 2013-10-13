@@ -1,7 +1,7 @@
 Make field models - done
-store form elements in models
-create form elements from models
-save models with form
+store form elements in models - done
+create form elements from models - done
+save models with form --- Tried, Don't think I can do this with JSON because of the functions ---Might have to save field models individually----
 create field models from html
 parse form into field models
 mark up external form into parsable form

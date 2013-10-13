@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131007175859) do
+ActiveRecord::Schema.define(:version => 20131013043545) do
 
   create_table "accounts", :force => true do |t|
     t.string   "url_name",   :null => false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20131007175859) do
     t.text     "form_text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "fields"
   end
 
   add_index "forms", ["account_id"], :name => "index_forms_on_account_id"
