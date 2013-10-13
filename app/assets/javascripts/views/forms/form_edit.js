@@ -94,7 +94,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
 		console.log("finished adding field attributes");
 		var childHtml = "";
 		_.each(field.get('kids'), function(kid){
-			childHtml.concat(that.parseField(kid));
+			console.log("kid is");
+			console.log(kid);
+			childHtml = childHtml.concat(that.parseField(kid));
 		});
 		console.log(childHtml);
 		$fieldText.html(field.get('innerHtml').concat(childHtml));

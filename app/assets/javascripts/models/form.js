@@ -27,7 +27,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 			function(){this.attr('id', 'title-description')},
 			function(){this.data('sidebar', 'FormEditTitle')}
 				],
-			kids: [title]//, description]
+			kids: [title, description]
 		});
 		
 		this.set('fields', [titleField]);
