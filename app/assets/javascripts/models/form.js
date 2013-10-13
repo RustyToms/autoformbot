@@ -1,5 +1,18 @@
 AFB.Models.Form = Backbone.Model.extend ({
 	fields: [],
+	
+	createForm: function(){
+		this.set('fields', [new AFB.Models.Field({
+				outerHtml: "<div></div>",
+				innerHtml: "",
+				fieldAttr: [
+				  function(){ this.addClass("form-edit-box")}
+				],
+				kids:[]
+		  })
+	  ]);
+	}, 
+	
 	addTitle: function(){
 		var title = new AFB.Models.Field({
 			outerHtml: "<h2></h2>",
@@ -29,8 +42,9 @@ AFB.Models.Form = Backbone.Model.extend ({
 				],
 			kids: [title, description]
 		});
-		
-		this.set('fields', [titleField]);
+		var fields = this.get('fields');
+		fields.push(titleField)
+		this.set('fields', fields);
 	}
 
 });

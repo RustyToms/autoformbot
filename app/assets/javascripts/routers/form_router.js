@@ -42,6 +42,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       name: "Untitled Form",
 			// fields: new AFB.Collections.Fields()
     });
+		this.model.createForm();
 		this.model.addTitle();
   },
 

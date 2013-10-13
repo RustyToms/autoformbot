@@ -68,9 +68,12 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 	
 	parseFields: function(){
-		var fields = this.model.get('fields');
-		var formText = "";
+		console.log("in FormEdit View parseFields");
 		that = this;
+		var fields = this.model.get('fields');
+		var formField = fields.shift();
+		var $form = $(this.parseField(formField));
+		var formText = "";
 		
 		console.log(fields);
 		
@@ -80,7 +83,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
 			formText = formText.concat(that.parseField(field));	
 		});
 		console.log ("formText from parseFields is " + formText);
-		return formText;
+		
+		$form.html(formText);
+		return $form.prop('outerHTML');
 	},
 	
 	parseField: function(field) {
