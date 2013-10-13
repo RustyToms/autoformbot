@@ -97,7 +97,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
 	parseField: function(field) {
 		console.log("parsing field")
 		var that = this;
-		var $fieldText = $(field.get('outerHtml'));
+		var $fieldText = $(field.get('tag'));
 		 
 		_.each(field.get('fieldAttr'), function(f) {
 			f.call($fieldText);

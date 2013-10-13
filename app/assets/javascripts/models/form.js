@@ -3,7 +3,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 	
 	createForm: function(){
 		this.set('fields', [new AFB.Models.Field({
-				outerHtml: "<form></form>",
+				tag: "<form></form>",
 				innerHtml: "",
 				fieldAttr: [
 				  function(){ this.addClass("form-edit-box")}
@@ -15,7 +15,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 	
 	addTitle: function(){
 		var title = new AFB.Models.Field({
-			outerHtml: "<h2></h2>",
+			tag: "<h2></h2>",
 			innerHtml: "Untitled Form",
 			fieldAttr: [
 				function(){ this.attr('id', "formName")}
@@ -24,7 +24,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 		});
 		
 		var description = new AFB.Models.Field({
-			outerHtml: "<p></p>",
+			tag: "<p></p>",
 			innerHtml: "Click here to change or delete the form description",
 			fieldAttr: [
 				function(){ this.attr('id', "formDescription")}
@@ -33,7 +33,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 		});
 		
 		var titleField = new AFB.Models.Field({
-			outerHtml: "<div></div>",
+			tag: "<span></span>",
 			innerHtml: "",
 			fieldAttr: [
 			function(){this.addClass("formEl editing")},

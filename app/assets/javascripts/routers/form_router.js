@@ -82,7 +82,29 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.initialize(this.$rootEl);
   },
 	
-	textToFieldModel: function(text){
+	textToFieldModels: function(model, text){
+		console.log("in textToFieldModels");
+		var $form = $(text).find('form');
+		var $formField = $form.empty()
+		var fields = [elToFieldModel($formField)];
+		$form = $(text).find('form');
+		$form.children().each(function($field){
+			fields.push(elToFieldModel($field));
+		});
 		
+		model.set('fields', fields);
+	},
+	
+	elToFieldModel: function($field){
+		var kids = [];
+		$field.children().each(function(kid){
+			kids.push(elToFieldModel(kid));
+		});
+		var field = new AFB.Models.Field({
+			kids: kids,
+			innerHtml: $field.html(),
+			tag: $field.prop("tagName"),
+			fieldAttr: []
+		})
 	}
 })
