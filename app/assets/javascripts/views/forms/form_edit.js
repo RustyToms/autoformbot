@@ -37,8 +37,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   serverSaveForm: function(){
     var name = this.$el.find('#formName').html();
-		myName = name;
-    myModel1 = this.model;
 		this.model.save({
 			name: name, 
 			form_text: this.model.get('form_text'),
@@ -53,7 +51,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
         console.log(response.errors.full_messages)
       }
     });
-		myModel = this.model
   },
 
   parseClickForm: function(event) {
