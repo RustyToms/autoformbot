@@ -78,7 +78,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
 			console.log("field is");
 			console.log(field);
 			formText = formText.concat(that.parseField(field));	
-			console.log("this field is " + that.parseField(field));	
 		});
 		console.log ("formText from parseFields is " + formText);
 		return formText;
@@ -86,19 +85,22 @@ AFB.Views.FormEdit = Backbone.View.extend({
 	
 	parseField: function(field) {
 		console.log("parsing field")
+		var that = this;
 		var $fieldText = $(field.get('outerHtml'));
 		 
 		_.each(field.get('fieldAttr'), function(f) {
 			f.call($fieldText);
 		});
-		// 
-		// _.each(field.get('properties'), function(property) {
-		// 	$fieldText.prop(property);
-		// });
-		// 
-		// var childHtml = _.each(field.get('kids'), this.parseField);
-		// $fieldText.html(field.get('innerHtml').concat(childHtml));
-		// 
-		return $fieldText.prop('outerHTML');
+		console.log("finished adding field attributes");
+		var childHtml = "";
+		_.each(field.get('kids'), function(kid){
+			childHtml.concat(that.parseField(kid));
+		});
+		console.log(childHtml);
+		$fieldText.html(field.get('innerHtml').concat(childHtml));
+		console.log("finished setting html");
+		console.log($fieldText.html());
+		console.log($fieldText.prop('outerHTML') || "");
+		return ($fieldText.prop('outerHTML') || "");
 	}
 });
