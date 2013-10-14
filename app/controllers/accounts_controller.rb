@@ -32,7 +32,6 @@ class AccountsController < ApplicationController
       redirect_to account_url(current_user.account.url_name)
     else
       @plan_types = Account.plan_types
-      fail
       flash.now[:errors] = @account.errors.full_messages
       render :new
     end

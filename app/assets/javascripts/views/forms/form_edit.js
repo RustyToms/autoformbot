@@ -11,6 +11,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.listenTo(this.model, 'change', function(){
       that.render();
     });
+    console.log(this.model.get('fields'));
 		this.model.set('form_text', this.parseFields());
 		myForm = this.model.get('form_text');
   },
@@ -18,7 +19,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   render: function(){
     console.log("rendering FormEdit view");
     var formText = (this.model.get('form_text'));
-		
+
     if(this.$el.find('.form-edit-box').html()){
       console.log("replacing previous text")
       this.$el.find('.form-edit-box').replaceWith(formText);
@@ -37,11 +38,12 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   serverSaveForm: function(){
+    console.log("in FormEdit#serverSaveForm")
     var name = this.$el.find('#formName').html();
 		var text = this.model.get('form_text')
-		myModel = this.model;
+    console.log(this.model.get('fields'));
 		this.model.save({
-			name: name, 
+			name: name,
 			form_text: text,
 			fields: this.model.get('fields')
 		},{
@@ -55,6 +57,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
         console.log(response.errors.full_messages)
       }
     });
+          myModel = this.model;
   },
 
   parseClickForm: function(event) {
@@ -73,17 +76,19 @@ AFB.Views.FormEdit = Backbone.View.extend({
     });
     this.parentView.render(sidebar);
   },
-	
+
 	parseFields: function(){
 		console.log("in FormEdit View parseFields");
 		that = this;
-		var fields = this.model.get('fields');
+    console.log(this.model.get('fields'));
+		var fields = this.model.get('fields').slice();
+    // fields = JSON.parse(fields);
 		var $form = $(fields.shift());
-		
+
 		_.each(fields, function(field) {
 			console.log("field is");
 			console.log(field);
-			$form.append($(field));	
+			$form.append($(field));
 		});
 		console.log ("form from parseFields is " + $form.get(0));
 

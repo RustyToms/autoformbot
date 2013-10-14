@@ -29,7 +29,8 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   formNew: function(){
     console.log("In FormRouter#formNew");
     this.model = new AFB.Models.Form();
-    this.setUpModel()
+    this.setUpModel();
+console.log(this.model.get('fields'));
     AFB.formCollection.add(this.model);
     this.formMaster(this.model);
   },
@@ -54,17 +55,13 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.view && this.view.remove();
     console.log("in FormRouter#formShow for form #" + id);
     console.log(AFB.formCollection.get(id))
-		
+
 		var showModel = AFB.formCollection.get(id);
-		
-		//delete this once all forms were created with new model
-		showModel.get('fields') || showModel.set('fields', []); 
-		//--------------------------------
-		
+
 		if(showModel.get('fields').length === 0){
 			this.textToFields(showModel, showModel.get('form_text'))
 		}
-		
+
     this.view = new AFB.Views.FormShow({
       model: showModel,
       el: this.$seedEl
@@ -75,9 +72,9 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   formEdit: function(id) {
     console.log('in FormRouter#formEdit for form #' + id);
 		var editModel = AFB.formCollection.get(id);
-		// if(editModel.get('fields').length === 0){
+    if(editModel.get('fields').length === 0){
 			this.textToFields(editModel, editModel.get('form_text'))
-		// } else {
+    } //else {
 // 			myFields = editModel.get('fields');
 // 			editModel.set('fields', JSON.parse(editModel.get('fields')));
 // 		}
@@ -102,13 +99,13 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 
     this.initialize(this.$rootEl);
   },
-	
+
 	textToFields: function(model, text){
 		console.log("in textToFieldModels");
 		var $form = $(text).find('form');
 		$form.empty();
 		var $formField = $form
-		var fields = [$formField.get(0)];
+		var fields = [$formField.prop('outerHTML')];
 
 		$(text).find(".formEl").each(function(){
 			fields.push(this);
