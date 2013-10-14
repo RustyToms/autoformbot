@@ -12,6 +12,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
       that.render();
     });
 		this.model.set('form_text', this.parseFields());
+		myForm = this.model.get('form_text');
   },
 
   render: function(){
@@ -39,8 +40,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     var name = this.$el.find('#formName').html();
 		this.model.save({
 			name: name, 
-			form_text: this.model.get('form_text'),
-			fields: this.model.get('fields')
+			form_text: this.model.get('form_text')
 		},{
       success: function(response){
         console.log("save successful");
