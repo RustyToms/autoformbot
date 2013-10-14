@@ -4,8 +4,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
   addField: function(){
     var form = this.model.get('form_text');
     var $form = $(form).append(this.field);
-    form = $('<div>').append($form.clone()).html();
-    this.model.set('form_text', form);
+    this.model.set('form_text', $form.prop('outerHTML'))
   },
 
   render: function(){

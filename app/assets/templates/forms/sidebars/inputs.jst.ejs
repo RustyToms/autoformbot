@@ -10,12 +10,20 @@
     <input type="text" size="10" style="width:70px; height:12px; font-size: 8" value="Text here!" disabled>
   </button>
 
+  <button
+    id="num-box-button"
+    data-input-type="numbox"
+    style="padding:8px">
+      Number Box
+    <input type="text" size="10" style="width:70px; height:12px; font-size: 8" value="12345" disabled>
+  </button>
+
     <button
       id="check-box-button"
       data-input-type="checkbox"
       style="padding:8px">
         Check Box
-      <input type="checkbox" style="width:8px; height:8px" checked>
+      <input type="checkbox" style="width:8px; height:8px" checked disabled>
     </button>
 
     <button
@@ -23,7 +31,7 @@
       data-input-type="telnum"
       style="padding:8px">
         Telephone Number
-      <input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength=3 value="555">-<input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength=3 value="555">-<input type="text" size="10" style="width:28px; height:12px; font-size: 8" maxlength=4 value="1234">
+      <input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength=3 value="555" disabled>-<input type="text" size="10" style="width:20px; height:12px; font-size: 8" maxlength=3 value="555" disabled>-<input type="text" size="10" style="width:28px; height:12px; font-size: 8" maxlength=4 value="1234" disabled>
     </button>
 
   <button
@@ -31,7 +39,7 @@
     data-input-type="dropdown"
     style="padding:8px">
       Dropdown Selector
-    <select size='1'>
+    <select size='1' disabled>
       <option>Option1</option>
       <option>Option2</option>
       <option>Option3</option>

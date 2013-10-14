@@ -1,0 +1,48 @@
+<% var $field = $(field) %>
+
+<div class="sidebar" id="numbox-sidebar">
+
+<h2>Customize your Number box</h2>
+
+<label>Label:
+  <input type='text'
+    name='numbox-label'
+    value='<%= $field.find('.numbox-label').html() %>'>
+</label><br>
+
+<label>Minimum Value:
+  <input
+    type='number'
+    data-attribute='min'
+    value='<%= $field.find('.numbox').attr('min') %>'
+    name='numbox'/>
+</label><br>
+
+<label>Maximum Value:
+  <input
+    type='number'
+    data-attribute='max'
+    value='<%= $field.find('.numbox').attr('max') %>'
+    name='numbox'/>
+</label><br>
+
+<label>Prefilled content:
+  <input
+    type='number'
+    data-attribute='value'
+    value='<%= $field.find('.numbox').val() %>'
+    name='numbox'/>
+</label><br>
+
+<label>
+  <input
+    type='checkbox'
+    name='requiredCheckbox'
+    <% if($field.hasClass('required')) { %>
+      <%= 'checked' %>
+      <% } %>
+  />
+    Required Field
+</label>
+
+</div>

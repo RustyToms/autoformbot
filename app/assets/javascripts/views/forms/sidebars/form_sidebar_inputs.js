@@ -18,7 +18,8 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
       "checkbox" : "FormSidebarCheckbox",
       "telnum" : "FormSidebarTelnum",
       "dropdown" : "FormSidebarDropdown",
-      "textarea" : "FormSidebarTextarea"
+      "textarea" : "FormSidebarTextarea",
+      "numbox" : "FormSidebarNumbox"
     };
 
     var selection = $(event.target).closest('button').data('inputType');
