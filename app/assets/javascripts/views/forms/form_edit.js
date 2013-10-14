@@ -44,8 +44,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
     console.log(this.model.get('fields'));
 		this.model.save({
 			name: name,
-			form_text: text,
-			fields: this.model.get('fields')
+      form_text: text,
+      fields: ""
 		},{
       success: function(response){
         console.log("save successful");

@@ -30,24 +30,19 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log("In FormRouter#formNew");
     this.model = new AFB.Models.Form();
     this.setUpModel();
-console.log(this.model.get('fields'));
+
     AFB.formCollection.add(this.model);
     this.formMaster(this.model);
   },
 
   setUpModel: function(){
-    var html = JST["forms/new_form_seed"]();
     this.model.set({
       account_id: window.ACCOUNT_ID,
-      form_text: html,
-      name: "Untitled Form",
-			// fields: new AFB.Collections.Fields()
+      name: "Untitled Form"
     });
-		var fields = ['<form class="form-edit-box" ></form>'];
-		fields.push(JST["forms/new_form_seed"]());
+		var fields = [$('<form class="form-edit-box" ></form>').get(0)];
+		fields.push($(JST["forms/new_form_seed"]()).get(0));
 		this.model.set('fields', fields);
-		console.log("new fields are below")
-		console.log(this.model.get('fields'))
   },
 
   formShow: function(id) {

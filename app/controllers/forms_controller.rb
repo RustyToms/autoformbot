@@ -19,8 +19,8 @@ class FormsController < ApplicationController
 
 
   def create
+    params[:form].delete(:fields)
     @form = Form.new(params[:form])
-
     if @form.save
       render json: @form
     else
