@@ -104,7 +104,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 			kids: kids,
 			innerHtml: $field.html(),
 			tag: $field.prop("tagName"),
-			fieldAttr: []
+			fieldAttr: this.translateAttrAndProps()
 		})
 	}
 })
