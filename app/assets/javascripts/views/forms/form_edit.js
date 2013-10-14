@@ -38,9 +38,12 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   serverSaveForm: function(){
     var name = this.$el.find('#formName').html();
+		var text = this.model.get('form_text')
+		myModel = this.model;
 		this.model.save({
 			name: name, 
-			form_text: this.model.get('form_text')
+			form_text: text,
+			fields: this.model.get('fields')
 		},{
       success: function(response){
         console.log("save successful");
@@ -83,33 +86,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
 		});
 		console.log ("form from parseFields is " + $form.get(0));
 
-		return $form.get(0);
-	}// ,
-// 	
-// 	parseField: function(field) {
-// 		console.log("parsing field")
-// 		var that = this;
-// 		var $fieldText = $(field.get('tag'));
-// 		 
-// 		_.each(field.get('fieldAttr'), function(f) {
-// 			f.call($fieldText);
-// 		});
-// 		console.log("finished adding field attributes");
-// 		var childHtml = "";
-// 		_.each(field.get('kids'), function(kid){
-// 			console.log("kid is");
-// 			console.log(kid);
-// 			childHtml = childHtml.concat(that.parseField(kid));
-// 		});
-// 		console.log(childHtml);
-// 		$fieldText.html(field.get('innerHtml').concat(childHtml));
-// 		console.log("finished setting html");
-// 		console.log($fieldText.html());
-// 		console.log($fieldText.prop('outerHTML') || "");
-// 				myOwnEl = $fieldText.get(0);
-// 				console.log
-// 				console.log(myOwnEl)
-// 				console.log(myOwnEl.innerHTML);
-// 		return ($fieldText.prop('outerHTML') || "");
-// 	}
+		return $form.prop("outerHTML");
+	}
 });

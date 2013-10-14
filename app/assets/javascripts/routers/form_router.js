@@ -42,8 +42,11 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       name: "Untitled Form",
 			// fields: new AFB.Collections.Fields()
     });
-		this.model.createForm();
-		this.model.addTitle();
+		var fields = ['<form class="form-edit-box" ></form>'];
+		fields.push(JST["forms/new_form_seed"]());
+		this.model.set('fields', fields);
+		console.log("new fields are below")
+		console.log(this.model.get('fields'))
   },
 
   formShow: function(id) {
@@ -53,10 +56,15 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log(AFB.formCollection.get(id))
 		
 		var showModel = AFB.formCollection.get(id);
-		showModel.get('fields') || showModel.set('fields', []);
-		if((showModel.get('fields').length === 0) && showModel.get('form_text')){
+		
+		//delete this once all forms were created with new model
+		showModel.get('fields') || showModel.set('fields', []); 
+		//--------------------------------
+		
+		if(showModel.get('fields').length === 0){
 			this.textToFields(showModel, showModel.get('form_text'))
 		}
+		
     this.view = new AFB.Views.FormShow({
       model: showModel,
       el: this.$seedEl
@@ -67,9 +75,12 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   formEdit: function(id) {
     console.log('in FormRouter#formEdit for form #' + id);
 		var editModel = AFB.formCollection.get(id);
-		if((editModel.get('fields').length === 0) && editModel.get('form_text')){
+		// if(editModel.get('fields').length === 0){
 			this.textToFields(editModel, editModel.get('form_text'))
-		}
+		// } else {
+// 			myFields = editModel.get('fields');
+// 			editModel.set('fields', JSON.parse(editModel.get('fields')));
+// 		}
     this.formMaster(editModel);
   },
 
@@ -100,25 +111,10 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 		var fields = [$formField.get(0)];
 
 		$(text).find(".formEl").each(function(){
-			// console.log(this);
-			// console.log($(this).prop("outerHTML"));
-			// fields.push($(this).get(0));
 			fields.push(this);
 		});
-		
+		console.log("after textToFields, fields is")
+		console.log(fields);
 		model.set('fields', fields);
-	}// ,
-// 	
-// 	elToFieldModel: function($field){
-// 		var kids = [];
-// 		$field.children().each(function(kid){
-// 			kids.push(elToFieldModel(kid));
-// 		});
-// 		var field = new AFB.Models.Field({
-// 			kids: kids,
-// 			innerHtml: $field.html(),
-// 			tag: $field.prop("tagName"),
-// 			fieldAttr: this.translateAttrAndProps()
-// 		})
-// 	}
+	}
 })

@@ -3,8 +3,7 @@ store form elements in models - done
 create form elements from models - done
 save models with form --- Tried, Don't think I can do this with JSON because of the functions ---Might have to save field models individually----
 
-create field models from html - just need to add fieldAttr creation
-parse form into field models
+create field models from html - done
 mark up external form into parsable form
 
 set form to return results
@@ -17,5 +16,3 @@ report singular result
 allow other users to be added to account
 
 add more form fields
-
-"<form class=\"form-edit-box\">\n  <div class=\"formEl\" id=\"title-description\" data-sidebar=\"FormEditTitle\">\n    <h2 id=\"formName\">New Form</h2>\n\n    <p id=\"formDescription\">new description</p>\n  </div>\n<div class=\"formEl\" id=\"textbox\" data-sidebar=\"FormSidebarTextbox\">\n  \n  <label for=\"textbox\" id=\"textbox-label\">dlkajfl</label>\n  \n  <input type=\"text\" id=\"textbox\" size=\"80\" value=\"alksdjflakjdf\">\n    \n</div>\n<div class=\"formEl\" id=\"textarea\" data-sidebar=\"FormSidebarTextarea\"><label for=\"textarea\" id=\"textarea-label\">My textarea</label><br><textarea rows=\"8\" cols=\"60\" id=\"textarea\">fill out this box!</textarea></div><div class=\"formEl\" id=\"textarea\" data-sidebar=\"FormSidebarTextarea\"><label for=\"textarea\" id=\"textarea-label\"></label><br><textarea rows=\"\" cols=\"\" id=\"textarea\"></textarea></div><div class=\"formEl\" id=\"textbox\" data-sidebar=\"FormSidebarTextbox\">\n  \n  <label for=\"textbox\" id=\"textbox-label\">lj</label>\n  \n  <input type=\"text\" id=\"textbox\">\n    \n</div>\n<div class=\"formEl\" id=\"textarea\" data-sidebar=\"FormSidebarTextarea\"> \n  \n  <label for=\"textarea\" id=\"textarea-label\">jh;ljk</label>\n  \n  <br> \n  \n  <textarea rows=\"8\" cols=\"3\" id=\"textarea\">kjhkjh</textarea> \n</div>\n<div class=\"formEl\" id=\"telnum\" data-sidebar=\"FormSidebarTelnum\"> \n  \n  <input type=\"text\" size=\"3\" maxlength=\"3\" style=\"text-align: center\">\n    -\n  <input type=\"text\" size=\"3\" maxlength=\"3\" style=\"text-align: center\">\n    -    \n  <input type=\"text\" size=\"4\" maxlength=\"4\" style=\"text-align: center\"> \n    \n</div>\n<div class=\"formEl\" id=\"checkbox\" data-sidebar=\"FormSidebarCheckbox\"> \n\n  <input type=\"checkbox\"> \n  \n</div>\n<div class=\"formEl editing\" id=\"dropdown\" data-sidebar=\"FormSidebarDropdown\"> \n\n  <select> \n  \n    <option>Option1</option> \n    \n    <option>Option2</option> \n    \n    <option>Option3</option> \n    \n  </select> \n  \n</div>\n</form>"
