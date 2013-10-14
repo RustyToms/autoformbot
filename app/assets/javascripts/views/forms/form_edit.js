@@ -47,6 +47,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
 		},{
       success: function(response){
         console.log("save successful");
+				console.log(response);
       },
       error: function(response){
         console.log("error");
