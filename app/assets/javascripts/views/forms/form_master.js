@@ -70,6 +70,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   sidebarClick: function(event){
+    console.log('in FormMaster#sidebarClick');
     if ($(event.target).attr('name') ==='requiredCheckbox'){
       this.requireField(event);
     } else {
