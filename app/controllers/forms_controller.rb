@@ -35,6 +35,7 @@ class FormsController < ApplicationController
 
 
   def update
+    params[:form].delete(:fields)
     @form = Form.find(params[:id])
     @form.update_attributes(params[:form])
     if @form && @form.save

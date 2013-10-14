@@ -11,9 +11,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.listenTo(this.model, 'change', function(){
       that.render();
     });
-    console.log(this.model.get('fields'));
 		this.model.set('form_text', this.parseFields());
-		myForm = this.model.get('form_text');
   },
 
   render: function(){
@@ -82,15 +80,12 @@ AFB.Views.FormEdit = Backbone.View.extend({
 		that = this;
     console.log(this.model.get('fields'));
 		var fields = this.model.get('fields').slice();
-    // fields = JSON.parse(fields);
 		var $form = $(fields.shift());
 
 		_.each(fields, function(field) {
-			console.log("field is");
-			console.log(field);
 			$form.append($(field));
 		});
-		console.log ("form from parseFields is " + $form.get(0));
+		console.log ("form from parseFields is " + $form.prop("outerHTML"));
 
 		return $form.prop("outerHTML");
 	}

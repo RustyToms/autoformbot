@@ -51,9 +51,9 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log("in FormRouter#formShow for form #" + id);
     console.log(AFB.formCollection.get(id))
 
-		var showModel = AFB.formCollection.get(id);
+		showModel = AFB.formCollection.get(id);
 
-		if(showModel.get('fields').length === 0){
+		if(!showModel.get('fields')){
 			this.textToFields(showModel, showModel.get('form_text'))
 		}
 
@@ -67,12 +67,9 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   formEdit: function(id) {
     console.log('in FormRouter#formEdit for form #' + id);
 		var editModel = AFB.formCollection.get(id);
-    if(editModel.get('fields').length === 0){
+    if(!editModel.get('fields')){
 			this.textToFields(editModel, editModel.get('form_text'))
-    } //else {
-// 			myFields = editModel.get('fields');
-// 			editModel.set('fields', JSON.parse(editModel.get('fields')));
-// 		}
+    }
     this.formMaster(editModel);
   },
 
@@ -97,7 +94,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 
 	textToFields: function(model, text){
 		console.log("in textToFieldModels");
-		var $form = $(text).find('form');
+		var $form = ($(text).closest('form') || $(text).find('form'));
 		$form.empty();
 		var $formField = $form
 		var fields = [$formField.prop('outerHTML')];
