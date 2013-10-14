@@ -19,12 +19,11 @@ class FormsController < ApplicationController
 
 
   def create
-    params[:form].delete(:fields)
     @form = Form.new(params[:form])
     if @form.save
       render json: @form
     else
-      render json: @form.errors.full_messages
+      render json: @form.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -35,7 +34,6 @@ class FormsController < ApplicationController
 
 
   def update
-    params[:form].delete(:fields)
     @form = Form.find(params[:id])
     @form.update_attributes(params[:form])
     if @form && @form.save

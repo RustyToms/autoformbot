@@ -11,7 +11,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.listenTo(this.model, 'change', function(){
       that.render();
     });
-		this.model.set('form_text', this.parseFields());
   },
 
   render: function(){
@@ -37,25 +36,21 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   serverSaveForm: function(){
     console.log("in FormEdit#serverSaveForm")
-    var name = this.$el.find('#formName').html();
+    var name = this.$el.find('.formName').html();
 		var text = this.model.get('form_text')
-    console.log(this.model.get('fields'));
 		this.model.save({
 			name: name,
-      form_text: text,
-      fields: ""
+      form_text: text
 		},{
       success: function(response){
         console.log("save successful");
 				console.log(response);
       },
-      error: function(response){
-        console.log("error");
-        console.log(response);
-        console.log(response.errors.full_messages)
+      error: function(model, response){
+        console.log("error: " + response.responseText);
+        console.log(model)
       }
     });
-          myModel = this.model;
   },
 
   parseClickForm: function(event) {
@@ -64,6 +59,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     $formEl = $(event.target).closest(".formEl");
     $formEl.addClass("start-editing");
     this.localSaveForm();
+
     AFB.Views.FormMaster.removeActiveEdits(this.model);
 
     var sidebarName = $formEl.data("sidebar");
@@ -73,20 +69,5 @@ AFB.Views.FormEdit = Backbone.View.extend({
       field: $formEl
     });
     this.parentView.render(sidebar);
-  },
-
-	parseFields: function(){
-		console.log("in FormEdit View parseFields");
-		that = this;
-    console.log(this.model.get('fields'));
-		var fields = this.model.get('fields').slice();
-		var $form = $(fields.shift());
-
-		_.each(fields, function(field) {
-			$form.append($(field));
-		});
-		console.log ("form from parseFields is " + $form.prop("outerHTML"));
-
-		return $form.prop("outerHTML");
-	}
+  }
 });

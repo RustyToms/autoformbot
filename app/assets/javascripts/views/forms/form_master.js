@@ -86,13 +86,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
     this.initialize;
   },
-	
+
 })
 
 AFB.Views.FormMaster.updateValues = function(event, model) {
   console.log("in FormMaster::updateValues");
   var $form = $(model.get('form_text'));
-  var $target = $form.find('.editing #' + $(event.target).attr('name'));
+  var $target = $form.find('.editing .' + $(event.target).attr('name'));
   console.log($(event.target).attr('name'));
   console.log($target.html());
   var value = $(event.target).val();

@@ -1,5 +1,5 @@
 class Form < ActiveRecord::Base
-  attr_accessible :account_id, :fields, :form_text, :name
+  attr_accessible :account_id, :form_text, :name
 
   belongs_to :account
   has_many :results

@@ -40,22 +40,15 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       account_id: window.ACCOUNT_ID,
       name: "Untitled Form"
     });
-		var fields = [$('<form class="form-edit-box" ></form>').get(0)];
-		fields.push($(JST["forms/new_form_seed"]()).get(0));
-		this.model.set('fields', fields);
+		this.model.set('form_text', JST["forms/new_form_seed"]());
   },
 
   formShow: function(id) {
     this.cleanRootEl();
     this.view && this.view.remove();
     console.log("in FormRouter#formShow for form #" + id);
-    console.log(AFB.formCollection.get(id))
 
-		showModel = AFB.formCollection.get(id);
-
-		if(!showModel.get('fields')){
-			this.textToFields(showModel, showModel.get('form_text'))
-		}
+		var showModel = AFB.formCollection.get(id);
 
     this.view = new AFB.Views.FormShow({
       model: showModel,
@@ -67,9 +60,6 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   formEdit: function(id) {
     console.log('in FormRouter#formEdit for form #' + id);
 		var editModel = AFB.formCollection.get(id);
-    if(!editModel.get('fields')){
-			this.textToFields(editModel, editModel.get('form_text'))
-    }
     this.formMaster(editModel);
   },
 
@@ -90,20 +80,5 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.$rootEl.undelegate();
 
     this.initialize(this.$rootEl);
-  },
-
-	textToFields: function(model, text){
-		console.log("in textToFieldModels");
-		var $form = ($(text).closest('form') || $(text).find('form'));
-		$form.empty();
-		var $formField = $form
-		var fields = [$formField.prop('outerHTML')];
-
-		$(text).find(".formEl").each(function(){
-			fields.push(this);
-		});
-		console.log("after textToFields, fields is")
-		console.log(fields);
-		model.set('fields', fields);
-	}
+  }
 })
