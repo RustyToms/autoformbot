@@ -74,47 +74,42 @@ AFB.Views.FormEdit = Backbone.View.extend({
 		console.log("in FormEdit View parseFields");
 		that = this;
 		var fields = this.model.get('fields');
-		var formField = fields.shift();
-		var $form = $(this.parseField(formField));
-		var formText = "";
-		
-		console.log(fields);
+		var $form = $(fields.shift());
 		
 		_.each(fields, function(field) {
 			console.log("field is");
 			console.log(field);
-			formText = formText.concat(that.parseField(field));	
+			$form.append($(field));	
 		});
-		console.log ("formText from parseFields is " + formText);
-		
-		$form.html(formText);
-		return $form.prop('outerHTML');
-	},
-	
-	parseField: function(field) {
-		console.log("parsing field")
-		var that = this;
-		var $fieldText = $(field.get('tag'));
-		 
-		_.each(field.get('fieldAttr'), function(f) {
-			f.call($fieldText);
-		});
-		console.log("finished adding field attributes");
-		var childHtml = "";
-		_.each(field.get('kids'), function(kid){
-			console.log("kid is");
-			console.log(kid);
-			childHtml = childHtml.concat(that.parseField(kid));
-		});
-		console.log(childHtml);
-		$fieldText.html(field.get('innerHtml').concat(childHtml));
-		console.log("finished setting html");
-		console.log($fieldText.html());
-		console.log($fieldText.prop('outerHTML') || "");
-				myOwnEl = $fieldText.get(0);
-				console.log
-				console.log(myOwnEl)
-				console.log(myOwnEl.innerHTML);
-		return ($fieldText.prop('outerHTML') || "");
-	}
+		console.log ("form from parseFields is " + $form.get(0));
+
+		return $form.get(0);
+	}// ,
+// 	
+// 	parseField: function(field) {
+// 		console.log("parsing field")
+// 		var that = this;
+// 		var $fieldText = $(field.get('tag'));
+// 		 
+// 		_.each(field.get('fieldAttr'), function(f) {
+// 			f.call($fieldText);
+// 		});
+// 		console.log("finished adding field attributes");
+// 		var childHtml = "";
+// 		_.each(field.get('kids'), function(kid){
+// 			console.log("kid is");
+// 			console.log(kid);
+// 			childHtml = childHtml.concat(that.parseField(kid));
+// 		});
+// 		console.log(childHtml);
+// 		$fieldText.html(field.get('innerHtml').concat(childHtml));
+// 		console.log("finished setting html");
+// 		console.log($fieldText.html());
+// 		console.log($fieldText.prop('outerHTML') || "");
+// 				myOwnEl = $fieldText.get(0);
+// 				console.log
+// 				console.log(myOwnEl)
+// 				console.log(myOwnEl.innerHTML);
+// 		return ($fieldText.prop('outerHTML') || "");
+// 	}
 });
