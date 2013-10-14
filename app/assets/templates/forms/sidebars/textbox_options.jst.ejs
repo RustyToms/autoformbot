@@ -8,14 +8,14 @@
 <label>Label:
   <input type='text'
     name='textbox-label'
-    value='<%= $field.find('#textbox-label').html() %>'>
+    value='<%= $field.find('.textbox-label').html() %>'>
 </label><br>
 
 <label>Width:
   <input
     type='text'
     data-attribute='size'
-    value='<%= $field.find('#textbox').attr('size') %>'
+    value='<%= $field.find('.textbox').attr('size') %>'
     name='textbox'/>
 </label><br>
 
@@ -23,8 +23,18 @@
   <input
     type='text'
     data-attribute='value'
-    value='<%= $field.find('#textbox').val() %>'
+    value='<%= $field.find('.textbox').val() %>'
     name='textbox'/>
 </label><br>
+
+<label>
+  <input
+    type='checkbox'
+    name='requiredCheckbox'
+    <% if($field.hasClass('.required')) { %>
+      <%= 'checked' %>
+      <% } %>/>
+    Required Field
+</label>
 
 </div>

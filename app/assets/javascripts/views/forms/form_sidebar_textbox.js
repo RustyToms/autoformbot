@@ -20,5 +20,12 @@ AFB.Views.FormSidebarTextbox = Backbone.View.extend({
   updateValues: function(event){
     console.log("in FormSidebarTextbox#updateValues");
     AFB.Views.FormMaster.updateValues(event, this.model);
+  },
+
+  parseClick: function(event){
+    console.log("in FormSidebarTextbox#parseClick");
+    if ($(event.target).attr('name') ==='requiredCheckbox'){
+      AFB.Views.FormMaster.requireField(event, this.model);
+    }
   }
 })

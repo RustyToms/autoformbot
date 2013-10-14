@@ -7,6 +7,11 @@
   background-color: $light-green;
 }
 
+.required:after {
+  content: "*";
+  color: red;
+}
+
 .body {
   display: block;
   height: 100%;
