@@ -33,4 +33,14 @@
     name='textarea'/>
 </label>
 
+<label>
+  <input
+    type='checkbox'
+    name='requiredCheckbox'
+    <% if($field.hasClass('required')) { %>
+      <%= 'checked' %>
+      <% } %>/>
+    Required Field
+</label>
+
 </div>

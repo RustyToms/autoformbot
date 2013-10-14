@@ -70,7 +70,11 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   sidebarClick: function(event){
-    this.sidebar.parseClick && this.sidebar.parseClick(event);
+    if ($(event.target).attr('name') ==='requiredCheckbox'){
+      this.requireField(event);
+    } else {
+      this.sidebar.parseClick && this.sidebar.parseClick(event);
+    }
   },
 
   sidebarValues: function(event){
@@ -86,6 +90,20 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
     this.initialize;
   },
+
+  requireField: function(event){
+  event.stopPropagation();
+  console.log('in FormMaster#requireField')
+
+  var $form = $(this.model.get('form_text'));
+  var $target = $form.find('.editing');
+  if (event.target.checked){
+    $target.addClass("required");
+  } else {
+    $target.removeClass("required");
+  }
+  this.model.set('form_text', $form.prop('outerHTML'));
+}
 
 })
 
@@ -118,15 +136,3 @@ AFB.Views.FormMaster.removeActiveEdits = function(model){
   var form = $('<div>').append($form.clone()).html();
   model.set('form_text', form)
 };
-
-AFB.Views.FormMaster.requireField = function(event, model){
-  console.log('in FormMaster::requireField')
-  var $form = $(model.get('form_text'));
-  var $target = $form.find('.editing');
-  if (event.target.checked){
-    $target.addClass("required");
-  } else {
-    $target.removeClass("required");
-  }
-  model.set('form_text', $form.prop('outerHTML'));
-}
