@@ -1,19 +1,8 @@
-<div class='select-option-config'>Option <%= i + 1 %><br>
-  <label>Option Name
+<div class='select-option-config'>
+  <label>Option <%= i + 1 %>
     <input
       type='text'
       value='<%= $field.find('.' + name).text() %>'
       name='<%= name %>'/><br>
   </label>
-
-  <label>Option Value
-      <input
-        type='text'
-        data-attribute='value'
-        value='<%= $field.find('.' + name).val() %>'
-        name='<%= name %>'/><br>
-
-      <br>
-    </label>
-		
 </div>
