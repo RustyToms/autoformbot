@@ -1,6 +1,7 @@
 AFB.Views.FormIndex = Backbone.View.extend({
   events: {
-  'click #create-form-button' : 'sendToNew'
+  'click #create-form-button' : 'sendToNew',
+  'click .delete-form' : 'deleteForm'
   },
 
   initialize: function(){
@@ -20,5 +21,12 @@ AFB.Views.FormIndex = Backbone.View.extend({
   sendToNew: function(){
     console.log('FormIndex#sendToNew');
     Backbone.history.navigate('forms/new', {trigger: true});
+  },
+
+  deleteForm: function(event){
+    console.log('FormIndex#deleteForm');
+    var form = AFB.formCollection.get($(event.target).data());
+    form && form.destroy();
+    this.render();
   }
 })
