@@ -1,0 +1,18 @@
+<label>Option <%= i + 1 %>
+  <label>Option Name
+    <input
+      type='text'
+      value='<%= $field.find('.' + name).text() %>'
+      name='<%= name %>'/><br>
+  </label>
+
+  <label>Option Value
+      <input
+        type='text'
+        data-attribute='value'
+        value='<%= $field.find('.' + name).val() %>'
+        name='<%= name %>'/><br>
+
+      <br>
+    </label>
+</label><br>
