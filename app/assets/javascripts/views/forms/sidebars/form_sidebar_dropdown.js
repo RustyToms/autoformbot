@@ -20,20 +20,20 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarDropdown#updateValues");
-    $form = $(this.model.get('form_text'))
+    $form = $(this.model.get('form_text'));
+    this.field = $form.find('.editing');
     $target = $form.find('.editing')
 
     if (event.target.name === 'dropdown') {
-
-      var $options = $(this.field).find('.dropdowns')
-      $options.empty();
+      console.log('adding dropdown options');
+      this.render();
+      var $options = this.$el.find('.dropdowns')
       var numOptions = event.target.value;
 
       for(var i=0; i<numOptions; i++){
         var name = "dropdownOption" + i;
-        $option = $target.find('.' + name)
 
-        if ($option.length === 0){
+        if ($target.find('.' + name).length === 0){
           var option = "<option class=" + name + "></option>"
           $target.find('select').append(option);
         }
@@ -43,11 +43,14 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
           name: name,
           '$field': $options
         })
-
-       $options.append(optionOptions);
-
-       this.model.set('form_text', $form.prop('outerHTML'));
+        console.log(optionOptions);
+        $options.append($(optionOptions));
+        console.log($options.html());
       }
+      console.log($options);
+
+      this.model.set('form_text', $form.prop('outerHTML'));
+
     } else {
       AFB.Views.FormMaster.updateValues(event, this.model);
     }
