@@ -32,7 +32,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
       var numOptions = event.target.value;
 
       this.makeDropdown(numOptions)
-    } else {
+    } else if($(event.target).hasClass('delete-option')){
       AFB.Views.FormMaster.updateValues(event, this.model);
     }
   },

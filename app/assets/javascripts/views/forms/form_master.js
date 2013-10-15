@@ -72,10 +72,22 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   sidebarClick: function(event){
     console.log('in FormMaster#sidebarClick');
-    if ($(event.target).attr('name') ==='requiredCheckbox'){
+    var $target = $(event.target)
+
+    if ($target.hasClass('delete-button')){
+
+      var $form = $(this.model.get('form_text'));
+      $form.find('.editing .' + $target.attr('name')).remove();
+      this.model.set('form_text', $form.prop('outerHTML'));
+
+    } else if ($(event.target).attr('name') ==='requiredCheckbox'){
+
       this.requireField(event);
+
     } else {
+
       this.sidebar.parseClick && this.sidebar.parseClick(event);
+
     }
   },
 

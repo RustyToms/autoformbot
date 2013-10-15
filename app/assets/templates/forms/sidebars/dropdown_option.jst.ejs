@@ -1,8 +1,12 @@
 <div class='select-option-config'>
-  <label>Option <%= i + 1 %>
+  <label
+    style="display: inline-block"
+  >Option <%= i + 1 %>
     <input
       type='text'
       value='<%= $field.find('.' + name).text() %>'
       name='<%= name %>'/><br>
   </label>
+
+  <button class='delete-button delete-option' name='<%= name %>'>Delete</button>
 </div>
