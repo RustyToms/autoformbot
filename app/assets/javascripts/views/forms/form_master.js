@@ -75,11 +75,15 @@ AFB.Views.FormMaster = Backbone.View.extend({
     var $target = $(event.target)
 
     if ($target.hasClass('delete-button')){
-
+      console.log('deleting element');
       var $form = $(this.model.get('form_text'));
-      $form.find('.editing .' + $target.attr('name')).remove();
-      this.model.set('form_text', $form.prop('outerHTML'));
+      console.log($form.find('.editing .' + $target.attr('name')).prop('outerHTML'));
 
+      $form.find('.editing .' + $target.attr('name')).remove();
+            console.log($form.find('.editing').prop('outerHTML'));
+      this.model.set('form_text', $form.prop('outerHTML'));
+      // this.render(this.sidebar);
+      $target.closest('div').remove();
     } else if ($(event.target).attr('name') ==='requiredCheckbox'){
 
       this.requireField(event);
@@ -106,18 +110,22 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   requireField: function(event){
-  event.stopPropagation();
-  console.log('in FormMaster#requireField')
+    event.stopPropagation();
+    console.log('in FormMaster#requireField')
 
-  var $form = $(this.model.get('form_text'));
-  var $target = $form.find('.editing');
-  if (event.target.checked){
-    $target.addClass("required");
-  } else {
-    $target.removeClass("required");
+    var $form = $(this.model.get('form_text'));
+    var $target = $form.find('.editing');
+    if (event.target.checked){
+      $target.addClass("required");
+    } else {
+      $target.removeClass("required");
+    }
+    this.model.set('form_text', $form.prop('outerHTML'));
+  },
+
+  deleteAction: function(){
+
   }
-  this.model.set('form_text', $form.prop('outerHTML'));
-}
 
 })
 

@@ -44,26 +44,29 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
 
     var $options = this.$el.find('.dropdowns');
 		$options.find('.select-option-config').remove();
+    $preexisting = $.makeArray($form.find('.editing option'));
 
     for(var i=0; i<numOptions; i++){
       var name = "dropdownOption" + i;
-
-      if ($target.find('.' + name).length === 0){
-        var option = "<option class=" + name + "></option>"
+      $currentOption = $($preexisting.shift());
+      if($currentOption.length){
+        $currentOption.removeClass();
+        $currentOption.addClass(name);
+        var value = $currentOption.text()
+      } else{
+        var option = "<option class=" + name + "></option>";
         $target.find('select').append(option);
+        var value = "";
       }
 
       var optionOptions = JST['forms/sidebars/dropdown_option']({
         i: i,
         name: name,
-        '$field': this.field
+        value: value
       })
       myOptions = $form
-      console.log(optionOptions);
       $options.append($(optionOptions));
-      console.log($options.html());
     }
-    console.log($options);
 
     this.model.set('form_text', $form.prop('outerHTML'));
   }
