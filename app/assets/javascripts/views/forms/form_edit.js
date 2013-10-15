@@ -57,19 +57,26 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   parseClickForm: function(event) {
     console.log("in parseClickForm");
+    $target = $(event.target);
+    if($target.hasClass('delete-field')){
+      $target.closest(".formEl").remove();
+      this.localSaveForm();
+      this.parentView.render();
+    } else {
 
-    $formEl = $(event.target).closest(".formEl");
-    $formEl.addClass("start-editing");
-    this.localSaveForm();
+      $formEl = $target.closest(".formEl");
+      $formEl.addClass("start-editing");
+      this.localSaveForm();
 
-    AFB.Views.FormMaster.removeActiveEdits(this.model);
+      AFB.Views.FormMaster.removeActiveEdits(this.model);
 
-    var sidebarName = $formEl.data("sidebar");
-    console.log("new sidebar should be " + sidebarName);
-    sidebar = new AFB.Views[sidebarName]({
-      model: this.model,
-      field: $formEl
-    });
-    this.parentView.render(sidebar);
+      var sidebarName = $formEl.data("sidebar");
+      console.log("new sidebar should be " + sidebarName);
+      sidebar = new AFB.Views[sidebarName]({
+        model: this.model,
+        field: $formEl
+      });
+      this.parentView.render(sidebar);
+    }
   }
 });

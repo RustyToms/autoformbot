@@ -154,7 +154,12 @@ AFB.Views.FormMaster.removeActiveEdits = function(model){
   console.log('removing all editing classes');
   var $form = $(model.get('form_text'));
   $form.find('.editing').removeClass('editing');
-  $form.find('.start-editing').addClass('editing').removeClass('start-editing');
+  $form.find('.delete-field').remove();
+
+  $form.find('.start-editing').
+    addClass('editing').
+    removeClass('start-editing').
+    append("<button class='delete-field'>X</button>");
   var form = $('<div>').append($form.clone()).html();
   model.set('form_text', form)
 };

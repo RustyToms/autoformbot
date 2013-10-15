@@ -12,6 +12,14 @@
   color: red;
 }
 
+.delete-field {
+  color: red;
+  font-weight: bold;
+  font-size: 12px;
+  border-radius: 50%;
+  background-color: $very-pale-blue;
+}
+
 .body {
   display: block;
   height: 100%;

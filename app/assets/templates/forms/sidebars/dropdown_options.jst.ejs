@@ -16,3 +16,14 @@
 <br>
 
 <div class='dropdowns'></div>
+
+<label>
+  <input
+    type='checkbox'
+    name='requiredCheckbox'
+    <% if($field.hasClass('required')) { %>
+      <%= 'checked' %>
+      <% } %>
+  />
+    Check Required
+</label>
