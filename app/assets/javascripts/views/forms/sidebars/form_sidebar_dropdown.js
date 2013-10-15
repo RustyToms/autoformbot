@@ -26,14 +26,14 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarDropdown#updateValues");
+    AFB.Views.FormMaster.updateValues(event, this.model);
+  },
 
-    if (event.target.name === 'dropdown') {
-      console.log('adding dropdown options');
-      var numOptions = event.target.value;
-
-      this.makeDropdown(numOptions)
-    } else {
-      AFB.Views.FormMaster.updateValues(event, this.model);
+  parseClick: function(event){
+    console.log("in FormSidebarDropdown#parseClick");
+    if($(event.target).hasClass('add-option')){
+      var numOptions = this.$el.find('.select-option-config').length + 1;
+      this.makeDropdown(numOptions);
     }
   },
 

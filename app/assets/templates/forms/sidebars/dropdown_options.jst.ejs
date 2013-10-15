@@ -3,19 +3,16 @@
 
 <h2>Customize your Dropdown</h2>
 
-<label>Label
+<label
+    style="display: inline-block"
+>Label
   <input type='text'
     name='dropdown-label'
     value='<%= label %>'>
-</label><br>
+</label>
 
-<div class='dropdowns'>
-<label>How many choices?
-  <input type='number'
-    name='dropdown'
-		min='1'
-		max='99'
-    value='<%= numOptions %>'>
-</label><br>
+<button class='add-option'>Add an Option</button>
 
-</div>
+<br>
+
+<div class='dropdowns'></div>
