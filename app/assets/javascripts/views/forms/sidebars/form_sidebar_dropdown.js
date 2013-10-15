@@ -16,8 +16,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
     var label = $field.find('.dropdown-label').html()
 
     this.$el.html(JST['forms/sidebars/dropdown_options']({
-      label: label,
-      numOptions: numOptions
+      label: label
     }));
 
     this.makeDropdown(numOptions)
@@ -40,7 +39,6 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
   makeDropdown: function(numOptions){
     $form = $(this.model.get('form_text'));
     this.field = $form.find('.editing');
-    $target = $form.find('.editing');
 
     var $options = this.$el.find('.dropdowns');
 		$options.find('.select-option-config').remove();
@@ -55,7 +53,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
         var value = $currentOption.text()
       } else{
         var option = "<option class=" + name + "></option>";
-        $target.find('select').append(option);
+        this.field.find('select').append(option);
         var value = "";
       }
 
@@ -64,7 +62,6 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
         name: name,
         value: value
       })
-      myOptions = $form
       $options.append($(optionOptions));
     }
 

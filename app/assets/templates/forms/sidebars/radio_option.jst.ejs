@@ -1,16 +1,27 @@
 <div class='radio-option-config'>
+  <h3 class='radio-option-title'>Option <%= i + 1 %></h3>
+  <button class='delete-button delete-option' name='<%= name %>'>Delete</button>
+
+  <br>
+
   <label
     style="display: inline-block"
-  >Option <%= i + 1 %>
+  >Name
     <input
       type='text'
-      value='<%= value %>'
-      name='<%= name %>'/><br>
+      value='<%= optionName %>'
+      name='<%= name %>-label'/><br>
   </label>
 
-  <button
-    class='delete-button delete-radio-option'
-    name='<%= name %>'
-  >Delete
-  </button>
+  <br>
+
+  <label
+      style="display: inline-block"
+  >Value
+    <input type='text'
+      name='<%= name %>'
+      data-attribute='value'
+      value='<%= value %>'>
+  </label>
+
 </div>
