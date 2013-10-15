@@ -32,7 +32,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
       var numOptions = event.target.value;
 
       this.makeDropdown(numOptions)
-    } else if($(event.target).hasClass('delete-option')){
+    } else {
       AFB.Views.FormMaster.updateValues(event, this.model);
     }
   },
@@ -56,7 +56,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
       var optionOptions = JST['forms/sidebars/dropdown_option']({
         i: i,
         name: name,
-        '$field': $form
+        '$field': this.field
       })
       myOptions = $form
       console.log(optionOptions);
