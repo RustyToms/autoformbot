@@ -1,7 +1,7 @@
 AFB.Views.FormSidebarInputs = Backbone.View.extend({
   initialize: function(){
-    console.log("initializing FormSidebarInputs view")
-    this.parentView = this.options.parentView
+    console.log("initializing FormSidebarInputs view");
+    this.parentView = this.options.parentView;
     this.$el = $(JST['forms/sidebars/inputs']());
   },
 
@@ -19,7 +19,8 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
       "telnum" : "FormSidebarTelnum",
       "dropdown" : "FormSidebarDropdown",
       "textarea" : "FormSidebarTextarea",
-      "numbox" : "FormSidebarNumbox"
+      "numbox" : "FormSidebarNumbox",
+      "radio" : "FormSidebarRadio"
     };
 
     var selection = $(event.target).closest('button').data('inputType');

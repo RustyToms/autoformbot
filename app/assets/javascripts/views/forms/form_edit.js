@@ -53,6 +53,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
         console.log(model)
       }
     });
+    this.parentView.render();
   },
 
   parseClickForm: function(event) {

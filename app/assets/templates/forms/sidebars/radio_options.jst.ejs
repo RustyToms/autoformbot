@@ -1,0 +1,29 @@
+
+<div class="sidebar" id="dropdown-sidebar">
+
+<h2>Customize your Radio Buttons</h2>
+
+<label
+    style="display: inline-block"
+>Label
+  <input type='text'
+    name='radio-label'
+    value='<%= label %>'>
+</label>
+
+<button class='add-option'>Add an Option</button>
+
+<br>
+
+<div class='radios'></div>
+
+<label>
+  <input
+    type='checkbox'
+    name='requiredCheckbox'
+    <% if($field.hasClass('required')) { %>
+      <%= 'checked' %>
+      <% } %>
+  />
+    Check Required
+</label>

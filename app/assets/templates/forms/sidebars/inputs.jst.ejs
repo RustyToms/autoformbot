@@ -23,7 +23,7 @@
       data-input-type="checkbox"
       style="padding:8px">
         Check Box
-      <input type="checkbox" style="width:8px; height:8px" checked disabled>
+      <input type="checkbox" style="width:8px; height:8px" checked>
     </button>
 
     <button
@@ -52,6 +52,37 @@
     style="padding:8px">
 
     <textarea rows='2' cols='8' id='textarea' disabled>TextArea</textarea>
+  </button>
+
+  <button
+    id="radio-button"
+    data-input-type='radio'
+    style="padding:5px">
+    Radio Buttons
+    <form style='display: inline-block'>
+      <label style='position: relative; top: 5px'>
+       <input
+          type='radio'
+          name='example'
+          label='option1'
+          style='border: none; height: 0.5em; position: relative; top: -6px'
+          checked>
+        Option 1
+      </label>
+
+        <br>
+
+        <label style='position: relative; top: 5px'>
+         <input
+            type='radio'
+            name='example'
+            label='option1'
+            style='border: none; height: 0.5em; position: relative; top: -6px; left: -1px'
+          >
+          Option 2
+        </label>
+
+    </form>
   </button>
 
 </div>
