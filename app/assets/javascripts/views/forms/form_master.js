@@ -3,6 +3,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     "click .sidebar_header" : "newSidebar",
     "click .sidebar" : "sidebarClick",
     "keyup .sidebar" : "sidebarValues"
+    // "change .sidebar" : "sidebarValues"
   },
 
   initialize: function(){

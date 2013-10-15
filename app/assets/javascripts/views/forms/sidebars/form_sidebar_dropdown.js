@@ -26,8 +26,9 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
 
     if (event.target.name === 'dropdown') {
       console.log('adding dropdown options');
-      this.render();
-      var $options = this.$el.find('.dropdowns')
+
+      var $options = this.$el.find('.dropdowns');
+			$options.find('.select-option-config').remove();
       var numOptions = event.target.value;
 
       for(var i=0; i<numOptions; i++){
