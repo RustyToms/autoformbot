@@ -24,11 +24,22 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarRadio#updateValues");
+    console.log(event.target)
 		if ($(event.target).hasClass('radio-label')){
-			var name = event.target.value
-			this.field.find('.radio-option input').attr('name', name)
+
+      this.model.updateHTML('.editing .radio-label', event.target.value);
+      var numOptions = this.$el.find('.radio-option-config').length;
+      this.makeRadio(numOptions);
+
+			// var name = 'results[' + event.target.value + ']'
+//       console.log('name is ' + name);
+//       $form = $(this.model.get('form_text'));
+//       $form.find('.editing .radio-label').html(event.target.value);
+//       $form.find('.editing input').attr('name', name);
+//       this.model.set('form_text', $form.prop('outerHTML'));
+		} else {
+		  this.model.updateValues(event);
 		}
-    this.model.updateValues(event);
   },
 
   parseClick: function(event){
@@ -49,14 +60,14 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
     var $options = this.$el.find('.radios');
 		$options.find('.radio-option-config').remove();
     $preexisting = $.makeArray($form.find('.editing .radio-option'));
-    var label = this.field.find('.radio-label').text();
+    var label = this.field.find('.radio-label').text().trim();
     this.field.find('span.radio').empty();
 
     for(var i=0; i<numOptions; i++){
-      var name = "radioOption" + i;
+      var name = "results[" + label + "]";
       $currentOption = $($preexisting.shift());
       if($currentOption.length){
-        var optionName = $currentOption.find('label').text();
+        var optionName = $currentOption.find('label').text().trim();
         var value = $currentOption.find('input').val();
       } else{
         var optionName = "";
@@ -66,13 +77,14 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
       var radioOption = JST['forms/fields/radio_option']({
         label: label,
         name: name,
+        klass: name + i,
         optionName: optionName,
         value: value
       })
       this.field.find('span.radio').append($(radioOption));
 
       var optionOption = JST['forms/sidebars/radio_option']({
-        name: name,
+        klass: name + i,
         optionName: optionName,
         value: value,
         i: i

@@ -1,0 +1,63 @@
+<% var $field = $(field) %>
+
+<div class="sidebar" id="text-sidebar">
+
+<h2>Customize your Text</h2>
+
+<label>Content:
+  <textarea
+    name='text'
+    autofocus
+  >
+  <%= $field.find('span').html().trim() %>
+</textarea><br>
+
+<label>Font-Size (digits only)
+  <input
+    data-css='font-size'
+    value='<%= $field.find('span').css('font-size') %>'
+    name='text'/>
+</label><br>
+
+<label>Font-family
+  <select
+    data-css='font-family'
+    name='text's>
+    <option class='font-family-option'></option>
+    <option class='font-family-option'>sans-serif</option>
+    <option class='font-family-option'>serif</option>
+    <option class='font-family-option'>monospace</option>
+    <option class='font-family-option'>cursive</option>
+    <option class='font-family-option'>fantasy</option>
+    <option class='font-family-option'>Arial, Helvetica, sans-serif</option>
+    <option class='font-family-option'>Arial Black, Gadget, sans-serif</option>
+    <option class='font-family-option'>Comic Sans MS, cursive, sans-serif</option>
+    <option class='font-family-option'>Courier New, Courier, monospace</option>
+    <option class='font-family-option'>Georgia, serif</option>
+    <option class='font-family-option'>Impact, Charcoal, sans-serif</option>
+    <option class='font-family-option'>Lucida Console, Monaco, monospace</option>
+    <option class='font-family-option'>Lucida Sans Unicode, Lucida Grande, sans-serif</option>
+    <option class='font-family-option'>Palatino Linotype, Book Antiqua, Palatino, serif</option>
+    <option class='font-family-option'>Tahoma, Geneva, sans-serif</option>
+    <option class='font-family-option'>Times New Roman, Times, serif</option>
+    <option class='font-family-option'>Trebuchet MS, Helvetica, sans-serif</option>
+    <option class='font-family-option'>Verdana, Geneva, sans-serif</option>
+  </select>
+</label><br>
+
+<label>Text Alignment
+  <select
+    data-css='text-align'
+    name='text'>
+    <option class='text-align-option'>left</option>
+    <option class='text-align-option'>center</option>
+    <option class='text-align-option'>right</option>
+    <option class='text-align-option'>justify</option>
+  </select>
+</label><br>
+
+<label>Font-weight
+  <input type='radio' >
+</label><br>
+
+</div>

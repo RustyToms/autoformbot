@@ -1,6 +1,6 @@
 <div class='radio-option-config'>
   <h3 class='radio-option-title'>Option <%= i + 1 %></h3>
-  <button class='delete-button delete-option' name='<%= name %>'>Delete</button>
+  <button class='delete-button delete-option' name='<%= klass %>'>Delete</button>
 
   <br>
 
@@ -10,7 +10,7 @@
     <input
       type='text'
       value='<%= optionName %>'
-      name='<%= name %>-label'/><br>
+      name='<%= klass %>-label'/><br>
   </label>
 
   <br>
@@ -19,7 +19,7 @@
       style="display: inline-block"
   >Value
     <input type='text'
-      name='<%= name %>'
+      name='<%= klass %>'
       data-attribute='value'
       value='<%= value %>'>
   </label>
