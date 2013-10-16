@@ -3,9 +3,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
 
 
   addField: function(){
-    var form = this.model.get('form_text');
-    var $form = $(form).append(this.field);
-    this.model.set('form_text', $form.prop('outerHTML'))
+    this.model.addField(this.field);
   },
 
 
@@ -25,7 +23,11 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarDropdown#updateValues");
-    AFB.Views.FormMaster.updateValues(event, this.model);
+    if ($(event.target).attr('name')=== 'dropdown-label' ){
+      var name = 'results[' + event.target.value + ']'
+      this.model.updateAttribute('.editing select', 'name', name);
+    }
+    this.model.updateValues(event);
   },
 
   parseClick: function(event){
