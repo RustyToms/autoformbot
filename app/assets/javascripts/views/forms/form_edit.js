@@ -35,7 +35,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   serverSaveForm: function(){
-    AFB.Views.FormMaster.removeActiveEdits(this.model);
+    this.model.removeActiveEdits();
 
     console.log("in FormEdit#serverSaveForm")
     var name = this.$el.find('.formName').html();
@@ -69,7 +69,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
       $formEl.addClass("start-editing");
       this.localSaveForm();
 
-      AFB.Views.FormMaster.removeActiveEdits(this.model);
+      this.model.removeActiveEdits();
 
       var sidebarName = $formEl.data("sidebar");
       console.log("new sidebar should be " + sidebarName);

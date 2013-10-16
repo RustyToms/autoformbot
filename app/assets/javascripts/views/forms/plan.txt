@@ -1,11 +1,4 @@
-# Make field models - done
-# store form elements in models - done
-# create form elements from models - done
-# save models with form --- Tried, Don't think I can do this with JSON because of the functions ---Might have to save field models individually----
-#
-# create field models from html - done
-# mark up external form into parsable form
-#
+
 # set form to return results
 # set results to be sent to my server
 # provide code for form
@@ -16,3 +9,6 @@
 # allow other users to be added to account
 #
 # add more form fields
+# allow fields to be draggable
+# allow multiple users to have access to the same account
+# allow multiple users to work on the same form at the same time

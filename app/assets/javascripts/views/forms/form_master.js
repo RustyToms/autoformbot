@@ -37,7 +37,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       console.log("new sidebar is " + this.sidebar);
 
     } else {
-      AFB.Views.FormMaster.removeActiveEdits(this.model);
+      this.model.removeActiveEdits();
       this.sidebar = new AFB.Views.FormSidebarInputs({
         parentView: this,
         model: this.model,
@@ -129,38 +129,24 @@ AFB.Views.FormMaster = Backbone.View.extend({
   }
 
 })
+//
+// AFB.Views.FormMaster.updateValues = function(event, model) {
+//   console.log("in FormMaster::updateValues");
+//   var $form = $(model.get('form_text'));
+//   $target = $form.find('.editing .' + $(event.target).attr('name'));
+//   console.log($(event.target).attr('name'));
+//   console.log($target.html());
+//   var value = $(event.target).val();
+//   console.log(value);
+//   var attribute = $(event.target).data('attribute');
+//
+//   if (attribute) {
+//     $target.attr(attribute, value);
+//   } else {
+//     $target.html(value);
+//   }
+//
+//   var form = $('<div>').append($form.clone()).html();
+//   model.set('form_text', form)
+// };
 
-AFB.Views.FormMaster.updateValues = function(event, model) {
-  console.log("in FormMaster::updateValues");
-  var $form = $(model.get('form_text'));
-  $target = $form.find('.editing .' + $(event.target).attr('name'));
-  console.log($(event.target).attr('name'));
-  console.log($target.html());
-  var value = $(event.target).val();
-  console.log(value);
-  var attribute = $(event.target).data('attribute');
-
-  if (attribute) {
-    $target.attr(attribute, value);
-  } else {
-    $target.html(value);
-  }
-
-  var form = $('<div>').append($form.clone()).html();
-  model.set('form_text', form)
-};
-
-
-AFB.Views.FormMaster.removeActiveEdits = function(model){
-  console.log('removing all editing classes');
-  var $form = $(model.get('form_text'));
-  $form.find('.editing').removeClass('editing');
-  $form.find('.delete-field').remove();
-
-  $form.find('.start-editing').
-    addClass('editing').
-    removeClass('start-editing').
-    append("<button class='delete-field'>X</button>");
-  var form = $('<div>').append($form.clone()).html();
-  model.set('form_text', form)
-};
