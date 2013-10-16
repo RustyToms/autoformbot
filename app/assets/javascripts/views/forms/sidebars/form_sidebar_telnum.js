@@ -2,10 +2,7 @@ AFB.Views.FormSidebarTelnum = Backbone.View.extend({
   field: (JST['forms/fields/telnum']()),
 
   addField: function(){
-    var form = this.model.get('form_text');
-    $form = $(form).append(this.field);
-    form = $('<div>').append($form.clone()).html();
-    this.model.set('form_text', form);
+    this.model.addField(this.field);
   },
 
   render: function(){
@@ -16,6 +13,10 @@ AFB.Views.FormSidebarTelnum = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarTextarea#updateValues");
-    AFB.Views.FormMaster.updateValues(event, this.model);
+    if ($(event.target).attr('name')=== 'telnum-label' ){
+      var name = 'results[' + event.target.value + ']'
+      this.model.updateAttribute('.editing .textbox', 'name', name);
+    }
+    this.model.updateValues(event);
   }
 })

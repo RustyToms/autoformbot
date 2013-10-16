@@ -23,8 +23,8 @@ AFB.Models.Form = Backbone.Model.extend ({
       addClass('editing').
       removeClass('start-editing').
       append("<button class='delete-field'>X</button>");
-    var form = $('<div>').append($form.clone()).html();
-    this.set('form_text', form)
+
+    this.set('form_text', $form.prop('outerHTML'))
   },
 
   updateValues: function(event) {
@@ -39,5 +39,11 @@ AFB.Models.Form = Backbone.Model.extend ({
     } else {
       this.updateHTML(selector, value);
     }
+  },
+
+  addField: function(field){
+    var $form = $(this.get('form_text'));
+    $form.append(field);
+    this.set('form_text', $form.prop('outerHTML'));
   }
 });

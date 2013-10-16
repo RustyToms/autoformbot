@@ -2,9 +2,7 @@ AFB.Views.FormSidebarTextbox = Backbone.View.extend({
   field: (JST['forms/fields/textbox']()),
 
   addField: function(){
-    var form = this.model.get('form_text');
-    var $form = $(form).append(this.field);
-    this.model.set('form_text', $form.prop('outerHTML'))
+    this.model.addField(this.field);
   },
 
   render: function(){
