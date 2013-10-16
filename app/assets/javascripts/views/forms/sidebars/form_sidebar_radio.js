@@ -3,6 +3,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 
 
   addField: function(){
+		console.log("adding radio button field")
     var form = this.model.get('form_text');
     var $form = $(form).append(this.field);
     this.model.set('form_text', $form.prop('outerHTML'))
@@ -12,7 +13,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
   render: function(){
     console.log("rendering FormSidebarRadio");
     $field = $((this.options.field || this.field));
-    var numOptions = $field.find('.radio-option-config').prop('length')
+    var numOptions = $field.find('.radio-option').length
     var label = $field.find('.radio-label').html()
 
     this.$el.html(JST['forms/sidebars/radio_options']({
@@ -25,6 +26,10 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarRadio#updateValues");
+		if ($(event.target).hasClass('radio-label')){
+			var name = event.target.value
+			this.field.find('.radio-option input').attr('name', name)
+		}
     AFB.Views.FormMaster.updateValues(event, this.model);
   },
 
@@ -37,15 +42,16 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
   },
 
   makeRadio: function(numOptions){
-		numOptions = (numOptions || 1);
     console.log('in makeRadio');
+		numOptions = (numOptions || 1);
+
     $form = $(this.model.get('form_text'));
     this.field = $form.find('.editing');
 
     var $options = this.$el.find('.radios');
 		$options.find('.radio-option-config').remove();
     $preexisting = $.makeArray($form.find('.editing .radio-option'));
-    var label = this.field.find('radio-label').text()
+    var label = this.field.find('.radio-label').text();
     this.field.find('span.radio').empty();
 
     for(var i=0; i<numOptions; i++){

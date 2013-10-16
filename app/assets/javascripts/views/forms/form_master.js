@@ -83,7 +83,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       $form.find('.editing .' + $target.attr('name')).remove();
             console.log($form.find('.editing').prop('outerHTML'));
       this.model.set('form_text', $form.prop('outerHTML'));
-      // this.render(this.sidebar);
+
       $target.closest('div').remove();
     } else if ($(event.target).attr('name') ==='requiredCheckbox'){
 
