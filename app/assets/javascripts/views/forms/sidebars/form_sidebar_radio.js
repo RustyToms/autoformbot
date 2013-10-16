@@ -4,9 +4,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 
   addField: function(){
 		console.log("adding radio button field")
-    var form = this.model.get('form_text');
-    var $form = $(form).append(this.field);
-    this.model.set('form_text', $form.prop('outerHTML'))
+    this.model.addField(this.field);
   },
 
 
@@ -14,7 +12,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
     console.log("rendering FormSidebarRadio");
     $field = $((this.options.field || this.field));
     var numOptions = $field.find('.radio-option').length
-    var label = $field.find('.radio-label').html()
+    var label = $field.find('.radio-label').html().trim()
 
     this.$el.html(JST['forms/sidebars/radio_options']({
       label: label
@@ -30,7 +28,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 			var name = event.target.value
 			this.field.find('.radio-option input').attr('name', name)
 		}
-    AFB.Views.FormMaster.updateValues(event, this.model);
+    this.model.updateValues(event);
   },
 
   parseClick: function(event){

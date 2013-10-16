@@ -7,7 +7,7 @@
 <label>Label
   <input type='text'
     name='textarea-label'
-    value='<%= $field.find('.textarea-label').html() %>'>
+    value='<%= $field.find('.textarea-label').html().trim() %>'>
 </label><br>
 
 <label>Height (in number of lines)
@@ -29,7 +29,7 @@
 <label>Prefilled content
   <input
     type='text'
-    value='<%= $field.find('.textarea').html() %>'
+    value='<%= $field.find('.textarea').html().trim() %>'
     name='textarea'/>
 </label>
 

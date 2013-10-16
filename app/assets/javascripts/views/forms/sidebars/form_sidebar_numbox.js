@@ -2,9 +2,7 @@ AFB.Views.FormSidebarNumbox = Backbone.View.extend({
   field: (JST['forms/fields/numbox']()),
 
   addField: function(){
-    var form = this.model.get('form_text');
-    var $form = $(form).append(this.field);
-    this.model.set('form_text', $form.prop('outerHTML'))
+    this.model.addField(this.field);
   },
 
   render: function(){
@@ -18,6 +16,10 @@ AFB.Views.FormSidebarNumbox = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarNumbox#updateValues");
-    AFB.Views.FormMaster.updateValues(event, this.model);
+    if ($(event.target).attr('name')=== 'numbox-label' ){
+      var name = 'results[' + event.target.value + ']'
+      this.model.updateAttribute('.editing .numbox', 'name', name);
+    }
+    this.model.updateValues(event);
   }
 })

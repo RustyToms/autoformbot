@@ -129,24 +129,3 @@ AFB.Views.FormMaster = Backbone.View.extend({
   }
 
 })
-//
-// AFB.Views.FormMaster.updateValues = function(event, model) {
-//   console.log("in FormMaster::updateValues");
-//   var $form = $(model.get('form_text'));
-//   $target = $form.find('.editing .' + $(event.target).attr('name'));
-//   console.log($(event.target).attr('name'));
-//   console.log($target.html());
-//   var value = $(event.target).val();
-//   console.log(value);
-//   var attribute = $(event.target).data('attribute');
-//
-//   if (attribute) {
-//     $target.attr(attribute, value);
-//   } else {
-//     $target.html(value);
-//   }
-//
-//   var form = $('<div>').append($form.clone()).html();
-//   model.set('form_text', form)
-// };
-

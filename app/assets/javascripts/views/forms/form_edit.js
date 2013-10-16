@@ -38,7 +38,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.model.removeActiveEdits();
 
     console.log("in FormEdit#serverSaveForm")
-    var name = this.$el.find('.formName').html();
+    var name = this.$el.find('.formName').html().trim();
 		var text = this.model.get('form_text')
 		this.model.save({
 			name: name,
