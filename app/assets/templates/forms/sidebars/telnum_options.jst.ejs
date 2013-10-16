@@ -1,17 +1,40 @@
-<div class="sidebar" id="all-fields-sidebar">
+<% var $field = $(field) %>
 
-<h2>Customize your Telephone number field</h2>
+<div class="sidebar" id="textbox-sidebar">
 
-<label>Label
+<h2>Customize Your Telephone Number Field</h2>
+
+<label>Label:
   <input type='text'
-    name='telnum-label'>
-</label>
+    name='telnum-label'
+    value='<%= $field.find('.telnum-label').html().trim() %>'>
+</label><br>
 
-<label>Width
+<label>Maximum number of characters:
   <input
     type='text'
-    data-attribute='size'
-    name='textbox'/>
+    data-attribute='maxlength'
+    value='<%= $field.find('.telnum').attr('maxlength') %>'
+    name='telnum'/>
+</label><br>
+
+<label>Prefilled content:
+  <input
+    type='text'
+    data-attribute='value'
+    value='<%= $field.find('.telnum').val() %>'
+    name='telnum'/>
+</label><br>
+
+<label>
+  <input
+    type='checkbox'
+    name='requiredCheckbox'
+    <% if($field.hasClass('required')) { %>
+      <%= 'checked' %>
+      <% } %>
+  />
+    Required Field
 </label>
 
 </div>
