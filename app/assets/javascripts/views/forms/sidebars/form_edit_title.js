@@ -16,6 +16,6 @@ AFB.Views.FormEditTitle = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormEditTitle#updateValues");
-    AFB.Views.FormMaster.updateValues(event, this.model);
+    this.model.updateValues(event);
   }
 })

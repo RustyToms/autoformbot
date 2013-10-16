@@ -2,9 +2,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
   field: (JST['forms/fields/checkbox']()),
 
   addField: function(){
-    var form = this.model.get('form_text');
-    var $form = $(form).append(this.field);
-    this.model.set('form_text', $form.prop('outerHTML'))
+    this.model.addField(this.field);
   },
 
   render: function(){
@@ -18,7 +16,11 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarTextbox#updateValues");
-    AFB.Views.FormMaster.updateValues(event, this.model);
+    if ($(event.target).attr('name')=== 'checkbox-label' ){
+      var name = 'results[' + event.target.value + ']'
+      this.model.updateAttribute('.editing .checkbox', 'name', name);
+    }
+    this.model.updateValues(event);
   },
 
   parseClick: function(event){
