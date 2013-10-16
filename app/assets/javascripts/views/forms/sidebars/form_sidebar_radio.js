@@ -37,6 +37,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
   },
 
   makeRadio: function(numOptions){
+		numOptions = (numOptions || 1);
     console.log('in makeRadio');
     $form = $(this.model.get('form_text'));
     this.field = $form.find('.editing');
