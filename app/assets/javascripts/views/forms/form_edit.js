@@ -124,7 +124,12 @@ AFB.Views.FormEdit = Backbone.View.extend({
 		console.log("duplicating form");
 		event.preventDefault();
 		
-		var newModel = this.model.clone();
+		var newModel = new AFB.Models.Form({
+			form_text: this.model.get('form_text'),
+			name: this.model.get('name'),
+			account_id: window.ACCOUNT_ID
+		});
+		
 		AFB.formCollection.add(newModel);
 		newModel.save({},{
       success: function(response){
