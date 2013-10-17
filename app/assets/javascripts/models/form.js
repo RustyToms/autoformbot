@@ -13,6 +13,15 @@ AFB.Models.Form = Backbone.Model.extend ({
     $form.find(selector).html(value);
     this.set('form_text', $form.prop('outerHTML'));
   },
+	
+	updateCSS: function(selector, key, value){
+		console.log("updating form element CSS");
+		console.log(selector);
+		console.log(key + ": " + value);
+    $form = $(this.get('form_text'));
+    $form.find(selector).css(key, value);
+    this.set('form_text', $form.prop('outerHTML'));
+	},
 
   removeActiveEdits: function(){
     console.log('removing all editing classes');
@@ -34,10 +43,13 @@ AFB.Models.Form = Backbone.Model.extend ({
     var selector = '.editing .' + $(event.target).attr('name');
     var value = $(event.target).val();
     var attribute = $(event.target).data('attribute');
+		var cssAttribute = $(event.target).data('css');
 
     if (attribute) {
       this.updateAttribute(selector, attribute, value);
-    } else {
+    } else if(cssAttribute) {
+			this.updateCSS(selector, cssAttribute, value);
+		} else {
       this.updateHTML(selector, value);
     }
   },

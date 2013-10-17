@@ -13,11 +13,13 @@
 # allow multiple users to have access to the same account
 # allow multiple users to work on the same form at the same time
 
-check out Rangy
+- check out Rangy
 
 FormRadio
 - Remove all spaces and non-alphanumeric characters from classes
 # Remove value field from edit sidebar, have that done manually in the view - done
 - Resolve strange bug where the option name doesn't work if the field label is too long
 
-- make it so formEdit view doesn't refresh when not needed
+# make it so formEdit view doesn't refresh when not needed - done for what I needed
+
+- allow margin and padding and background color and border to be changed for each field

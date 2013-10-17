@@ -2,7 +2,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
   events: {
     "click .formEl" : "parseClickForm",
     "click #save-button" : "serverSaveForm",
-    "click .edit-manual button" : "manualFormEdit",
 		"click .duplicate-form button" : "duplicateForm"
   },
 

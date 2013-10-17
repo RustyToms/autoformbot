@@ -30,7 +30,7 @@
 
 .sidebar_window {
   background-color: lightblue;
-  width: 35%;
+  width: 40%;
   height: 100%;
   float: left;
 }
@@ -41,7 +41,7 @@
 
 .sidebar_header {
   background-color: $very-pale-blue;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 .sidebar_header a {
@@ -51,7 +51,7 @@
 }
 
 .main {
-  width: 65%;
+  width: 60%;
   height: 100%;
 //  min-height: 450px;
   float: left;
