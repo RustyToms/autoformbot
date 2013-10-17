@@ -2,7 +2,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
   events: {
     "click .formEl" : "parseClickForm",
     "click #save-button" : "serverSaveForm",
-    "click .edit-manual button" : "manualFormEdit"
+    "click .edit-manual button" : "manualFormEdit",
+		"click .duplicate-form button" : "duplicateForm"
   },
 
   initialize: function(){
@@ -117,5 +118,23 @@ AFB.Views.FormEdit = Backbone.View.extend({
       event.preventDefault();
 
     }
-  }
+  },
+	
+	duplicateForm: function(event){
+		console.log("duplicating form");
+		event.preventDefault();
+		
+		var newModel = this.model.clone();
+		AFB.formCollection.add(newModel);
+		newModel.save({},{
+      success: function(response){
+        console.log("save successful");
+				console.log(response);
+      },
+      error: function(model, response){
+        console.log("error: " + response.responseText);
+        console.log(model)
+      }
+    });
+	}
 });

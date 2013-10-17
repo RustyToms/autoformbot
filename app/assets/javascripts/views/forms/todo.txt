@@ -18,3 +18,4 @@ check out Rangy
 FormRadio
 - Remove all spaces and non-alphanumeric characters from classes
 # Remove value field from edit sidebar, have that done manually in the view - done
+- Resolve strange bug where the option name doesn't work if the field label is too long
