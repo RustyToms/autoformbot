@@ -12,18 +12,29 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.$formEditEl = $(JST["forms/edit_form"]());
   },
 
-  render: function(newSidebar){
+  render: function(newSidebar, formView){
     console.log('rendering FormMaster view');
     this.$el.empty();
     this.$el.append(this.makeSidebarView(newSidebar));
 
-    this.editForm && this.editForm.remove();
-    this.editForm = new AFB.Views.FormEdit({
-      parentView: this,
-      model: this.model,
-      el: this.$formEditEl
-    })
-    this.$el.append(this.editForm.render().$el);
+    if (formView){
+			
+    	this.$el.append(formView);
+			
+    } else {
+			
+			this.editForm && this.editForm.remove();
+	    this.editForm = new AFB.Views.FormEdit({
+				
+	      parentView: this,
+	      model: this.model,
+	      el: this.$formEditEl
+				
+	    });
+	    this.$el.append(this.editForm.render().$el);
+			
+		}
+		
     this.initialize();
     return this;
   },
@@ -33,15 +44,20 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.sidebar && this.sidebar.remove();
 
     if (newSidebar){
+			
       this.sidebar = newSidebar;
       console.log("new sidebar is " + this.sidebar);
 
     } else {
+			
       this.model.removeActiveEdits();
       this.sidebar = new AFB.Views.FormSidebarInputs({
+				
         parentView: this,
         model: this.model,
+				
       });
+			
     }
 
     return this.$sidebarEl.append(this.sidebar.render().$el);

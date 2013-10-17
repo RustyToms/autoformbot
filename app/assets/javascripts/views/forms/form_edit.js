@@ -67,11 +67,14 @@ AFB.Views.FormEdit = Backbone.View.extend({
   parseClickForm: function(event) {
     console.log("in parseClickForm");
     $target = $(event.target);
+		
     if($target.hasClass('delete-field')){
+			
       $target.closest(".formEl").remove();
       this.localSaveForm();
       this.parentView.render();
-    } else {
+			
+    } else if (!$target.closest(".formEl").hasClass('editing')){
 
       $formEl = $target.closest(".formEl");
       $formEl.addClass("start-editing");
@@ -86,6 +89,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
         field: $formEl
       });
       this.parentView.render(sidebar);
+			
     }
   },
 
@@ -95,17 +99,17 @@ AFB.Views.FormEdit = Backbone.View.extend({
     if($target.hasClass('start')) {
       this.$el.find(".form-edit-box label, h2, p").attr('contenteditable', 'true');
       $target.removeClass('start').html('Return to Normal Mode');
-      this.undelegateEvents();
-      this.delegateEvents({
-        "click .edit-manual button" : "manualFormEdit",
-        "keypress" : "parseKey"
-      });
+      // this.undelegateEvents();
+      // this.delegateEvents({
+      //   "click .edit-manual button" : "manualFormEdit",
+      //   "keypress" : "parseKey"
+      // });
       this.localSaveForm();
     } else {
       this.$el.find(".form-edit-box label, h2, p").removeAttr('contenteditable');
       $target.addClass('start').html('Edit Form Manually');
-      this.undelegateEvents();
-      this.delegateEvents();
+      // this.undelegateEvents();
+      // this.delegateEvents();
       this.localSaveForm();
     }
   },
