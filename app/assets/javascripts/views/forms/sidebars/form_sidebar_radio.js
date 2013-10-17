@@ -64,8 +64,10 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
     this.field.find('span.radio').empty();
 
     for(var i=0; i<numOptions; i++){
-      var name = "results[" + label + "]";
+      // var name = "results[" + label + "]";
       $currentOption = $($preexisting.shift());
+			var klass = label.replace(' ', '') + i;
+			
       if($currentOption.length){
         var optionName = $currentOption.find('label').text().trim();
         var value = $currentOption.find('input').val();
@@ -75,16 +77,15 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
       }
 
       var radioOption = JST['forms/fields/radio_option']({
-        label: label,
-        name: name,
-        klass: name + i,
+        name: "results[" + label + "]",
+        klass: klass,
         optionName: optionName,
         value: value
       })
       this.field.find('span.radio').append($(radioOption));
 
       var optionOption = JST['forms/sidebars/radio_option']({
-        klass: name + i,
+        klass: klass,
         optionName: optionName,
         value: value,
         i: i

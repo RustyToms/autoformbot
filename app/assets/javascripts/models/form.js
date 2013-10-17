@@ -8,6 +8,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 
   updateHTML: function(selector, value){
     console.log("updating form element html");
+		console.log(selector);
     $form = $(this.get('form_text'));
     $form.find(selector).html(value);
     this.set('form_text', $form.prop('outerHTML'));
