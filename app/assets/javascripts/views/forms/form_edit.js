@@ -92,14 +92,26 @@ AFB.Views.FormEdit = Backbone.View.extend({
       $target.removeClass('start').html('Return to Normal Mode');
       this.undelegateEvents();
       this.delegateEvents({
-        "click .edit-manual button" : "manualFormEdit"
+        "click .edit-manual button" : "manualFormEdit",
+        "keypress" : "parseKey"
       });
       this.localSaveForm();
     } else {
       this.$el.find(".form-edit-box").removeAttr('contenteditable');
       $target.addClass('start').html('Edit Form Manually');
+      this.undelegateEvents();
       this.delegateEvents();
       this.localSaveForm();
+    }
+  },
+
+  parseKey: function(event){
+    console.log("in parseKey");
+    console.log(event.charCode);
+    console.log(event.locale);
+    if ((event.charCode) == "13"){
+      event.preventDefault();
+
     }
   }
 });

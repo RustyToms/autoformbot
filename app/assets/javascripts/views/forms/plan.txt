@@ -12,3 +12,5 @@
 # allow fields to be draggable
 # allow multiple users to have access to the same account
 # allow multiple users to work on the same form at the same time
+
+check out Rangy
