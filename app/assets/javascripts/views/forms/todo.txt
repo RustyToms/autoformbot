@@ -17,4 +17,4 @@ check out Rangy
 
 FormRadio
 - Remove all spaces and non-alphanumeric characters from classes
-- Remove value field from edit sidebar, have that done manually in the view
+# Remove value field from edit sidebar, have that done manually in the view - done
