@@ -1,7 +1,8 @@
 AFB.Views.FormEdit = Backbone.View.extend({
   events: {
     "click .formEl" : "parseClickForm",
-    "click #save-button" : "serverSaveForm"
+    "click #save-button" : "serverSaveForm",
+    "click .edit-manual button" : "manualFormEdit"
   },
 
   initialize: function(){
@@ -35,6 +36,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   serverSaveForm: function(){
+    this.$el.find(".form-edit-box").removeAttr('contenteditable');
+    this.localSaveForm();
     this.model.removeActiveEdits();
 
     console.log("in FormEdit#serverSaveForm")
@@ -78,6 +81,25 @@ AFB.Views.FormEdit = Backbone.View.extend({
         field: $formEl
       });
       this.parentView.render(sidebar);
+    }
+  },
+
+  manualFormEdit: function(event) {
+    console.log("in manualFormEdit");
+    $target = $(event.target);
+    if($target.hasClass('start')) {
+      this.$el.find(".form-edit-box").attr('contenteditable', 'true');
+      $target.removeClass('start').html('Return to Normal Mode');
+      this.undelegateEvents();
+      this.delegateEvents({
+        "click .edit-manual button" : "manualFormEdit"
+      });
+      this.localSaveForm();
+    } else {
+      this.$el.find(".form-edit-box").removeAttr('contenteditable');
+      $target.addClass('start').html('Edit Form Manually');
+      this.delegateEvents();
+      this.localSaveForm();
     }
   }
 });
