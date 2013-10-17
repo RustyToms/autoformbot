@@ -8,7 +8,7 @@
   <input type='text'
     name='textarea-label'
     autofocus
-    value='<%= $field.find('.textarea-label').html().trim() %>'>
+    value='<%= $field.find('.textarea-label').text().trim() %>'>
 </label><br>
 
 <label>Height (in number of lines)
@@ -30,7 +30,7 @@
 <label>Prefilled content
   <input
     type='text'
-    value='<%= $field.find('.textarea').html().trim() %>'
+    value='<%= $field.find('.textarea').text().trim() %>'
     name='textarea'/>
 </label>
 
