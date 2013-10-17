@@ -17,23 +17,15 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.$el.empty();
     this.$el.append(this.makeSidebarView(newSidebar));
 
-    if (formView){
+		this.editForm && this.editForm.remove();
+    this.editForm = new AFB.Views.FormEdit({
 			
-    	this.$el.append(formView);
+      parentView: this,
+      model: this.model,
+      el: this.$formEditEl
 			
-    } else {
-			
-			this.editForm && this.editForm.remove();
-	    this.editForm = new AFB.Views.FormEdit({
-				
-	      parentView: this,
-	      model: this.model,
-	      el: this.$formEditEl
-				
-	    });
-	    this.$el.append(this.editForm.render().$el);
-			
-		}
+    });
+    this.$el.append(this.editForm.render().$el);
 		
     this.initialize();
     return this;

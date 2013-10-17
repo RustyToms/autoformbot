@@ -17,14 +17,16 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   render: function(){
     console.log("rendering FormEdit view");
-    var formText = (this.model.get('form_text'));
+    var $formText = $(this.model.get('form_text'));
+		$formText.find("label, h2, p").
+			attr('contenteditable', 'true');
 
     if(this.$el.find('.form-edit-box').html()){
       console.log("replacing previous text")
-      this.$el.find('.form-edit-box').replaceWith(formText);
+      this.$el.find('.form-edit-box').replaceWith($formText.prop('outerHTML'));
     } else {
       console.log("adding formText for the first time")
-      this.$el.prepend(formText);
+      this.$el.prepend($formText.prop('outerHTML'));
     }
 
     return this;
@@ -90,27 +92,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
       });
       this.parentView.render(sidebar);
 			
-    }
-  },
-
-  manualFormEdit: function(event) {
-    console.log("in manualFormEdit");
-    $target = $(event.target);
-    if($target.hasClass('start')) {
-      this.$el.find(".form-edit-box label, h2, p").attr('contenteditable', 'true');
-      $target.removeClass('start').html('Return to Normal Mode');
-      // this.undelegateEvents();
-      // this.delegateEvents({
-      //   "click .edit-manual button" : "manualFormEdit",
-      //   "keypress" : "parseKey"
-      // });
-      this.localSaveForm();
-    } else {
-      this.$el.find(".form-edit-box label, h2, p").removeAttr('contenteditable');
-      $target.addClass('start').html('Edit Form Manually');
-      // this.undelegateEvents();
-      // this.delegateEvents();
-      this.localSaveForm();
     }
   },
 
