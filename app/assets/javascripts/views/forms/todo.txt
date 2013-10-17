@@ -23,3 +23,5 @@ FormRadio
 # make it so formEdit view doesn't refresh when not needed - done for what I needed
 
 - allow margin and padding and background color and border to be changed for each field
+
+- delete field from collection and refresh index page on delete in index page

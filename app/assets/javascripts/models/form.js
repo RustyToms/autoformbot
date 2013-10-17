@@ -18,6 +18,11 @@ AFB.Models.Form = Backbone.Model.extend ({
 		console.log("updating form element CSS");
 		console.log(selector);
 		console.log(key + ": " + value);
+		
+		if(key === 'font-size'){
+			value = value + 'px';
+		}
+		
     $form = $(this.get('form_text'));
     $form.find(selector).css(key, value);
     this.set('form_text', $form.prop('outerHTML'));

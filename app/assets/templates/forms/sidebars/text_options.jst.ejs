@@ -6,23 +6,24 @@
 
 <label>Content:
   <textarea
-    name='text'
-    autofocus
+		name='text-content'
+		autofocus
   >
-  <%= $field.find('span').text().trim() %>
+  <%= $field.find('.text-content').text().trim() %>
 </textarea><br>
 
 <label>Font-Size (digits only)
   <input
+		type='number'
     data-css='font-size'
-    value='<%= $field.find('span').css('font-size') %>'
-    name='text'/>
+    value='<%= $field.find('.text-content').css('font-size') %>'
+		name='text-content'/>
 </label><br>
 
 <label>Font-family
   <select
     data-css='font-family'
-    name='text's>
+		name='text-content'>
     <option class='font-family-option'></option>
     <option class='font-family-option'>sans-serif</option>
     <option class='font-family-option'>serif</option>
@@ -48,7 +49,7 @@
 <label>Text Alignment
   <select
     data-css='text-align'
-    name='text'>
+		name='text-content'>
     <option class='text-align-option'>left</option>
     <option class='text-align-option'>center</option>
     <option class='text-align-option'>right</option>
@@ -61,7 +62,7 @@
   <input 
 	  class='font-weight-option' 
 		type='radio' 
-		name='text' 
+		name='text-content'
 		data-css='font-weight' 
 		value='normal'>
   </label>
@@ -70,7 +71,7 @@
   <input 
 	  class='font-weight-option' 
 		type='radio' 
-		name='text'
+		name='text-content'
 		data-css='font-weight' 
 		value='bold'>
   </label>
