@@ -3,9 +3,16 @@
   <h2>Edit Form Name</h2>
 
   <label>New Form Name
-  <input id="new-form-name" name="formName" autofocus></label>
+	  <input
+		  id="new-form-name"
+			name="formName"
+			value="<%= title %>"
+			autofocus>
+
+	</label>
 
   <label>New Description
-    <textarea id="new-form-description" name="formDescription"></textarea>
+    <textarea id="new-form-description" name="formDescription"
+		><%= description %></textarea>
   </label>
 </div>

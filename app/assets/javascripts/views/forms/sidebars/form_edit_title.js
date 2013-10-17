@@ -1,16 +1,17 @@
 AFB.Views.FormEditTitle = Backbone.View.extend({
-  events: {
-    "keyup" : "updateValues"
-  },
-
-  initialize: function(){
-    console.log("initializing FormEditTitle view")
-  },
-
+  // events: {
+  //   "keyup" : "updateValues"
+  // },
   render: function(){
     console.log("rendering FormEditTitle view")
-    this.$el.empty();
-    this.$el.html(JST['forms/sidebars/edit_title']())
+		var $form = $(this.model.get('form_text'));
+		var title = $form.find('.editing .formName').text().trim();
+		var description = $.trim($form.find('.editing .formDescription').text());
+		console.log(title);
+    this.$el.html(JST['forms/sidebars/edit_title']({
+    	title: title,
+			description: description
+    }))
     return this
   },
 
