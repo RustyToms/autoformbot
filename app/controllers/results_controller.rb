@@ -6,14 +6,15 @@ class ResultsController < ApplicationController
   
   def create
     @result = Result.new
-    @result.form_id = params[:id]
+    @result.form_id = params[:form_id]
     @result.result = params[:results]
     if @result.save
       flash[:notice] = "Form submitted!"
-      redirect_to params[:redirect_url]
+      render json: @result
+      # redirect_to params[:redirect_url]
     else
-      flash.now[:errors] = @account.errors.full_messages
-      render text: "form submission unsuccessful"
+      flash.now[:errors] = @result.errors.full_messages
+      render json: @result
     end
   end
   

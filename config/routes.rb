@@ -13,7 +13,7 @@ AutoFormBot::Application.routes.draw do
 
   resources :accounts
   
-  resources :results, only: [:create, :destroy, :index]
+  resources :results, only: [:create, :destroy]
 
 
 

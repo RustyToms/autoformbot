@@ -54,12 +54,13 @@ AFB.Views.FormEdit = Backbone.View.extend({
 			name: name,
       form_text: text
 		},{
-      success: function(response){
+      success: function(response, model){
         console.log("save successful");
+				console.log(model);
 				console.log(response);
-				that.model.updateAttribute('#form-id', 'value', that.model.get('id'));
+				console.log(that.model.get('id'));
       },
-      error: function(model, response){
+      error: function(response, model){
         console.log("error: " + response.responseText);
         console.log(model)
       }

@@ -31,16 +31,26 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.model = new AFB.Models.Form();
     this.setUpModel();
 
-    AFB.formCollection.add(this.model);
     this.formMaster(this.model);
   },
 
   setUpModel: function(){
+		var that = this;
     this.model.set({
       account_id: window.ACCOUNT_ID,
-      name: "Untitled Form"
+      name: "Untitled Form",
+			form_text: JST["forms/new_form_seed"](),
     });
-		this.model.set('form_text', JST["forms/new_form_seed"]());
+		
+    AFB.formCollection.add(this.model);
+		
+		this.model.save({},{
+			success: function(response, model) {
+				that.model.updateAttribute('#form-id', 'value', that.model.get('id'));
+			}
+		});
+		console.log("form_id is " + this.model.get('id'));
+		
   },
 
   formShow: function(id) {
