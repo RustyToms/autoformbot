@@ -42,6 +42,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   serverSaveForm: function(){
+		var that = this;
     this.$el.find(".form-edit-box label, h2, p").removeAttr('contenteditable');
     this.localSaveForm();
     this.model.removeActiveEdits();
@@ -56,6 +57,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
       success: function(response){
         console.log("save successful");
 				console.log(response);
+				that.model.updateAttribute('#form-id', 'value', that.model.get('id'));
       },
       error: function(model, response){
         console.log("error: " + response.responseText);

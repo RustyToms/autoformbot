@@ -26,3 +26,10 @@ FormRadio
 
 - delete field from collection and refresh index page on delete in index page
 
+
+Form Submission
+- submit with AJAX request?  So that a negative response from server can cause alerts to be made?  Or just make sure the form is good before it is sent - probably
+
+
+Form Options
+- url to redirect to on form submission

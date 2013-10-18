@@ -1,7 +1,7 @@
 AFB.Views.FormShow = Backbone.View.extend({
   render: function(){
-    this.$el.html(JST['forms/show_form']());
-    this.$el.find('form').prepend(this.model.get('form_text'));
+    this.$el = $(this.model.get('form_text'));
+		this.$el.append(JST['forms/show_form']());
     return this;
   }
 });
