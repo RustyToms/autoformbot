@@ -2,15 +2,21 @@
 
 <div class="sidebar" id="checkbox-sidebar">
 
-<h2>Customize your Checkbox</h2>
+<h2>Customize your Checkboxesl</h2>
 
 <label>Label:
   <input type='text'
+		style='display: inline-block'
     name='checkbox-label'
     autofocus
-    value='<%= $field.find('.checkbox-label').html().trim() %>'>
-</label><br>
+    value='<%= label %>'>
+</label>
 
+<button class='add-option'>Add an Option</button>
+
+<br>
+
+<div class='checkboxes'></div>
 
 <label>
   <input
@@ -32,7 +38,7 @@
       <%= 'checked' %>
       <% } %>
   />
-    Check Required
+    At least one option must be checked
 </label>
 
 </div>

@@ -1,0 +1,29 @@
+<div class='radio-option-config'>
+  <h3 class='radio-option-title'>Option <%= i + 1 %></h3>
+  <button class='delete-button delete-option' name='<%= klass %>'>Delete</button>
+
+  <br>
+
+  <label
+      style="display: inline-block"
+  >Name
+    <input type='text'
+      name='<%= klass %>'
+      data-attribute='value'
+			class='option-name'
+      value='<%= optionName %>'>
+  </label>
+
+	<label>
+	  <input
+	    type='checkbox'
+	    name="prefilled-check"
+	    <% myField = $field %>
+	    <% if($field.find('.checkbox').get(0).hasAttribute('checked')) { %>
+	      <%= 'checked' %>
+	      <% } %>
+	    />
+	  Prefilled check
+	</label><br><br>
+
+</div>

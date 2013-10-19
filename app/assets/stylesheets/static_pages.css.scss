@@ -1,3 +1,32 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.cursor-blink {
+	height: 13px; 
+	width: 100px; 
+	background-color: #000; 
+	display: inline-block;
+	position: absolute;
+	top: 10px;
+	left: 76px;
+}
+
+//@keyframes 'cursorBlink' {
+//	0% {opacity: 0;}
+//	50% {opacity: 1;}
+//}
+
+//animation
+
+//@-webkit-keyframes cursorBlink {
+//	0% {opacity: 0;}
+//	50% {opacity: 1;}
+//}
+//
+//@mixin cursorBlink_animation {
+//	-webkit-animation: cursorBlink 1s;
+//	animation: cursorBlink 1s;
+//}
