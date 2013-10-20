@@ -10,15 +10,17 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 
   render: function(){
     console.log("rendering FormSidebarRadio");
-    $field = $((this.options.field || this.field));
+    var $field = $((this.options.field || this.field));
     var numOptions = $field.find('.radio-option').length
     var label = $field.find('.radio-label').text().trim()
+		var required = $field.hasClass('required')
 
     this.$el.html(JST['forms/sidebars/radio_options']({
-      label: label
+      label: label,
+			required: required
     }));
 
-    this.makeRadio(numOptions)
+    this.makeSidebar(numOptions)
     return this;
   },
 
@@ -30,7 +32,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 
       this.model.updateHTML('.editing .radio-label', event.target.value);
       var numOptions = this.$el.find('.radio-option-config').length;
-      this.makeRadio(numOptions);
+      this.makeSidebar(numOptions);
 			
 		} else if ($(event.target).hasClass('option-name')) {
 			console.log($(event.target).prop("outerHTML"));
@@ -45,12 +47,12 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
     console.log("in FormSidebarRadio#parseClick");
     if($(event.target).hasClass('add-option')){
       var numOptions = this.$el.find('.radio-option-config').length + 1;
-      this.makeRadio(numOptions);
+      this.makeSidebar(numOptions);
     }
   },
 
-  makeRadio: function(numOptions){
-    console.log('in makeRadio');
+  makeSidebar: function(numOptions){
+    console.log('in Radio makeSidebar');
 		numOptions = (numOptions || 1);
 
     $form = $(this.model.get('form_text'));
@@ -65,7 +67,8 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
     for(var i=0; i<numOptions; i++){
       // var name = "results[" + label + "]";
       $currentOption = $($preexisting.shift());
-			var klass = label.replace(' ', '') + i;
+			var klass = label.replace(/[^_a-zA-Z0-9-]/g, '_') + i;
+			console.log("klass is " + klass);
 			
       if($currentOption.length){
         var optionName = $currentOption.find('label').text().trim();

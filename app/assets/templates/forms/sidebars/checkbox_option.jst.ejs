@@ -1,5 +1,5 @@
-<div class='radio-option-config'>
-  <h3 class='radio-option-title'>Option <%= i + 1 %></h3>
+<div class='checkbox-option-config'>
+  <h3 class='checkbox-option-title'>Option <%= i + 1 %></h3>
   <button class='delete-button delete-option' name='<%= klass %>'>Delete</button>
 
   <br>
@@ -17,13 +17,13 @@
 	<label>
 	  <input
 	    type='checkbox'
-	    name="prefilled-check"
-	    <% myField = $field %>
-	    <% if($field.find('.checkbox').get(0).hasAttribute('checked')) { %>
+	    class="prefilled-check"
+			name='<%= klass %>'
+	    <% if(checked) { %>
 	      <%= 'checked' %>
 	      <% } %>
 	    />
 	  Prefilled check
-	</label><br><br>
+	</label><br>
 
 </div>

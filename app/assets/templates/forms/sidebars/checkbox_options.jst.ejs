@@ -1,5 +1,3 @@
-<% var $field = ($(field) || $('<div></div>')) %>
-
 <div class="sidebar" id="checkbox-sidebar">
 
 <h2>Customize your Checkboxesl</h2>
@@ -18,23 +16,12 @@
 
 <div class='checkboxes'></div>
 
-<label>
-  <input
-    type='checkbox'
-    name="prefilled-check"
-    <% myField = $field %>
-    <% if($field.find('.checkbox').get(0).hasAttribute('checked')) { %>
-      <%= 'checked' %>
-      <% } %>
-    />
-  Prefilled check
-</label><br>
 
 <label>
   <input
     type='checkbox'
     name='requiredCheckbox'
-    <% if($field.hasClass('required')) { %>
+    <% if(required) { %>
       <%= 'checked' %>
       <% } %>
   />

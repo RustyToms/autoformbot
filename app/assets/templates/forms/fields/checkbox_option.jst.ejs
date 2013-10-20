@@ -1,14 +1,19 @@
-<span class='checkbox-option'>
+<span class='checkbox-option' >
 
   <input 
 		type='checkbox' 
 		id='<%= klass %>' 
 		name='results[<%= optionName %>][<%= name %>]' 
 		class='<%= klass %>' 
-		value='<%= value %>'>
+		value='<%= value %>'
+
+		<% if (checked) { %>
+			<%= checked %>
+		<% } %>
+		>
 
   <label 
 		for='<%= klass %>' 
-		class='<%= klass %>-label'><%= optionName %></label><br>
+		class='<%= klass %>-label'><%= optionName %></label>
 
 </span>
