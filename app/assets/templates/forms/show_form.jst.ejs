@@ -8,22 +8,27 @@
 		$submitButton.attr({disabled: 'true', value: 'Submitting..'});
 		$(event.target).off('submit');
 		console.log('attempting to submit form');
-		var formData = $(this).serialize();
+		var formData = $(event.target).serialize();
 
 		$.ajax({
 			url:'/results',
 			type: 'POST',
 			data: formData,
-			success: function(response, response2, response3){
+			success: function(url){				
+				console.log('submission successful, redirecting to ' + url)
+				if(url){
+					window.location.href = url;
+				} else {
+					$submitButton.val('Form Successfully Submitted');
+				}
+			},
+			error: function(response, response2, response3, response4){
+				console.log('submission unsuccessful')
 				console.log(response);
 				console.log(response2);
 				console.log(response3);
+				console.log(response4);
 				
-				// console.log('submission successful, redirecting to ' + url)
-				// window.location.href = url;
-			},
-			error: function(){
-				console.log('submission unsuccessful')
 				$(event.target).on('submit', function(event){
 					submitForm(event);
 				});
