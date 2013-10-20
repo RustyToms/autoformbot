@@ -24,7 +24,7 @@ FormRadio
 
 - allow margin and padding and background color and border to be changed for each field
 
-- delete form from collection and refresh index page on delete in index page
+# delete form from collection and refresh index page on delete in index page - done by side effect through good refactors
 
 
 Form Submission

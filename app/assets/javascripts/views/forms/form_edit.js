@@ -96,37 +96,17 @@ AFB.Views.FormEdit = Backbone.View.extend({
 			
     }
   },
-
-  parseKey: function(event){
-    console.log("in parseKey");
-    console.log(event.charCode);
-    console.log(event.locale);
-    if ((event.charCode) == "13"){
-      event.preventDefault();
-
-    }
-  },
+  // 
+  // parseKey: function(event){
+  //   console.log("in parseKey");
+  //   console.log(event.charCode);
+  //   console.log(event.locale);
+  //   if ((event.charCode) == "13"){
+  //     event.preventDefault();
+  //   }
+  // },
 	
 	duplicateForm: function(event){
-		console.log("duplicating form");
-		event.preventDefault();
-		
-		var newModel = new AFB.Models.Form({
-			form_text: this.model.get('form_text'),
-			name: this.model.get('name'),
-			account_id: window.ACCOUNT_ID
-		});
-		
-		AFB.formCollection.add(newModel);
-		newModel.save({},{
-      success: function(response){
-        console.log("save successful");
-				console.log(response);
-      },
-      error: function(model, response){
-        console.log("error: " + response.responseText);
-        console.log(model)
-      }
-    });
+		this.model.duplicateForm();
 	}
 });

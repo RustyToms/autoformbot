@@ -79,5 +79,28 @@ AFB.Models.Form = Backbone.Model.extend ({
     var $form = $(this.get('form_text'));
     $form.find('form').first().append(field);
     this.set('form_text', $form.prop('outerHTML'));
-  }
+  },
+	
+	duplicateForm: function(callback){
+		console.log("duplicating form");
+		
+		var newModel = new AFB.Models.Form({
+			form_text: this.get('form_text'),
+			name: this.get('name'),
+			account_id: window.ACCOUNT_ID
+		});
+		
+		AFB.formCollection.add(newModel);
+		newModel.save({},{
+      success: function(response){
+        console.log("save successful");
+				console.log(response);
+				callback();
+      },
+      error: function(model, response){
+        console.log("error: " + response.responseText);
+        console.log(model)
+      }
+    });
+	}
 });

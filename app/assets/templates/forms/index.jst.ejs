@@ -17,8 +17,14 @@
         <li>Notifications</li>
         <li>Form Rules</li>
         <li>Code</li>
-        <li>Duplicate</li>
-        <li><button
+				<li>
+			    <button 
+					  class='duplicate-form'
+					  data-id="<%= form.get('id') %>"
+						>Duplicate</button>
+			  </li>
+        <li>
+					<button
             data-id="<%= form.get('id') %>"
             class='delete-form'
           >Delete</button>
