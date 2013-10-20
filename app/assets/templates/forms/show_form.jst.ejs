@@ -1,31 +1,33 @@
-<input type='submit' value='Submit' form='form-itable'>
-
-<% var url = '/results' %>
+<input type='submit' value='Submit' form='form-itable' id="form-itable-submit">
 
 <script>
 	console.log('executing form script')
 	var submitForm = function(event){
 		event.preventDefault();
-		event.target.setAttribute('disabled', 'true');
-		this.off('submit');
+		$submitButton = $(event.target).parent().find('#form-itable-submit');
+		$submitButton.attr({disabled: 'true', value: 'Submitting..'});
+		$(event.target).off('submit');
 		console.log('attempting to submit form');
 		var formData = $(this).serialize();
-		var that = this;
 
 		$.ajax({
-			url:'<%= url %>',
+			url:'/results',
 			type: 'POST',
 			data: formData,
-			success: function(url){
-				console.log('submission successful, redirecting to ' + url)
-				window.location.href = url;
+			success: function(response, response2, response3){
+				console.log(response);
+				console.log(response2);
+				console.log(response3);
+				
+				// console.log('submission successful, redirecting to ' + url)
+				// window.location.href = url;
 			},
 			error: function(){
 				console.log('submission unsuccessful')
-				that.on('submit', function(event){
+				$(event.target).on('submit', function(event){
 					submitForm(event);
 				});
-				event.target.removeAttribute('disabled');
+				$submitButton.removeAttr('disabled').val('Submit');
 			}
 		});
 	}

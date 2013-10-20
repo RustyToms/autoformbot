@@ -8,13 +8,16 @@ class ResultsController < ApplicationController
     @result = Result.new
     @result.form_id = params[:form_id]
     @result.result = params[:results]
+    sleep 3
     if @result.save
-      # flash[:notice] = "Form submitted!"
-      # render json: @result
-      redirect_to 'google.com'
-    else
-      flash.now[:errors] = @result.errors.full_messages
-      render json: @result
+      fail
+      flash[:notice] = "Form submitted!"
+      render json: @result      # 
+      # redirect_to 'google.com'
+    else      # 
+      # fail
+      # flash.now[:errors] = @result.errors.full_messages
+      render json: @result, status: :unprocessable_entity
     end
   end
   
