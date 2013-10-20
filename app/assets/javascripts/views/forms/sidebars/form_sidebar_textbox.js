@@ -16,7 +16,7 @@ AFB.Views.FormSidebarTextbox = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarTextbox#updateValues");
-    if ($(event.target).attr('name')=== 'textbox-label' ){
+    if ($(event.target).attr('name') === 'textbox-label' ){
       var name = 'results[' + event.target.value + ']'
       this.model.updateAttribute('.editing .textbox', 'name', name);
     }

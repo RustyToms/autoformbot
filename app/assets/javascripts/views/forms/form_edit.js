@@ -19,10 +19,10 @@ AFB.Views.FormEdit = Backbone.View.extend({
     var $formText = $(this.model.get('form_text'));
 		$formText.find("label, h2, p").
 			attr('contenteditable', 'true');
-
-    if(this.$el.find('.form-edit-box').html()){
-      console.log("replacing previous text")
-      this.$el.find('.form-edit-box').replaceWith($formText.prop('outerHTML'));
+		var $form = this.$el.find('.form-edit-box');
+    if($form.html()){
+      console.log("replacing previous text")            
+      $form.replaceWith($formText.prop('outerHTML'));
     } else {
       console.log("adding formText for the first time")
       this.$el.prepend($formText.prop('outerHTML'));

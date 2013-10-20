@@ -1,6 +1,7 @@
 AFB.Models.Form = Backbone.Model.extend ({
   updateAttribute: function(selector, attribute, value){
     console.log("updating form attribute values");
+		console.log(attribute + ": " + value)
     $form = $(this.get('form_text'));
     $form.find(selector).attr(attribute, value);
     this.set('form_text', $form.prop('outerHTML'));
@@ -76,7 +77,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 
   addField: function(field){
     var $form = $(this.get('form_text'));
-    $form.append(field);
+    $form.find('form').first().append(field);
     this.set('form_text', $form.prop('outerHTML'));
   }
 });

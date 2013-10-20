@@ -1,1 +1,38 @@
-<input type='submit' value='Submit'>
+<input type='submit' value='Submit' form='form-itable'>
+
+<% var url = '/results' %>
+
+<script>
+	console.log('executing form script')
+	var submitForm = function(event){
+		event.preventDefault();
+		event.target.setAttribute('disabled', 'true');
+		this.off('submit');
+		console.log('attempting to submit form');
+		var formData = $(this).serialize();
+		var that = this;
+
+		$.ajax({
+			url:'<%= url %>',
+			type: 'POST',
+			data: formData,
+			success: function(url){
+				console.log('submission successful, redirecting to ' + url)
+				window.location.href = url;
+			},
+			error: function(){
+				console.log('submission unsuccessful')
+				that.on('submit', function(event){
+					submitForm(event);
+				});
+				event.target.removeAttribute('disabled');
+			}
+		});
+	}
+	$(function(){
+		$('.form-edit-box form').on('submit', function(event){
+			submitForm(event);
+		})
+	});
+
+</script>
