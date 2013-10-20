@@ -38,18 +38,13 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
     console.log("in FormSidebarCheckbox#parseClick")
     $target = $(event.target);
     if ($target.hasClass('prefilled-check')) {
-      var $form = $(this.model.get('form_text'));
-			var targetOptionClass = $target.attr('name');
-			console.log(targetOptionClass)
-      if ($target.prop('checked')){
-        $form.find('.editing .' + targetOptionClass).attr('checked', 'checked')
-      } else{
-        $form.find('.editing .' + targetOptionClass).removeAttr('checked')
-      }
-      this.model.set('form_text', $form.prop('outerHTML'));
+			var selector = '.editing .' + $target.attr('name');
+			this.model.updateProp(selector, 'checked', $target.prop('checked'));
     } else if($target.hasClass('add-option')){
       var numOptions = this.$el.find('.checkbox-option-config').length + 1;
       this.makeSidebar(numOptions);
+    } else {
+    	this.model.updateValues(event);
     }
   },
 	

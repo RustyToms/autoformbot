@@ -27,6 +27,21 @@ AFB.Models.Form = Backbone.Model.extend ({
     $form.find(selector).css(key, value);
     this.set('form_text', $form.prop('outerHTML'));
 	},
+	
+	updateProp: function(selector, prop, shouldCreate) {
+		console.log("updating form element property");
+		console.log(selector);
+		console.log(prop + shouldCreate);
+			
+    $form = $(this.get('form_text'));
+		if (shouldCreate){
+			$form.find(selector).attr(prop, "true")
+		} else {
+	    $form.find(selector).removeAttr(prop);
+		}
+		
+    this.set('form_text', $form.prop('outerHTML'));
+	},
 
   removeActiveEdits: function(){
     console.log('removing all editing classes');

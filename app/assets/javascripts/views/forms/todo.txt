@@ -16,15 +16,15 @@
 - check out Rangy
 
 FormRadio
-- Remove all spaces and non-alphanumeric characters from classes
+# Remove all spaces and non-alphanumeric characters from classes - done
 # Remove value field from edit sidebar, have that done manually in the view - done
-- Resolve strange bug where the option name doesn't work if the field label is too long
+# Resolve strange bug where the option name doesn't work if the field label is too long - seems to have been resolved when alpha-numeric bug resolved
 
 # make it so formEdit view doesn't refresh when not needed - done for what I needed
 
 - allow margin and padding and background color and border to be changed for each field
 
-- delete field from collection and refresh index page on delete in index page
+- delete form from collection and refresh index page on delete in index page
 
 
 Form Submission

@@ -48,6 +48,8 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
     if($(event.target).hasClass('add-option')){
       var numOptions = this.$el.find('.radio-option-config').length + 1;
       this.makeSidebar(numOptions);
+    } else {
+    	this.model.udpateValues(event);
     }
   },
 
@@ -65,7 +67,6 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
     this.field.find('span.radio').empty();
 
     for(var i=0; i<numOptions; i++){
-      // var name = "results[" + label + "]";
       $currentOption = $($preexisting.shift());
 			var klass = label.replace(/[^_a-zA-Z0-9-]/g, '_') + i;
 			console.log("klass is " + klass);
