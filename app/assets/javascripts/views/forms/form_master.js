@@ -132,8 +132,12 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.model.set('form_text', $form.prop('outerHTML'));
   },
 
-  deleteAction: function(){
-
-  }
+	updateSidebar: function(){
+		// console.log(this.$el.find('.sidebar_window .sidebar').prop('outerHTML'))
+		// console.log(this.sidebar.render().$el.prop('outerHTML'))
+		this.sidebar.options.field = this.$el.find('.editing');
+		this.$el.find('.sidebar_window .sidebar').
+		  replaceWith(this.sidebar.render().$el.html())
+	}
 
 })

@@ -2,7 +2,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
   events: {
     "click .formEl" : "parseClickForm",
     "click #save-button" : "serverSaveForm",
-		"click .duplicate-form button" : "duplicateForm"
+		"click .duplicate-form button" : "duplicateForm",
+		"keyup" : "updateSidebar"
   },
 
   initialize: function(){
@@ -96,15 +97,11 @@ AFB.Views.FormEdit = Backbone.View.extend({
 			
     }
   },
-  // 
-  // parseKey: function(event){
-  //   console.log("in parseKey");
-  //   console.log(event.charCode);
-  //   console.log(event.locale);
-  //   if ((event.charCode) == "13"){
-  //     event.preventDefault();
-  //   }
-  // },
+  
+	updateSidebar: function(){
+		console.log("updating sidebar");
+		this.parentView.updateSidebar();
+	},
 	
 	duplicateForm: function(event){
 		this.model.duplicateForm();
