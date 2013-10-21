@@ -50,11 +50,6 @@ AFB.Models.Form = Backbone.Model.extend ({
     $form.find('.editing').removeClass('editing');
     $form.find('.delete-field').remove();
 
-    $form.find('.start-editing').
-      addClass('editing').
-      removeClass('start-editing').
-      append("<button class='delete-field'>X</button>");
-
     this.set('form_text', $form.prop('outerHTML'))
   },
 

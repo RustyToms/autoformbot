@@ -39,14 +39,14 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.model.set({
     	form_text: form,
 			name: name
-    });
+    },{silent: true});
   },
 
   serverSaveForm: function(){
 		var that = this;
     this.$el.find(".form-edit-box label, h2, p").removeAttr('contenteditable');
+		this.removeActiveEdits();
     this.localSaveForm();
-    this.model.removeActiveEdits();
 
     console.log("in FormEdit#serverSaveForm")
     var name = this.$el.find('.formName').text().trim();
@@ -80,26 +80,34 @@ AFB.Views.FormEdit = Backbone.View.extend({
       this.parentView.render();
 			
     } else if (!$target.closest(".formEl").hasClass('editing')){
-
-      $formEl = $target.closest(".formEl");
-      $formEl.addClass("start-editing");
+	    this.removeActiveEdits();
+			
+      $formEl = $target.closest(".formEl")
+			$formEl.addClass("editing").
+      append("<button class='delete-field'>X</button>");
       this.localSaveForm();
-
-      this.model.removeActiveEdits();
 
       var sidebarName = $formEl.data("sidebar");
       console.log("new sidebar should be " + sidebarName);
-      sidebar = new AFB.Views[sidebarName]({
+      var sidebar = new AFB.Views[sidebarName]({
         model: this.model,
         field: $formEl
       });
-      this.parentView.render(sidebar);
+      this.parentView.swapSidebar(sidebar);
 			
     }
   },
+	
+	removeActiveEdits: function(){
+    console.log('removing all editing classes');
+		var $old = this.$el.find('.editing');
+    $old.find('.delete-field').remove();
+		$old.removeClass('editing');
+	},
   
 	updateSidebar: function(){
 		console.log("updating sidebar");
+		this.localSaveForm();
 		this.parentView.updateSidebar();
 	},
 	

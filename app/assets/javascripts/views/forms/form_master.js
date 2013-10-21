@@ -8,7 +8,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   initialize: function(){
     console.log('FormMaster View initialized');
-    this.$sidebarEl = $(JST['forms/sidebars/sidebar_seed']());
     this.$formEditEl = $(JST["forms/edit_form"]());
   },
 
@@ -51,8 +50,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
       });
 			
     }
-
-    return this.$sidebarEl.append(this.sidebar.render().$el);
+		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
+		  append(this.sidebar.render().$el);
+		return $sidebarHtml;
   },
 
   newSidebar: function(event){
@@ -133,11 +133,14 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
 	updateSidebar: function(){
-		// console.log(this.$el.find('.sidebar_window .sidebar').prop('outerHTML'))
-		// console.log(this.sidebar.render().$el.prop('outerHTML'))
 		this.sidebar.options.field = this.$el.find('.editing');
 		this.$el.find('.sidebar_window .sidebar').
 		  replaceWith(this.sidebar.render().$el.html())
+	},
+	
+	swapSidebar: function(sidebar){
+		var $sidebar = this.makeSidebarView(sidebar)		
+		this.$el.find('.sidebar_window').replaceWith($sidebar);
 	}
 
 })

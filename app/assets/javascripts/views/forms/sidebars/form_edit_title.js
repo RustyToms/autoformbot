@@ -1,7 +1,5 @@
 AFB.Views.FormEditTitle = Backbone.View.extend({
-  // events: {
-  //   "keyup" : "updateValues"
-  // },
+
   render: function(){
     console.log("rendering FormEditTitle view")
 		var $form = $(this.model.get('form_text'));
