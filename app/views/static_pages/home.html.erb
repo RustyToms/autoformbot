@@ -1,34 +1,25 @@
-<h1>AutoFormBot Home Page!</h1>
+<main class='home-page group'>
 
-<img src="../../assets/Screen Shot 2013-10-19 at 12.28.38 PM.png" width="363" height="86" alt="Screen Shot 2013 10 19 At 12.28.38 PM">
+	<img src="../../assets/Screen Shot 2013-10-19 at 12.28.38 PM.png" width="363" height="86" alt="Screen Shot 2013 10 19 At 12.28.38 PM">
 
-<p>Watcha wanna do?</p>
+	<p>Watcha wanna do?</p>
 
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-  </li>
-<% else %>
-  <li>
-    <a href="<%= new_user_session_url %>">Sign In!</a>
-  </li>
+	<% if user_signed_in? %>
+	  <li>
+	  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+	  </li>
+	<% else %>
+	  <li>
+	    <a href="<%= new_user_session_url %>">Sign In!</a>
+	  </li>
 
-  <li>
-    <a href="<%= new_user_registration_url %>">Sign Up!</a>
-  </li>
-<% end %>
-
-<br>
-
-<div style='background-color: #fff; padding: 6px; position: relative' >
-<span style='margin: 4px 1px 4px 4px; display: block; float: left; font-size: 12px' 
->Form</span>
-<input 
-style='margin: 0; padding: 0; border: 1px solid #b7b7b7; border-top: 1px solid #999; display: inline-block' 
-size='5' type='text' value='-itable'>
+	  <li>
+	    <a href="<%= new_user_registration_url %>">Sign Up!</a>
+	  </li>
+	<% end %>
 
 
-</div>
+</main>
 
 <!-- <br>
 

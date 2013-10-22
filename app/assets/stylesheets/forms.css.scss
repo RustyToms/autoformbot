@@ -3,6 +3,56 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
+/* --- ELEMENTS --- */
+
+.body {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.main {
+  width: 60%;
+  height: 100%;
+//  min-height: 450px;
+  float: left;
+}
+
+/* --- HEADER --- */
+
+.header {
+//  background-color: $pale-green;
+  background-color: #1ff8ff;
+}
+
+.title-bar {
+  display: inline-block;
+  float: left;
+  padding: 5px 10px;
+}
+
+.nav-bar {
+  float: right;
+}
+.header li{
+  list-style: none;
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+}
+
+
+/* --- FORM --- */
+
+.form-edit-box {
+  background-color: #FFFFCC;
+  min-height: 348px;
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 10px;
+}
+
 .editing {
   background-color: $light-green;
 }
@@ -20,49 +70,6 @@
   border-radius: 50%;
   background-color: $very-pale-blue;
 	padding: 0 4px;
-}
-
-.body {
-  display: block;
-  height: 100%;
-  width: 100%;
-}
-
-.sidebar_window {
-  background-color: lightblue;
-  width: 40%;
-  height: 100%;
-  float: left;
-}
-
-.sidebar {
-  border: 2px dotted blue;
-}
-
-.sidebar_header {
-  background-color: $very-pale-blue;
-  font-size: 18px;
-}
-
-.sidebar_header a {
-  display: inline-block;
-  width: 32%;
-  text-align: center;
-}
-
-.main {
-  width: 60%;
-  height: 100%;
-//  min-height: 450px;
-  float: left;
-}
-
-.form-edit-box {
-  background-color: #FFFFCC;
-  min-height: 348px;
-  border: 2px solid blue;
-  border-radius: 10px;
-  padding: 10px;
 }
 
 .save-or-add {
@@ -89,6 +96,8 @@
   width: 80%;
 }
 
+/* --- SHOWFORM --- */
+
 .form-summary {
   background-color: #C6EFF7;
 }
@@ -105,3 +114,31 @@
   display: inline;
   margin: 0 10px;
 }
+
+/* --- SIDEBAR --- */
+
+.sidebar_window {
+  background-color: lightblue;
+  width: 40%;
+  height: 100%;
+  float: left;
+}
+
+.sidebar_header {
+  background-color: $very-pale-blue;
+  font-size: 18px;
+}
+
+.sidebar_header a {
+  display: inline-block;
+  width: 32%;
+  text-align: center;
+}
+
+.sidebar {
+  border: 2px dotted blue;
+}
+
+
+
+

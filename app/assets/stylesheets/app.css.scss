@@ -1,14 +1,50 @@
-
-body, main, section, nav, div, ul, li, h1, h2, h3, h4, a, span {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  color: inherit;
-  vertical-align: baseline;
-  text-decoration: none;
-  font: inherit;
-  font-size: 100%;
+/* --- RESET --- */
+html, body, div, span, applet, object,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, main, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form,legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	text-decoration: none;
 }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*------------------------------- ELEMENTS -----------------------------*/
 
 body {
   font-family: sans-serif;
@@ -16,26 +52,12 @@ body {
   display: block;
 }
 
-ul.color-swatches li{
-  height: 15px;
-  display: inline-block;
-  padding: 5px;
-  width: 125px;
-}
-
-h1 {
-  font-size: 36px;
-}
-
-h2 {
-  font-size: 24px;
-}
-
-.group:after{
-  content: "";
-  clear: both;
-  display: table;
-}
+//ul.color-swatches li{
+//  height: 15px;
+//  display: inline-block;
+//  padding: 5px;
+//  width: 125px;
+//}
 
 main {
   width: 85%;
@@ -46,23 +68,18 @@ main {
   display: block;
 }
 
-.header {
-//  background-color: $pale-green;
-  background-color: #1ff8ff;
+h1 {
+  font-size: 36px;
 }
 
-.title-bar {
-  display: inline-block;
-  float: left;
-  padding: 5px 10px;
+h2 {
+  font-size: 24px;
 }
 
-.nav-bar {
-  float: right;
-}
-.header li{
-  list-style: none;
-  display: inline-block;
-  margin: 10px;
-  text-align: center;
+/* --- CLEARFIX  --- */
+
+.group:after{
+  content: "";
+  clear: both;
+  display: table;
 }
