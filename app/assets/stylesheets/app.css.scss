@@ -50,37 +50,13 @@ body {
   font-family: sans-serif;
   font-size: 16px;
   display: block;
-	background-color: $steel;
+	background-color: $darker-steel;
 	background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
 	linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
 	linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
 	linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
 	background-size: 13px, 29px, 37px, 53px;
 }
-
-//ul.color-swatches li{
-//  height: 15px;
-//  display: inline-block;
-//  padding: 5px;
-//  width: 125px;
-//}
-
-//main {
-//  width: 85%;
-//  min-width: 900px;
-//  min-height: 800px;
-//  background-color: #e1feff;
-//  margin: auto;
-//  display: block;
-//}
-//
-//h1 {
-//  font-size: 36px;
-//}
-//
-//h2 {
-//  font-size: 24px;
-//}
 
 /* --- CLEARFIX  --- */
 
@@ -118,7 +94,7 @@ body {
 	display: inline-block;
 	position: absolute;
 	z-index: 10;
-	height: 75%;
+	height: 48px;
 	float: left;
 	width: 2px;
 }
