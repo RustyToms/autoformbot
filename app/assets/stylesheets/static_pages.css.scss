@@ -2,9 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body {
-	background-color: $pale-green;
-}
+//body {
+//	background-color: $pale-green;
+//}
 
 
 main.home-page {
@@ -17,55 +17,3 @@ main.home-page {
 	border-radius: 20px;
 	padding: 20px;
 }
-
-@keyframes cursorBlink
-{
-	25% {opacity: 0;}
-	50% {opacity: 1;}
-	75% {opacity: 0;}
-}
-
-@-webkit-keyframes cursorBlink /* Safari and Chrome */
-{
-	0% {opacity: 0;}
-	24% {opacity: 0;}
-	25% {opacity: 1;}
-	74% {opacity: 1;}
-	75% {opacity: 0;}
-	100% {opacity: 0;}
-}
-
-.blinking-cursor {
-animation: cursorBlink 0.25s linear 1s infinite;
--webkit-animation: cursorBlink 1s linear infinite; /* Safari and Chrome */
-}
-
-
-
-
-//.cursor-blink {
-//	height: 13px; 
-//	width: 100px; 
-//	background-color: #000; 
-//	display: inline-block;
-//	position: absolute;
-//	top: 10px;
-//	left: 76px;
-//}
-
-//@keyframes 'cursorBlink' {
-//	0% {opacity: 0;}
-//	50% {opacity: 1;}
-//}
-
-//animation
-
-//@-webkit-keyframes cursorBlink {
-//	0% {opacity: 0;}
-//	50% {opacity: 1;}
-//}
-//
-//@mixin cursorBlink_animation {
-//	-webkit-animation: cursorBlink 1s;
-//	animation: cursorBlink 1s;
-//}
