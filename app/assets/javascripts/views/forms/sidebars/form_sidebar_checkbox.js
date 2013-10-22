@@ -97,7 +97,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
       $options.append($(optionOption));
     }
 
-    this.model.set('form_text', $form.prop('outerHTML'));
+    this.model.set({form_text: $form.prop('outerHTML')}, {silent: true});
   }
 })
 

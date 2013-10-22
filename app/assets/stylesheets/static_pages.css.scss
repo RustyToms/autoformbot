@@ -7,6 +7,29 @@ main .home-page {
 	
 }
 
+@keyframes cursorBlink
+{
+	25% {opacity: 0;}
+	50% {opacity: 1;}
+	75% {opacity: 0;}
+}
+
+@-webkit-keyframes cursorBlink /* Safari and Chrome */
+{
+	0% {opacity: 0;}
+	24% {opacity: 0;}
+	25% {opacity: 1;}
+	74% {opacity: 1;}
+	75% {opacity: 0;}
+	100% {opacity: 0;}
+}
+
+.blinking-cursor {
+animation: cursorBlink 0.25s linear 1s infinite;
+-webkit-animation: cursorBlink 1s linear infinite; /* Safari and Chrome */
+}
+
+
 
 
 //.cursor-blink {

@@ -16,7 +16,7 @@ AFB.Views.FormSidebarTextarea = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarTextarea#updateValues");
-    if ($(event.target).attr('name')=== 'textarea-label' ){
+    if ($(event.target).attr('name') === 'textarea-label' ){
       var name = 'results[' + event.target.value + ']'
       this.model.updateAttribute('.editing textarea', 'name', name);
     }
