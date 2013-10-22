@@ -2,10 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-//body {
-//	background-color: $pale-green;
-//}
-
 .logo {
 	display: block;
 	margin: 50px auto;
@@ -16,19 +12,31 @@
 .logo-box {
 	background-color: white;
 	margin: 0 115px;
-	padding: 0px 0;
+	padding: 5px 0;
 	border-radius: 20px;
 	box-shadow: 0 0 70px 50px white;
 }
 
 main.home-page {
 	display: block;
-	height: 400px;
 	width: 500px;
 	background-color: white;
 //	border: 1px solid black;
-	box-shadow: -6px 10px 8px black;
-	margin: 100px auto;
+	box-shadow: -10px 15px 16px black;
+	margin: auto;
 	border-radius: 20px;
 	padding: 20px;
+}
+
+h3 {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	margin: 15px;
+}
+
+main.home-page p {
+	text-align: justify;
+	margin: 5px 10px 20px 10px;
+	line-height: 1.3em;
 }
