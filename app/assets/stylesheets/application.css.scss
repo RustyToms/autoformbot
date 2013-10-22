@@ -32,11 +32,5 @@ $pale-yellow: #FFFFC2;
 
 
 @import "app";
-@import "forms";
+//@import "forms";
 @import "static_pages";
-
-.group:after {
-	content: '';
-	clear: both;
-	display: table;
-};

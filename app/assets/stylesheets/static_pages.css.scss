@@ -2,9 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+	background-color: $pale-green;
+}
 
-main .home-page {
-	
+
+main.home-page {
+	display: block;
+	height: 400px;
+	width: 500px;
+	background-color: white;
+	border: 1px solid black;
+	margin: 100px auto;
+	border-radius: 20px;
+	padding: 20px;
 }
 
 @keyframes cursorBlink
