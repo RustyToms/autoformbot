@@ -1,31 +1,54 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+div, main, section, a {
+	transition: 0.15s;
+	-webkit-transform: translateZ(0);
+}
 
 .logo {
 	display: block;
 	margin: 50px auto;
-	width: 540px;
 	text-align: center;
 }
 
 .logo-box {
+	position: relative;
+	z-index: 50;
+	transition: 0.15s;
 	background-color: white;
-	margin: 0 115px;
-	padding: 5px 0;
+	margin: 0 100px;
 	border-radius: 20px;
 	box-shadow: 0 0 70px 50px white;
 }
 
-main.home-page {
+section.home-page {
+	position: relative;
 	display: block;
-	width: 500px;
-	background-color: white;
-//	border: 1px solid black;
-	box-shadow: -10px 15px 16px black;
+	background-color: #F1F5FF;
+	opacity: 0.70;
 	margin: auto;
 	border-radius: 20px;
 	padding: 20px;
+}
+
+main.home-page-content {
+	display: block;
+	margin: auto;
+	width: 500px;
+}
+
+.hover-div {
+	box-shadow: 0 0 120px 80px transparent;
+	border-radius: 30px;
+}
+
+.hover-div:hover{
+	box-shadow: 0 0 120px 80px white;
+	background-color: white;
+}
+
+.hover-div:hover section.home-page{
+	box-shadow: -6px 10px 12px black;
+	background-color: #DEF5FF;
+	opacity: 0.85;
 }
 
 h3 {
@@ -35,8 +58,32 @@ h3 {
 	margin: 15px;
 }
 
-main.home-page p {
+.home-page p {
 	text-align: justify;
 	margin: 5px 10px 20px 10px;
 	line-height: 1.3em;
+}
+
+.home-page .sign-in-sign-up{
+	text-align: center;
+}
+
+.home-page .sign-in-sign-up a{
+	display: inline-block;
+	margin: 0 40px;
+	width: 100px;
+	padding: 30px 0;
+	text-decoration: none;
+	color: inherit;
+	border: 3px outset grey;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.home-page .sign-in-sign-up a:first-child:hover{
+	background-color: $pale-yellow;
+}
+
+.home-page .sign-in-sign-up a:nth-child(2):hover{
+	background-color: $faded-blue;
 }

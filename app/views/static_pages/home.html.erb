@@ -1,35 +1,34 @@
-<div class='logo group'>
-	<div class= 'logo-box'>
-		<h1 id='logo-part1'>Form</h1>
+<main class='home-page-content group'><div class='hover-div'>
+	<section class='logo group'>
+		<div class= 'logo-box'>
+			<h1 id='logo-part1'>Form</h1>
 
-		<div class='logo-box2'>
-			<h1 id='logo-part2'>-itable</h1><div class='blinking-cursor'></div>
+			<div class='logo-box2'>
+				<h1 id='logo-part2'>-itable</h1><div class='blinking-cursor'></div>
+			</div>
 		</div>
-	</div>
-</div>
+	</section>
 
-<main class='home-page group'>
+	<section class='home-page group'>
 
-	<h3>An app that makes it easy to build a web form!</h3>
-		<p><span class='bold'>Do you need information?</span>  If you are taking a survey, creating job applications or event sign-ups, collecting orders or gathering user feedback, you need a web form.  But making web forms is complicated!  Don't want to learn HTML, CSS, and database management to find out what color widget your client wants to order?  Let us do the work for you!</p>
+		<h3>An app that makes it easy to build a web form!</h3>
+			<p><span class='bold'>Do you need information?</span>  If you are taking a survey, creating job applications or event sign-ups, collecting orders or gathering user feedback, you need a web form.  But making web forms is complicated!  Don't want to learn HTML, CSS, and database management to find out what color widget your client wants to order?  Let us do the work for you!</p>
 
-	<h3>How It Works</h3>
+		<h3>How It Works</h3>
 
-	<p><span class='bold'>Use Form-itable to make the form.</span>  Then we'll host the form and give you a link, or give you the code to put on your own site or send out in an email.  Whenever a form is filled out, the data gets sent to our servers automatically.  We can email you the results or you can log in and check them yourself!  It's easy and it's free!</p>
+		<p><span class='bold'>Use Form-itable to make the form.</span>  Then we'll host the form and give you a link, or give you the code to put on your own site or send out in an email.  Whenever a form is filled out, the data gets sent to our servers automatically.  We can email you the results or you can log in and check them yourself!  It's easy and it's free!</p>
 
-	<% if user_signed_in? %>
-	  <li>
-	  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-	  </li>
-	<% else %>
-	  <li>
-	    <a href="<%= new_user_session_url %>">Sign In!</a>
-	  </li>
+		<% if user_signed_in? %>
+		  <li>
+		  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+		  </li>
+		<% else %>
+			<div class='sign-in-sign-up group'>
+		    <a href="<%= new_user_session_url %>">Sign In!</a>
+		    <a href="<%= new_user_registration_url %>">Sign Up!</a>
+			</div>
+		<% end %>
 
-	  <li>
-	    <a href="<%= new_user_registration_url %>">Sign Up!</a>
-	  </li>
-	<% end %>
+	</section>
 
-
-</main>
+</div></main>
