@@ -1,0 +1,36 @@
+<main class='home-page-content group'><div class='hover-div'>
+	<section class='logo group'>
+		<div class= 'logo-box'>
+			<h1 id='logo-part1'>Form</h1>
+
+			<div class='logo-box2'>
+				<h1 id='logo-part2'>-itable</h1><div class='blinking-cursor'></div>
+			</div>
+		</div>
+	</section>
+
+	<section class='home-page group'>
+
+
+    <h2>Sign in</h2>
+
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <div><%= f.label :email %><br />
+      <%= f.email_field :email, :autofocus => true %></div>
+
+      <div><%= f.label :password %><br />
+      <%= f.password_field :password %></div>
+
+      <div class='sign-in-sign-up group'>
+        <input
+          class='home-page-button'
+          name="commit"
+          type="submit"
+          value="Sign in!">
+
+        <a class='back-button home-page-button'
+          href='/' >Back</a>
+      </div>
+    <% end %>
+
+</section></div></main>

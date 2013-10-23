@@ -145,11 +145,15 @@ animation: cursorBlink 1s linear infinite;
 }
 
 .notice {
-	display: inline-block;
-	position: absolute;
-	top: 1em;
-	left: 1em;
+//  display: inline-block;
+//  position: absolute;
+//  top: 1em;
+//  left: 1em;
 	border-radius: 5px;
-	background-color: rgba(255, 255, 255, 0.5);
-	box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.75);
+	box-shadow: 0 0 20px 15px rgba(255, 255, 255, 0.75);
+  color: darkred;
+  font-size: 24px;
+  display: inline-block;
+  text-align: center;
 }

@@ -13,13 +13,13 @@
     <%= link_to('Log Out', destroy_user_session_path, :method => :delete) %>
 	</div>
   <% end %>
-
-  <% flash.each do |name, msg| %>
-    <% if msg.is_a?(String) %>
-      <%= content_tag :div, msg, {id: "flash_#{name}", class: "notice"} %>
+  <div class='flash-msgs'>
+    <% flash.each do |name, msg| %>
+      <% if msg.is_a?(String) %>
+        <%= content_tag :div, msg, {id: "flash_#{name}", class: "notice"} %>
+      <% end %>
     <% end %>
-  <% end %>
-
+  </div>
 <%= yield %>
 
 </body>

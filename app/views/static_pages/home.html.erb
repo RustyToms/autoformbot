@@ -11,24 +11,152 @@
 
 	<section class='home-page group'>
 
-		<h3>An app that makes it easy to build a web form!</h3>
-			<p><span class='bold'>Do you need information?</span>  If you are taking a survey, creating job applications or event sign-ups, collecting orders or gathering user feedback, you need a web form.  But making web forms is complicated!  Don't want to learn HTML, CSS, and database management to find out what color widget your client wants to order?  Let us do the work for you!</p>
+    <div class='introduction'>
 
-		<h3>How It Works</h3>
+  		<h3>An app that makes it easy to build a web form!</h3>
+  			<p><span class='bold'>Do you need information?</span>  If you are taking a survey, creating job applications or event sign-ups, collecting orders or gathering user feedback, you need a web form.  But making web forms is complicated!  Don't want to learn HTML, CSS, and database management to find out what color widget your client wants to order?  Let us do the work for you!</p>
 
-		<p><span class='bold'>Use Form-itable to make the form.</span>  Then we'll host the form and give you a link, or give you the code to put on your own site or send out in an email.  Whenever a form is filled out, the data gets sent to our servers automatically.  We can email you the results or you can log in and check them yourself!  It's easy and it's free!</p>
+  		<h3>How It Works</h3>
 
-		<% if user_signed_in? %>
-		  <li>
-		  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-		  </li>
-		<% else %>
-			<div class='sign-in-sign-up group'>
-		    <a href="<%= new_user_session_url %>">Sign In!</a>
-		    <a href="<%= new_user_registration_url %>">Sign Up!</a>
+  		<p><span class='bold'>Use Form-itable to make the form.</span>  Then we'll host the form and give you a link, or give you the code to put on your own site or send out in an email.  Whenever a form is filled out, the data gets sent to our servers automatically.  We can email you the results or you can log in and check them yourself!  It's easy and it's free!</p>
+
+  		<div class='sign-in-sign-up group'>
+  		<% if user_signed_in? %>
+  		  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+  		<% else %>
+  		    <a class='sign-in-button home-page-button'
+            href="<%= new_user_session_url %>">Sign In!</a>
+  		    <a class='sign-up-button home-page-button'
+            href="<%= new_user_registration_url %>">Sign Up!</a>
+  		<% end %>
 			</div>
-		<% end %>
+    </div>
 
-	</section>
+    <div class='sign-in hidden'>
 
+      <h2>Sign in</h2>
+
+      <form
+        accept-charset="UTF-8"
+        action="/users/sign_in"
+        class="new_user"
+        id="new_user"
+        method="post">
+
+      <div
+      style="margin:0;padding:0;display:inline">
+        <input name="utf8" type="hidden" value="✓">
+        <input name="authenticity_token"
+          type="hidden" value="dIAHF3Mrrpcti7OBleZ/Bmyk7HpB3bsC1/SRj08/wB8=">
+      </div>
+
+      <div>
+        <label for="user_email">Email</label><br>
+        <input
+          autofocus="autofocus"
+          id="user_email"
+          name="user[email]"
+          size="30"
+          type="email"
+          value=""></div>
+
+        <div>
+          <label for="user_password">Password</label><br>
+          <input
+          id="user_password"
+          name="user[password]"
+          size="30"
+          type="password"></div>
+
+        <div class='sign-in-sign-up group'>
+          <input
+            class='home-page-button'
+            name="commit"
+            type="submit"
+            value="Sign in!">
+
+          <a class='back-button home-page-button'>Back</a>
+        </div>
+      </form>
+    </div>
+
+    <div class='sign-up hidden'>
+
+      <h2>Sign up</h2>
+
+      <form
+      accept-charset="UTF-8"
+      action="/users"
+      class="new_user"
+      id="new_user"
+      method="post">
+        <div style="margin:0;padding:0;display:inline">
+          <input name="utf8" type="hidden" value="✓">
+          <input name="authenticity_token" type="hidden"
+            value="dIAHF3Mrrpcti7OBleZ/Bmyk7HpB3bsC1/SRj08/wB8=">
+        </div>
+
+        <div>
+          <label for="user_email">Email</label><br>
+          <input
+            autofocus="autofocus"
+            id="user_email"
+            name="user[email]"
+            size="30"
+            type="email"
+            value=""></div>
+
+        <div>
+          <label for="user_password">Password</label><br>
+          <input
+            id="user_password"
+            name="user[password]"
+            size="30"
+            type="password"></div>
+
+        <div>
+          <label
+          for="user_password_confirmation">Password confirmation</label><br>
+          <input
+          id="user_password_confirmation"
+          name="user[password_confirmation]"
+          size="30"
+          type="password"></div>
+
+          <div class='sign-in-sign-up group'>
+            <input
+              class='home-page-button'
+              name="commit"
+              type="submit"
+              value="Sign up!">
+
+            <a class='back-button home-page-button'>Back</a>
+          </div>
+      </form>
+
+    </div>
+  </section>
 </div></main>
+
+<script>
+$(function(){
+  $('.sign-in-button').on('click', function(event){
+    event.preventDefault();
+    $('.introduction, .sign-up').addClass('hidden');
+    $('.sign-in').removeClass('hidden');
+  });
+  $('.sign-up-button').on('click', function(event){
+    event.preventDefault();
+    $('.introduction, .sign-in').addClass('hidden');
+    $('.sign-up').removeClass('hidden');
+  });
+  $('.back-button').on('click', function(event){
+    event.preventDefault();
+    $('.sign-in, .sign-up').addClass('hidden');
+    $('.introduction').removeClass('hidden');
+  });
+  $('.sign-in-button, .sign-up-button, .back-button').on('click', function(){
+    $('#error_explanation, #flash_alert').remove();
+  });
+})
+</script>

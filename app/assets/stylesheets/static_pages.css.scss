@@ -3,6 +3,10 @@ div, main, section, a {
 	-webkit-transform: translateZ(0);
 }
 
+.hidden {
+  display: none;
+}
+
 .logo {
 	display: block;
 	margin: 50px auto;
@@ -51,11 +55,18 @@ main.home-page-content {
 	opacity: 0.85;
 }
 
+h2 {
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	margin: 15px;
+}
+
 h3 {
 	font-size: 18px;
 	font-weight: bold;
 	text-align: center;
-	margin: 15px;
+	margin: 20px;
 }
 
 .home-page p {
@@ -66,29 +77,31 @@ h3 {
 
 .home-page .sign-in-sign-up{
 	text-align: center;
+  margin: 20px 0 0 0;
 }
 
-.home-page .sign-in-sign-up a{
+.home-page-button{
 	display: inline-block;
 	position: relative;
 	margin: 0 40px;
 	width: 100px;
 	padding: 30px 0;
 	text-decoration: none;
+  font-size: 20px;
 	color: inherit;
 	border: 3px groove grey;
 	border-radius: 10px;
 	background-color: white;
 }
 
-.home-page .sign-in-sign-up a:hover{
+.home-page-button:hover{
 	box-shadow: -4px 6px 4px black;
 	font-weight: bold;
 	bottom: 2px;
 	left: 2px;
 }
 
-.home-page .sign-in-sign-up a:active{
+.home-page-button:active{
 	position: relative;
 	box-shadow: 0 0 0 0 transparent;
 	font-weight: normal;
@@ -97,10 +110,24 @@ h3 {
 	border: 3px ridge grey;
 }
 
-.home-page .sign-in-sign-up a:first-child:hover{
+.home-page-button:nth-child(2n - 1):hover{
 	background-color: $pale-yellow;
 }
 
-.home-page .sign-in-sign-up a:nth-child(2):hover{
+.home-page .sign-in-sign-up a:nth-child(2n):hover{
 	background-color: $pale-green;
+}
+
+.home-page input {
+  margin: 5px 0 20px 0;
+}
+
+.home-page label {
+  font-size: 20px;
+}
+
+/* --- ERROR MESSAGES --- */
+
+.notice {
+
 }
