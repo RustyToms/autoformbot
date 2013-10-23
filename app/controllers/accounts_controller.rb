@@ -21,19 +21,35 @@ class AccountsController < ApplicationController
 
 
   def create
-    @account = Account.new(params[:account])
+    @user = User.new(params[:user])
+    unless @user.save
+      flash.now[:errors] = @user.errors.full_messages
+      render :fail
+      return
+    end
+
+    @account = Account.find_by_url_name(params[:account][:url_name])
+    if @account
+      flash[:notice] = "#{@user.email} joined account #{@account.url_name}!"
+    else
+      @account = Account.new(params[:account])
+      @account.url_name = @account.url_name.gsub(' ', '')
+      flash[:notice] = "Account #{@account.url_name} created by #{@user.email}!"
+    end
+
     @account.user_accounts.build(
-      user_id: current_user.id,
-      account: @account.id,
+      user_id: @user.id,
+      account: @account,
       account_auth: "admin")
 
     if @account.save
-      flash[:notice] = "Account #{@account.url_name} created!"
-      redirect_to account_url(current_user.account.url_name)
+      redirect_to account_url(@account.url_name)
     else
+      User.find(@user.id).delete
+      flash.delete(:notice)
       @plan_types = Account.plan_types
       flash.now[:errors] = @account.errors.full_messages
-      render :new
+      render :fail
     end
   end
 

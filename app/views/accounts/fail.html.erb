@@ -1,0 +1,9 @@
+<%= render template: 'static_pages/home' %>
+
+<script>
+$(function(){
+  $('.introduction').addClass('hidden');
+  $('.sign-up').removeClass('hidden');
+  $('.flash-msgs').insertAfter('.sign-up h2');
+})
+</script>
