@@ -59,6 +59,20 @@ body {
 	margin-top: 0;
 }
 
+h2 {
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	margin: 15px;
+}
+
+h3 {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	margin: 20px;
+}
+
 /* --- CLEARFIX  --- */
 
 .group:after{
@@ -154,6 +168,11 @@ animation: cursorBlink 1s linear infinite;
 	box-shadow: 0 0 20px 15px rgba(255, 255, 255, 0.75);
   color: darkred;
   font-size: 24px;
-  display: inline-block;
+  display: block;
   text-align: center;
+  margin: 20px auto;
+}
+
+.flash-msgs {
+  display: inline-block;
 }

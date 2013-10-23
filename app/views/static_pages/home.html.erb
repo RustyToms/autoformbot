@@ -1,3 +1,10 @@
+<% if user_signed_in? %>
+  <div class='signed-in'>
+    Signed in as "<%= current_user.email %>"
+    <%= link_to('Log Out', destroy_user_session_path, :method => :delete) %>
+  </div>
+<% end %>
+
 <main class='home-page-content group'><div class='hover-div'>
 	<section class='logo group'>
 		<div class= 'logo-box'>
@@ -22,7 +29,10 @@
 
   		<div class='sign-in-sign-up group'>
   		<% if user_signed_in? %>
-  		  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+          <a class='home-page-button'
+            href='/accounts/<%= @url %>'>My Forms</a>
+          <a class='home-page-button'
+            href="/users/sign_out" data-method="delete" rel="nofollow">Log Out</a>
   		<% else %>
   		    <a class='sign-in-button home-page-button'
             href="<%= new_user_session_url %>">Sign In!</a>
@@ -123,6 +133,15 @@
           size="30"
           type="password"></div>
 
+          <label>Account Nickname<br>
+            <input type="text" name="account[url_name]"/>
+          </label>
+
+          <input
+            type=hidden
+            name="account[plan_type]"
+            value="ultimate"/>
+
           <div class='sign-in-sign-up group'>
             <input
               class='home-page-button'
@@ -156,7 +175,7 @@ $(function(){
     $('.introduction').removeClass('hidden');
   });
   $('.sign-in-button, .sign-up-button, .back-button').on('click', function(){
-    $('#error_explanation, #flash_alert').remove();
+    $('#error_explanation, .notice').remove();
   });
 })
 </script>
