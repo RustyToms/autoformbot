@@ -50,15 +50,15 @@ body {
   font-family: sans-serif;
   font-size: 16px;
   display: block;
-	background-color: $darker-steel;
-//  background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
-//  linear-gradient(90deg, rgba(250,210,143,.13) 50%, transparent 50%),
-//  linear-gradient(90deg, transparent 50%, rgba(209,229,253,.17) 50%),
-//  linear-gradient(90deg, transparent 50%, rgba(255,255,194,.19) 50%);
+  background-color: $dark-steel;
+  background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
+  linear-gradient(90deg, $background-faded-yellow 50%, transparent 50%),
+  linear-gradient(90deg, transparent 50%, $background-blue 50%),
+  linear-gradient(90deg, transparent 50%, $background-yellow 50%);
 	background-image: -webkit-linear-gradient(left, rgba(255,255,255,.07) 50%, transparent 50%),
-	-webkit-linear-gradient(left, rgba(250,210,143,.13) 50%, transparent 50%),
-	-webkit-linear-gradient(left, transparent 50%, rgba(209,229,253,.17) 50%),
-	-webkit-linear-gradient(left, transparent 50%, rgba(255,255,194,.19) 50%);
+	-webkit-linear-gradient(left, $background-faded-yellow 50%, transparent 50%),
+	-webkit-linear-gradient(left, transparent 50%, $background-blue 50%),
+	-webkit-linear-gradient(left, transparent 50%, $background-yellow 50%);
 	background-size: 13px, 29px, 37px, 53px;
 	margin-top: 0;
 }

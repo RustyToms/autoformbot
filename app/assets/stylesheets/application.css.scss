@@ -26,6 +26,9 @@ $very-pale-blue: #EFFAFF;
 $light-green: #D2FFB3;
 $pale-green: #DCF8CD;
 $pale-yellow: #FFFFC2;
+$background-faded-yellow: rgba(255, 255, 194, 0.13);
+$background-blue: rgba(225, 242, 255, 0.17);
+$background-yellow: rgba(255,255,145,.19);
 $steel: #A3A3A3;
 $light-steel: #B0AFB0;
 $lighter-steel: #D1D1D1;
@@ -33,10 +36,64 @@ $pale-steel: #EFEFEF;
 $dark-steel: #8A898A;
 $darker-steel: #636363;
 
+.-blue- {
+	background-color: $blue;
+}
+
+.-faded-blue- {
+	background-color: $faded-blue;
+}
+
+.-very-pale-blue- {
+	background-color: $very-pale-blue;
+}
+
+.-light-green- {
+	background-color: $light-green;
+}
+
+.-pale-green- {
+	background-color: $pale-green;
+}
+
+.-pale-yellow- {
+	background-color: $pale-yellow;
+}
+
+.-background-faded-yellow- {
+	background-color: $background-faded-yellow;
+}
+
+.-background-blue- {
+	background-color: $background-blue;
+}
+
+.-background-yellow- {
+	background-color: $background-yellow;
+}
+
+.-steel- {
+	background-color: $steel;
+}
+
+.-light-steel- {
+	background-color: $light-steel;
+}
+
+.-lighter-steel- {
+	background-color: $lighter-steel;
+}
+
+.-pale-steel- {
+	background-color: $pale-steel;
+}
+
+.-dark-steel- {
+	background-color: $dark-steel;
+}
+
+.-darker-steel- {
+	background-color: $darker-steel;
+}
 
 /*******************************************************************/
-
-
-@import "app";
-@import "forms";
-@import "static_pages";
