@@ -16,29 +16,92 @@
   float: left;
 }
 
-/* --- HEADER --- */
+/* --- LOGO --- */
 
-.header {
-//  background-color: $pale-green;
-  background-color: #1ff8ff;
+.corner-logo {
+  display: inline-block;
+  margin: 25px auto;
+  position: relative;
+/*  top: 0px;*/
 }
 
-.title-bar {
+.corner-logo-box {
+  position: relative;
   display: inline-block;
+  z-index: 50;
+  transition: 0.15s;
+  background-color: white;
+  margin: 0 35px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 50px 40px white;
+  box-shadow: 0 0 50px 40px white;
+}
+
+.corner-logo h1 {
+  font-size: 22px;
+  margin: 3px 0 0px 0;
+  display: inline-block;
+}
+
+.corner-logo #corner-logo-part1 {
+  margin-right: 2px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.corner-logo-box2 {
+  display: inline-block;
+  box-shadow: 0 0 3px 1px $blue;
+  padding: 0px 20px 0px 2px;
+  margin: 3px 1px 2px 0px;
+  border: 2px groove $blue;
+}
+
+.corner-logo .blinking-cursor {
+  background-color: #000;
+  display: inline-block;
+  position: absolute;
+  z-index: 10;
+  height: 23px;
+  margin: 1px 0;
   float: left;
-  padding: 5px 10px;
+  width: 1px;
+}
+
+/* --- FLASH --- */
+
+.flash-msgs {
+  display: block;
+  text-align: center;
+}
+
+.notice {
+  display: inline-block;
+  margin: auto;
+}
+/* --- HEADER --- */
+header {
+  display: block;
 }
 
 .nav-bar {
   float: right;
 }
-.header li{
-  list-style: none;
+
+.nav-bar li {
   display: inline-block;
-  margin: 10px;
-  text-align: center;
+  margin: 40px 20px 20px 20px;
+  background-color: white;
+  -webkit-box-shadow: 0 0 20px 10px white;
+  box-shadow: 0 0 30px 20px white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 8px;
 }
 
+.nav-bar a {
+  color: #5597C2;
+}
 
 /* --- FORM --- */
 
