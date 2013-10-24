@@ -17,16 +17,6 @@ main.home-page-content {
 	width: 500px;
 }
 
-.hover-div {
-	box-shadow: 0 0 120px 80px transparent;
-	border-radius: 30px;
-}
-
-.hover-div:hover{
-	box-shadow: 0 0 120px 80px #EEE;
-	background-color: #EEE;
-}
-
 .hover-div:hover section.home-page{
 	box-shadow: -6px 10px 12px black;
   background-color: #D1EAFD;

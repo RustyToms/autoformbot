@@ -79,9 +79,11 @@
   display: inline-block;
   margin: auto;
 }
+
 /* --- HEADER --- */
 header {
   display: block;
+  min-width: 800px;
 }
 
 .nav-bar {
@@ -94,13 +96,60 @@ header {
   background-color: white;
   -webkit-box-shadow: 0 0 20px 10px white;
   box-shadow: 0 0 30px 20px white;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 8px;
+  font-size: 22px;
+  border-radius: 5px;
 }
 
 .nav-bar a {
-  color: #5597C2;
+  color: black;
+}
+
+.nav-bar a:hover {
+  text-shadow: -2px 2px 3px black;
+  -webkit-text-shadow: -2px 2px 3px black;
+}
+
+/* --- FORM INDEX --- */
+
+.page-title-box {
+  margin: auto;
+  display: block;
+  width: 800px;
+  text-align: center;
+}
+
+.page-title {
+  display: inline-block;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 25px;
+  box-shadow: 0 0 40px 25px #EEE;
+  background-color: #EEE;
+  border-radius: 20px;
+}
+
+.form-summary {
+  width: 150px;
+  height: 150px;
+  margin: 50px;
+  position: relative;
+  float: left;
+  border-radius: 10px;
+  box-shadow: -3px 5px 6px black;
+  text-align: right;
+}
+
+.form-summary:hover {
+  top: -3px;
+  left: 3px;
+  box-shadow: -6px 10px 12px black;
+}
+
+.form-summary a{
+  display: inline-block;
+  height: 130px;
+  width: 130px;
+  padding: 10px;
 }
 
 /* --- FORM --- */

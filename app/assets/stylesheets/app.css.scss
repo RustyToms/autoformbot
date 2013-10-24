@@ -19,6 +19,7 @@ time, mark, audio, video, label {
 	font: inherit;
 	vertical-align: baseline;
 	text-decoration: none;
+	color: inherit;
 }
 
 a:visited {
@@ -168,8 +169,6 @@ animation: cursorBlink 1s linear infinite;
 -webkit-animation: cursorBlink 1s linear infinite; /* Safari and Chrome */
 }
 
-/* --- "Signed in as" box --- */
-
 /* --- General --- */
 
 .hidden {
@@ -180,10 +179,19 @@ animation: cursorBlink 1s linear infinite;
 	font-weight: bold;
 }
 
+.hover-div {
+	box-shadow: 0 0 120px 80px transparent;
+	border-radius: 30px;
+}
+
+.hover-div:hover{
+	box-shadow: 0 0 120px 80px #EEE;
+	background-color: #EEE;
+}
+
 .signed-in {
 	position: absolute;
 	display: inline-block;
-//	float: right;
 	top: 1em;
 	right: 1em;
 	z-index: 100;
@@ -193,10 +201,6 @@ animation: cursorBlink 1s linear infinite;
 }
 
 .notice {
-//  display: inline-block;
-//  position: absolute;
-//  top: 1em;
-//  left: 1em;
 	border-radius: 5px;
 	background-color: rgba(255, 255, 255, 0.75);
 	box-shadow: 0 0 20px 15px rgba(255, 255, 255, 0.75);

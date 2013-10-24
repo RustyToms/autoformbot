@@ -15,7 +15,6 @@ AFB.Views.FormIndex = Backbone.View.extend({
     this.$el.html(JST["forms/index"]({
       forms: AFB.formCollection
     }))
-    checkIt = this;
     return this;
   },
 

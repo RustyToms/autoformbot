@@ -1,15 +1,3 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- */
 
 
 /*******************************************************************
@@ -35,65 +23,5 @@ $lighter-steel: #D1D1D1;
 $pale-steel: #EFEFEF;
 $dark-steel: #8A898A;
 $darker-steel: #636363;
-
-.-blue- {
-	background-color: $blue;
-}
-
-.-faded-blue- {
-	background-color: $faded-blue;
-}
-
-.-very-pale-blue- {
-	background-color: $very-pale-blue;
-}
-
-.-light-green- {
-	background-color: $light-green;
-}
-
-.-pale-green- {
-	background-color: $pale-green;
-}
-
-.-pale-yellow- {
-	background-color: $pale-yellow;
-}
-
-.-background-faded-yellow- {
-	background-color: $background-faded-yellow;
-}
-
-.-background-blue- {
-	background-color: $background-blue;
-}
-
-.-background-yellow- {
-	background-color: $background-yellow;
-}
-
-.-steel- {
-	background-color: $steel;
-}
-
-.-light-steel- {
-	background-color: $light-steel;
-}
-
-.-lighter-steel- {
-	background-color: $lighter-steel;
-}
-
-.-pale-steel- {
-	background-color: $pale-steel;
-}
-
-.-dark-steel- {
-	background-color: $dark-steel;
-}
-
-.-darker-steel- {
-	background-color: $darker-steel;
-}
 
 /*******************************************************************/

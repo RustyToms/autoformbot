@@ -1,4 +1,6 @@
-<h1>Form Manager</h1>
+<div class='page-title-box'>
+  <h1 class='page-title'>Form Manager</h1>
+</div>
 
 <button id='create-form-button'>Create a new Form!</button>
 
@@ -9,13 +11,12 @@
       <%= form.get('name') %>
     </a>
 
-    <div class="form-links">
+    <div class="form-links group hidden">
       <ul>
         <li><a href="#forms/<%= form.get('id') %>/edit">Edit</a></li>
         <li><a href="#forms/<%= form.get('id') %>">View</a></li>
-        <li>Analytics</li>
+        <li>Results</li>
         <li>Notifications</li>
-        <li>Form Rules</li>
         <li>Code</li>
 				<li>
 			    <button 
