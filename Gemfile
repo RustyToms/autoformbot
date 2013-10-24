@@ -9,6 +9,7 @@ gem 'rails', '3.2.13'
 gem 'backbone-on-rails'
 gem 'ejs'
 gem 'devise'
+gem 'figaro'
 
 group :development do
   gem 'better_errors'
@@ -18,6 +19,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'newrelic_rpm'
 end
 
 # Gems used only for assets and not required

@@ -15,3 +15,6 @@
 /tmp
 
 .DS-Store
+# Ignore application configuration
+/config/application.yml
+
