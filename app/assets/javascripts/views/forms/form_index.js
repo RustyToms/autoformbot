@@ -1,8 +1,9 @@
 AFB.Views.FormIndex = Backbone.View.extend({
   events: {
-  'click #create-form-button' : 'sendToNew',
-  'click .delete-form' : 'deleteForm',
-	'click .duplicate-form' : 'duplicateForm'
+  'click #create-form-button': 'sendToNew',
+  'click .delete-form': 'deleteForm',
+	'click .duplicate-form': 'duplicateForm',
+  'click .form-summary a': 'parselink'
   },
 
   initialize: function(){
@@ -23,18 +24,26 @@ AFB.Views.FormIndex = Backbone.View.extend({
     Backbone.history.navigate('forms/new', {trigger: true});
   },
 
-  deleteForm: function(event){
+  deleteForm: function(formId){
     console.log('FormIndex#deleteForm');
-    var form = AFB.formCollection.get($(event.target).data());
+    var form = AFB.formCollection.get(formId);
     form.destroy();
     this.render();
   },
 	
-	duplicateForm: function(event){
+	duplicateForm: function(formId){
 		var that= this;
-		var form = AFB.formCollection.get($(event.target).data());
+		var form = AFB.formCollection.get(formId);
 		form.duplicateForm(function(){
 		that.render();
 	});
-	}
+	},
+
+  parselink: function(event){
+    var $target = $(event.target);
+    var formId = $target.closest('.form-summary').data('form-id');
+    console.log('in parselink, formId is ' + formId);
+
+    this[$target.data('string')](formId)
+  }
 })

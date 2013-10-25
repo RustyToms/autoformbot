@@ -137,6 +137,24 @@ header {
   border-radius: 10px;
   box-shadow: -3px 5px 6px black;
   text-align: right;
+  opacity: 0.55;
+}
+
+
+.form-summary {
+  background-color: $faded-blue;
+}
+
+.form-summary:nth-child(4n) {
+ background-color: $pale-yellow;
+}
+
+.form-summary:nth-child(4n - 1) {
+ background-color: $blue;
+}
+
+.form-summary:nth-child(4n - 2) {
+ background-color: $light-green;
 }
 
 .form-summary:hover {
@@ -150,6 +168,13 @@ header {
   height: 130px;
   width: 130px;
   padding: 10px;
+  position: absolute;
+}
+
+.form-links a{
+  height: 50px;
+  width: 50px;
+  background: white;
 }
 
 /* --- FORM --- */
@@ -204,18 +229,6 @@ header {
 }
 
 /* --- SHOWFORM --- */
-
-.form-summary {
-  background-color: #C6EFF7;
-}
-
-.form-summary:nth-child(3n) {
- background-color: #95E5F5;
-}
-
-.form-summary:nth-child(3n - 2) {
- background-color: #FFFFCC;
-}
 
 .form-links li {
   display: inline;

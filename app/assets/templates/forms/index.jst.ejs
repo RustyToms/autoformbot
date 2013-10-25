@@ -5,31 +5,19 @@
 <button id='create-form-button'>Create a new Form!</button>
 
 <%forms.each(function(form){ %>
-  <div class="form-summary">
+  <div class="form-summary" data-form-id="<%= form.get('id')%>">
 
-    <a href="#forms/<%= form.get('id') %>/edit">
-      <%= form.get('name') %>
-    </a>
+    <a class='formSelect'><%= form.get('name') %></a>
 
-    <div class="form-links group hidden">
+    <div class="form-links group">
       <ul>
-        <li><a href="#forms/<%= form.get('id') %>/edit">Edit</a></li>
-        <li><a href="#forms/<%= form.get('id') %>">View</a></li>
-        <li>Results</li>
-        <li>Notifications</li>
-        <li>Code</li>
-				<li>
-			    <button 
-					  class='duplicate-form'
-					  data-id="<%= form.get('id') %>"
-						>Duplicate</button>
-			  </li>
-        <li>
-					<button
-            data-id="<%= form.get('id') %>"
-            class='delete-form'
-          >Delete</button>
-        </li>
+        <li><a data-string='sendToEdit'>Edit</a></li>
+        <li><a data-string='sendToView'>View</a></li>
+        <li><a data-string='sendToResults'>Results</a></li>
+        <li><a data-string='sendToNotifications'>Notifications</a></li>
+        <li><a data-string='sendToCode'>Code</a></li>
+				<li><a data-string='duplicateForm'>Duplicate</a></li>
+        <li><a data-string='deleteForm'>Delete</a></li>
       </ul>
     </div>
   </div>
