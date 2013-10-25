@@ -44,6 +44,18 @@ AFB.Views.FormIndex = Backbone.View.extend({
     var formId = $target.closest('.form-summary').data('form-id');
     console.log('in parselink, formId is ' + formId);
 
-    this[$target.data('string')](formId)
+    if ($target.hasClass('formSelect') &&
+      $target.closest('.form-links').hasClass('clicked')){
+     
+      this.$el.find('.clicked').removeClass('clicked');
+      return true;
+    
+    } else if ($target.hasClass('formSelect')){
+      this.$el.find('.clicked').removeClass('clicked');
+      $target.closest('.form-links').addClass('clicked');
+      return true;
+    }
+
+    this[$target.data('string')](formId);
   }
 })
