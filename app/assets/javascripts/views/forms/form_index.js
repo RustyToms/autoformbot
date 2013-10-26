@@ -4,15 +4,15 @@ AFB.Views.FormIndex = Backbone.View.extend({
   },
 
   initialize: function(){
-    console.log("initializing FormIndex view")
+    console.log("initializing FormIndex view");
   },
 
   render: function(){
-    console.log("rendering FormIndex view")
-    this.$el.empty()
+    console.log("rendering FormIndex view");
+    this.$el.empty();
     this.$el.html(JST["forms/index"]({
       forms: AFB.formCollection
-    }))
+    }));
     return this;
   },
 
@@ -41,7 +41,7 @@ AFB.Views.FormIndex = Backbone.View.extend({
   },
 	
 	duplicateForm: function(formId){
-		var that= this;
+		var that = this;
 		var form = AFB.formCollection.get(formId);
 		form.duplicateForm(function(){
 		that.render();
