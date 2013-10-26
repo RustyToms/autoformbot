@@ -7,6 +7,8 @@
   display: block;
   height: 100%;
   width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .main {
@@ -132,101 +134,148 @@ header {
   border-radius: 20px;
 }
 
-$formSelect-dim: 130px;
-$formSelect-padding: 10px;
+$formSelect-dim: 110px;
+$formSelect-padding: 20px;
 $formSelect-margin: 50px;
+$formSelect-dim-sum: ($formSelect-dim + $formSelect-margin * 2 +
+  $formSelect-padding * 2);
 
 .form-summary {
   display: inline-block;
   width: $formSelect-dim + ($formSelect-padding * 2);
   height: $formSelect-dim + ($formSelect-padding * 2);
   margin: $formSelect-margin;
+}
 
-  .form-links {
-    display: block;
-    width: $formSelect-dim + ($formSelect-padding * 2);
-    height: $formSelect-dim + ($formSelect-padding * 2);
-  }
+.new-form-link {
+  display: block;
+  position: relative;
+  height: 60px;
+  width: 300px;
+  background-color: $light-green;
+  border: 2px solid black;
+  box-shadow: -3px 5px 6px black;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 60px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 15px auto;
+}
 
-  .form-links a {
-    height: 50px;
-    width: 50px;
-    background-color: white;
-    display: inline-block;
-    position: absolute;
-    z-index: -1;
-    border-radius: 10px;
-    margin: $formSelect-margin;
-    box-shadow: -3px 5px 6px black;
+.new-form-link:hover {
+  box-shadow: -3px 5px 6px black, 0 0 25px 20px white;
+}
+
+.new-form-link:active{
+  top: 3px;
+  left: -3px;
+  box-shadow: 0 0 25px 20px white;
+}
+
+.form-links {
+  display: block;
+  width: $formSelect-dim + ($formSelect-padding * 2);
+  height: $formSelect-dim + ($formSelect-padding * 2);
+}
+
+.form-links a {
+  transition: .25s;
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  display: inline-block;
+  position: absolute;
+  z-index: -1;
+  border-radius: 10px;
+  margin: $formSelect-margin;
+  box-shadow: -3px 5px 6px black;
+  font-weight: bold;
+  text-align: right;
+}
+
+a.formSelect {
+  width: $formSelect-dim;
+  height: $formSelect-dim;
+  padding: $formSelect-padding;
+  display: block;
+  margin: 0;
+  background-color: $sky-blue;
+  border: 1px solid black;
+  z-index: 1;
+}
+
+a.formSelect:active {
+  top: 3px;
+  left: -3px;
+  box-shadow: none;
+}
+
+a.formSelect:hover {
+  box-shadow: -3px 5px 6px black, 0 0 25px 20px white;
+}
+
+.form-links.clicked {
+
+  a {
+    margin: 0;
+    height: 50px + $formSelect-padding;
+    width: 50px + $formSelect-padding;
+    z-index: 2;
   }
 
   a.formSelect {
-    width: $formSelect-dim;
-    height: $formSelect-dim;
-    padding: $formSelect-padding;
-    display: block;
-    margin: 0;
-    float: left;
-    background-color: $sky-blue;
-    z-index: 1;
-    border: 1px solid black;
+    box-shadow: -6px 10px 12px black;
+    width: $formSelect-dim - 20px;
+    height: $formSelect-dim - 20px;
+    padding: $formSelect-padding + 10px;
   }
 
   a.formSelect:active {
-    top: 3px;
-    left: -3px;
     box-shadow: none;
   }
 
-  .form-links.clicked {
+  a.index-edit {
+    width: $formSelect-margin + $formSelect-padding + $formSelect-dim/2;
+    top: -$formSelect-margin;
+    left: -$formSelect-margin;
+  }
 
-    a {
-      margin: 0;
-    }
+  a.index-view {
+    height: $formSelect-dim;
+    right: -$formSelect-margin;
+    top: $formSelect-padding;
+  }
 
-    a.formSelect {
-      box-shadow: -6px 10px 12px black;
-    }
+  a.index-results {
+    height: $formSelect-dim;
+    left: -$formSelect-margin;
+    top: $formSelect-padding;
+  }
 
-    a.formSelect:active {
-      box-shadow: none;
-    }
+  a.index-code {
+    width: $formSelect-dim-sum / 3;
+    bottom: -$formSelect-margin;
+    left: -$formSelect-margin;
+  }
 
-    a.index-edit {
-      width: $formSelect-dim + $formSelect-padding * 2;
-      top: -50px;
-    }
+  a.index-not {
+    width: $formSelect-margin + $formSelect-padding + $formSelect-dim/2;
+    top: -$formSelect-margin;
+    right: -$formSelect-margin;
+  }
 
-    a.index-view {
-      height: $formSelect-dim + $formSelect-padding * 2;
-      right: -50px;
-    }
+  a.index-delete {
+    background-color: red;
+    width: $formSelect-dim-sum / 3;
+    bottom: -$formSelect-margin;
+    right: -$formSelect-margin;
+  }
 
-    a.index-results {
-      height: $formSelect-dim + $formSelect-padding * 2;
-      left: -50px;
-    }
-
-    a.index-code {
-      width: $formSelect-dim + $formSelect-padding * 2;
-      bottom: -50px;
-    }
-
-    a.index-not {
-      top: -50px;
-      right: -50px;
-    }
-
-    a.index-delete {
-      background-color: red;
-      bottom: -50px;
-      right: -50px;
-    }
-
-    a.index-dup {
-      bottom: -50px;
-      left: -50px;
-    }
+  a.index-dup {
+    width: $formSelect-dim-sum / 3;
+    bottom: -$formSelect-margin;
+    left: $formSelect-margin * 2 / 3;
   }
 }
 
