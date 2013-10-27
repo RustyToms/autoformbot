@@ -33,6 +33,17 @@ AFB.Views.FormIndex = Backbone.View.extend({
     Backbone.history.navigate('forms/new', {trigger: true});
   },
 
+  sendToEdit: function(formId){
+    console.log('FormIndex#sendToEdit');
+    Backbone.history.navigate('forms/' + formId + '/edit',
+      {trigger: true});
+  },
+
+  sendToView: function(formId){
+    console.log('FormIndex#sendToView');
+    Backbone.history.navigate('forms/' + formId, {trigger: true});
+  },
+
   deleteForm: function(formId){
     console.log('FormIndex#deleteForm');
     var form = AFB.formCollection.get(formId);

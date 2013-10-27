@@ -29,7 +29,6 @@ a:hover {
   display: inline-block;
   margin: 25px auto;
   position: relative;
-/*  top: 0px;*/
 }
 
 .corner-logo-box {
@@ -172,6 +171,30 @@ $formSelect-dim-sum: ($formSelect-dim + $formSelect-margin * 2 +
   @include box-shadow(0 0 25px 20px white);
 }
 
+.form-summary .formSelect{
+  background-color: $blue;
+}
+
+.form-summary:nth-child(6n) .formSelect{
+ background-color: $pale-yellow;
+}
+
+.form-summary:nth-child(6n - 2) .formSelect{
+ background-color: $faded-blue;
+}
+
+.form-summary:nth-child(6n - 4) .formSelect{
+ background-color: $pale-green;
+}
+
+.form-summary:nth-child(6n - 3) .formSelect{
+ background-color: $lighter-steel;
+}
+
+.form-summary:nth-child(6n - 1) .formSelect{
+ background-color: $steel;
+}
+
 .form-links {
   display: block;
   width: $formSelect-dim + ($formSelect-padding * 2);
@@ -199,9 +222,9 @@ a.formSelect {
   padding: $formSelect-padding;
   display: block;
   margin: 0;
-  background-color: $sky-blue;
   border: 1px solid black;
   z-index: 1;
+  overflow: hidden;
 }
 
 a.formSelect:active {
@@ -221,6 +244,7 @@ a.formSelect:hover {
     height: 50px + $formSelect-padding;
     width: 50px + $formSelect-padding;
     z-index: 2;
+    text-align: center;
   }
 
   a.formSelect {
@@ -280,21 +304,8 @@ a.formSelect:hover {
 
 /* --- FORM --- */
 
-.form-edit-box {
-  background-color: #FFFFCC;
-  min-height: 348px;
-  border: 2px solid blue;
-  border-radius: 10px;
-  padding: 10px;
-}
-
 .editing {
   background-color: $light-green;
-}
-
-.required:after {
-  content: "*";
-  color: red;
 }
 
 .delete-field {
@@ -311,24 +322,6 @@ a.formSelect:hover {
   background-color: #CCFFFF;
   min-height: 48px;
 }
-
-.title-description {
-  margin: 10px auto;
-}
-
-.formName {
-  display: block;
-  margin: 10px auto;
-  text-align: center;
-  font-size: 30px;
-}
-
-.formDescription {
-  display: block;
-  margin: 10px auto;
-  text-align: center;
-}
-
 /* --- SHOWFORM --- */
 
 /* --- SIDEBAR --- */

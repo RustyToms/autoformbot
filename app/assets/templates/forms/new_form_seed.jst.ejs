@@ -1,19 +1,42 @@
-<div class='form-edit-box'>
-	<form method='post' id='form-itable'>
 
-		<input type='hidden' name='form_id' id='form-id'>
+	
+	<div class='form-edit-box' 
+	  style="  
+	    background-color: #FFFFCC;
+		  min-height: 348px;
+		  border: 2px solid blue;
+		  border-radius: 10px;
+		  padding: 10px;">
+		  
+		  
+	<style>
+		.required:after {
+	  content: "*";
+	  color: red;
+		}
+		</style>
+		  
+		<form method='post' id='form-itable'>
 
-	  <div
-	    class="formEl"
-	    class="title-description"
-	    data-sidebar="FormEditTitle">
+			<input type='hidden' name='form_id' id='form-id'>
 
-	    <h2 class="formName">Untitled Form</h2>
+		  <div
+		    class="formEl"
+		    class="title-description"
+		    data-sidebar="FormEditTitle">
 
-	    <p class="formDescription">
-	      Click here to change the form name and description
-	    </p>
-	  </div>
-	</form>
+		    <h2 class="formName" 
+		      style="display: block;
+					  margin: 10px auto;
+					  text-align: center;
+					  font-size: 30px;"
+					>Untitled Form</h2>
 
-</div>
+		    <p class="formDescription" 
+		      style="display: block;
+					  margin: 10px auto;
+					  text-align: center;"
+					>Click here to change the form name and description</p>
+		  </div>
+		</form>
+	</div>
