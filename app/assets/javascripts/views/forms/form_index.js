@@ -48,15 +48,18 @@ AFB.Views.FormIndex = Backbone.View.extend({
     console.log('FormIndex#deleteForm');
     var form = AFB.formCollection.get(formId);
     form.destroy();
-    this.render();
+    this.$el.find(".form-summary[data-form-id=" + formId + "]").remove();
   },
 	
 	duplicateForm: function(formId){
 		var that = this;
 		var form = AFB.formCollection.get(formId);
-		form.duplicateForm(function(){
-		that.render();
-	});
+		form.duplicateForm(function(newForm){
+      that.$el.find('.form-summary').last().after(
+        JST["forms/index_add_form"]({
+          form: newForm
+        }));
+    });
 	},
 
   parselink: function(event){
@@ -66,4 +69,4 @@ AFB.Views.FormIndex = Backbone.View.extend({
 
     this[$target.data('string')](formId, $target);
   }
-})
+});

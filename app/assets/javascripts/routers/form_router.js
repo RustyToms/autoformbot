@@ -28,6 +28,8 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 
   formNew: function(){
     console.log("In FormRouter#formNew");
+    this.cleanRootEl();
+    this.$rootEl.html(JST["forms/new_iframe"]());
     this.model = new AFB.Models.Form();
     this.setUpModel();
 
@@ -37,15 +39,11 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   setUpModel: function(){
     console.log("setting up form model");
 		var that = this;
-    var $form_text = $(JST["forms/new_iframe"]());
-    setTimeout(function(){ 
-      $form_text.find('body').html(JST["forms/new_form_seed"]());
-    }, 1);
-    console.log($form_text.prop('outerHTML'));
+
     this.model.set({
       account_id: window.ACCOUNT_ID,
       name: "Untitled Form",
-			form_text: $form_text.prop('outerHTML')
+			form_text: JST["forms/new_form_seed"]()
     });
 		
     AFB.formCollection.add(this.model);
@@ -53,9 +51,10 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 		this.model.save({},{
 			success: function(response, model) {
 				that.model.updateAttribute('#form-id', 'value', that.model.get('id'));
-			}
+	      console.log("form_id is " + that.model.get('id'));
+      }
 		});
-		console.log("form_id is " + this.model.get('id'));
+
 		
   },
 
@@ -76,15 +75,15 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   formEdit: function(id) {
     console.log('in FormRouter#formEdit for form #' + id);
 		var editModel = AFB.formCollection.get(id);
+    this.cleanRootEl();
     this.formMaster(editModel);
   },
 
   formMaster: function(model){
-    this.cleanRootEl();
     this.view && this.view.remove();
     this.view = new AFB.Views.FormMaster({
       model: model,
-      el: this.$seedEl
+      $rootEl: this.$rootEl
     });
     this.$rootEl.append(this.view.render().$el);
   },

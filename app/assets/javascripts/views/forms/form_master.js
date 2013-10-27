@@ -9,11 +9,12 @@ AFB.Views.FormMaster = Backbone.View.extend({
   initialize: function(){
     console.log('FormMaster View initialized');
     this.$formEditEl = $(JST["forms/edit_form"]());
+    console.log(this.options.$rootEl.prop('outerHTML'));
   },
 
   render: function(newSidebar, formView){
     console.log('rendering FormMaster view');
-    this.$el.empty();
+    this.$el = this.options.$rootEl.clone();
     this.$el.append(this.makeSidebarView(newSidebar));
 
 		this.editForm && this.editForm.remove();
@@ -106,16 +107,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   sidebarValues: function(event){
     this.sidebar.updateValues && this.sidebar.updateValues(event);
-  },
-
-  cleanEl: function(){
-    console.log("in FormMaster#cleanEl");
-    this.$el.empty();
-    this.$el.unbind();
-    this.$el.off();
-    this.$el.undelegate();
-
-    this.initialize;
   },
 
   requireField: function(event){

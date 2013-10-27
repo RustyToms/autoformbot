@@ -90,11 +90,11 @@ AFB.Models.Form = Backbone.Model.extend ({
       success: function(response){
         console.log("save successful");
 				console.log(response);
-				callback();
+				callback(newModel);
       },
       error: function(model, response){
         console.log("error: " + response.responseText);
-        console.log(model)
+        console.log(model);
       }
     });
 	}

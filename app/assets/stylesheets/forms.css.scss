@@ -171,6 +171,8 @@ $formSelect-dim-sum: ($formSelect-dim + $formSelect-margin * 2 +
 
 .form-summary .formSelect{
   background-color: $blue;
+  transition: 0.15s;
+  transition: background-color 10s 1s;
 }
 
 .form-summary:nth-child(6n) .formSelect{
@@ -200,7 +202,7 @@ $formSelect-dim-sum: ($formSelect-dim + $formSelect-margin * 2 +
 }
 
 .form-links a {
-  transition: .25s;
+  transition: .30s;
   height: 50px;
   width: 50px;
   background-color: white;
