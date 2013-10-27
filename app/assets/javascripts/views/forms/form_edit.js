@@ -16,6 +16,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   render: function(){
+    myModel = this.model
     console.log("rendering FormEdit view");
     var $formText = $(this.model.get('form_text'));
 		$formText.find("label, h2, p").

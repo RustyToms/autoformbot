@@ -13,10 +13,8 @@
 }
 
 .main {
-  width: 60%;
-  height: 100%;
-//  min-height: 450px;
-  float: left;
+display: block;
+margin: auto;
 }
 
 a:hover {
@@ -302,7 +300,7 @@ a.formSelect:hover {
   }
 }
 
-/* --- FORM --- */
+/* --- FORM EDIT--- */
 
 .editing {
   background-color: $light-green;

@@ -35,11 +35,17 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   setUpModel: function(){
+    console.log("setting up form model");
 		var that = this;
+    var $form_text = $(JST["forms/new_iframe"]());
+    setTimeout(function(){ 
+      $form_text.find('body').html(JST["forms/new_form_seed"]());
+    }, 1);
+    console.log($form_text.prop('outerHTML'));
     this.model.set({
       account_id: window.ACCOUNT_ID,
       name: "Untitled Form",
-			form_text: JST["forms/new_form_seed"](),
+			form_text: $form_text.prop('outerHTML')
     });
 		
     AFB.formCollection.add(this.model);
