@@ -76,6 +76,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log('in FormRouter#formEdit for form #' + id);
 		var editModel = AFB.formCollection.get(id);
     this.cleanRootEl();
+    this.$rootEl.html(JST["forms/new_iframe"]());
     this.formMaster(editModel);
   },
 
@@ -83,9 +84,10 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.view && this.view.remove();
     this.view = new AFB.Views.FormMaster({
       model: model,
-      $rootEl: this.$rootEl
+      el: this.$rootEl,
+      $backup: this.$rootEl.clone()
     });
-    this.$rootEl.append(this.view.render().$el);
+    this.view.render();
   },
 
   cleanRootEl: function(){

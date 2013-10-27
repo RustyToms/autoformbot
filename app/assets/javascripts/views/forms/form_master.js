@@ -9,12 +9,15 @@ AFB.Views.FormMaster = Backbone.View.extend({
   initialize: function(){
     console.log('FormMaster View initialized');
     this.$formEditEl = $(JST["forms/edit_form"]());
-    console.log(this.options.$rootEl.prop('outerHTML'));
+    console.log(this.$el.prop('outerHTML'));
   },
 
   render: function(newSidebar, formView){
+    var that = this;
     console.log('rendering FormMaster view');
-    this.$el = this.options.$rootEl.clone();
+    this.$el = this.options.$backup.clone();
+    
+    console.log(this.$el.find('iframe').prop('outerHTML'));
     this.$el.append(this.makeSidebarView(newSidebar));
 
 		this.editForm && this.editForm.remove();
@@ -25,9 +28,15 @@ AFB.Views.FormMaster = Backbone.View.extend({
       el: this.$formEditEl
 			
     });
-    this.$el.append(this.editForm.render().$el);
-		
-    this.initialize();
+    $('iframe').ready(function(){
+      console.log('--- iframe ready ---');
+      var iframe = $('iframe').get(0).contentWindow.document;
+      $(iframe).find('body').append(that.editForm.render().$el);
+      console.log($('iframe').prop('outerHTML'));
+      that.initialize();
+    });
+    
+    console.log('--- End of FormMaster view #render ---');
     return this;
   },
 
@@ -46,13 +55,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
       this.sidebar = new AFB.Views.FormSidebarInputs({
 				
         parentView: this,
-        model: this.model,
+        model: this.model
 				
       });
 			
     }
 		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
-		  append(this.sidebar.render().$el);
+      append(this.sidebar.render().$el);
 		return $sidebarHtml;
   },
 
@@ -67,21 +76,21 @@ AFB.Views.FormMaster = Backbone.View.extend({
     case "move-to-field-settings":
       var targetField = {
         target: this.editForm.$el.find('.formEl').last()
-      }
+      };
       this.editForm.parseClickForm(targetField);
       break;
     case "move-to-form-settings":
-      console.log("form-settings view isn't made yet")
+      console.log("form-settings view isn't made yet");
       break;
     default:
       console.log("hit newSidebar switch default");
       this.render();
-    };
+    }
   },
 
   sidebarClick: function(event){
     console.log('in FormMaster#sidebarClick');
-    var $target = $(event.target)
+    var $target = $(event.target);
 
     if ($target.hasClass('delete-button')){
       console.log('deleting element');
@@ -111,7 +120,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   requireField: function(event){
     event.stopPropagation();
-    console.log('in FormMaster#requireField')
+    console.log('in FormMaster#requireField');
 
     var $form = $(this.model.get('form_text'));
     var $target = $form.find('.editing');
@@ -126,12 +135,12 @@ AFB.Views.FormMaster = Backbone.View.extend({
 	updateSidebar: function(){
 		this.sidebar.options.field = this.$el.find('.editing');
 		this.$el.find('.sidebar_window .sidebar').
-		  replaceWith(this.sidebar.render().$el.html())
+      replaceWith(this.sidebar.render().$el.html());
 	},
 	
 	swapSidebar: function(sidebar){
-		var $sidebar = this.makeSidebarView(sidebar)		
+		var $sidebar = this.makeSidebarView(sidebar);
 		this.$el.find('.sidebar_window').replaceWith($sidebar);
 	}
 
-})
+});

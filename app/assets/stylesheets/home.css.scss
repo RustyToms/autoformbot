@@ -1,3 +1,4 @@
+@import "compass/css3";
 @import "application";
 @import "app";
 
@@ -18,7 +19,7 @@ main.home-page-content {
 }
 
 .hover-div:hover section.home-page{
-	box-shadow: -6px 10px 12px black;
+	@include box-shadow(-6px 10px 12px black);
   background-color: $sky-blue;
 	opacity: 0.85;
 }
@@ -57,7 +58,7 @@ main.home-page-content {
 }
 
 .home-page-button:hover{
-	box-shadow: -4px 6px 4px black;
+	@include box-shadow(-4px 6px 4px black);
 	font-weight: bold;
 	bottom: 2px;
 	left: 2px;
@@ -66,7 +67,7 @@ main.home-page-content {
 
 .home-page-button:active{
 	position: relative;
-	box-shadow: 0 0 0 0 transparent;
+	@include box-shadow(0 0 0 0 transparent);
 	font-weight: normal;
 	bottom: 0;
 	left: 0;
