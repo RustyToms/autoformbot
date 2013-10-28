@@ -6,18 +6,18 @@ AFB.Views.FormShow = Backbone.View.extend({
       " id='form-itable-submit'>");
     this.$el.html($form.prop('outerHTML'));
 		this.$el.append(JST['forms/show_form']());
-    // this.setFrameDimensions();
+    this.setFrameDimensions();
     
     return this;
   },
   
   setFrameDimensions: function(){
     var iframe = $('iframe').get(0).contentWindow.document;
-    var $form = $(iframe).find('.form-edit-box form');
+    var $form = $(iframe).find('.form-edit-box');
     
-    var width = $form.css('width');
+    var width = $form.width(); //css('width');
     width && $('.form-iframe').css('width', width);
-    var height = $form.css('height');
+    var height = $form.height(); //.css('height');
     height && $('.form-iframe').css('height', height);
     console.log('width and height are ' + width + " and " + height);
   }

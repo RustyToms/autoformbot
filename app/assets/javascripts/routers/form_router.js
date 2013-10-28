@@ -105,9 +105,11 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     $('iframe').ready(function(){
       console.log('--- iframe ready ---');
       var iframe = $('iframe').get(0).contentWindow.document;
+      $iframeBody = $(iframe).find('body');
+      $iframeBody.css('margin', '0');
       that.view = new View({
         model: model,
-        el: $(iframe).find('body')
+        el: $iframeBody
       });
       that.view.render();
     });

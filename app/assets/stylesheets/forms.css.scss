@@ -3,6 +3,9 @@
 @import "app";
 
 /* --- ELEMENTS --- */
+main {
+  margin-top: 100px;
+}
 
 .body {
   display: block;
@@ -30,7 +33,7 @@ iframe {
 
 .corner-logo {
   display: inline-block;
-  margin: 25px auto;
+  margin: 25px auto 0 auto;
   position: relative;
 }
 
@@ -40,9 +43,8 @@ iframe {
   z-index: 50;
   transition: 0.15s;
   background-color: white;
-  margin: 0 35px;
-  border-radius: 10px;
-  @include box-shadow(0 0 70px 40px white);
+  padding: 0 70px 0 35px;
+  @include box-shadow(0 0 60px 20px white);
 }
 
 .corner-logo h1 {
@@ -91,9 +93,13 @@ iframe {
 /* --- HEADER --- */
 header {
   display: block;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
   min-width: 800px;
-  background-color: #EEE;
-  @include box-shadow(0 0 100px 100px #EEE);
+  background-color: rgba(255, 255, 255, 0.85);
+  @include box-shadow(0 0 25px 25px rgba(255, 255, 255, 0.85));
 }
 
 .nav-bar {
@@ -102,7 +108,7 @@ header {
 
 .nav-bar li {
   display: inline-block;
-  margin: 40px 20px 20px 20px;
+  margin: 40px 20px 0px 20px;
   font-size: 22px;
   border-radius: 5px;
 }
@@ -131,8 +137,12 @@ header {
   display: inline-block;
   font-size: 36px;
   font-weight: bold;
-  margin: 10px 0 25px 0;
-  border-radius: 20px;
+  margin: 0 0 25px 0;
+  padding-top: 5px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.85);
+  @include box-shadow(0 0 30px 30px rgba(255, 255, 255, 0.85));
 }
 
 $formSelect-dim: 110px;
