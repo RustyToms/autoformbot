@@ -17,24 +17,33 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.$el.html(this.options.$backup.clone().find('.body').html());
     this.$el.append(this.makeSidebarView(newSidebar));
 
-		this.editForm && this.editForm.remove();
-    this.editForm = new AFB.Views.FormEdit({
-			
-      parentView: this,
-      model: this.model,
-      el: this.$formEditEl
-			
-    });
     $('iframe').ready(function(){
-      console.log('--- iframe ready ---');
-      var iframe = $('iframe').get(0).contentWindow.document;
-      $(iframe).find('body').append(that.editForm.render().$el);
-      that.initialize();
-      console.log(that.$el.prop('outerHTML'));
+      that.renderIframe(that);
     });
-
+    
+    this.$el.find('iframe').after($(JST["forms/edit_form"]()));
     console.log('--- End of FormMaster view #render ---');
     return this;
+  },
+  
+  renderIframe: function(that){
+    console.log('--- iframe ready, modifying ---');
+    var iframe = $('iframe').get(0).contentWindow.document;
+    var $iframeBody = $(iframe).find('body');
+    $iframeBody.css('margin', '0');
+      this.editForm && this.editForm.remove();  
+      this.editForm = new AFB.Views.FormEdit({
+      
+        parentView: that,
+        model: that.model,
+        el: $iframeBody
+        
+      });
+      
+    $iframeBody.append(that.editForm.render().$el);
+    AFB.Routers.FormRouter.setFrameDimensions();
+    that.initialize();
+    console.log(that.$el.prop('outerHTML'));
   },
 
   makeSidebarView: function(newSidebar){

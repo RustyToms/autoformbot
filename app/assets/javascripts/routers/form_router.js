@@ -105,7 +105,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     $('iframe').ready(function(){
       console.log('--- iframe ready ---');
       var iframe = $('iframe').get(0).contentWindow.document;
-      $iframeBody = $(iframe).find('body');
+      var $iframeBody = $(iframe).find('body');
       $iframeBody.css('margin', '0');
       that.view = new View({
         model: model,
@@ -115,3 +115,14 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     });
   }
 });
+
+AFB.Routers.FormRouter.setFrameDimensions = function(){
+    var iframe = $('iframe').get(0).contentWindow.document;
+    var $form = $(iframe).find('.form-edit-box');
+    
+    var width = $form.width(); //css('width');
+    width && $('.form-iframe').css('width', width);
+    var height = $form.height(); //.css('height');
+    height && $('.form-iframe').css('height', height);
+    console.log('width and height are ' + width + " and " + height);
+  };
