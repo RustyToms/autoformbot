@@ -82,9 +82,8 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       el: this.$rootEl.find('.body').get(0),
       $backup: this.$rootEl.clone()
     });
-    console.log(this.$rootEl.html());
+
     this.view.render();
-    console.log(this.$rootEl.html());
   },
 
   cleanRootEl: function(){
