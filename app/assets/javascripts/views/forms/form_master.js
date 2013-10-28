@@ -45,7 +45,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
     that.$iframeBody.append(that.editForm.render().$el);
     AFB.Routers.FormRouter.setFrameDimensions();
     that.initialize();
-    console.log(that.$el.prop('outerHTML'));
   },
 
   makeSidebarView: function(newSidebar){

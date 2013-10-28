@@ -27,8 +27,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
       console.log("adding formText for the first time");
       this.$el.prepend($formText.prop('outerHTML'));
     }
-    this.$el.find('.form-edit-box').before("<link href='/assets/form-edit.css'" +
-      " rel='stylesheet' type='text/css'>");
 
     return this;
   },
