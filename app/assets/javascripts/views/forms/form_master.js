@@ -9,16 +9,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
   initialize: function(){
     console.log('FormMaster View initialized');
     this.$formEditEl = $(JST["forms/edit_form"]());
-    console.log(this.$el.prop('outerHTML'));
   },
 
   render: function(newSidebar, formView){
     var that = this;
     console.log('rendering FormMaster view');
-    this.$el = this.options.$backup.clone();
-    
-    console.log(this.$el.find('iframe').prop('outerHTML'));
-    this.$el.append(this.makeSidebarView(newSidebar));
+    this.$el.html(this.options.$backup.clone().html());
+    this.$el.find('.body').append(this.makeSidebarView(newSidebar));
 
 		this.editForm && this.editForm.remove();
     this.editForm = new AFB.Views.FormEdit({
@@ -32,10 +29,10 @@ AFB.Views.FormMaster = Backbone.View.extend({
       console.log('--- iframe ready ---');
       var iframe = $('iframe').get(0).contentWindow.document;
       $(iframe).find('body').append(that.editForm.render().$el);
-      console.log($('iframe').prop('outerHTML'));
       that.initialize();
+      console.log(that.$el.prop('outerHTML'));
     });
-    
+
     console.log('--- End of FormMaster view #render ---');
     return this;
   },

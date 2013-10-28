@@ -21,6 +21,13 @@ a:hover {
   cursor: pointer;
 }
 
+iframe {
+  max-width: 75%;
+  margin-top: 25px;
+  // @include transform(scale(0.4, 0.4));
+  // @include transform-origin(top left);
+}
+
 /* --- LOGO --- */
 
 .corner-logo {
@@ -302,26 +309,6 @@ a.formSelect:hover {
   }
 }
 
-/* --- FORM EDIT--- */
-
-.editing {
-  background-color: $light-green;
-}
-
-.delete-field {
-	float: right;
-  color: red;
-  font-weight: bold;
-  font-size: 8px;
-  border-radius: 50%;
-  background-color: $very-pale-blue;
-	padding: 0 4px;
-}
-
-.save-or-add {
-  background-color: #CCFFFF;
-  min-height: 48px;
-}
 /* --- SHOWFORM --- */
 
 /* --- SIDEBAR --- */

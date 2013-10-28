@@ -17,10 +17,11 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log("in FormRouter#index");
     this.cleanRootEl();
     this.view && this.view.remove();
+    
     this.view = new AFB.Views.FormIndex({
       collection: AFB.formCollection,
       el: this.$seedEl
-    })
+    });
 
     this.$rootEl.append(this.view.render().$el);
 
@@ -51,7 +52,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 		this.model.save({},{
 			success: function(response, model) {
 				that.model.updateAttribute('#form-id', 'value', that.model.get('id'));
-	      console.log("form_id is " + that.model.get('id'));
+        console.log("form_id is " + that.model.get('id'));
       }
 		});
 
@@ -59,17 +60,11 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   formShow: function(id) {
-    this.cleanRootEl();
-    this.view && this.view.remove();
     console.log("in FormRouter#formShow for form #" + id);
-
 		var showModel = AFB.formCollection.get(id);
-
-    this.view = new AFB.Views.FormShow({
-      model: showModel,
-      el: this.$seedEl
-    })
-    this.$rootEl.append(this.view.render().$el);
+    var View = AFB.Views.FormShow;
+    
+    this.cleanAndPrepIframeView(View, showModel);
   },
 
   formEdit: function(id) {
@@ -84,7 +79,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.view && this.view.remove();
     this.view = new AFB.Views.FormMaster({
       model: model,
-      el: this.$rootEl,
+      el: this.$rootEl.find('.body').get(0),
       $backup: this.$rootEl.clone()
     });
     this.view.render();
@@ -97,5 +92,23 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.$rootEl.undelegate();
 
     this.initialize(this.$rootEl);
+  },
+  
+  cleanAndPrepIframeView: function(View, model){
+    console.log('cleaning up rootEl, creating iframe and creating new view');
+    this.cleanRootEl();
+    this.view && this.view.remove();
+    this.$rootEl.html(JST["forms/new_iframe"]());
+    var that = this;
+    
+    $('iframe').ready(function(){
+      console.log('--- iframe ready ---');
+      var iframe = $('iframe').get(0).contentWindow.document;
+      that.view = new View({
+        model: model,
+        el: $(iframe).find('body')
+      });
+      that.view.render();
+    });
   }
-})
+});

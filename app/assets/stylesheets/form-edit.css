@@ -1,0 +1,21 @@
+
+.editing {
+  background-color: #D2FFB3;
+}
+
+.delete-field {
+  position: absolute;
+  float: right;
+  color: red;
+  font-weight: bold;
+  font-size: 8px;
+  border-radius: 50%;
+  background-color: #EFFAFF;
+  padding: 0 4px;
+  display: inline;
+}
+
+.save-or-add {
+  background-color: #CCFFFF;
+  min-height: 48px;
+}
