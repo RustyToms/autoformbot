@@ -3,7 +3,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
     "click .sidebar_header" : "newSidebar",
     "click .sidebar" : "sidebarClick",
     "keyup .sidebar" : "sidebarValues",
-    "change .sidebar" : "sidebarValues"
+    "change .sidebar" : "sidebarValues",
+    "click #save-button" : "serverSave",
+    "click .duplicate-form button" : "duplicateForm"
   },
 
   initialize: function(){
@@ -29,18 +31,18 @@ AFB.Views.FormMaster = Backbone.View.extend({
   renderIframe: function(that){
     console.log('--- iframe ready, modifying ---');
     var iframe = $('iframe').get(0).contentWindow.document;
-    var $iframeBody = $(iframe).find('body');
-    $iframeBody.css('margin', '0');
+    that.$iframeBody = $(iframe).find('body');
+    that.$iframeBody.css('margin', '0');
       this.editForm && this.editForm.remove();  
       this.editForm = new AFB.Views.FormEdit({
       
         parentView: that,
         model: that.model,
-        el: $iframeBody
+        el: that.$iframeBody
         
       });
       
-    $iframeBody.append(that.editForm.render().$el);
+    that.$iframeBody.append(that.editForm.render().$el);
     AFB.Routers.FormRouter.setFrameDimensions();
     that.initialize();
     console.log(that.$el.prop('outerHTML'));
@@ -147,6 +149,57 @@ AFB.Views.FormMaster = Backbone.View.extend({
 	swapSidebar: function(sidebar){
 		var $sidebar = this.makeSidebarView(sidebar);
 		this.$el.find('.sidebar_window').replaceWith($sidebar);
-	}
+	},
+  
+  localSaveForm: function(that){
+    var $form = that.$iframeBody.find('.form-edit-box');
+    var name = $form.find('.formName').text().trim();
+    
+    that.model.set({
+      form_text: $form.prop('outerHTML'),
+      name: name
+    },{silent: true});
+  },
 
+  serverSave: function(){
+    this.serverSaveForm(this);
+  },
+  
+  serverSaveForm: function(that){
+    that.$iframeBody.find(".form-edit-box label, h2, p").
+      removeAttr('contenteditable');
+    that.removeActiveEdits(that);
+    that.localSaveForm(that);
+
+    console.log("in FormMaster#serverSaveForm");
+    var name = that.$iframeBody.find('.formName').text().trim();
+    var text = that.model.get('form_text');
+    this.model.save({
+      name: name,
+      form_text: text
+    },{
+      success: function(response, model){
+        console.log("save successful");
+        console.log(model);
+        console.log(response);
+        console.log(that.model.get('id'));
+      },
+      error: function(response, model){
+        console.log("error: " + response.responseText);
+        console.log(model);
+      }
+    });
+    that.render();
+  },
+    
+  removeActiveEdits: function(that){
+    console.log('removing all editing classes');
+    var $old = that.$iframeBody.find('.editing');
+    $old.find('.delete-field').remove();
+    $old.removeClass('editing');
+  },
+  
+  duplicateForm: function(event){
+    this.model.duplicateForm();
+  }
 });
