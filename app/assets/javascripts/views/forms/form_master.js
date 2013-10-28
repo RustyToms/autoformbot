@@ -14,8 +14,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
   render: function(newSidebar, formView){
     var that = this;
     console.log('rendering FormMaster view');
-    this.$el.html(this.options.$backup.clone().html());
-    this.$el.find('.body').append(this.makeSidebarView(newSidebar));
+    this.$el.html(this.options.$backup.clone().find('.body').html());
+    this.$el.append(this.makeSidebarView(newSidebar));
 
 		this.editForm && this.editForm.remove();
     this.editForm = new AFB.Views.FormEdit({
