@@ -12,6 +12,7 @@
 //
 //= require backbone
 //= require jquery.serializeJSON
+//= require jquery-ui-1.10.3.custom
 //= require auto_form_bot
 //= require_tree ../templates
 //= require_tree ./models

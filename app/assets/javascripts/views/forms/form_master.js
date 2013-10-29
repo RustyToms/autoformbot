@@ -21,7 +21,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
     $('iframe').ready(function(){
       that.renderIframe(that);
     });
-    
     this.$el.find('iframe').before($(JST["forms/edit_form"]()));
     console.log('--- End of FormMaster view #render ---');
     return this;
@@ -32,17 +31,21 @@ AFB.Views.FormMaster = Backbone.View.extend({
     var iframe = $('iframe').get(0).contentWindow.document;
     that.$iframeBody = $(iframe).find('body');
     that.$iframeBody.css('margin', '0');
-      this.editForm && this.editForm.remove();  
-      this.editForm = new AFB.Views.FormEdit({
+
+    this.editForm && this.editForm.remove();  
+    this.editForm = new AFB.Views.FormEdit({
+    
+      parentView: that,
+      model: that.model,
+      el: that.$iframeBody
       
-        parentView: that,
-        model: that.model,
-        el: that.$iframeBody
-        
-      });
+    });
       
     that.$iframeBody.append(that.editForm.render().$el);
     AFB.Routers.FormRouter.setFrameDimensions();
+    that.$iframeBody.find(".formEl").prepend("<div style='width: 100%;" +
+      "height: 100%; position: absolute; z-index: 3;' class='draggable'></div>");
+    that.$iframeBody.find('.draggable').draggable({ snap: true});
     that.initialize();
   },
 

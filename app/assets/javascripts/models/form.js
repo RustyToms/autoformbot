@@ -1,7 +1,7 @@
 AFB.Models.Form = Backbone.Model.extend ({
   updateAttribute: function(selector, attribute, value){
     console.log("updating form attribute values");
-		console.log(attribute + ": " + value)
+		console.log(attribute + ": " + value);
     $form = $(this.get('form_text'));
     $form.find(selector).attr(attribute, value);
     this.set('form_text', $form.prop('outerHTML'));
@@ -36,9 +36,9 @@ AFB.Models.Form = Backbone.Model.extend ({
 			
     $form = $(this.get('form_text'));
 		if (shouldCreate){
-			$form.find(selector).attr(prop, "true")
+			$form.find(selector).attr(prop, "true");
 		} else {
-	    $form.find(selector).removeAttr(prop);
+      $form.find(selector).removeAttr(prop);
 		}
 		
     this.set('form_text', $form.prop('outerHTML'));
@@ -50,7 +50,7 @@ AFB.Models.Form = Backbone.Model.extend ({
     $form.find('.editing').removeClass('editing');
     $form.find('.delete-field').remove();
 
-    this.set('form_text', $form.prop('outerHTML'))
+    this.set('form_text', $form.prop('outerHTML'));
   },
 
   updateValues: function(event) {

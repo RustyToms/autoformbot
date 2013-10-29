@@ -5,10 +5,10 @@
 /* --- ELEMENTS --- */
 
 .body {
-  margin-top: 105px;
-  display: block;
+  margin: 105px auto 0 auto;
+  display: inline-block;
   height: 100%;
-  width: 100%;
+  position: relative;
 }
 
 a:hover {
@@ -326,8 +326,10 @@ a.formSelect:hover {
   background-color: lightblue;
   width: 200px;
   height: 100%;
-  margin-right: 50px; 
+  margin: 0 0 0 20px; 
   float: left;
+  // position: absolute;
+  // display: inline-block;
 }
 
 .sidebar_header {
@@ -347,10 +349,17 @@ a.formSelect:hover {
 
 /* --- FORMEDIT OTHER --- */
 
-.sidebar_window + iframe {
-  float: left;
+.sidebar_window~iframe {
+  float: right;
+  top: 0;
+  position: absolute;
+  left: 250px;
+  margin: 0;
 }
 
 .save-or-add, .duplicate-form {
+  clear: both;
   display: inline-block;
+  margin: 10px 20px;
+  float: left;
 }
