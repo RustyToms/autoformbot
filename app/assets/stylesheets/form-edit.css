@@ -73,9 +73,10 @@ html {
  * Remove default margin.
  */
 
-body {
+body, form {
     margin: 0;
 }
+
 
 /* ==========================================================================
    Links

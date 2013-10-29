@@ -17,7 +17,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     var that = this;
     console.log('rendering FormMaster view');
     this.$el.html(this.options.$backup.clone().find('.body').html());
-    this.$el.append(this.makeSidebarView(newSidebar));
+    this.$el.prepend(this.makeSidebarView(newSidebar));
 
     $('iframe').ready(function(){
       that.renderIframe(that);

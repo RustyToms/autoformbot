@@ -56,9 +56,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 				that.model.updateAttribute('#form-id', 'value', that.model.get('id'));
         console.log("form_id is " + that.model.get('id'));
       }
-		});
-
-		
+		});	
   },
 
   formShow: function(id) {
@@ -119,12 +117,14 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 });
 
 AFB.Routers.FormRouter.setFrameDimensions = function(){
-    var iframe = $('iframe').get(0).contentWindow.document;
-    var $form = $(iframe).find('.form-edit-box');
-    
-    var width = $form.width(); //css('width');
-    width && $('.form-iframe').css('width', width);
-    var height = $form.height(); //.css('height');
-    height && $('.form-iframe').css('height', height);
-    console.log('width and height are ' + width + " and " + height);
+    $(function(){
+      var iframe = $('iframe').get(0).contentWindow.document;
+      var $form = $(iframe).find('.form-edit-box');
+      
+      var width = $form.width();
+      width && $('.form-iframe').css('width', width);
+      var height = $form.height();
+      height && $('.form-iframe').css('height', height);
+      console.log('width and height are ' + width + " and " + height);
+    });
   };
