@@ -3,20 +3,13 @@
 @import "app";
 
 /* --- ELEMENTS --- */
-main {
-  margin-top: 100px;
-}
 
 .body {
+  margin-top: 105px;
   display: block;
   height: 100%;
   width: 100%;
 }
-
-// .main {
-// display: block;
-// margin: auto;
-// }
 
 a:hover {
   cursor: pointer;
@@ -33,37 +26,37 @@ iframe {
 
 .corner-logo {
   display: inline-block;
-  margin: 25px auto 0 auto;
-  position: relative;
+  margin: 10px auto 0 auto;
+  height: 36px;
+  line-height: 1;
+  border-radius: 10px;
 }
 
 .corner-logo-box {
   position: relative;
   display: inline-block;
-  z-index: 50;
-  transition: 0.15s;
-  background-color: white;
-  padding: 0 70px 0 35px;
-  @include box-shadow(0 0 60px 20px white);
+  margin: 0 50px 0 35px;
 }
 
 .corner-logo h1 {
   font-size: 22px;
-  margin: 3px 0 0px 0;
   display: inline-block;
+  float: left;
+  margin-top: 2px;
 }
 
 #corner-logo-part1 {
-  margin-right: 2px;
-  font-size: 24px;
+  margin: 6px 4px 0 0;
   font-weight: bold;
+  font-size: 24px;
 }
 
 .corner-logo-box2 {
   display: inline-block;
+  position: relative;
   @include box-shadow(0 0 3px 1px $blue);
-  padding: 0px 20px 0px 2px;
-  margin: 3px 1px 2px 0px;
+  padding: 0px 25px 0px 2px;
+  margin: 3px 1px 0 0;
   border: 2px groove $blue;
 }
 
@@ -71,35 +64,26 @@ iframe {
   background-color: #000;
   display: inline-block;
   position: absolute;
-  z-index: 10;
   height: 23px;
   margin: 1px 0;
   float: left;
   width: 1px;
-}
-
-/* --- FLASH --- */
-
-.flash-msgs {
-  display: block;
-  text-align: center;
-}
-
-.notice {
-  display: inline-block;
-  margin: auto;
+  line-height: 1;
 }
 
 /* --- HEADER --- */
 header {
   display: block;
   position: fixed;
-  top: 0;
   width: 100%;
   z-index: 100;
   min-width: 800px;
-  background-color: rgba(255, 255, 255, 0.85);
-  @include box-shadow(0 0 25px 25px rgba(255, 255, 255, 0.85));
+  overflow: visible;
+  top: 0;
+  line-height: 0;
+  height: 46px;
+  @include box-shadow(0 0 25px 20px rgba(255, 255, 255, 0.85));
+  background-image: linear-gradient(180deg, white, white 20%,rgba(255,255,255,0.85));
 }
 
 .nav-bar {
@@ -108,21 +92,38 @@ header {
 
 .nav-bar li {
   display: inline-block;
-  margin: 40px 20px 0px 20px;
-  font-size: 22px;
+  margin: 0 20px 0px 20px;
+  font-size: 20px;
   border-radius: 5px;
 }
 
 .nav-bar a {
   color: black;
   border-radius: 5px;
+  display: inline-block;
+  line-height: 1;
+  margin-top: 15px;
 }
 
 .nav-bar a:hover {
-  background-color: white;
-  @include text-shadow(-1px 1px 1px black);
-  @include box-shadow(0 0 40px 30px white);
+  @include text-shadow(0 0 1px black, 0 0 10px $blue);
 }
+
+
+/* --- FLASH --- */
+
+.flash-msgs {
+  display: block;
+  text-align: center;
+  line-height: 1;
+}
+
+.notice {
+  display: inline-block;
+  margin: auto;
+  line-height: 1;
+}
+
 
 /* --- FORM INDEX --- */
 
@@ -139,10 +140,9 @@ header {
   font-weight: bold;
   margin: 0 0 25px 0;
   padding-top: 5px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.85);
-  @include box-shadow(0 0 30px 30px rgba(255, 255, 255, 0.85));
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.65);
+  @include box-shadow(0 0 35px 20px rgba(255, 255, 255, 0.65));
 }
 
 $formSelect-dim: 110px;

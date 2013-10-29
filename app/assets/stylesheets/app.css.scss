@@ -20,6 +20,7 @@ time, mark, audio, video, label {
 	vertical-align: baseline;
 	text-decoration: none;
 	color: inherit;
+	line-height: 1;
 }
 
 a:visited {
@@ -33,9 +34,7 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-body {
-	line-height: 1;
-}
+
 ol, ul {
 	list-style: none;
 }
@@ -53,7 +52,7 @@ table {
 }
 /*------------------------------- ELEMENTS -----------------------------*/
 
-body {
+html {
   font-family: sans-serif;
   font-size: 16px;
   display: block;
