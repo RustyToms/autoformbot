@@ -444,7 +444,7 @@ form {
   display: block;
 }
 
-.formEl * {
+.formEl > * {
   position: relative;
   z-index: -1;
 }
