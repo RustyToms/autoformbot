@@ -10,7 +10,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   initialize: function(){
     console.log('FormMaster View initialized');
-    this.$formEditEl = $(JST["forms/edit_form"]());
   },
 
   render: function(newSidebar, formView){
@@ -23,7 +22,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       that.renderIframe(that);
     });
     
-    this.$el.find('iframe').after($(JST["forms/edit_form"]()));
+    this.$el.find('iframe').before($(JST["forms/edit_form"]()));
     console.log('--- End of FormMaster view #render ---');
     return this;
   },

@@ -17,7 +17,8 @@ a:hover {
 
 iframe {
   overflow: hidden;
-  margin-top: 25px;
+  margin: 25px auto;
+  top: 0;
   // @include transform(scale(0.4, 0.4));
   // @include transform-origin(top left);
 }
@@ -319,12 +320,13 @@ a.formSelect:hover {
 
 /* --- SHOWFORM --- */
 
-/* --- SIDEBAR --- */
+/* --- FORMEDIT SIDEBAR --- */
 
 .sidebar_window {
   background-color: lightblue;
-  width: 40%;
+  width: 200px;
   height: 100%;
+  margin-right: 50px; 
   float: left;
 }
 
@@ -343,6 +345,12 @@ a.formSelect:hover {
   border: 2px dotted blue;
 }
 
+/* --- FORMEDIT OTHER --- */
 
+.sidebar_window + iframe {
+  float: left;
+}
 
-
+.save-or-add, .duplicate-form {
+  display: inline-block;
+}
