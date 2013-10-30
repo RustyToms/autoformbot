@@ -338,9 +338,17 @@ a.formSelect:hover {
 }
 
 .sidebar_header a {
-  display: inline-block;
-  width: 32%;
+  display: block;
+  float: left;
   text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  height: 100%;
+  width: 99px;
+}
+
+.sidebar_header a:first-child {
+  border-right: 1px solid black;
 }
 
 .sidebar {

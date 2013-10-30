@@ -43,24 +43,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       
     that.$iframeBody.append(that.editForm.render().$el);
     AFB.Routers.FormRouter.setFrameDimensions();
-    that.$iframeBody.append(JST['forms/make_draggable']({
-    }));
 
-    $(document).ready(function(){
-    that.$iframeBody.find(".formEl").prepend("<div style='width: 100%; height: 100%;" +
-      "position: absolute; z-index: 3;' class='draggable'></div>");
-    
-    that.$iframeBody.find('.draggable').
-      disableSelection().
-      css('webkit-user-select', 'none').
-      draggable({
-        snap: true,
-        cancel: null,
-        scroll: true,
-        stack: ".formEl"
-      });
-      console.log('draggable enabled');
-    });
     that.initialize();
   },
 

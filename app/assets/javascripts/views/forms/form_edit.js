@@ -1,6 +1,6 @@
 AFB.Views.FormEdit = Backbone.View.extend({
   events: {
-    // "click .formEl" : "parseClickForm",
+    "click .formEl" : "parseClickForm",
 		"keyup" : "updateSidebar"
   },
 
