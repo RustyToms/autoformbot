@@ -1,4 +1,4 @@
-@import "compass/css3";
+// @import "compass/css3";
 @import "application";
 @import "app";
 
@@ -95,3 +95,12 @@ main.home-page-content {
 }
 
 /* --- ERROR MESSAGES --- */
+.flash-msgs {
+	display: block;
+	margin: auto;
+	text-align: center;
+}
+
+.notice {
+	display: inline-block;
+}
