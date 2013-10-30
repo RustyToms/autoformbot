@@ -7,14 +7,11 @@ class ResultsController < ApplicationController
   def create
     @result = Result.new
     @result.form_id = params[:form_id]
-    @result.result = params[:results]
-    @params = params
+    @result.result = params[:result]
     if @result.save
-      # render json: @result      
-      render text: ""
+      render json: @result      
     else  
-      render json: @params
-      # render json: @result, status: :unprocessable_entity, @result.errors.full_messages
+      render json: @result, status: :unprocessable_entity
     end
   end
   

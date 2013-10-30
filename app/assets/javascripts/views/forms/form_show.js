@@ -18,6 +18,28 @@ AFB.Views.FormShow = Backbone.View.extend({
   submitForm: function(event){
     console.log('submitting form');
     event.preventDefault();
-    AFB.Routers.FormRouter.myFlash('Form Submitted!');
+    var that = this;
+    
+    var $form = that.$el.find('#form-itable').clone();
+    $form.find('#form-itable-submit').remove();
+    var form_id = that.model.get('id');
+    console.log(form_id);
+    $.ajax({
+      url: '/results',
+      type: 'POST',
+      dataType: 'json',
+      data: {result: $form.prop('outerHTML'), form_id: form_id},//$form.prop('outerHTML')},
+      success: function(response, status, object){
+        console.log(response);
+        console.log(status);
+        console.log(object);
+        AFB.Routers.FormRouter.myFlash('Form submitted!');
+      },
+      error: function(object, errorMsg){
+        console.log(object);
+        console.log(object.status);
+        AFB.Routers.FormRouter.myFlash(errorMsg + object.status);
+      }
+    });
   }
 });
