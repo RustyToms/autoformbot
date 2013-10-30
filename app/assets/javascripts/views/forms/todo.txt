@@ -1,3 +1,6 @@
+------------- Before Push to Heroku --------------------------
+Reassign form submit url
+--------------------------------------------------------------
 
 # set form to return results
 # set results to be sent to my server
@@ -6,26 +9,14 @@
 # report results
 # report singular result
 #
-# allow other users to be added to account
-#
 # add more form fields
 # allow fields to be draggable
-# allow multiple users to have access to the same account
+# allow multiple users to have access to the same account - done
 # allow multiple users to work on the same form at the same time
 
 - check out Rangy
 
-FormRadio
-# Remove all spaces and non-alphanumeric characters from classes - done
-# Remove value field from edit sidebar, have that done manually in the view - done
-# Resolve strange bug where the option name doesn't work if the field label is too long - seems to have been resolved when alpha-numeric bug resolved
-
-# make it so formEdit view doesn't refresh when not needed - done for what I needed
-
-- allow margin and padding and background color and border to be changed for each field
-
-# delete form from collection and refresh index page on delete in index page - done by side effect through good refactors
-
+# allow margin and padding and background color and border to be changed for each field
 
 Form Submission
 - submit with AJAX request?  So that a negative response from server can cause alerts to be made?  Or just make sure the form is good before it is sent - probably

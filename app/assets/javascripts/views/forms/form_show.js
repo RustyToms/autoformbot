@@ -1,4 +1,8 @@
 AFB.Views.FormShow = Backbone.View.extend({
+  events: {
+    'click #form-itable-submit': 'submitForm'
+  },
+  
   render: function(){
     this.model.removeActiveEdits();
     var $form = $(this.model.get('form_text'));
@@ -9,5 +13,11 @@ AFB.Views.FormShow = Backbone.View.extend({
     AFB.Routers.FormRouter.setFrameDimensions();
     
     return this;
+  },
+  
+  submitForm: function(event){
+    console.log('submitting form');
+    event.preventDefault();
+    AFB.Routers.FormRouter.myFlash('Form Submitted!');
   }
 });

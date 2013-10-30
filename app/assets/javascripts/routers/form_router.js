@@ -100,6 +100,10 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.cleanRootEl();
     this.view && this.view.remove();
     this.$rootEl.html(JST["forms/new_iframe"]());
+    this.$rootEl.find('.body').css({
+      display: 'block',
+      margin: 'auto'
+    });
     var that = this;
     
     $('iframe').ready(function(){
@@ -117,14 +121,23 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 });
 
 AFB.Routers.FormRouter.setFrameDimensions = function(){
-    $(function(){
-      var iframe = $('iframe').get(0).contentWindow.document;
-      var $form = $(iframe).find('.form-edit-box');
-      
-      var width = $form.width();
-      width && $('.form-iframe').css('width', width);
-      var height = $form.height();
-      height && $('.form-iframe').css('height', height);
-      console.log('width and height are ' + width + " and " + height);
-    });
-  };
+  $(function(){
+    var iframe = $('iframe').get(0).contentWindow.document;
+    var $form = $(iframe).find('.form-edit-box');
+    
+    var width = $form.width();
+    width && $('.form-iframe').css('width', width);
+    var height = $form.height();
+    height && $('.form-iframe').css('height', height);
+    console.log('width and height are ' + width + " and " + height);
+  });
+};
+
+AFB.Routers.FormRouter.myFlash = function(msg){
+  $('.flash-msgs').prepend(JST['my_flash']({
+    msg: msg
+  }));
+  window.setTimeout(function(){
+    $('.my-flash').last().remove();
+  }, 5000);
+};

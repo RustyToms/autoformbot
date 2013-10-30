@@ -5,7 +5,7 @@
 /* --- ELEMENTS --- */
 
 .body {
-  margin: 105px auto 0 auto;
+  // margin: 105px auto 0 auto;
   display: inline-block;
   height: 100%;
   position: relative;
@@ -116,7 +116,7 @@ header {
 .flash-msgs {
   display: block;
   text-align: center;
-  line-height: 1;
+  margin: 105px auto 0 auto;
 }
 
 .notice {

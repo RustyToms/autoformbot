@@ -32,7 +32,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   parseClickForm: function(event) {
     console.log("in parseClickForm");
-    $target = $(event.target);
+    var $target = $(event.target);
 		
     if($target.hasClass('delete-field')){
 			

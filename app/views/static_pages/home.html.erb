@@ -1,20 +1,21 @@
 
 <link href="/assets/home.css?body=1" media="all" rel="stylesheet" type="text/css">
 
+<div class='flash-msgs'>
   <% flash.each do |name, msg| %>
+    
     <% if msg.is_a?(String) %>
-      <div class='flash-msgs'>
-        <%= content_tag :div, msg, {id: "flash_#{name}", class: "notice"} %>
-      </div>
+      <%= content_tag :div, msg, {id: "flash_#{name}", class: "notice"} %>
     <% end %>
+    
     <% if msg.is_a?(Array) %>
-    <div class='flash-msgs'>
       <% msg.each do |message| %>
         <%= content_tag :div, message, {id: "flash_#{name}", class: "notice"}%>
       <% end %>
-    </div>
     <% end %>
+    
   <% end %>
+</div>
 
 
 <% if user_signed_in? %>
