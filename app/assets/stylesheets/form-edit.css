@@ -7,7 +7,7 @@
 /**
  * Correct `block` display not defined in IE 8/9.
  */
-
+.form-edit-box 
 article,
 aside,
 details,
@@ -26,7 +26,7 @@ summary {
 /**
  * Correct `inline-block` display not defined in IE 8/9.
  */
-
+.form-edit-box 
 audio,
 canvas,
 video {
@@ -37,7 +37,7 @@ video {
  * Prevent modern browsers from displaying `audio` without controls.
  * Remove excess height in iOS 5 devices.
  */
-
+.form-edit-box 
 audio:not([controls]) {
     display: none;
     height: 0;
@@ -47,7 +47,7 @@ audio:not([controls]) {
  * Address `[hidden]` styling not present in IE 8/9.
  * Hide the `template` element in IE, Safari, and Firefox < 22.
  */
-
+.form-edit-box 
 [hidden],
 template {
     display: none;
@@ -62,8 +62,7 @@ template {
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-
-html {
+.form-edit-box {
     font-family: sans-serif; /* 1 */
     -ms-text-size-adjust: 100%; /* 2 */
     -webkit-text-size-adjust: 100%; /* 2 */
@@ -72,10 +71,6 @@ html {
 /**
  * Remove default margin.
  */
-
-body {
-    margin: 0;
-}
 
 
 /* ==========================================================================
@@ -86,7 +81,7 @@ body {
  * Remove the gray background color from active links in IE 10.
  */
 
-a {
+.form-edit-box a {
     background: transparent;
 }
 
@@ -94,7 +89,7 @@ a {
  * Address `outline` inconsistency between Chrome and other browsers.
  */
 
-a:focus {
+.form-edit-box a:focus {
     outline: thin dotted;
 }
 
@@ -102,7 +97,7 @@ a:focus {
  * Improve readability when focused and also mouse hovered in all browsers.
  */
 
-a:active,
+.form-edit-box a:active,
 a:hover {
     outline: 0;
 }
@@ -116,7 +111,7 @@ a:hover {
  * contexts in Firefox 4+, Safari 5, and Chrome.
  */
 
-h1 {
+.form-edit-box h1 {
     font-size: 2em;
     margin: 0.67em 0;
 }
@@ -125,7 +120,7 @@ h1 {
  * Address styling not present in IE 8/9, Safari 5, and Chrome.
  */
 
-abbr[title] {
+.form-edit-box abbr[title] {
     border-bottom: 1px dotted;
 }
 
@@ -133,7 +128,7 @@ abbr[title] {
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
 
-b,
+.form-edit-box b,
 strong {
     font-weight: bold;
 }
@@ -142,7 +137,7 @@ strong {
  * Address styling not present in Safari 5 and Chrome.
  */
 
-dfn {
+.form-edit-box dfn {
     font-style: italic;
 }
 
@@ -150,7 +145,7 @@ dfn {
  * Address differences between Firefox and other browsers.
  */
 
-hr {
+.form-edit-box hr {
     -moz-box-sizing: content-box;
     box-sizing: content-box;
     height: 0;
@@ -160,7 +155,7 @@ hr {
  * Address styling not present in IE 8/9.
  */
 
-mark {
+.form-edit-box mark {
     background: #ff0;
     color: #000;
 }
@@ -169,7 +164,7 @@ mark {
  * Correct font family set oddly in Safari 5 and Chrome.
  */
 
-code,
+.form-edit-box code,
 kbd,
 pre,
 samp {
@@ -181,7 +176,7 @@ samp {
  * Improve readability of pre-formatted text in all browsers.
  */
 
-pre {
+.form-edit-box pre {
     white-space: pre-wrap;
 }
 
@@ -189,7 +184,7 @@ pre {
  * Set consistent quote types.
  */
 
-q {
+.form-edit-box q {
     quotes: "\201C" "\201D" "\2018" "\2019";
 }
 
@@ -197,7 +192,7 @@ q {
  * Address inconsistent and variable font size in all browsers.
  */
 
-small {
+.form-edit-box small {
     font-size: 80%;
 }
 
@@ -205,7 +200,7 @@ small {
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
 
-sub,
+.form-edit-box sub,
 sup {
     font-size: 75%;
     line-height: 0;
@@ -213,11 +208,11 @@ sup {
     vertical-align: baseline;
 }
 
-sup {
+.form-edit-box sup {
     top: -0.5em;
 }
 
-sub {
+.form-edit-box sub {
     bottom: -0.25em;
 }
 
@@ -229,7 +224,7 @@ sub {
  * Remove border when inside `a` element in IE 8/9.
  */
 
-img {
+.form-edit-box img {
     border: 0;
 }
 
@@ -237,7 +232,7 @@ img {
  * Correct overflow displayed oddly in IE 9.
  */
 
-svg:not(:root) {
+.form-edit-box svg:not(:root) {
     overflow: hidden;
 }
 
@@ -249,7 +244,7 @@ svg:not(:root) {
  * Address margin not present in IE 8/9 and Safari 5.
  */
 
-figure {
+.form-edit-box figure {
     margin: 0;
 }
 
@@ -261,7 +256,7 @@ figure {
  * Define consistent border, margin, and padding.
  */
 
-fieldset {
+.form-edit-box fieldset {
     border: 1px solid #c0c0c0;
     margin: 0 2px;
     padding: 0.35em 0.625em 0.75em;
@@ -272,7 +267,7 @@ fieldset {
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
 
-legend {
+.form-edit-box legend {
     border: 0; /* 1 */
     padding: 0; /* 2 */
 }
@@ -283,7 +278,7 @@ legend {
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
 
-button,
+.form-edit-box button,
 input,
 select,
 textarea {
@@ -297,7 +292,7 @@ textarea {
  * the UA stylesheet.
  */
 
-button,
+.form-edit-box button,
 input {
     line-height: normal;
 }
@@ -309,7 +304,7 @@ input {
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */
 
-button,
+.form-edit-box button,
 select {
     text-transform: none;
 }
@@ -322,7 +317,7 @@ select {
  *    `input` and others.
  */
 
-button,
+.form-edit-box button,
 html input[type="button"], /* 1 */
 input[type="reset"],
 input[type="submit"] {
@@ -334,7 +329,7 @@ input[type="submit"] {
  * Re-set default cursor for disabled elements.
  */
 
-button[disabled],
+.form-edit-box button[disabled],
 html input[disabled] {
     cursor: default;
 }
@@ -344,7 +339,7 @@ html input[disabled] {
  * 2. Remove excess padding in IE 8/9/10.
  */
 
-input[type="checkbox"],
+.form-edit-box input[type="checkbox"],
 input[type="radio"] {
     box-sizing: border-box; /* 1 */
     padding: 0; /* 2 */
@@ -356,7 +351,7 @@ input[type="radio"] {
  *    (include `-moz` to future-proof).
  */
 
-input[type="search"] {
+.form-edit-box input[type="search"] {
     -webkit-appearance: textfield; /* 1 */
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box; /* 2 */
@@ -368,7 +363,7 @@ input[type="search"] {
  * on OS X.
  */
 
-input[type="search"]::-webkit-search-cancel-button,
+.form-edit-box input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
 }
@@ -377,7 +372,7 @@ input[type="search"]::-webkit-search-decoration {
  * Remove inner padding and border in Firefox 4+.
  */
 
-button::-moz-focus-inner,
+.form-edit-box button::-moz-focus-inner,
 input::-moz-focus-inner {
     border: 0;
     padding: 0;
@@ -388,7 +383,7 @@ input::-moz-focus-inner {
  * 2. Improve readability and alignment in all browsers.
  */
 
-textarea {
+.form-edit-box textarea {
     overflow: auto; /* 1 */
     vertical-align: top; /* 2 */
 }
@@ -401,7 +396,7 @@ textarea {
  * Remove most spacing between table cells.
  */
 
-table {
+.form-edit-box table {
     border-collapse: collapse;
     border-spacing: 0;
 }
@@ -409,15 +404,15 @@ table {
 /*  ===============================================================
     Custom css
     ===============================================================  */
-form {
+.form-edit-box form {
   margin: 0;
 }
 
-.editing {
+.form-edit-box .editing {
   background-color: #D2FFB3;
 }
 
-.delete-field {
+.form-edit-box .delete-field {
   position: absolute;
   color: red;
   font-weight: bold;
@@ -428,23 +423,21 @@ form {
   display: inline;
 }
 
-.save-or-add {
+.form-edit-box .save-or-add {
   background-color: #CCFFFF;
   min-height: 48px;
 }
 
-.required:after {
+.form-edit-box .required:after {
   content: "*";
   color: red;
 }
 
-.formEl {
+.form-edit-box .formEl {
   position: relative;
-  z-index: 2;
   display: block;
 }
 
-.formEl > * {
+.form-edit-box .formEl > * {
   position: relative;
-  z-index: -1;
 }

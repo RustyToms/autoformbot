@@ -112,7 +112,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       $iframeBody.css('margin', '0');
       that.view = new View({
         model: model,
-        el: $iframeBody
+        el: that.$rootEl
       });
       that.view.render();
     });
