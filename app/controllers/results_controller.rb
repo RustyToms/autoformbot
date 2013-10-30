@@ -9,7 +9,7 @@ class ResultsController < ApplicationController
     @result.form_id = params[:form_id]
     @result.result = params[:result]
     if @result.save
-      render json: @result      
+      render json: @result
     else  
       render json: @result, status: :unprocessable_entity
     end

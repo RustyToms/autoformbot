@@ -133,7 +133,6 @@ header {
   @include box-shadow(0 0 20px 10px rgba(255, 255, 255, 0.85));
 }
 
-
 /* --- FORM INDEX --- */
 
 .page-title-box {
@@ -328,11 +327,17 @@ a.formSelect:hover {
 
 /* --- SHOWFORM --- */
 
+.show-form.body {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 /* --- FORMEDIT SIDEBAR --- */
 
 .sidebar_window {
   background-color: lightblue;
-  width: 200px;
+  width: 300px;
   height: 100%;
   margin: 0 0 0 20px; 
   float: left;
@@ -365,11 +370,11 @@ a.formSelect:hover {
 
 /* --- FORMEDIT OTHER --- */
 
-.sidebar_window~iframe {
+.sidebar_window~.main {
   float: right;
   top: 0;
   position: absolute;
-  left: 250px;
+  left: 350px;
   margin: 0;
 }
 

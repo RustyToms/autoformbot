@@ -10,41 +10,32 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   initialize: function(){
     console.log('FormMaster View initialized');
+    this.$formEditEl = $(JST["forms/edit_form"]());
   },
 
   render: function(newSidebar, formView){
-    var that = this;
     console.log('rendering FormMaster view');
-    this.$el.html(this.options.$backup.clone().find('.body').html());
-    this.$el.prepend(this.makeSidebarView(newSidebar));
-
-    $('iframe').ready(function(){
-      that.renderIframe(that);
-    });
-    this.$el.find('iframe').before($(JST["forms/edit_form"]()));
+    this.$el.empty();
+    this.$el.append(this.makeSidebarView(newSidebar));
+    this.$el.append($(JST["forms/edit_form"]()));
+    
+    this.renderForm();    
     console.log('--- End of FormMaster view #render ---');
     return this;
   },
   
-  renderIframe: function(that){
-    console.log('--- iframe ready, modifying ---');
-    var iframe = $('iframe').get(0).contentWindow.document;
-    that.$iframeBody = $(iframe).find('body');
-    that.$iframeBody.css('margin', '0');
-
+  renderForm: function(){
     this.editForm && this.editForm.remove();  
     this.editForm = new AFB.Views.FormEdit({
     
-      parentView: that,
-      model: that.model,
-      el: that.$iframeBody
+      parentView: this,
+      model: this.model,
+      el: $("<div class='main' ></div>")
       
     });
-      
-    that.$iframeBody.append(that.editForm.render().$el);
-    AFB.Routers.FormRouter.setFrameDimensions();
+    this.$el.append(this.editForm.render().$el);
 
-    that.initialize();
+    this.initialize();
   },
 
   makeSidebarView: function(newSidebar){
@@ -151,7 +142,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 	},
   
   localSaveForm: function(that){
-    var $form = that.$iframeBody.find('.form-edit-box');
+    var $form = that.$el.find('.form-edit-box');
     var name = $form.find('.formName').text().trim();
     
     that.model.set({
@@ -165,13 +156,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
   
   serverSaveForm: function(that){
-    that.$iframeBody.find(".form-edit-box label, h2, p").
+    that.$el.find(".form-edit-box label, h2, p").
       removeAttr('contenteditable');
     that.removeActiveEdits(that);
     that.localSaveForm(that);
 
     console.log("in FormMaster#serverSaveForm");
-    var name = that.$iframeBody.find('.formName').text().trim();
+    var name = that.$el.find('.form-edit-box .formName').text().trim();
     var text = that.model.get('form_text');
     this.model.save({
       name: name,
@@ -193,7 +184,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     
   removeActiveEdits: function(that){
     console.log('removing all editing classes');
-    var $old = that.$iframeBody.find('.editing');
+    var $old = this.$el.find('.editing');
     $old.find('.delete-field').remove();
     $old.removeClass('editing');
   },

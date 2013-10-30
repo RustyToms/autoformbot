@@ -6,11 +6,10 @@ AFB.Views.FormShow = Backbone.View.extend({
   render: function(){
     this.model.removeActiveEdits();
     var $form = $(this.model.get('form_text'));
-    $form.append("<input type='submit' value='Submit' form='form-itable'" +
-      " id='form-itable-submit'>");
+    $form.find('#form-itable').append("<input type='submit' value='Submit'" +
+      "form='form-itable' id='form-itable-submit'>");
     this.$el.html($form.prop('outerHTML'));
 		this.$el.append(JST['forms/show_form']());
-    AFB.Routers.FormRouter.setFrameDimensions();
     
     return this;
   },
@@ -28,18 +27,22 @@ AFB.Views.FormShow = Backbone.View.extend({
       url: '/results',
       type: 'POST',
       dataType: 'json',
-      data: {result: $form.prop('outerHTML'), form_id: form_id},//$form.prop('outerHTML')},
-      success: function(response, status, object){
-        console.log(response);
-        console.log(status);
-        console.log(object);
-        AFB.Routers.FormRouter.myFlash('Form submitted!');
-      },
-      error: function(object, errorMsg){
-        console.log(object);
-        console.log(object.status);
-        AFB.Routers.FormRouter.myFlash(errorMsg + object.status);
-      }
+      data: {result: $form.prop('outerHTML'), form_id: form_id},
+      success: this.submissionSuccess,
+      error: this.submissionError
     });
+  },
+  
+  submissionSuccess: function(response, status, object){
+    console.log(response);
+    console.log(status);
+    console.log(object);
+    AFB.Routers.FormRouter.myFlash('Form submitted!');
+  },
+  
+  submissionError: function(object, errorMsg){
+    console.log(object);
+    console.log(object.status);
+    AFB.Routers.FormRouter.myFlash(errorMsg + object.status);
   }
 });

@@ -22,7 +22,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       collection: AFB.formCollection,
       el: this.$seedEl
     });
-
+    console.log(this.$rootEl.prop('outerHTML'));
     this.$rootEl.append(this.view.render().$el);
 
   },
@@ -30,7 +30,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   formNew: function(){
     console.log("In FormRouter#formNew");
     this.cleanRootEl();
-    this.$rootEl.html(JST["forms/new_iframe"]());
+    this.$rootEl.html(this.$seedEl.clone());
     this.model = new AFB.Models.Form();
     this.setUpModel();
 
@@ -63,18 +63,21 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log("in FormRouter#formShow for form #" + id);
 		var showModel = AFB.formCollection.get(id);
     var View = AFB.Views.FormShow;
-    
-    this.cleanAndPrepIframeView(View, showModel);
-    this.$rootEl.find('.body').css({
-      display: 'block'
-    });
+    this.cleanRootEl();
+    this.view && this.view.remove();
+    console.log(this.$rootEl.prop('outerHTML'));
+    this.view = new View({
+        model: showModel,
+        el: $("<div class='body show-form'></div>")
+      });
+    this.$rootEl.append(this.view.render().$el);
+    this.fitContent('.show-form', '.form-edit-box');
   },
 
   formEdit: function(id) {
     console.log('in FormRouter#formEdit for form #' + id);
 		var editModel = AFB.formCollection.get(id);
     this.cleanRootEl();
-    this.$rootEl.html(JST["forms/new_iframe"]());
     this.formMaster(editModel);
   },
 
@@ -82,11 +85,10 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.view && this.view.remove();
     this.view = new AFB.Views.FormMaster({
       model: model,
-      el: this.$rootEl.find('.body').get(0),
-      $backup: this.$rootEl.clone()
+      el: this.$seedEl,
     });
 
-    this.view.render();
+    this.$rootEl.append(this.view.render().$el);
   },
 
   cleanRootEl: function(){
@@ -97,40 +99,20 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 
     this.initialize(this.$rootEl);
   },
-  
-  cleanAndPrepIframeView: function(View, model){
-    console.log('cleaning up rootEl, creating iframe and creating new view');
-    this.cleanRootEl();
-    this.view && this.view.remove();
-    this.$rootEl.html(JST["forms/new_iframe"]());
-    var that = this;
-    
-    $('iframe').ready(function(){
-      console.log('--- iframe ready ---');
-      var iframe = $('iframe').get(0).contentWindow.document;
-      var $iframeBody = $(iframe).find('body');
-      $iframeBody.css('margin', '0');
-      that.view = new View({
-        model: model,
-        el: that.$rootEl
-      });
-      that.view.render();
+
+  fitContent: function(outsideSelect, insideSelect){
+    $(function(){
+      var $container = $(outsideSelect);
+      var $form = $(insideSelect);
+      
+      var width = $form.width();
+      width && $container.css('width', width);
+      var height = $form.height();
+      height && $container.css('height', height);
+      console.log('width and height are ' + width + " and " + height);
     });
   }
 });
-
-AFB.Routers.FormRouter.setFrameDimensions = function(){
-  $(function(){
-    var iframe = $('iframe').get(0).contentWindow.document;
-    var $form = $(iframe).find('.form-edit-box');
-    
-    var width = $form.width();
-    width && $('.form-iframe').css('width', width);
-    var height = $form.height();
-    height && $('.form-iframe').css('height', height);
-    console.log('width and height are ' + width + " and " + height);
-  });
-};
 
 AFB.Routers.FormRouter.myFlash = function(msg){
   $('.flash-msgs').prepend(JST['my_flash']({
