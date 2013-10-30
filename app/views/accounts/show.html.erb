@@ -17,23 +17,13 @@
       <li><%= link_to('Log Out', destroy_user_session_path, :method => :delete)%></li>
     </ul>
   </nav>
-</header>
-
-<main>
+  
   <div class='flash-msgs group'>
-    <%- flash.each do |name, msg|-%>
-      <%- if msg.is_a?(String) -%>
-        <%= content_tag :div, msg, {id: "flash_#{name}", class: "notice"} -%>
-      <%- end -%>
-      <%- if msg.is_a?(Array) -%>
-      <%- msg.each do |message| -%>
-        <%= content_tag :div, message, {id: "flash_#{name}", class: "notice"} -%>
-      <%- end -%>
-      <%- end -%>
-    <%- end -%>
-    I'm a message!<br>And another line!
   </div>
   
+</header>
+
+<main>  
   <div class='backbone-render'>
   </div>
   

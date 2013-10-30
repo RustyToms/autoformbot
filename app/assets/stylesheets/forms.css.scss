@@ -5,7 +5,7 @@
 /* --- ELEMENTS --- */
 
 .body {
-  // margin: 105px auto 0 auto;
+  margin: 105px auto 0 auto;
   display: inline-block;
   height: 100%;
   position: relative;
@@ -116,13 +116,21 @@ header {
 .flash-msgs {
   display: block;
   text-align: center;
-  margin: 105px auto 0 auto;
+  width: 800px;
+  margin: 15px auto;
 }
 
-.notice {
+.my-flash {
   display: inline-block;
-  margin: auto;
   line-height: 1;
+  color: red;
+}
+
+.my-flash h2 {
+  margin: 0;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  @include box-shadow(0 0 20px 10px rgba(255, 255, 255, 0.85));
 }
 
 

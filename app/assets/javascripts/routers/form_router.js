@@ -56,7 +56,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 				that.model.updateAttribute('#form-id', 'value', that.model.get('id'));
         console.log("form_id is " + that.model.get('id'));
       }
-		});	
+		});
   },
 
   formShow: function(id) {
@@ -65,6 +65,9 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     var View = AFB.Views.FormShow;
     
     this.cleanAndPrepIframeView(View, showModel);
+    this.$rootEl.find('.body').css({
+      display: 'block'
+    });
   },
 
   formEdit: function(id) {
@@ -100,10 +103,6 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.cleanRootEl();
     this.view && this.view.remove();
     this.$rootEl.html(JST["forms/new_iframe"]());
-    this.$rootEl.find('.body').css({
-      display: 'block',
-      margin: 'auto'
-    });
     var that = this;
     
     $('iframe').ready(function(){
