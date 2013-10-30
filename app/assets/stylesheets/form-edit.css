@@ -1,3 +1,92 @@
+.form-edit-box html, body, div, span, applet, object,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, main, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form,legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, label {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+  color: inherit;
+  line-height: 1;
+}
+
+.form-edit-box a:visited {
+  font: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* HTML5 display-role reset for older browsers */
+.form-edit-box article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+.form-edit-box ol, ul {
+  list-style: none;
+}
+.form-edit-box blockquote, q {
+  quotes: none;
+}
+.form-edit-box blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+.form-edit-box table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/*------------------------------- ELEMENTS -----------------------------*/
+
+.form-edit-box html {
+  font-family: sans-serif;
+  font-size: 16px;
+  display: block;
+  background-color: $dark-steel;
+  background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
+  linear-gradient(90deg, $background-faded-yellow 50%, transparent 50%),
+  linear-gradient(90deg, transparent 50%, $background-blue 50%),
+  linear-gradient(90deg, transparent 50%, $background-yellow 50%);
+  background-image: -webkit-linear-gradient(left, rgba(255,255,255,.07) 50%, transparent 50%),
+  -webkit-linear-gradient(left, $background-faded-yellow 50%, transparent 50%),
+  -webkit-linear-gradient(left, transparent 50%, $background-blue 50%),
+  -webkit-linear-gradient(left, transparent 50%, $background-yellow 50%);
+  background-size: 13px, 29px, 37px, 53px;
+  margin-top: 0;
+}
+
+.form-edit-box h2 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 15px;
+}
+
+.form-edit-box h3 {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px;
+}
+
+.form-edit-box div, main, section, a {
+  transition: 0.15s;
+  -webkit-transform: translateZ(0);
+}
+
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 
 /* ==========================================================================
