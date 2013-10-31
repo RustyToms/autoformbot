@@ -9,17 +9,24 @@ AFB.Views.FormEdit = Backbone.View.extend({
     var that = this;
     console.log('FormEdit View initialized');
     this.listenTo(this.model, 'change', function(){
-      that.render();
+      that.renderChange();
     });
   },
 
   render: function(){
     console.log("rendering FormEdit view");
+    this.$el.empty();
     var $formText = $(this.model.get('form_text'));
 		$formText.find("label, h2, p").attr('contenteditable', 'true');
     
     this.$el.append($formText.prop('outerHTML'));
     return this;
+  },
+  
+  renderChange: function(){
+    console.log("rendering FormEdit form change");
+    var $newField = $(this.model.get('form_text')).find('.editing');
+    this.$el.find('.editing').replaceWith($newField);
   },
 
   parseClickForm: function(event) {
