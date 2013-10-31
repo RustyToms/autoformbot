@@ -49,16 +49,27 @@
 
   		<div class='sign-in-sign-up group'>
   		<% if user_signed_in? %>
-          <a class='home-page-button'
-            href='/accounts/<%= @url %>'>My Forms</a>
-          <a class='home-page-button'
-            href="/users/sign_out" data-method="delete" rel="nofollow">Log Out</a>
-  		<% else %>
-  		    <a class='sign-in-button home-page-button'
-            href="<%= new_user_session_url %>">Sign In!</a>
-  		    <a class='sign-up-button home-page-button'
-            href="<%= new_user_registration_url %>">Sign Up!</a>
-  		<% end %>
+        
+        <div class='home-page-button'>My Forms
+          <a href='/accounts/<%= @url %>'></a>
+        </div>
+      
+        <div class='home-page-button'>Log Out
+          <a href="/users/sign_out" data-method="delete" rel="nofollow"></a>
+        </div>
+  		
+      <% else %>
+      
+        <div class='home-page-button'>Sign In!
+  		    <a class='sign-in-button' href="<%= new_user_session_url %>"></a>
+        </div>
+      
+        <div class='home-page-button'>Sign Up!
+  		    <a class='sign-up-button' href="<%= new_user_registration_url %>">
+          </a>
+        </div>
+  		
+      <% end %>
 			</div>
     </div>
 
@@ -99,13 +110,24 @@
           type="password"></div>
 
         <div class='sign-in-sign-up group'>
-          <input
-            class='home-page-button'
-            name="commit"
-            type="submit"
-            value="Sign in!">
-
-          <a class='back-button home-page-button'>Back</a>
+          
+          <div class='input-click-fix home-page-button'>
+            <span>Sign In!<span>
+            <input
+              name="commit"
+              type="submit"
+              value=''>
+          </div>
+          
+          <div class='home-page-button'>Back
+            <a class='back-button'></a>
+          </div><br>
+          
+          <div class='home-page-button no-account'>No Account? Sign Up!
+            <a class='sign-up-button' href="<%= new_user_registration_url %>">
+            </a>
+          </div>
+          
         </div>
       </form>
     </div>
@@ -163,13 +185,19 @@
             value="ultimate"/>
 
           <div class='sign-in-sign-up group'>
+          
+          <div class='input-click-fix home-page-button'>
+            <span>Sign Up!<span>
             <input
-              class='home-page-button'
               name="commit"
               type="submit"
-              value="Sign up!">
+              value=''>
+          </div>
 
-            <a class='back-button home-page-button'>Back</a>
+          <div class='home-page-button'>Back
+            <a class='back-button'></a>
+          </div>
+          
           </div>
       </form>
 
