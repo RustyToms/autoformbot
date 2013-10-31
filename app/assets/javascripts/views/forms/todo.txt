@@ -24,13 +24,3 @@ Form Submission
 
 Form Options
 - url to redirect to on form submission
-
-
-Logo -
-<div style='background-color: #fff; padding: 6px; position: relative' >
-<span style='margin: 4px 1px 4px 4px; display: block; float: left; font-size: 12px' 
->Form</span>
-<input 
-style='margin: 0; padding: 0; border: 1px solid #b7b7b7; border-top: 1px solid #999; display: inline-block' 
-size='5' type='text' value='-itable'>
-</div>

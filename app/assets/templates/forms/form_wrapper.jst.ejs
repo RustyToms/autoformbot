@@ -493,6 +493,10 @@ template {
 /*  ===============================================================
     Custom css
     ===============================================================  */
+.fi-30x ol, .fi-30x ul {
+  list-style: none;
+} 
+
 .fi-30x form#form-itable {
   margin: 0;
   padding: 20px;
@@ -527,10 +531,15 @@ template {
   position: relative;
   display: block;
   margin-bottom: 20px;
+  z-index: 2;
 }
 
-.fi-30x .formEl:hover {
-  cursor: select;
+.ui-sortable li{
+  cursor: pointer;
+}
+
+.ui-sortable li:hover{
+  background-color: pink;
 }
 
 .fi-30x .formEl > * {

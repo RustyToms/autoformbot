@@ -18,8 +18,17 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.$el.empty();
     var $formText = $(this.model.get('form_text'));
 		$formText.find("label, h2, p").attr('contenteditable', 'true');
-    // $formText.find(".formEl").draggable();
-    // $formText.droppable();
+    var that = this;
+    
+    $(function(){
+      $(".fields-list").sortable({
+        stop: function(event, ui){
+          myUi = ui;
+          myEvent = event;
+          that.parseClickForm({target: ui.helper});
+        }
+      });
+    });
     
     this.$el.append($formText.prop('outerHTML'));
     return this;
@@ -29,6 +38,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
     console.log("rendering FormEdit form change");
     var $newField = $(this.model.get('form_text')).find('.editing');
     this.$el.find('.editing').replaceWith($newField);
+    $(function(){
+      $(".fields-list").sortable();
+    });
   },
 
   parseClickForm: function(event) {

@@ -21,11 +21,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.renderForm();
     
     var that = this;
-    $(function(){
-          that.$el.find(".formEl").draggable();
-          that.$el.find("#form-itable").droppable();
-          console.log(that.$el.find("#form-itable").prop('outerHTML'));
-    });
     console.log('--- End of FormMaster view #render ---');
     return this;
   },
@@ -153,6 +148,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   localSaveForm: function(that){
     $('.ui-draggable').draggable('destroy');
     $('.ui-droppable').droppable('destroy');
+    $('.ui-sortable').sortable('destroy');
     var $form = that.$el.find('form#form-itable');
     var name = $form.find('.formName').text().trim();
     

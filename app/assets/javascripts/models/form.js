@@ -75,7 +75,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 
   addField: function(field){
     var $form = $(this.get('form_text'));
-    $form.append(field);
+    $form.find('.fields-list').append(field);
     this.set('form_text', $form.prop('outerHTML'));
   },
 	
