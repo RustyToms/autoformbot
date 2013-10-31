@@ -10,30 +10,32 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   initialize: function(){
     console.log('FormMaster View initialized');
-    this.$formEditEl = $(JST["forms/edit_form"]());
   },
 
   render: function(newSidebar, formView){
     console.log('rendering FormMaster view');
     this.$el.empty();
     this.$el.append(this.makeSidebarView(newSidebar));
-    this.$el.append($(JST["forms/edit_form"]()));
+    this.$el.append($(JST["forms/save_dup_buttons"]()));
     
-    this.renderForm();    
+    this.renderForm();
     console.log('--- End of FormMaster view #render ---');
     return this;
   },
   
   renderForm: function(){
-    this.editForm && this.editForm.remove();  
+    this.editForm && this.editForm.remove();
+    var $formWrapper = $("<div class='main' ></div>");
+    $formWrapper.html(JST['forms/form_wrapper']());
     this.editForm = new AFB.Views.FormEdit({
     
       parentView: this,
       model: this.model,
-      el: $("<div class='main' ></div>")
+      el: $('<span></span>')
       
     });
-    this.$el.append(this.editForm.render().$el);
+    $formWrapper.find('.form-edit-box').append(this.editForm.render().$el);
+    this.$el.append($formWrapper);
 
     this.initialize();
   },
@@ -142,7 +144,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 	},
   
   localSaveForm: function(that){
-    var $form = that.$el.find('.form-edit-box');
+    var $form = that.$el.find('form#form-itable');
     var name = $form.find('.formName').text().trim();
     
     that.model.set({

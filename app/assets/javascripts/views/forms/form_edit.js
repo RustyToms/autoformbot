@@ -36,26 +36,30 @@ AFB.Views.FormEdit = Backbone.View.extend({
     if($target.hasClass('delete-field')){
 			
       $target.closest(".formEl").remove();
-      this.localSaveForm();
+      this.parentView.localSaveForm(this.parentView);
       this.parentView.render();
 			
     } else if (!$target.closest(".formEl").hasClass('editing')){
-      this.parentView.removeActiveEdits(this.parentView);
-			
-      var $formEl = $target.closest(".formEl");
-			$formEl.addClass("editing").
-      append("<button class='delete-field'>X</button>");
-      this.parentView.localSaveForm(this.parentView);
-
-      var sidebarName = $formEl.data("sidebar");
-      console.log("new sidebar should be " + sidebarName);
-      var sidebar = new AFB.Views[sidebarName]({
-        model: this.model,
-        field: $formEl
-      });
-      
-      this.parentView.swapSidebar(sidebar);
+      this.startEditingField($target);
     }
+  },
+  
+  startEditingField: function($target){
+    this.parentView.removeActiveEdits(this.parentView);
+      
+    var $formEl = $target.closest(".formEl");
+    $formEl.addClass("editing").
+    append("<button class='delete-field'>X</button>");
+    this.parentView.localSaveForm(this.parentView);
+
+    var sidebarName = $formEl.data("sidebar");
+    console.log("new sidebar should be " + sidebarName);
+    var sidebar = new AFB.Views[sidebarName]({
+      model: this.model,
+      field: $formEl
+    });
+    
+    this.parentView.swapSidebar(sidebar);
   },
   
 	updateSidebar: function(){

@@ -5,10 +5,11 @@
 /* --- ELEMENTS --- */
 
 .body {
-  margin: 105px auto 0 auto;
-  display: inline-block;
+  margin: 0 auto 0 auto;
+  display: block;
   height: 100%;
   position: relative;
+  text-align: left;
 }
 
 a:hover {
@@ -23,6 +24,10 @@ iframe {
   // @include transform-origin(top left);
 }
 
+.backbone-render {
+  text-align: center;
+  margin-top: 105px;
+}
 /* --- LOGO --- */
 
 .corner-logo {
