@@ -28,6 +28,11 @@ iframe {
   text-align: center;
   margin-top: 105px;
 }
+
+.form-edit-box {
+  text-align: left;
+  display: inline-block;
+}
 /* --- LOGO --- */
 
 .corner-logo {
@@ -331,12 +336,6 @@ a.formSelect:hover {
 }
 
 /* --- SHOWFORM --- */
-
-.show-form.body {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
 
 /* --- FORMEDIT SIDEBAR --- */
 
