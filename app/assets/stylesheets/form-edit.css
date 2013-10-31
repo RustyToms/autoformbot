@@ -1,16 +1,29 @@
-html, body, div, span, applet, object,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, main, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form,legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video, label {
+.form-edit-box html, .form-edit-box body, .form-edit-box div, 
+.form-edit-box span, .form-edit-box applet, .form-edit-box object,
+.form-edit-box h1, .form-edit-box h2, .form-edit-box h3, 
+.form-edit-box h4, .form-edit-box h5, .form-edit-box h6, 
+.form-edit-box p, .form-edit-box blockquote, .form-edit-box pre,
+.form-edit-box a, .form-edit-box abbr, .form-edit-box acronym, 
+.form-edit-box address, .form-edit-box big, .form-edit-box cite, 
+.form-edit-box code, .form-edit-box del, .form-edit-box dfn, .form-edit-box em,
+.form-edit-box img, .form-edit-box ins, .form-edit-box kbd, .form-edit-box q, 
+.form-edit-box s, .form-edit-box samp, .form-edit-box small, 
+.form-edit-box strike, .form-edit-box strong, .form-edit-box main, 
+.form-edit-box sub, .form-edit-box sup, .form-edit-box tt, .form-edit-box var,
+.form-edit-box b, .form-edit-box u, .form-edit-box i, .form-edit-box center,
+.form-edit-box dl, .form-edit-box dt, .form-edit-box dd, .form-edit-box ol, 
+.form-edit-box ul, .form-edit-box li, .form-edit-box fieldset, 
+.form-edit-box form, .form-edit-boxlegend, .form-edit-box table,
+.form-edit-box caption, .form-edit-box tbody, .form-edit-box tfoot,
+.form-edit-box thead, .form-edit-box tr, .form-edit-box th, 
+.form-edit-box td, .form-edit-box article, .form-edit-box aside, 
+.form-edit-box canvas, .form-edit-box details, .form-edit-box embed, 
+.form-edit-box figure, .form-edit-box figcaption, .form-edit-box footer, 
+.form-edit-box header, .form-edit-box hgroup, .form-edit-box menu, 
+.form-edit-box nav, .form-edit-box output, .form-edit-box ruby, 
+.form-edit-box section, .form-edit-box summary, .form-edit-box time, 
+.form-edit-box mark, .form-edit-box audio, .form-edit-box video, 
+.form-edit-box label {
   margin: 0;
   padding: 0;
   border: 0;
@@ -29,29 +42,31 @@ a:visited {
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+.form-edit-box article, .form-edit-box aside, .form-edit-box details, 
+.form-edit-box figcaption, .form-edit-box figure,
+.form-edit-box footer, .form-edit-box header, .form-edit-box hgroup, 
+.form-edit-box menu, .form-edit-box nav, .form-edit-box section {
   display: block;
 }
 
-ol, ul {
+.form-edit-box ol, .form-edit-box ul {
   list-style: none;
 }
-blockquote, q {
+.form-edit-box blockquote, .form-edit-box q {
   quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+.form-edit-box blockquote:before, .form-edit-box blockquote:after,
+.form-edit-box q:before, .form-edit-box q:after {
   content: '';
   content: none;
 }
-table {
+.form-edit-box table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 /*------------------------------- ELEMENTS -----------------------------*/
 
-html {
+.form-edit-box  {
   font-family: sans-serif;
   font-size: 16px;
   display: block;
@@ -68,21 +83,22 @@ html {
   margin-top: 0;
 }
 
-h2 {
+.form-edit-box h2 {
   font-size: 24px;
   font-weight: bold;
   text-align: center;
   margin: 15px;
 }
 
-h3 {
+.form-edit-box h3 {
   font-size: 18px;
   font-weight: bold;
   text-align: center;
   margin: 20px;
 }
 
-div, main, section, a {
+.form-edit-box div, .form-edit-box main, .form-edit-box section,
+ .form-edit-box a {
   transition: 0.15s;
   -webkit-transform: translateZ(0);
 }
@@ -97,18 +113,18 @@ div, main, section, a {
  * Correct `block` display not defined in IE 8/9.
  */
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-nav,
-section,
-summary {
+.form-edit-box article,
+.form-edit-box aside,
+.form-edit-box details,
+.form-edit-box figcaption,
+.form-edit-box figure,
+.form-edit-box footer,
+.form-edit-box header,
+.form-edit-box hgroup,
+.form-edit-box main,
+.form-edit-box nav,
+.form-edit-box section,
+.form-edit-box summary {
     display: block;
 }
 
@@ -116,9 +132,9 @@ summary {
  * Correct `inline-block` display not defined in IE 8/9.
  */
 
-audio,
-canvas,
-video {
+.form-edit-box audio,
+.form-edit-box canvas,
+.form-edit-box video {
     display: inline-block;
 }
 
@@ -127,7 +143,7 @@ video {
  * Remove excess height in iOS 5 devices.
  */
 
-audio:not([controls]) {
+.form-edit-box audio:not([controls]) {
     display: none;
     height: 0;
 }
@@ -137,7 +153,7 @@ audio:not([controls]) {
  * Hide the `template` element in IE, Safari, and Firefox < 22.
  */
 
-[hidden],
+.form-edit-box [hidden],
 template {
     display: none;
 }
@@ -151,7 +167,7 @@ template {
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-{
+.form-edit-box {
     font-family: sans-serif; /* 1 */
     -ms-text-size-adjust: 100%; /* 2 */
     -webkit-text-size-adjust: 100%; /* 2 */
@@ -170,7 +186,7 @@ template {
  * Remove the gray background color from active links in IE 10.
  */
 
-a {
+.form-edit-box a {
     background: transparent;
 }
 
@@ -178,7 +194,7 @@ a {
  * Address `outline` inconsistency between Chrome and other browsers.
  */
 
-a:focus {
+.form-edit-box a:focus {
     outline: thin dotted;
 }
 
@@ -186,8 +202,8 @@ a:focus {
  * Improve readability when focused and also mouse hovered in all browsers.
  */
 
-a:active,
-a:hover {
+.form-edit-box a:active,
+.form-edit-box a:hover {
     outline: 0;
 }
 
@@ -200,7 +216,7 @@ a:hover {
  * contexts in Firefox 4+, Safari 5, and Chrome.
  */
 
-h1 {
+.form-edit-box h1 {
     font-size: 2em;
     margin: 0.67em 0;
 }
@@ -209,7 +225,7 @@ h1 {
  * Address styling not present in IE 8/9, Safari 5, and Chrome.
  */
 
-abbr[title] {
+.form-edit-box abbr[title] {
     border-bottom: 1px dotted;
 }
 
@@ -217,8 +233,8 @@ abbr[title] {
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
 
-b,
-strong {
+.form-edit-box b,
+.form-edit-box strong {
     font-weight: bold;
 }
 
@@ -226,7 +242,7 @@ strong {
  * Address styling not present in Safari 5 and Chrome.
  */
 
-dfn {
+.form-edit-box dfn {
     font-style: italic;
 }
 
@@ -234,7 +250,7 @@ dfn {
  * Address differences between Firefox and other browsers.
  */
 
-hr {
+.form-edit-box hr {
     -moz-box-sizing: content-box;
     box-sizing: content-box;
     height: 0;
@@ -244,7 +260,7 @@ hr {
  * Address styling not present in IE 8/9.
  */
 
-mark {
+.form-edit-box mark {
     background: #ff0;
     color: #000;
 }
@@ -253,10 +269,10 @@ mark {
  * Correct font family set oddly in Safari 5 and Chrome.
  */
 
-code,
-kbd,
-pre,
-samp {
+.form-edit-box code,
+.form-edit-box kbd,
+.form-edit-box pre,
+.form-edit-box samp {
     font-family: monospace, serif;
     font-size: 1em;
 }
@@ -265,7 +281,7 @@ samp {
  * Improve readability of pre-formatted text in all browsers.
  */
 
-pre {
+.form-edit-box pre {
     white-space: pre-wrap;
 }
 
@@ -273,7 +289,7 @@ pre {
  * Set consistent quote types.
  */
 
-q {
+.form-edit-box q {
     quotes: "\201C" "\201D" "\2018" "\2019";
 }
 
@@ -281,7 +297,7 @@ q {
  * Address inconsistent and variable font size in all browsers.
  */
 
-small {
+.form-edit-box small {
     font-size: 80%;
 }
 
@@ -289,19 +305,19 @@ small {
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
 
-sub,
-sup {
+.form-edit-box sub,
+.form-edit-box sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
     vertical-align: baseline;
 }
 
-sup {
+.form-edit-box sup {
     top: -0.5em;
 }
 
-sub {
+.form-edit-box sub {
     bottom: -0.25em;
 }
 
@@ -313,7 +329,7 @@ sub {
  * Remove border when inside `a` element in IE 8/9.
  */
 
-img {
+.form-edit-box img {
     border: 0;
 }
 
@@ -321,7 +337,7 @@ img {
  * Correct overflow displayed oddly in IE 9.
  */
 
-svg:not(:root) {
+.form-edit-box svg:not(:root) {
     overflow: hidden;
 }
 
@@ -333,7 +349,7 @@ svg:not(:root) {
  * Address margin not present in IE 8/9 and Safari 5.
  */
 
-figure {
+.form-edit-box figure {
     margin: 0;
 }
 
@@ -345,7 +361,7 @@ figure {
  * Define consistent border, margin, and padding.
  */
 
-fieldset {
+.form-edit-box fieldset {
     border: 1px solid #c0c0c0;
     margin: 0 2px;
     padding: 0.35em 0.625em 0.75em;
@@ -356,7 +372,7 @@ fieldset {
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
 
-legend {
+.form-edit-box legend {
     border: 0; /* 1 */
     padding: 0; /* 2 */
 }
@@ -367,10 +383,10 @@ legend {
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
 
-button,
-input,
-select,
-textarea {
+.form-edit-box button,
+.form-edit-box input,
+.form-edit-box select,
+.form-edit-box textarea {
     font-family: inherit; /* 1 */
     font-size: 100%; /* 2 */
     margin: 0; /* 3 */
@@ -381,8 +397,8 @@ textarea {
  * the UA stylesheet.
  */
 
-button,
-input {
+.form-edit-box button,
+.form-edit-box input {
     line-height: normal;
 }
 
@@ -393,8 +409,8 @@ input {
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */
 
-button,
-select {
+.form-edit-box button,
+.form-edit-box select {
     text-transform: none;
 }
 
@@ -406,10 +422,10 @@ select {
  *    `input` and others.
  */
 
-button,
-html input[type="button"], /* 1 */
-input[type="reset"],
-input[type="submit"] {
+.form-edit-box button,
+.form-edit-box html input[type="button"], /* 1 */
+.form-edit-box input[type="reset"],
+.form-edit-box input[type="submit"] {
     -webkit-appearance: button; /* 2 */
     cursor: pointer; /* 3 */
 }
@@ -418,8 +434,8 @@ input[type="submit"] {
  * Re-set default cursor for disabled elements.
  */
 
-button[disabled],
-html input[disabled] {
+.form-edit-box button[disabled],
+.form-edit-box html input[disabled] {
     cursor: default;
 }
 
@@ -428,8 +444,8 @@ html input[disabled] {
  * 2. Remove excess padding in IE 8/9/10.
  */
 
-input[type="checkbox"],
-input[type="radio"] {
+.form-edit-box input[type="checkbox"],
+.form-edit-box input[type="radio"] {
     box-sizing: border-box; /* 1 */
     padding: 0; /* 2 */
 }
@@ -440,7 +456,7 @@ input[type="radio"] {
  *    (include `-moz` to future-proof).
  */
 
-input[type="search"] {
+.form-edit-box input[type="search"] {
     -webkit-appearance: textfield; /* 1 */
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box; /* 2 */
@@ -452,8 +468,8 @@ input[type="search"] {
  * on OS X.
  */
 
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
+.form-edit-box input[type="search"]::-webkit-search-cancel-button,
+.form-edit-box input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
 }
 
@@ -461,8 +477,8 @@ input[type="search"]::-webkit-search-decoration {
  * Remove inner padding and border in Firefox 4+.
  */
 
-button::-moz-focus-inner,
-input::-moz-focus-inner {
+.form-edit-box button::-moz-focus-inner,
+.form-edit-box input::-moz-focus-inner {
     border: 0;
     padding: 0;
 }
@@ -472,7 +488,7 @@ input::-moz-focus-inner {
  * 2. Improve readability and alignment in all browsers.
  */
 
-textarea {
+.form-edit-box textarea {
     overflow: auto; /* 1 */
     vertical-align: top; /* 2 */
 }
@@ -485,7 +501,7 @@ textarea {
  * Remove most spacing between table cells.
  */
 
-table {
+.form-edit-box table {
     border-collapse: collapse;
     border-spacing: 0;
 }
@@ -493,16 +509,16 @@ table {
 /*  ===============================================================
     Custom css
     ===============================================================  */
-form#form-itable {
+.form-edit-box form#form-itable {
   margin: 0;
   padding: 20px;
 }
 
-.editing {
+.form-edit-box .editing {
   background-color: #D2FFB3;
 }
 
-.delete-field {
+.form-edit-box .delete-field {
   position: absolute;
   color: red;
   font-weight: bold;
@@ -513,22 +529,22 @@ form#form-itable {
   display: inline;
 }
 
-.save-or-add {
+.form-edit-box .save-or-add {
   background-color: #CCFFFF;
   min-height: 48px;
 }
 
-.required:after {
+.form-edit-box .required:after {
   content: "*";
   color: red;
 }
 
-.formEl {
+.form-edit-box .formEl {
   position: relative;
   display: block;
   margin-bottom: 20px;
 }
 
-.formEl > * {
+.form-edit-box .formEl > * {
   position: relative;
 }
