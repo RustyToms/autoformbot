@@ -18,6 +18,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.$el.empty();
     var $formText = $(this.model.get('form_text'));
 		$formText.find("label, h2, p").attr('contenteditable', 'true');
+    // $formText.find(".formEl").draggable();
+    // $formText.droppable();
     
     this.$el.append($formText.prop('outerHTML'));
     return this;

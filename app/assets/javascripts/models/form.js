@@ -53,7 +53,6 @@ AFB.Models.Form = Backbone.Model.extend ({
     var $form = $(this.get('form_text'));
     $form.find('.editing').removeClass('editing');
     $form.find('.delete-field').remove();
-
     this.set('form_text', $form.prop('outerHTML'));
   },
 
