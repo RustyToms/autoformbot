@@ -41,7 +41,6 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log("setting up form model");
 		var that = this;
     var $form = $(JST["forms/new_form_seed"]());
-    // $form.prepend(JST["forms/form_stylesheet"]());
     this.model.set({
       account_id: window.ACCOUNT_ID,
       name: "Untitled Form",
@@ -70,7 +69,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
         el: JST['forms/form_wrapper']()
       });
     this.$rootEl.append(this.view.render().$el);
-    this.fitContent('.form-edit-box', '#form-itable');
+    this.fitContent('.fi-30x', '#form-itable');
   },
 
   formEdit: function(id) {

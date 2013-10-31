@@ -34,7 +34,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       el: $('<span></span>')
       
     });
-    $formWrapper.find('.form-edit-box').append(this.editForm.render().$el);
+    $formWrapper.find('.fi-30x').append(this.editForm.render().$el);
     this.$el.append($formWrapper);
 
     this.initialize();
@@ -158,13 +158,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
   
   serverSaveForm: function(that){
-    that.$el.find(".form-edit-box label, h2, p").
+    that.$el.find(".fi-30x label, h2, p").
       removeAttr('contenteditable');
     that.removeActiveEdits(that);
     that.localSaveForm(that);
 
     console.log("in FormMaster#serverSaveForm");
-    var name = that.$el.find('.form-edit-box .formName').text().trim();
+    var name = that.$el.find('.fi-30x .formName').text().trim();
     var text = that.model.get('form_text');
     this.model.save({
       name: name,
