@@ -22,7 +22,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
     return this;
   },
-  
+
   renderChange: function(){
     console.log("rendering FormEdit form change");
     var $newField = $(this.model.get('form_text')).find('.editing');
@@ -32,21 +32,21 @@ AFB.Views.FormEdit = Backbone.View.extend({
   parseClickForm: function(event) {
     console.log("in parseClickForm");
     var $target = $(event.target);
-		
+
     if($target.hasClass('delete-field')){
-			
+
       $target.closest(".formEl").remove();
       this.parentView.localSaveForm(this.parentView);
       this.parentView.render();
-			
+
     } else if (!$target.closest(".formEl").hasClass('editing')){
       this.startEditingField($target);
     }
   },
-  
+
   startEditingField: function($target){
     this.parentView.removeActiveEdits(this.parentView);
-      
+
     var $formEl = $target.closest(".formEl");
     $formEl.addClass("editing").
     append("<button class='delete-field'>X</button>");
@@ -58,10 +58,10 @@ AFB.Views.FormEdit = Backbone.View.extend({
       model: this.model,
       field: $formEl
     });
-    
-    this.parentView.swapSidebar(sidebar);
+
+    this.parentView.swapSidebar(sidebar, this.parentView);
   },
-  
+
 	updateSidebar: function(){
 		console.log("updating sidebar");
 		this.parentView.localSaveForm(this.parentView);

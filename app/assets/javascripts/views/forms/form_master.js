@@ -3,7 +3,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     "click .sidebar_header" : "newSidebar",
     "click .sidebar" : "sidebarClick",
     "keyup .sidebar" : "sidebarValues",
-    "change .sidebar" : "sidebarValues",
+    "change .sidebar :checkbox" : "sidebarValues",
     "click #save-button" : "serverSave",
     "click .duplicate-form button" : "duplicateForm"
   },
@@ -17,24 +17,24 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.$el.empty();
     this.$el.append(this.makeSidebarView(newSidebar));
     this.$el.append($(JST["forms/save_dup_buttons"]()));
-    
+
     this.renderForm();
-    
+
     var that = this;
     console.log('--- End of FormMaster view #render ---');
     return this;
   },
-  
+
   renderForm: function(){
     this.editForm && this.editForm.remove();
     var $formWrapper = $("<div class='main' ></div>");
     $formWrapper.html(JST['forms/form_wrapper']());
     this.editForm = new AFB.Views.FormEdit({
-    
+
       parentView: this,
       model: this.model,
       el: $('<span></span>')
-      
+
     });
     $formWrapper.find('.fi-30x').append(this.editForm.render().$el);
     this.$el.append($formWrapper);
@@ -43,28 +43,32 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.initialize();
   },
 
-  makeSidebarView: function(newSidebar){
+  makeSidebarView: function(newSidebar, that){
     console.log("making sidebar");
+    var that = (that || this);
+    this.off("change", ".sidebar");
     this.sidebar && this.sidebar.remove();
 
     if (newSidebar){
-			
+
       this.sidebar = newSidebar;
       console.log("new sidebar is " + this.sidebar);
 
     } else {
-			
+
       this.model.removeActiveEdits();
       this.sidebar = new AFB.Views.FormSidebarInputs({
-				
+
         parentView: this,
         model: this.model
-				
+
       });
-			
+
     }
 		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
       append(this.sidebar.render().$el);
+
+    this.on("change", ".sidebar", that.sidebarValues);
 		return $sidebarHtml;
   },
 
@@ -118,6 +122,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   sidebarValues: function(event){
+    console.log("sidebarValues triggered with a " + event.type);
     this.sidebar.updateValues && this.sidebar.updateValues(event);
   },
 
@@ -140,20 +145,20 @@ AFB.Views.FormMaster = Backbone.View.extend({
 		this.$el.find('.sidebar_window .sidebar').
       replaceWith(this.sidebar.render().$el.html());
 	},
-	
+
 	swapSidebar: function(sidebar){
 		var $sidebar = this.makeSidebarView(sidebar);
 		this.$el.find('.sidebar_window').replaceWith($sidebar);
 	},
-  
+
   localSaveForm: function(that){
     console.log('locally saving form model')
     // $('.ui-draggable').draggable('destroy');
     // $('.ui-droppable').droppable('destroy');
-    $('.ui-sortable').sortable('destroy');
+    $('.ui-sortable').sortable('destroy');//.find('.formEl').children().css('z-index', '0');
     var $form = that.$el.find('form#form-itable');
     var name = $form.find('.formName').text().trim();
-    
+
     that.model.set({
       form_text: $form.prop('outerHTML'),
       name: name
@@ -165,12 +170,18 @@ AFB.Views.FormMaster = Backbone.View.extend({
   makeSortable: function(that){
     $(function(){
       console.log("making fields-list elements sortable");
-      $(".fields-list").sortable({
+      var $fields = $(".fields-list");
+      // $fields.find('.formEl').children().css('z-index', '-1');
+      $fields.sortable({
+        start: function(event, ui){
+          //that.removeActiveEdits(that);
+        },
         stop: function(event, ui){
           myUi = ui;
           myEvent = event;
-          that.editForm.parseClickForm({target: ui.helper});
-        }
+          that.editForm.parseClickForm({target: ui.item});
+        },
+        cancel: "select, option"
       });
     });
   },
@@ -178,7 +189,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   serverSave: function(){
     this.serverSaveForm(this);
   },
-  
+
   serverSaveForm: function(that){
     console.log("in FormMaster#serverSaveForm");
     that.$el.find(".fi-30x label, h2, p").
@@ -205,14 +216,14 @@ AFB.Views.FormMaster = Backbone.View.extend({
     });
     that.render();
   },
-    
+
   removeActiveEdits: function(that){
     console.log('removing all editing classes');
     var $old = this.$el.find('.editing');
     $old.find('.delete-field').remove();
     $old.removeClass('editing');
   },
-  
+
   duplicateForm: function(event){
     this.model.duplicateForm();
   }

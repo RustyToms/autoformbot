@@ -1,7 +1,7 @@
 AFB.Views.FormShow = Backbone.View.extend({
-  events: {
-    'click #form-itable-submit': 'submitForm'
-  },
+  // events: {
+  //   'click #form-itable-submit': 'submitForm'
+  // },
   
   render: function(){
     this.model.removeActiveEdits();

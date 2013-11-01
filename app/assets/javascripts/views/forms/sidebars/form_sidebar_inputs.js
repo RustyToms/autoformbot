@@ -11,6 +11,7 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
   },
 
   parseClick: function(event) {
+    var that = this;
     event.preventDefault();
     console.log("in FormSidebarInputs#parseClickInputs");
     var fieldChoices = {
@@ -30,7 +31,7 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
       return
     }
     var newSidebar = new AFB.Views[fieldChoices[selection]]({
-      model: this.model
+      model: that.model
     });
     newSidebar.addField();
     this.parentView.render(newSidebar);
