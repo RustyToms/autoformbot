@@ -102,11 +102,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
     if ($target.hasClass('delete-button')){
       console.log('deleting element');
       var $form = $(this.model.get('form_text'));
-      console.log($form.find('.editing .' + $target.attr('name')).
-        prop('outerHTML'));
 
       $form.find('.editing .' + $target.attr('name')).remove();
-            console.log($form.find('.editing').prop('outerHTML'));
       this.model.set('form_text', $form.prop('outerHTML'));
 
       $target.closest('div').remove();
