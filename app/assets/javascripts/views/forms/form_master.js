@@ -38,6 +38,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     });
     $formWrapper.find('.fi-30x').append(this.editForm.render().$el);
     this.$el.append($formWrapper);
+    this.makeSortable(this);
 
     this.initialize();
   },
@@ -146,8 +147,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
 	},
   
   localSaveForm: function(that){
-    $('.ui-draggable').draggable('destroy');
-    $('.ui-droppable').droppable('destroy');
+    console.log('locally saving form model')
+    // $('.ui-draggable').draggable('destroy');
+    // $('.ui-droppable').droppable('destroy');
     $('.ui-sortable').sortable('destroy');
     var $form = that.$el.find('form#form-itable');
     var name = $form.find('.formName').text().trim();
@@ -156,6 +158,21 @@ AFB.Views.FormMaster = Backbone.View.extend({
       form_text: $form.prop('outerHTML'),
       name: name
     },{silent: true});
+
+    this.makeSortable(this);
+  },
+
+  makeSortable: function(that){
+    $(function(){
+      console.log("making fields-list elements sortable");
+      $(".fields-list").sortable({
+        stop: function(event, ui){
+          myUi = ui;
+          myEvent = event;
+          that.editForm.parseClickForm({target: ui.helper});
+        }
+      });
+    });
   },
 
   serverSave: function(){
@@ -163,12 +180,12 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
   
   serverSaveForm: function(that){
+    console.log("in FormMaster#serverSaveForm");
     that.$el.find(".fi-30x label, h2, p").
       removeAttr('contenteditable');
     that.removeActiveEdits(that);
     that.localSaveForm(that);
 
-    console.log("in FormMaster#serverSaveForm");
     var name = that.$el.find('.fi-30x .formName').text().trim();
     var text = that.model.get('form_text');
     this.model.save({
