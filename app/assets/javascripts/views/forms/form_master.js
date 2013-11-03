@@ -171,12 +171,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
       $fields.sortable({
         delay: 50,
         distance: 3,
+        handle: ".move-handle",
         stop: function(event, ui){
           myUi = ui;
           myEvent = event;
           that.editForm.parseClickForm({target: ui.item});
         },
-        cancel: "select, option"
+        cancel: "select, option, .contenteditable"
       });
     });
   },
