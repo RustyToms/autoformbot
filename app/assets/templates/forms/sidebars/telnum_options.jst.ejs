@@ -7,6 +7,7 @@
 <label>Label:
   <input type='text'
     name='telnum-label'
+    onClick="this.select()"
     value='<%= $field.find('.telnum-label').text().trim() %>'>
 </label><br>
 
@@ -23,6 +24,7 @@
     type='text'
     data-attribute='value'
     value='<%= $field.find('.telnum').val() %>'
+    onClick="this.select()"
     name='telnum'/>
 </label><br>
 

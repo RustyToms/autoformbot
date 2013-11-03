@@ -168,11 +168,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
     $(function(){
       console.log("making fields-list elements sortable");
       var $fields = $(".fields-list");
-      // $fields.find('.formEl').children().css('z-index', '-1');
       $fields.sortable({
-        start: function(event, ui){
-          //that.removeActiveEdits(that);
-        },
+        delay: 50,
+        distance: 3,
         stop: function(event, ui){
           myUi = ui;
           myEvent = event;

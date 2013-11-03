@@ -6,6 +6,7 @@
 
 <label>Label:
   <input type='text'
+    onClick='this.select()'
     name='numbox-label'
     value='<%=$field.find('.numbox-label').html().trim()%>'></label><br>
 
@@ -28,6 +29,7 @@
 <label>Prefilled content:
   <input
     type='number'
+    onClick='this.select()'
     data-attribute='value'
     value='<%= $field.find('.numbox').val() %>'
     name='numbox'/>

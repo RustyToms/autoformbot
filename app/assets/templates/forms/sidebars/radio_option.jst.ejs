@@ -1,17 +1,19 @@
 <div class='radio-option-config'>
-  <h3 class='radio-option-title'>Option <%= i + 1 %></h3>
-  <button class='delete-button delete-option' name="radio-option:has('.<%= klass %>')">Delete</button>
-
-  <br>
-
   <label
       style="display: inline-block"
-  >Name
-    <input type='text'
+  >Option<input type='text'
       name='<%= klass %>'
       data-attribute='value'
 			class='option-name'
+      onClick="this.select()"
       value='<%= optionName %>'>
   </label>
+
+  <button
+    class='delete-button delete-option'
+    name="radio-option:has('.<%= klass %>')"
+  >Delete</button>
+
+  <br>
 
 </div>

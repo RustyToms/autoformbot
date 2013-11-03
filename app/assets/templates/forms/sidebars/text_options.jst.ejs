@@ -7,6 +7,7 @@
 <label>Content:
   <textarea
 		name='text-content'
+    onClick="this.select()"
   ><%= $field.find('.text-content').text().trim() %></textarea>
 </label><br>
 
@@ -57,20 +58,20 @@
 
 <label>Font-weight
   <label>Normal
-  <input 
-	  class='font-weight-option' 
-		type='radio' 
+  <input
+	  class='font-weight-option'
+		type='radio'
 		name='text-content'
-		data-css='font-weight' 
+		data-css='font-weight'
 		value='normal'>
   </label>
 
   <label>Bold
-  <input 
-	  class='font-weight-option' 
-		type='radio' 
+  <input
+	  class='font-weight-option'
+		type='radio'
 		name='text-content'
-		data-css='font-weight' 
+		data-css='font-weight'
 		value='bold'>
   </label>
 </label><br>

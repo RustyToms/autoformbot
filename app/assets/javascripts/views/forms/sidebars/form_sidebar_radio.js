@@ -47,7 +47,6 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 		} else {
       this.model.updateValues(event);
     }
-    // this.model.updateValues(event);
   },
 
   parseClick: function(event){
