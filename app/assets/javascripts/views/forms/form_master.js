@@ -3,7 +3,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     "click .sidebar_header" : "newSidebar",
     "click .sidebar" : "sidebarClick",
     "keyup .sidebar" : "sidebarValues",
-    "change .sidebar :checkbox" : "sidebarValues",
+    "change .sidebar :checked, .sidebar select" : "sidebarValues",
     "click #save-button" : "serverSave",
     "click .duplicate-form button" : "duplicateForm"
   },
@@ -114,6 +114,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     } else {
 
       this.sidebar.parseClick && this.sidebar.parseClick(event);
+      this.sidebarValues(event);
 
     }
   },
