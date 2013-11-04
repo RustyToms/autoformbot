@@ -41,6 +41,8 @@ iframe {
   height: 36px;
   line-height: 1;
   border-radius: 10px;
+  background-color: white;
+  @include box-shadow(0 0 15px 10px white);
 }
 
 .corner-logo-box {
@@ -388,10 +390,16 @@ a.formSelect:hover {
 }
 
 .move-handle {
-  left: 0;
+  left: -20px;
+  top: 0;
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 20px;
+  height: 20px;
+  z-index: -10;
+  background-color: grey;
+  color: white;
+  text-align: center;
+  font-size: 20px;
 }
 
 .ui-sortable li{
@@ -400,6 +408,10 @@ a.formSelect:hover {
 
 .ui-sortable li:hover{
   background-color: pink;
+}
+
+.ui-sortable li:hover .move-handle {
+  z-index: 10;
 }
 
 .fi-30x {

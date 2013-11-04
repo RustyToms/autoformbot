@@ -18,7 +18,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.$el.empty();
     var $formText = $(this.model.get('form_text'));
 		$formText.find("label, h2, p").attr('contenteditable', 'true');
-    $formText.find('.formEl').prepend("<span class='move-handle'></span>");
+    $formText.find('ul .formEl').
+      prepend("<span class='move-handle' style=" +
+        "'color: white; font-size: 20px;'>\u039E</span>");
     this.$el.append($formText.prop('outerHTML'));
 
     return this;
@@ -43,7 +45,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
     } else if (!$target.closest(".formEl").hasClass('editing')){
       this.startEditingField($target);
     }
-    this.updateSidebar();
   },
 
   startEditingField: function($target){

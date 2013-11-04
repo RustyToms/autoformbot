@@ -167,7 +167,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
         name: name
       },{silent: true});
 
-$form.find('.editing input').attr('disabled', 'disabled');
+      $form.find('.editing input').attr('disabled', 'disabled');
       that.makeSortable(that);
     });
   },
