@@ -17,7 +17,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log("in FormRouter#index");
     this.cleanRootEl();
     this.view && this.view.remove();
-    
+
     this.view = new AFB.Views.FormIndex({
       collection: AFB.formCollection,
       el: this.$seedEl
@@ -46,9 +46,9 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       name: "Untitled Form",
 			form_text: $form.prop('outerHTML')
     });
-		
+
     AFB.formCollection.add(this.model);
-		
+
 		this.model.save({},{
 			success: function(response, model) {
 				that.model.updateAttribute('#form-id', 'value', that.model.get('id'));
@@ -69,7 +69,8 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
         el: JST['forms/form_wrapper']()
       });
     this.$rootEl.append(this.view.render().$el);
-    this.fitContent('.fi-30x', '#form-itable');
+    window.scrollTo(0,0);
+    //this.fitContent('.fi-30x', '#form-itable');
   },
 
   formEdit: function(id) {
@@ -87,6 +88,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     });
 
     this.$rootEl.append(this.view.render().$el);
+    window.scrollTo(0,0);
   },
 
   cleanRootEl: function(){
@@ -96,21 +98,22 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.$rootEl.undelegate();
 
     this.initialize(this.$rootEl);
-  },
-
-  fitContent: function(outsideSelect, insideSelect){
-    $(function(){
-      var $container = $(outsideSelect);
-      var $form = $(insideSelect);
-      
-      var width = $form.width();
-      width && $container.css('width', width);
-      var height = $form.height();
-      height && $container.css('height', height);
-      console.log('width and height are ' + width + " and " + height);
-    });
   }
 });
+
+AFB.Routers.FormRouter.fitContent = function(matchSelect, targetSelect){
+  $(function(){
+    var $match = $(matchSelect);
+    var $target = $(targetSelect);
+
+    var width = $target.outerWidth();
+    width && $match.css('width', width);
+    var height = $target.outerHeight();
+    height && $match.css('height', height);
+    console.log('width and height are ' + width + " and " + height);
+    console.log($match.get(0));
+  });
+};
 
 AFB.Routers.FormRouter.myFlash = function(msg){
   $('.flash-msgs').prepend(JST['my_flash']({

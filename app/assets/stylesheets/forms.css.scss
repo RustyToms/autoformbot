@@ -342,11 +342,11 @@ a.formSelect:hover {
 .sidebar_window {
   background-color: lightblue;
   width: 300px;
-  height: 100%;
-  margin: 0 0 0 20px; 
-  float: left;
-  // position: absolute;
-  // display: inline-block;
+  margin: 0 0 0 20px;
+  position: fixed;
+  height: 500px;
+  overflow: auto;
+  //float: left;
 }
 
 .sidebar_header {
@@ -375,11 +375,9 @@ a.formSelect:hover {
 /* --- FORMEDIT OTHER --- */
 
 .sidebar_window~.main {
-  float: right;
-  top: 0;
-  position: absolute;
-  left: 350px;
-  margin: 0;
+  margin: 0 0 0 350px;
+  position: relative;
+  display: block;
 }
 
 .save-or-add, .duplicate-form {
@@ -387,4 +385,12 @@ a.formSelect:hover {
   display: inline-block;
   margin: 10px 20px;
   float: left;
+}
+
+.move-handle {
+  left: 0;
+}
+
+.fi-30x {
+  margin-right: 30px;
 }

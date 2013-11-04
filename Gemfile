@@ -8,17 +8,16 @@ gem 'rails', '3.2.13'
 
 gem 'backbone-on-rails'
 gem 'ejs'
-gem 'devise'
+gem 'devise', '>= 3.1.0'
 gem 'figaro'
+gem 'pg'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'sqlite3'
 end
 
 group :production do
-  gem 'pg'
   gem 'newrelic_rpm'
 end
 

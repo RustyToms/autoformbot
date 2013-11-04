@@ -16,7 +16,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
     console.log('rendering FormMaster view');
     this.$el.empty();
     this.$el.append(this.makeSidebarView(newSidebar));
-    this.$el.append($(JST["forms/save_dup_buttons"]()));
+    this.$el.find('.sidebar_window').
+      append($(JST["forms/save_dup_buttons"]()));
 
     this.renderForm();
 
@@ -39,13 +40,15 @@ AFB.Views.FormMaster = Backbone.View.extend({
     $formWrapper.find('.fi-30x').append(this.editForm.render().$el);
     this.$el.append($formWrapper);
     this.makeSortable(this);
-
+    // $(function(){
+    //   AFB.Routers.FormRouter.fitContent('.main', '.fi-30x');
+    // })
     this.initialize();
   },
 
   makeSidebarView: function(newSidebar, that){
     console.log("making sidebar");
-    var that = (that || this);
+    that = (that || this);
     this.off("change", ".sidebar");
     this.sidebar && this.sidebar.remove();
 

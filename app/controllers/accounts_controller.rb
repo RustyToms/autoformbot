@@ -75,7 +75,7 @@ class AccountsController < ApplicationController
   end
 
   def check_for_account
-    if current_user.account
+    if current_user && current_user.account
       redirect_to account_url(current_user.account.url_name)
     else
       redirect_to new_account_url

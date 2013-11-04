@@ -2,7 +2,7 @@
 <header>
   <a href="<%= root_url %>" class='corner-logo'>
     <div class= 'corner-logo-box'>
-      <h1 id='corner-logo-part1'>Form</h1>      
+      <h1 id='corner-logo-part1'>Form</h1>
       <div class='corner-logo-box2'>
         <h1 id='corner-logo-part2'>-itable</h1>
         <div class='blinking-cursor'></div>
@@ -17,16 +17,16 @@
       <li><%= link_to('Log Out', destroy_user_session_path, :method => :delete)%></li>
     </ul>
   </nav>
-  
+
   <div class='flash-msgs group'>
   </div>
-  
+
 </header>
 
-<main>  
+<main>
   <div class='backbone-render'>
   </div>
-  
+
 </main>
 
 <script type="application/json"
@@ -43,6 +43,12 @@ $(function(){
   console.log(forms);
 
   window.AFB.initialize($('.backbone-render'), forms)
+
+  $(window).scroll(function(){
+    $('header').css('left', 0 - $(this).scrollLeft());
+    //$('.sidebar_window').css('top', $(this).scrollTop());
+  });
+
 });
 </script>
 
