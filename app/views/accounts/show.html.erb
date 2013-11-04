@@ -45,8 +45,17 @@ $(function(){
   window.AFB.initialize($('.backbone-render'), forms)
 
   $(window).scroll(function(){
-    $('header').css('left', 0 - $(this).scrollLeft());
-    //$('.sidebar_window').css('top', $(this).scrollTop());
+    var $header = $('header');
+    var widthDifference = $header.outerWidth() - $(this).outerWidth();
+    if (widthDifference > 1) {
+      var scroll = $(this).scrollLeft();
+      if (Math.abs(scroll) < widthDifference)
+      $header.css('left', 0 - scroll);
+    }
+  });
+
+  $(window).resize(function(){
+    $('header').css('left', 0);
   });
 
 });

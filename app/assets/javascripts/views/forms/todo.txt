@@ -24,3 +24,7 @@ Form Submission
 
 Form Options
 - url to redirect to on form submission
+
+------------ Unresolved Issues -------------------------------
+Sidebar isn't properly fixed in position
+The form checkboxes won't stay disabled when clicked in formEdit

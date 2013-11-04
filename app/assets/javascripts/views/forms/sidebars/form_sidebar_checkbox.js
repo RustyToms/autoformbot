@@ -73,7 +73,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
       $currentOption = $($preexisting.shift());
 			var name = "results[" + label + "][" + name + "]";
 			var klass = label.replace(/[^_a-zA-Z0-9-]/g, '_') + i;
-      var optionName = "";
+      var optionName = "Option Name";
       var value = "";
       var checked = false;
 
@@ -82,6 +82,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
         value = $currentOption.find('input').val();
         display = $currentOption.css('display');
 				checked = $currentOption.find('input').get(0).hasAttribute('checked');
+        console.log("checked is " + checked);
       }
 
       var checkboxOption = JST['forms/fields/checkbox_option']({
@@ -107,6 +108,3 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
     this.model.set('form_text', $form.prop('outerHTML'));
   }
 });
-
-
-// $field.find('.checkbox').get(0).hasAttribute('checked')

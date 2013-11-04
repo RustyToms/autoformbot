@@ -40,9 +40,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
     $formWrapper.find('.fi-30x').append(this.editForm.render().$el);
     this.$el.append($formWrapper);
     this.makeSortable(this);
-    // $(function(){
-    //   AFB.Routers.FormRouter.fitContent('.main', '.fi-30x');
-    // })
     this.initialize();
   },
 
@@ -71,7 +68,10 @@ AFB.Views.FormMaster = Backbone.View.extend({
 		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
       append(this.sidebar.render().$el);
 
-    this.on("change", ".sidebar", that.sidebarValues);
+    $(function(){
+      that.on("change", ".sidebar", that.sidebarValues);
+    });
+
 		return $sidebarHtml;
   },
 
@@ -153,19 +153,23 @@ AFB.Views.FormMaster = Backbone.View.extend({
 	},
 
   localSaveForm: function(that){
-    console.log('locally saving form model')
+    console.log('locally saving form model');
     // $('.ui-draggable').draggable('destroy');
     // $('.ui-droppable').droppable('destroy');
     $('.ui-sortable').sortable('destroy');//.find('.formEl').children().css('z-index', '0');
-    var $form = that.$el.find('form#form-itable');
-    var name = $form.find('.formName').text().trim();
 
-    that.model.set({
-      form_text: $form.prop('outerHTML'),
-      name: name
-    },{silent: true});
+    $(function(){
+      var $form = that.$el.find('form#form-itable');
+      var name = $form.find('.formName').text().trim();
 
-    this.makeSortable(this);
+      that.model.set({
+        form_text: $form.prop('outerHTML'),
+        name: name
+      },{silent: true});
+
+$form.find('.editing input, label').attr('disabled', 'disabled');
+      that.makeSortable(that);
+    });
   },
 
   makeSortable: function(that){
@@ -222,6 +226,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     var $old = this.$el.find('.editing');
     $old.find('.delete-field').remove();
     $old.removeClass('editing');
+    $old.find('input').removeAttr('disabled');
   },
 
   duplicateForm: function(event){
