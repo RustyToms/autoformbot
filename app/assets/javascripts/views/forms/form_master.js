@@ -167,7 +167,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
         name: name
       },{silent: true});
 
-$form.find('.editing input, label').attr('disabled', 'disabled');
+$form.find('.editing input').attr('disabled', 'disabled');
       that.makeSortable(that);
     });
   },
@@ -198,6 +198,7 @@ $form.find('.editing input, label').attr('disabled', 'disabled');
     console.log("in FormMaster#serverSaveForm");
     that.$el.find(".fi-30x label, h2, p").
       removeAttr('contenteditable');
+    that.$el.find('.move-handle').remove();
     that.removeActiveEdits(that);
     that.localSaveForm(that);
 
