@@ -1,19 +1,19 @@
 
-<link href="/assets/home.css?body=1" media="all" rel="stylesheet" type="text/css">
+  <%= stylesheet_link_tag    "home", :media => "all" %>
 
 <div class='flash-msgs'>
   <% flash.each do |name, msg| %>
-    
+
     <% if msg.is_a?(String) %>
       <%= content_tag :div, msg, {id: "flash_#{name}", class: "notice"} %>
     <% end %>
-    
+
     <% if msg.is_a?(Array) %>
       <% msg.each do |message| %>
         <%= content_tag :div, message, {id: "flash_#{name}", class: "notice"}%>
       <% end %>
     <% end %>
-    
+
   <% end %>
 </div>
 
@@ -49,26 +49,26 @@
 
   		<div class='sign-in-sign-up group'>
   		<% if user_signed_in? %>
-        
+
         <div class='home-page-button'>My Forms
           <a href='/accounts/<%= @url %>'></a>
         </div>
-      
+
         <div class='home-page-button'>Log Out
           <a href="/users/sign_out" data-method="delete" rel="nofollow"></a>
         </div>
-  		
+
       <% else %>
-      
+
         <div class='home-page-button'>Sign In!
   		    <a class='sign-in-button' href="<%= new_user_session_url %>"></a>
         </div>
-      
+
         <div class='home-page-button'>Sign Up!
   		    <a class='sign-up-button' href="<%= new_user_registration_url %>">
           </a>
         </div>
-  		
+
       <% end %>
 			</div>
     </div>
@@ -110,7 +110,7 @@
           type="password"></div>
 
         <div class='sign-in-sign-up group'>
-          
+
           <div class='input-click-fix home-page-button'>
             <span>Sign In!<span>
             <input
@@ -118,16 +118,16 @@
               type="submit"
               value=''>
           </div>
-          
+
           <div class='home-page-button'>Back
             <a class='back-button'></a>
           </div><br>
-          
+
           <div class='home-page-button no-account'>No Account? Sign Up!
             <a class='sign-up-button' href="<%= new_user_registration_url %>">
             </a>
           </div>
-          
+
         </div>
       </form>
     </div>
@@ -185,7 +185,7 @@
             value="ultimate"/>
 
           <div class='sign-in-sign-up group'>
-          
+
           <div class='input-click-fix home-page-button'>
             <span>Sign Up!<span>
             <input
@@ -197,7 +197,7 @@
           <div class='home-page-button'>Back
             <a class='back-button'></a>
           </div>
-          
+
           </div>
       </form>
 
