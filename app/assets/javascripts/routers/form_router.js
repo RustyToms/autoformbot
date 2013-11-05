@@ -116,7 +116,7 @@ AFB.Routers.FormRouter.fitContent = function(matchSelect, targetSelect){
 };
 
 AFB.Routers.FormRouter.myFlash = function(msg){
-  $('.flash-msgs').prepend(JST['my_flash']({
+  $('.backbone-flash-msgs').prepend(JST['my_flash']({
     msg: msg
   }));
   window.setTimeout(function(){
