@@ -397,7 +397,7 @@ a.formSelect:hover {
   position: absolute;
   width: 20px;
   height: 20px;
-  z-index: -10;
+  display: none;
   background-color: grey;
   color: white;
   text-align: center;
@@ -413,7 +413,7 @@ a.formSelect:hover {
 }
 
 .ui-sortable li:hover .move-handle {
-  z-index: 10;
+  display: inline-block;
 }
 
 .fi-30x {

@@ -29,8 +29,6 @@ Form Options
 - url to redirect to on form submission
 
 ------------ Unresolved Issues -------------------------------
-- On creation of new account the user is logged out even though they are shown
-  the forms index
 - If there is only one field in the form, on hover it will make the form
   disappear
 - Sidebar isn't properly fixed in position
