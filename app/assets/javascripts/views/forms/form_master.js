@@ -46,27 +46,27 @@ AFB.Views.FormMaster = Backbone.View.extend({
   makeSidebarView: function(newSidebar, that){
     console.log("making sidebar");
     that = (that || this);
-    this.off("change", ".sidebar");
-    this.sidebar && this.sidebar.remove();
+    that.off("change", ".sidebar");
+    that.sidebar && that.sidebar.remove();
 
     if (newSidebar){
 
-      this.sidebar = newSidebar;
-      console.log("new sidebar is " + this.sidebar);
+      that.sidebar = newSidebar;
+      console.log("new sidebar is " + that.sidebar);
 
     } else {
 
-      this.model.removeActiveEdits();
-      this.sidebar = new AFB.Views.FormSidebarInputs({
+      that.model.removeActiveEdits();
+      that.sidebar = new AFB.Views.FormSidebarInputs({
 
-        parentView: this,
-        model: this.model
+        parentView: that,
+        model: that.model
 
       });
 
     }
 		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
-      append(this.sidebar.render().$el);
+      append(that.sidebar.render().$el);
 
     $(function(){
       that.on("change", ".sidebar", that.sidebarValues);
