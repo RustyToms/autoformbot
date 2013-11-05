@@ -42,16 +42,8 @@ class AccountsController < ApplicationController
       account: @account,
       account_auth: "admin")
 
-      p "**************** user and account are ****************************"
-      p @user
-      p @account
-
     if @account.save
       sign_in(@user)
-      p "**************** Account creation successful *********************"
-      p "**************** user and account are ****************************"
-      p @user
-      p @account
       redirect_to account_url(@account.url_name)
     else
       User.find(@user.id).delete
