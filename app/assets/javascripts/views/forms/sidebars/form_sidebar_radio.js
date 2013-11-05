@@ -1,16 +1,16 @@
 AFB.Views.FormSidebarRadio = Backbone.View.extend({
-  $field: $(JST['forms/fields/radio']()),
+  $seed: $(JST['forms/fields/radio']()),
 
 
   addField: function(){
 		console.log("adding radio button field");
-    this.model.addField(this.$field.prop('outerHTML'));
+    this.model.addField(this.$seed);
   },
 
 
   render: function(){
     console.log("rendering FormSidebarRadio");
-    this.$field = ($(this.options.field) || this.$field);
+    this.$field = ($(this.field) || this.$seed);
     var numOptions = this.$field.find('.radio-option').length;
     var label = this.$field.find('.radio-label').text().trim();
     var required = this.$field.hasClass('required');

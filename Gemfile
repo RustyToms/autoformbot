@@ -7,7 +7,7 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 
-gem 'backbone-on-rails'
+gem 'backbone-on-rails', '~> 1.1'
 gem 'ejs'
 gem 'devise', '>= 3.1.0'
 gem 'figaro'

@@ -1,7 +1,6 @@
 AFB.Views.FormSidebarInputs = Backbone.View.extend({
   initialize: function(){
     console.log("initializing FormSidebarInputs view");
-    this.parentView = this.options.parentView;
     this.$el = $(JST['forms/sidebars/inputs']());
   },
 
@@ -27,8 +26,8 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
 
     var selection = $(event.target).closest('button').data('inputType');
     if(!selection){
-      console.log("no target")
-      return
+      console.log("no target");
+      return;
     }
     var newSidebar = new AFB.Views[fieldChoices[selection]]({
       model: that.model
@@ -36,4 +35,4 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
     newSidebar.addField();
     this.parentView.render(newSidebar);
   }
-})
+});

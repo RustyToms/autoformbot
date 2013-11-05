@@ -32,11 +32,12 @@ AFB.Views.FormMaster = Backbone.View.extend({
     $formWrapper.html(JST['forms/form_wrapper']());
     this.editForm = new AFB.Views.FormEdit({
 
-      parentView: this,
       model: this.model,
       el: $('<span></span>')
 
     });
+    this.editForm.parentView = this;
+
     $formWrapper.find('.fi-30x').append(this.editForm.render().$el);
     this.$el.append($formWrapper);
     this.makeSortable(this);
@@ -59,10 +60,10 @@ AFB.Views.FormMaster = Backbone.View.extend({
       that.model.removeActiveEdits();
       that.sidebar = new AFB.Views.FormSidebarInputs({
 
-        parentView: that,
         model: that.model
 
       });
+      that.sidebar.parentView = that;
 
     }
 		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
@@ -142,7 +143,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
 	updateSidebar: function(){
-		this.sidebar.options.field = this.$el.find('.editing');
+		this.sidebar.field = this.$el.find('.editing');
 		this.$el.find('.sidebar_window .sidebar').
       replaceWith(this.sidebar.render().$el.html());
 	},

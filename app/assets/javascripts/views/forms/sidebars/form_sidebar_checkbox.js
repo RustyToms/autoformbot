@@ -1,13 +1,13 @@
 AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
-  $field: $(JST['forms/fields/checkbox']()),
+  $seed: $(JST['forms/fields/checkbox']()),
 
   addField: function(){
-    this.model.addField(this.$field.prop('outerHTML'));
+    this.model.addField(this.$seed);
   },
 
   render: function(){
     console.log("rendering FormSidebarCheckbox");
-    this.$field = ($(this.options.field) || this.$field);
+    this.$field = ($(this.field) || this.$seed);
     var numOptions = this.$field.find('.checkbox-option').length;
     var label = this.$field.find('.checkbox-label').text().trim();
 		var required = this.$field.hasClass('required');

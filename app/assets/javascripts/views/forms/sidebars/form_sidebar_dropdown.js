@@ -1,15 +1,15 @@
 AFB.Views.FormSidebarDropdown = Backbone.View.extend({
-  $field: $(JST['forms/fields/dropdown']()),
+  $seed: $(JST['forms/fields/dropdown']()),
 
 
   addField: function(){
-    this.model.addField(this.$field);
+    this.model.addField(this.$seed);
   },
 
 
   render: function(){
     console.log("rendering FormSidebarDropdown");
-    this.$field = $((this.options.field || this.$field));
+    this.$field = $((this.field || this.$seed));
     var numOptions = this.$field.find('select').prop('length');
     var label = this.$field.find('.dropdown-label').html().trim();
 

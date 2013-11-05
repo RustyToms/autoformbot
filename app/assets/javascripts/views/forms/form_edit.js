@@ -5,7 +5,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   initialize: function(){
-    this.parentView = this.options.parentView;
     var that = this;
     console.log('FormEdit View initialized');
     this.listenTo(this.model, 'change', function(){
@@ -62,9 +61,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
     var sidebarName = $formEl.data("sidebar");
     console.log("new sidebar should be " + sidebarName);
     var sidebar = new AFB.Views[sidebarName]({
-      model: this.model,
-      field: $formEl
+      model: this.model
     });
+    sidebar.field = $formEl;
 
     this.parentView.swapSidebar(sidebar, this.parentView);
   },

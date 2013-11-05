@@ -29,9 +29,8 @@ Form Options
 - url to redirect to on form submission
 
 ------------ Unresolved Issues -------------------------------
-- If there is only one field in the form, on hover it will make the form
-  disappear
 - Sidebar isn't properly fixed in position
+- some fields when added are not immediately contenteditable
 - The form checkboxes won't stay disabled when clicked in formEdit
 - Radio buttons and some others are not contenteditable on creation and after
   a few keystrokes focus is taken away from them when editing
