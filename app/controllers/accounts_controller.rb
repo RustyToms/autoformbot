@@ -43,6 +43,7 @@ class AccountsController < ApplicationController
       account_auth: "admin")
 
     if @account.save
+      sign_in(@user)
       redirect_to account_url(@account.url_name)
     else
       User.find(@user.id).delete
