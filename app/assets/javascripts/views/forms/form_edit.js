@@ -54,7 +54,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
     $formEl.addClass("editing").
     append("<button class='delete-field' style='position: absolute'" +
       ">X</button>");
-    myInput = ($formEl.find('input'));
 
     this.parentView.localSaveForm(this.parentView);
     var sidebarName = $formEl.data("sidebar");

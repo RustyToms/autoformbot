@@ -60,12 +60,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
     that.sidebar && that.sidebar.remove();
 
     if (newSidebar){
-
       that.sidebar = newSidebar;
-      console.log("new sidebar is " + that.sidebar);
 
     } else {
-
       that.model.removeActiveEdits();
       that.sidebar = new AFB.Views.FormSidebarInputs({
 
@@ -217,7 +214,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
     var name = that.$el.find('.fi-30x .formName').text().trim();
     var text = that.model.get('form_text');
-    this.model.save({
+    that.model.save({
       name: name,
       form_text: text
     },{

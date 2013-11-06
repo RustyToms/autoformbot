@@ -1,23 +1,31 @@
 AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
-  $seed: $(JST['forms/fields/checkbox']()),
+
+  initialize: function(){
+    this.$seed = $(JST['forms/fields/checkbox']());
+  },
 
   addField: function(){
+    console.log('adding checkbox field');
     this.model.addField(this.$seed);
   },
 
   render: function(){
     console.log("rendering FormSidebarCheckbox");
-    this.$field = ($(this.field) || this.$seed);
-    var numOptions = this.$field.find('.checkbox-option').length;
+    this.$field = $(this.field || this.$seed.prop('outerHTML'));
+    console.log(this.$field.prop('outerHTML'));
+    this.numOptions = this.$field.find('.checkbox-option').length;
     var label = this.$field.find('.checkbox-label').text().trim();
 		var required = this.$field.hasClass('required');
+    var that = this;
 
     this.$el.html(JST['forms/sidebars/checkbox_options']({
       label: label,
 			required: required
     }));
 
-		this.makeSidebar(numOptions);
+    $(function(){
+      that.makeSidebar($(that.model.get('form_text')));
+    });
 
     if(this.$field.find('.checkbox-option').
       first().css('display') === 'block'){
@@ -34,33 +42,33 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
     if ($(event.target).attr('name')=== 'checkbox-label' ){
       var name = 'results[' + event.target.value + ']';
       this.model.updateAttribute('.editing .checkbox', 'name', name);
-    } else if ($(event.target).hasClass('option-name')) {
+      this.model.updateValues(event);
+    }
 
-			var selector = '.editing .' + event.target.name + '-label';
-			this.model.updateHTML(selector, event.target.value);
-		}
-    this.model.updateValues(event);
+    this.updateField();
   },
 
   parseClick: function(event){
     console.log("in FormSidebarCheckbox#parseClick");
     $target = $(event.target);
-    if ($target.hasClass('prefilled-check')) {
-			var selector = '.editing .' + $target.attr('name');
-			this.model.updateProp(selector, 'checked', $target.prop('checked'));
-    } else if($target.hasClass('add-option')){
-      var numOptions = this.$el.find('.checkbox-option-config').length + 1;
-      this.makeSidebar(numOptions);
+    var that = this;
+
+    if($target.hasClass('add-option')){
+      this.numOptions = this.$el.find('.checkbox-option-config').length + 1;
+      $(function(){
+        that.makeSidebar($(this).find('form#form-itable'));
+      });
+
     } else {
-      this.model.updateValues(event);
+      that.updateField();
+
     }
   },
 
-  makeSidebar: function(numOptions){
+  makeSidebar: function($form){
     console.log('in Checkbox makeSidebar');
-		numOptions = (numOptions || 1);
+    console.log($form.prop('outerHTML'));
 
-    $form = $(this.model.get('form_text'));
     this.$field = $form.find('.editing');
     var display = ""; //will be used to remember if display is block, making options render vertically
     var $options = this.$el.find('.checkboxes');
@@ -69,16 +77,14 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
     var label = this.$field.find('.checkbox-label').text().trim();
     this.$field.find('span.checkbox').empty();
 
-    for(var i=0; i<numOptions; i++){
-      $currentOption = $($preexisting.shift());
-			var name = "results[" + label + "][" + name + "]";
+    for(var i=0; i<this.numOptions; i++){
+      var $currentOption = $($preexisting.shift());
 			var klass = label.replace(/[^_a-zA-Z0-9-]/g, '_') + i;
-      var optionName = "Option Name";
-      var value = "";
+      var name = "results[" + label + "]";
+      var value = "Option Name";
       var checked = false;
 
       if($currentOption.length){
-        optionName = $currentOption.find('label').text().trim();
         value = $currentOption.find('input').val();
         display = $currentOption.css('display');
 				checked = $currentOption.find('input').get(0).hasAttribute('checked');
@@ -86,9 +92,8 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
       }
 
       var checkboxOption = JST['forms/fields/checkbox_option']({
-        name: "results[" + label + "]",
+        name: name,
         klass: klass,
-        optionName: optionName,
         value: value,
 				checked: checked
       });
@@ -96,9 +101,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
 
       var optionOption = JST['forms/sidebars/checkbox_option']({
         klass: klass,
-        optionName: optionName,
         value: value,
-        i: i,
 				checked: checked
       });
       $options.append($(optionOption));
@@ -106,5 +109,39 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
 
     this.$field.find('.checkbox-option').css('display', display);
     this.model.set('form_text', $form.prop('outerHTML'));
+  },
+
+  updateField: function(){
+    console.log("updating checkboxes in form");
+    this.$field = $('.editing');
+    var that = this;
+    var display = 'inline';
+    var $options = this.$el.find('.checkbox-option-config');
+    var label = this.$el.find("input[name='checkbox-label']").val();
+    myEl = this.$field;
+    this.$field.find('span.checkbox').empty();
+
+    if (this.$el.find('.vertical').prop('checked')){
+      display = 'block';
+    }
+
+    $options.each(function(index){
+      var value = $(this).find('input').val();
+      var checked = $(this).find('.prefilled-check').prop('checked');
+      var klass = label.replace(/[^_a-zA-Z0-9-]/g, '_') + index;
+      var name = "results[" + label + "]";
+
+      var checkboxOption = JST['forms/fields/checkbox_option']({
+        name: name,
+        klass: klass,
+        value: value,
+        checked: checked
+      });
+      that.$field.find('span.checkbox').append($(checkboxOption));
+    });
+
+    $(function(){
+      that.model.set('form_text', $('form#form-itable').prop('outerHTML'));
+    });
   }
 });

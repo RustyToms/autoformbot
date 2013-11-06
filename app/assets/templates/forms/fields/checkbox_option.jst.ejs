@@ -3,7 +3,7 @@
   <input
 		type='checkbox'
 		id='<%= klass %>'
-		name='results[<%= optionName %>][<%= name %>]'
+		name="<%= name + '[' + value + ']'%>"
 		class='<%= klass %>'
 		value='<%= value %>'
 		<% if(checked) { %>
@@ -13,6 +13,6 @@
 
   <label
 		for='<%= klass %>'
-		class='<%= klass %>-label'><%= optionName %></label>
+		class='<%= klass %>-label'><%= value %></label>
 
 </span>
