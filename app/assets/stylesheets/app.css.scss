@@ -113,7 +113,7 @@ div, main, section, a {
 	background-color: white;
 	margin: 0 70px;
 	border-radius: 20px;
-	@include box-shadow(0 0 100px 80px white);
+	@include box-shadow(0 0 100px 80px white, $blur-edge-white);
 }
 
 .logo h1 {
@@ -184,7 +184,7 @@ animation: cursorBlink 1s linear infinite;
 }
 
 .hover-div:hover{
-	@include box-shadow(0 0 120px 80px #EEE);
+	@include box-shadow(0 0 120px 80px #EEE, $blur-edge-white);
 	background-color: #EEE;
 }
 

@@ -29,6 +29,7 @@ Form Options
 - url to redirect to on form submission
 
 ------------ Unresolved Issues -------------------------------
+- myflash isn't working right
 - some fields when added are not immediately contenteditable
 - The form checkboxes won't stay disabled when clicked in formEdit
 - Radio buttons and some others are not contenteditable on creation and after
