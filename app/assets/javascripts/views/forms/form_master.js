@@ -16,8 +16,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
     console.log('rendering FormMaster view');
     this.$el.empty();
     this.$el.append(this.makeSidebarView(newSidebar));
-    this.$el.find('.sidebar_window').
-      append($(JST["forms/save_dup_buttons"]()));
 
     this.renderForm();
 
@@ -79,6 +77,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
     }
 		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
       append(that.sidebar.render().$el);
+
+    $sidebarHtml.append($(JST["forms/save_dup_buttons"]()));
 
     $(function(){
       that.on("change", ".sidebar", that.sidebarValues);
