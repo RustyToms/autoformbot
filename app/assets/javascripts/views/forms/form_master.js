@@ -69,9 +69,10 @@ AFB.Views.FormMaster = Backbone.View.extend({
         model: that.model
 
       });
-      that.sidebar.parentView = that;
 
     }
+    that.sidebar.parentView = that;
+
 		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
       append(that.sidebar.render().$el);
 
