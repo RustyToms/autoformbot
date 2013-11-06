@@ -51,6 +51,9 @@ $(function(){
       if (Math.abs(scroll) < widthDifference)
       $header.css('left', 0 - scroll);
     }
+
+    $sidebar = $('.sidebar_window');
+    $sidebar && $sidebar.css('top', $(this).scrollTop());
   });
 
   $(window).resize(function(){
