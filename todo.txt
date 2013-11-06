@@ -29,7 +29,6 @@ Form Options
 - url to redirect to on form submission
 
 ------------ Unresolved Issues -------------------------------
-- Sidebar isn't properly fixed in position
 - some fields when added are not immediately contenteditable
 - The form checkboxes won't stay disabled when clicked in formEdit
 - Radio buttons and some others are not contenteditable on creation and after

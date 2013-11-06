@@ -22,8 +22,19 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.renderForm();
 
     var that = this;
+
+    this.sidebarReset(this);
+
     console.log('--- End of FormMaster view #render ---');
     return this;
+  },
+
+  sidebarReset: function(that){
+    $(function(){
+      that.on("change", ".sidebar", that.sidebarValues);
+      $sidebar = $('.sidebar_window');
+      $sidebar && $sidebar.css('top', $(this).scrollTop());
+    });
   },
 
   renderForm: function(){
@@ -148,9 +159,10 @@ AFB.Views.FormMaster = Backbone.View.extend({
       replaceWith(this.sidebar.render().$el.html());
 	},
 
-	swapSidebar: function(sidebar){
-		var $sidebar = this.makeSidebarView(sidebar);
-		this.$el.find('.sidebar_window').replaceWith($sidebar);
+	swapSidebar: function(sidebar, that){
+		var $sidebar = that.makeSidebarView(sidebar);
+		that.$el.find('.sidebar_window').replaceWith($sidebar);
+    that.sidebarReset(that);
 	},
 
   localSaveForm: function(that){
