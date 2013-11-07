@@ -76,7 +76,9 @@ AFB.Models.Form = Backbone.Model.extend ({
 
   addField: function(field){
     var $form = $(this.get('form_text'));
-    $form.find('.fields-list').append(field);
+    $field = $(field).append("<button class='delete-field' " +
+      "style='position: absolute' >X</button>");
+    $form.find('.fields-list').append($field);
     this.set('form_text', $form.prop('outerHTML'));
   },
 
