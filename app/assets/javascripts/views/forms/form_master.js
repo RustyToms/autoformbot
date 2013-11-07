@@ -46,6 +46,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
     });
     this.editForm.parentView = this;
+    this.formRouter.childViews.push(this.editForm);
 
     $formWrapper.find('.fi-30x').append(this.editForm.render().$el);
     this.$el.append($formWrapper);
@@ -72,6 +73,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
     }
     that.sidebar.parentView = that;
+    that.formRouter.childViews.push(that.sidebar);
+
 
 		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
       append(that.sidebar.render().$el);

@@ -87,11 +87,17 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       el: this.$seedEl,
     });
 
+    this.view.formRouter = this;
     this.$rootEl.append(this.view.render().$el);
     window.scrollTo(0,0);
   },
 
   cleanRootEl: function(){
+    _.each(this.childViews, function(view){
+      console.log('removing childView');
+      view.remove();
+    });
+    this.childViews = [];
     this.$rootEl.empty();
     this.$rootEl.unbind();
     this.$rootEl.off();
