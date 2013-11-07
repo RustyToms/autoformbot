@@ -25,7 +25,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   renderChange: function(){
     console.log("rendering FormEdit form change");
     var $newField = $('<span></span>');
-    newField.append($(this.model.get('form_text')).find('.editing'));
+    $newField.append($(this.model.get('form_text')).find('.editing'));
 
     this.prepForm($newField);
     this.$el.find('.editing').replaceWith($newField.find('.formEl'));
