@@ -122,10 +122,12 @@ AFB.Routers.FormRouter.fitContent = function(matchSelect, targetSelect){
 };
 
 AFB.Routers.FormRouter.myFlash = function(msg){
+  console.log("myFlash message is " + msg);
   $('.backbone-flash-msgs').prepend(JST['my_flash']({
     msg: msg
   }));
   window.setTimeout(function(){
     $('.my-flash').last().remove();
-  }, 5000);
+    $('br').last().remove();
+  }, 3000);
 };

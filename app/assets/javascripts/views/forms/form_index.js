@@ -18,9 +18,9 @@ AFB.Views.FormIndex = Backbone.View.extend({
 
   formSelect: function(formId, $target){
     if ($target.closest('.form-links').hasClass('clicked')){
-     
+
       this.$el.find('.clicked').removeClass('clicked');
-    
+
     } else {
 
       this.$el.find('.clicked').removeClass('clicked');
@@ -47,10 +47,12 @@ AFB.Views.FormIndex = Backbone.View.extend({
   deleteForm: function(formId){
     console.log('FormIndex#deleteForm');
     var form = AFB.formCollection.get(formId);
+    var formName = form.get('name');
     form.destroy();
     this.$el.find(".form-summary[data-form-id=" + formId + "]").remove();
+    AFB.Routers.FormRouter.myFlash(formName + ' deleted!');
   },
-	
+
 	duplicateForm: function(formId){
 		var that = this;
 		var form = AFB.formCollection.get(formId);

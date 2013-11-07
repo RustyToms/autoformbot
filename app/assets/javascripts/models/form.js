@@ -78,7 +78,7 @@ AFB.Models.Form = Backbone.Model.extend ({
     var $form = $(this.get('form_text'));
     $field = $(field).append("<button class='delete-field' " +
       "style='position: absolute' >X</button>");
-    $form.find('.fields-list').append($field);
+    $form.find('.fields-list').append($field, "<br>");
     this.set('form_text', $form.prop('outerHTML'));
   },
 
@@ -97,10 +97,13 @@ AFB.Models.Form = Backbone.Model.extend ({
         console.log("save successful");
 				console.log(response);
 				callback && callback(newModel);
+        AFB.Routers.FormRouter.myFlash(newModel.get('name') + ' duplicated');
       },
       error: function(model, response){
         console.log("error: " + response.responseText);
         console.log(model);
+        AFB.Routers.FormRouter.
+          myFlash('Error duplicating ' + model.get('name'));
       }
     });
 	}

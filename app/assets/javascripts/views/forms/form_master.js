@@ -201,8 +201,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       //   cancel: "select, option, .contenteditable"
       // });
       $('.formEl').draggable({
-        start: function(event, ui){
-          ui.helper.css('display', 'inline-block');
+        stop: function(event, ui){
           that.editForm.parseClickForm({target: ui.helper});
         },
         containment: 'form#form-itable',
@@ -252,10 +251,12 @@ AFB.Views.FormMaster = Backbone.View.extend({
         console.log(model);
         console.log(response);
         console.log(that.model.get('id'));
+        AFB.Routers.FormRouter.myFlash('Form saved!');
       },
       error: function(response, model){
         console.log("error: " + response.responseText);
         console.log(model);
+        AFB.Routers.FormRouter.myFlash("error: " + response.responseText);
       }
     });
     that.render();
