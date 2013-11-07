@@ -33,3 +33,5 @@ Form Options
 - Radio buttons and some others are not contenteditable on creation and after
   a few keystrokes focus is taken away from them when editing
 - When text is modified the move-handle doesn't show up
+- When the label is changed the .formEl is no longer draggable
+- click on move-handle should unlock (display inline-block) and change graphic from lock to move

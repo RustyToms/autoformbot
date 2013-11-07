@@ -169,8 +169,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
   localSaveForm: function(that){
     console.log('locally saving form model');
     $('.ui-draggable').draggable('destroy');
+    // $('.ui-resizable').resizable('destroy');
     // $('.ui-droppable').droppable('destroy');
-    $('.ui-sortable').sortable('destroy');//.find('.formEl').children().css('z-index', '0');
+    // $('.ui-sortable').sortable('destroy');//.find('.formEl').children().css('z-index', '0');
 
     $(function(){
       var $form = that.$el.find('form#form-itable');
@@ -188,29 +189,43 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   makeSortable: function(that){
     $(function(){
-      console.log("making fields-list elements sortable");
-      $(".fields-list").sortable({
-        delay: 50,
-        distance: 3,
-        handle: ".move-handle",
-        scrollSensitivity: 50,
-        stop: function(event, ui){
-          that.editForm.parseClickForm({target: ui.item});
+      console.log("making fields-list elements draggable");
+      // $(".fields-list").sortable({
+      //   delay: 50,
+      //   distance: 3,
+      //   handle: ".move-handle",
+      //   scrollSensitivity: 50,
+      //   stop: function(event, ui){
+      //     that.editForm.parseClickForm({target: ui.item});
+      //   },
+      //   cancel: "select, option, .contenteditable"
+      // });
+      $('.formEl').draggable({
+        start: function(event, ui){
+          ui.helper.css('display', 'inline-block');
+          that.editForm.parseClickForm({target: ui.helper});
         },
-        cancel: "select, option, .contenteditable"
-      });
-      $('.formEl').css('display', 'inline-block').draggable({
         containment: 'form#form-itable',
         distance: 3,
         handle: '.move-handle',
         scrollSensitivity: 50,
         snap: ".formEl",
         snapMode: 'outer',
-        snapTolerance: 5,
-        stop: function(event, ui){
-          that.editForm.parseClickForm({target: ui.item});
-        }
+        snapTolerance: 5
       });
+    //   $('.formEl').resizable({
+    //     start: function(event, ui){
+    //       ui.element.css('display', 'inline-block');
+    //       that.editForm.parseClickForm({target: ui.helper});
+    //     },
+    //     containment: 'form#form-itable',
+    //     handles: {
+    //       e: $('.formEl'),
+    //       s: $('.formEl'),
+    //       sw: $('.formEl')
+    //     }
+    //   });
+    //   $('.formEl').addClass('e s se');
     });
   },
 
