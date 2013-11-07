@@ -112,6 +112,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 
 	duplicateForm: function(callback){
 		console.log("duplicating form");
+    var that = this;
 
 		var newModel = new AFB.Models.Form({
 			form_text: this.get('form_text'),
@@ -125,8 +126,8 @@ AFB.Models.Form = Backbone.Model.extend ({
         console.log("save successful");
 				console.log(response);
 				callback && callback(newModel);
-        newModel.updateAttribute("input[name='form_id']", "value",
-          newModel.get('id'));
+        newModel.updateFormAction();
+
         AFB.Routers.FormRouter.myFlash(newModel.get('name') + ' duplicated');
       },
       error: function(model, response){
@@ -136,5 +137,12 @@ AFB.Models.Form = Backbone.Model.extend ({
           myFlash('Error duplicating ' + model.get('name'));
       }
     });
-	}
+	},
+
+  updateFormAction: function() {
+    console.log("in Model Form#updateFormAction");
+    var $newForm = $(this.get("form_text"));
+    $newForm.attr('action', "/results/" + this.get('id'));
+    this.set("form_text", $newForm.prop("outerHTML"));
+  },
 });

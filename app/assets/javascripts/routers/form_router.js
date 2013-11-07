@@ -53,11 +53,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 				that.model.updateAttribute('#form-id', 'value', that.model.get('id'));
         console.log("form_id is " + that.model.get('id'));
         AFB.Routers.FormRouter.myFlash("New Form created");
-
-        var $newForm = $(that.model.get("form_text"));
-        $newForm.attr('action', "/results/" + that.model.get('id'));
-        that.model.set("form_text", $newForm.prop("outerHTML"));
-
+        that.model.updateFormAction();
         that.formMaster(that.model);
       }
 		});
@@ -124,14 +120,16 @@ AFB.Routers.FormRouter.fitContent = function(matchSelect, targetSelect){
   $(function(){
     var $match = $(matchSelect);
     var $target = $(targetSelect);
-
-    var width = $target.outerWidth();
-    width && $match.css('width', width);
-    var height = $target.outerHeight();
-    height && $match.css('height', height);
-    console.log('width and height are ' + width + " and " + height);
-    console.log($match.get(0));
+    AFB.Routers.FormRouter.matchSize($match, $target);
   });
+};
+
+AFB.Routers.FormRouter.matchSize = function ($match, $target){
+  var width = $target.outerWidth();
+  $match.css('width', width);
+  var height = $target.outerHeight();
+  $match.css('height', height);
+  console.log('width and height are ' + width + " and " + height);
 };
 
 AFB.Routers.FormRouter.myFlash = function(msg){
@@ -140,7 +138,7 @@ AFB.Routers.FormRouter.myFlash = function(msg){
     msg: msg
   }));
   window.setTimeout(function(){
-    $('.my-flash').last().remove();
-    $('br').last().remove();
+    $('.backbone-flash-msgs .my-flash').last().remove();
+    $('.backbone-flash-msgs br').last().remove();
   }, 3000);
 };
