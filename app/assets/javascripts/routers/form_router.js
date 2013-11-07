@@ -53,8 +53,11 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 				that.model.updateAttribute('#form-id', 'value', that.model.get('id'));
         console.log("form_id is " + that.model.get('id'));
         AFB.Routers.FormRouter.myFlash("New Form created");
-        that.model.updateAttribute("input[name='form_id']", "value",
-          that.model.get('id'));
+
+        var $newForm = $(that.model.get("form_text"));
+        $newForm.attr('action', "/results/" + that.model.get('id'));
+        that.model.set("form_text", $newForm.prop("outerHTML"));
+
         that.formMaster(that.model);
       }
 		});

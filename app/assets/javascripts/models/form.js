@@ -6,9 +6,7 @@ AFB.Models.Form = Backbone.Model.extend ({
     $form = $(this.get('form_text'));
     console.log(selector);
     $form.find(selector).attr(attribute, value);
-    console.log($form.find(selector).attr('name'));
     this.set('form_text', $form.prop('outerHTML'));
-    console.log($(this.get('form_text')).find(selector).attr('name'));
   },
 
   updateHTML: function(selector, value){

@@ -1,4 +1,6 @@
 AutoFormBot::Application.routes.draw do
+  root to: "static_pages#home"
+
   devise_for :users
 
   match "AutoFormBot" => 'accounts#check_for_account', as: :user_root
@@ -13,14 +15,10 @@ AutoFormBot::Application.routes.draw do
 
   resources :accounts
 
-  resources :results, only: [:create, :destroy]
+  resources :results, only: [:destroy]
 
-
-
-  root :to => "static_pages#home"
-
-
-
+  post '/results/:dsjo98432j3j39fp31joifed83jg03j0u9j4f98',
+    to: 'results#create'
 
 
 
