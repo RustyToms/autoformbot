@@ -3,6 +3,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log('formrouter initialized');
     this.$rootEl = $rootEl;
     this.$seedEl = $("<section class='body group'></section>");
+    this.bind("all", this.saveModel);
   },
 
   routes: {
@@ -86,10 +87,18 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       model: model,
       el: this.$seedEl,
     });
-
     this.view.formRouter = this;
+    model.formRouter = this;
     this.$rootEl.append(this.view.render().$el);
     window.scrollTo(0,0);
+  },
+
+  saveModel: function(){
+    if (this.model){
+      console.log("in FormRouter, saving last open model");
+      this.model.serverSave();
+      delete this.model;
+    }
   },
 
   cleanRootEl: function(){

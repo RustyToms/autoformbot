@@ -4,7 +4,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     "click .sidebar" : "sidebarClick",
     "keyup .sidebar" : "sidebarValues",
     "change .sidebar :checked, .sidebar select" : "sidebarValues",
-    "click #save-button" : "serverSave",
+    "click #save-button" : "serverSaveForm",
     "click .duplicate-form button" : "duplicateForm"
   },
 
@@ -169,9 +169,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
   localSaveForm: function(that){
     console.log('locally saving form model');
     $('.ui-draggable').draggable('destroy');
-    // $('.ui-resizable').resizable('destroy');
-    // $('.ui-droppable').droppable('destroy');
-    // $('.ui-sortable').sortable('destroy');//.find('.formEl').children().css('z-index', '0');
 
     $(function(){
       var $form = that.$el.find('form#form-itable');
@@ -182,6 +179,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
         name: name
       },{silent: true});
 
+      that.formRouter.model = that.model;
       $form.find('input').attr('disabled', 'disabled');
       that.makeSortable(that);
     });
@@ -190,16 +188,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
   makeSortable: function(that){
     $(function(){
       console.log("making fields-list elements draggable");
-      // $(".fields-list").sortable({
-      //   delay: 50,
-      //   distance: 3,
-      //   handle: ".move-handle",
-      //   scrollSensitivity: 50,
-      //   stop: function(event, ui){
-      //     that.editForm.parseClickForm({target: ui.item});
-      //   },
-      //   cancel: "select, option, .contenteditable"
-      // });
       $('.formEl').draggable({
         stop: function(event, ui){
           that.editForm.parseClickForm({target: ui.helper});
@@ -212,54 +200,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
         snapMode: 'outer',
         snapTolerance: 5
       });
-    //   $('.formEl').resizable({
-    //     start: function(event, ui){
-    //       ui.element.css('display', 'inline-block');
-    //       that.editForm.parseClickForm({target: ui.helper});
-    //     },
-    //     containment: 'form#form-itable',
-    //     handles: {
-    //       e: $('.formEl'),
-    //       s: $('.formEl'),
-    //       sw: $('.formEl')
-    //     }
-    //   });
-    //   $('.formEl').addClass('e s se');
     });
   },
 
-  serverSave: function(){
-    this.serverSaveForm(this);
-  },
-
-  serverSaveForm: function(that){
+  serverSaveForm: function(){
     console.log("in FormMaster#serverSaveForm");
-    that.$el.find(".fi-30x label, h2, p").
-      removeAttr('contenteditable');
-    that.$el.find('.move-handle').remove();
-    that.removeActiveEdits(that);
-    that.localSaveForm(that);
-
-    var name = that.$el.find('.fi-30x .formName').text().trim();
-    var text = that.model.get('form_text');
-    that.model.save({
-      name: name,
-      form_text: text
-    },{
-      success: function(response, model){
-        console.log("save successful");
-        console.log(model);
-        console.log(response);
-        console.log(that.model.get('id'));
-        AFB.Routers.FormRouter.myFlash('Form saved!');
-      },
-      error: function(response, model){
-        console.log("error: " + response.responseText);
-        console.log(model);
-        AFB.Routers.FormRouter.myFlash("error: " + response.responseText);
-      }
-    });
-    that.render();
+    this.model.serverSave();
+    this.render();
   },
 
   removeActiveEdits: function(that){

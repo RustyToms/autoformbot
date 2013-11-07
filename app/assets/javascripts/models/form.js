@@ -47,16 +47,6 @@ AFB.Models.Form = Backbone.Model.extend ({
     this.set('form_text', $form.prop('outerHTML'));
 	},
 
-  removeActiveEdits: function(){
-    console.log('removing all editing classes');
-    var $form = $(this.get('form_text'));
-    $form.find('input').removeAttr('disabled');
-    $form.find('.editing').removeClass('editing');
-    $form.find('.move-handle').remove();
-    $form.find('.delete-field').remove();
-    this.set('form_text', $form.prop('outerHTML'));
-  },
-
   updateValues: function(event) {
     console.log("in formmodel#updateValues");
 
@@ -72,6 +62,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 		} else {
       this.updateHTML(selector, value);
     }
+    this.formRouter.model = this;
   },
 
   addField: function(field){
@@ -80,6 +71,44 @@ AFB.Models.Form = Backbone.Model.extend ({
       "style='position: absolute' >X</button>");
     $form.find('.fields-list').append($field, "<br>");
     this.set('form_text', $form.prop('outerHTML'));
+    this.formRouter.model = this;
+  },
+
+  removeActiveEdits: function(){
+    console.log('removing all editing classes');
+    var $form = $(this.get('form_text'));
+    $form.find('input').removeAttr('disabled');
+    $form.find('.editing').removeClass('editing');
+    $form.find('.move-handle').remove();
+    $form.find('.delete-field').remove();
+    $form.find('.ui-draggable').draggable('destroy');
+    this.set('form_text', $form.prop('outerHTML'));
+  },
+
+  serverSave: function(){
+    console.log('in Form model saving to the server');
+    this.removeActiveEdits();
+    var text = this.get('form_text');
+    var name = $(text).find('.formName').text().trim();
+    var that = this;
+    this.save({
+      name: name,
+      form_text: text
+    },{
+      success: function(response, model){
+        console.log("save successful");
+        console.log(model);
+        console.log(response);
+        console.log(that.get('id'));
+        AFB.Routers.FormRouter.myFlash('Form saved!');
+      },
+      error: function(response, model){
+        console.log("error: " + response.responseText);
+        console.log(model);
+        AFB.Routers.FormRouter.myFlash("error: " + response.responseText);
+      }
+    });
+
   },
 
 	duplicateForm: function(callback){
