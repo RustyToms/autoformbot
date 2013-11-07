@@ -423,6 +423,22 @@ a.formSelect:hover {
   display: inline-block;
 }
 
+.ui-draggable {
+  cursor: pointer;
+}
+
+.ui-draggable:hover{
+  background-color: pink;
+}
+
+.ui-draggable:hover .move-handle {
+  display: inline-block;
+}
+
+.editing .move-handle {
+  display: inline-block;
+}
+
 .fi-30x {
   margin-right: 30px;
 }

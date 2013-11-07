@@ -34,8 +34,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
     $formText.find("label, h2, p").attr('contenteditable', 'true');
     $formText.find('input').attr('disabled', 'disabled');
     $formText.find(".formEl:not(:has('.move-handle'))")
-      .prepend("<span class='move-handle' style=" +
-        "'color: white; font-size: 20px;'>\u039E</span>");
+      .prepend("<span class='move-handle' style='color: white; font-size:" +
+        " 20px; z-index: 999;'>\u039E</span>");
   },
 
   parseClickForm: function(event) {

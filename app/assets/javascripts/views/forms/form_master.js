@@ -168,7 +168,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   localSaveForm: function(that){
     console.log('locally saving form model');
-    // $('.ui-draggable').draggable('destroy');
+    $('.ui-draggable').draggable('destroy');
     // $('.ui-droppable').droppable('destroy');
     $('.ui-sortable').sortable('destroy');//.find('.formEl').children().css('z-index', '0');
 
@@ -189,17 +189,27 @@ AFB.Views.FormMaster = Backbone.View.extend({
   makeSortable: function(that){
     $(function(){
       console.log("making fields-list elements sortable");
-      var $fields = $(".fields-list");
-      $fields.sortable({
+      $(".fields-list").sortable({
         delay: 50,
         distance: 3,
         handle: ".move-handle",
+        scrollSensitivity: 50,
         stop: function(event, ui){
-          myUi = ui;
-          myEvent = event;
           that.editForm.parseClickForm({target: ui.item});
         },
         cancel: "select, option, .contenteditable"
+      });
+      $('.formEl').css('display', 'inline-block').draggable({
+        containment: 'form#form-itable',
+        distance: 3,
+        handle: '.move-handle',
+        scrollSensitivity: 50,
+        snap: ".formEl",
+        snapMode: 'outer',
+        snapTolerance: 5,
+        stop: function(event, ui){
+          that.editForm.parseClickForm({target: ui.item});
+        }
       });
     });
   },
