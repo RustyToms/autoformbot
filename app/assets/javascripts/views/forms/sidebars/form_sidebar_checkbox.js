@@ -81,8 +81,6 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
 			var klass = label.replace(/[^_a-zA-Z0-9-]/g, '_') + i;
       var value = "Option Name";
       var checked = false;
-      console.log($preexisting.length);
-      console.log($preexisting);
 
       if($preexisting.length){
         var $currentOption = $($preexisting.shift());

@@ -158,7 +158,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 	},
 
 	swapSidebar: function(sidebar, that){
-		var $sidebar = that.makeSidebarView(sidebar);
+		var $sidebar = that.makeSidebarView(sidebar, that);
 		that.$el.find('.sidebar_window').replaceWith($sidebar);
     that.sidebarReset(that);
 	},
