@@ -1,6 +1,6 @@
 AFB.Views.FormShow = Backbone.View.extend({
   events: {
-    'click #form-itable-submit': 'submitForm'
+    // 'click #form-itable-submit': 'submitForm'
   },
 
   render: function(){
@@ -27,7 +27,7 @@ AFB.Views.FormShow = Backbone.View.extend({
       url: '/results',
       type: 'POST',
       dataType: 'json',
-      data: {result: $form.prop('outerHTML'), form_id: form_id},
+      data: {results: $form.prop('outerHTML'), form_id: form_id},
       success: this.submissionSuccess,
       error: this.submissionError
     });

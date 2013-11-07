@@ -1,4 +1,5 @@
 AFB.Models.Form = Backbone.Model.extend ({
+
   updateAttribute: function(selector, attribute, value){
     console.log("updating form attribute values");
 		console.log(attribute + ": " + value);
@@ -62,7 +63,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 		} else {
       this.updateHTML(selector, value);
     }
-    this.formRouter.model = this;
+    this.formRouter.openModel = this;
   },
 
   addField: function(field){
@@ -71,7 +72,7 @@ AFB.Models.Form = Backbone.Model.extend ({
       "style='position: absolute' >X</button>");
     $form.find('.fields-list').append($field, "<br>");
     this.set('form_text', $form.prop('outerHTML'));
-    this.formRouter.model = this;
+    this.formRouter.openModel = this;
   },
 
   removeActiveEdits: function(){
@@ -100,7 +101,7 @@ AFB.Models.Form = Backbone.Model.extend ({
         console.log(model);
         console.log(response);
         console.log(that.get('id'));
-        AFB.Routers.FormRouter.myFlash('Form saved!');
+        AFB.Routers.FormRouter.myFlash('Form saved');
       },
       error: function(response, model){
         console.log("error: " + response.responseText);
@@ -126,6 +127,8 @@ AFB.Models.Form = Backbone.Model.extend ({
         console.log("save successful");
 				console.log(response);
 				callback && callback(newModel);
+        newModel.updateAttribute("input[name='form_id']", "value",
+          newModel.get('id'));
         AFB.Routers.FormRouter.myFlash(newModel.get('name') + ' duplicated');
       },
       error: function(model, response){

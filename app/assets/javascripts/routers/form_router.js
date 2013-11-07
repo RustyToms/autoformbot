@@ -34,8 +34,6 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.$rootEl.html(this.$seedEl.clone());
     this.model = new AFB.Models.Form();
     this.setUpModel();
-
-    this.formMaster(this.model);
   },
 
   setUpModel: function(){
@@ -54,6 +52,10 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 			success: function(response, model) {
 				that.model.updateAttribute('#form-id', 'value', that.model.get('id'));
         console.log("form_id is " + that.model.get('id'));
+        AFB.Routers.FormRouter.myFlash("New Form created");
+        that.model.updateAttribute("input[name='form_id']", "value",
+          that.model.get('id'));
+        that.formMaster(that.model);
       }
 		});
   },
@@ -71,7 +73,6 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       });
     this.$rootEl.append(this.view.render().$el);
     window.scrollTo(0,0);
-    //this.fitContent('.fi-30x', '#form-itable');
   },
 
   formEdit: function(id) {
@@ -94,10 +95,10 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   saveModel: function(){
-    if (this.model){
+    if (this.openModel){
       console.log("in FormRouter, saving last open model");
-      this.model.serverSave();
-      delete this.model;
+      this.openModel.serverSave();
+      delete this.openModel;
     }
   },
 

@@ -179,7 +179,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
         name: name
       },{silent: true});
 
-      that.formRouter.model = that.model;
       $form.find('input').attr('disabled', 'disabled');
       that.makeSortable(that);
     });
