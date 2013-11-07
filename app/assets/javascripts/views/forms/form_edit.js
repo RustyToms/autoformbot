@@ -32,8 +32,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   prepForm: function($formText){
     $formText.find("label, h2, p").attr('contenteditable', 'true');
-    $formText.find('.editing input').attr('disabled', 'disabled');
-    $formText.find('ul .formEl').prepend("<span class='move-handle' style=" +
+    $formText.find('input').attr('disabled', 'disabled');
+    $formText.find(".formEl:not(:has('.move-handle'))")
+      .prepend("<span class='move-handle' style=" +
         "'color: white; font-size: 20px;'>\u039E</span>");
   },
 

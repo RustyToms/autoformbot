@@ -50,7 +50,7 @@ AFB.Models.Form = Backbone.Model.extend ({
   removeActiveEdits: function(){
     console.log('removing all editing classes');
     var $form = $(this.get('form_text'));
-    $form.find('.editing input').removeAttr('disabled');
+    $form.find('input').removeAttr('disabled');
     $form.find('.editing').removeClass('editing');
     $form.find('.move-handle').remove();
     $form.find('.delete-field').remove();
