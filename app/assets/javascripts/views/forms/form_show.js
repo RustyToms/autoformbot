@@ -24,7 +24,7 @@ AFB.Views.FormShow = Backbone.View.extend({
     var form_id = that.model.get('id');
     console.log(form_id);
     $.ajax({
-      url: '/results/form_id',
+      url: '/results/' + form_id,
       type: 'POST',
       dataType: 'json',
       data: $form.serialize(),

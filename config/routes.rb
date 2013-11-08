@@ -17,8 +17,7 @@ AutoFormBot::Application.routes.draw do
 
   resources :results, only: [:destroy]
 
-  post '/results/:dsjo98432j3j39fp31joifed83jg03j0u9j4f98',
-    to: 'results#create'
+  post '/results/:form_id', to: 'results#create'
 
 
 
