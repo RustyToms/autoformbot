@@ -29,5 +29,4 @@ Form Options
 - url to redirect to on form submission
 
 ------------ Unresolved Issues -------------------------------
-- Remove text-alignment option if form is draggable
 - scroll form to newly added field

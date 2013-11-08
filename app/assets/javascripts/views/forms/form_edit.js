@@ -95,6 +95,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
       $input = $(".sidebar_window input, textarea").filter(function(){
         return $(event.target).hasClass(this.name);
       });
+      $input.not(function(){
+        //should exclude checkboxes and radio buttons that are not checked
+      });
       $input.trigger('keyup');
       that.model.silentUpdate = false;
     });

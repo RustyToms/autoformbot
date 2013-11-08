@@ -1,4 +1,3 @@
-<% var $field = $(field) %>
 
 <div class="sidebar" id="text-sidebar">
 
@@ -8,14 +7,14 @@
   <textarea
 		name='text-content'
     onClick="this.select()"
-  ><%= $field.find('.text-content').text().trim() %></textarea>
+  ><%= $text.text().trim() %></textarea>
 </label><br>
 
 <label>Font-Size (digits only)
   <input
 		type='number'
     data-css='font-size'
-    value='<%= $field.find('.text-content').css('font-size') %>'
+    value='<%= $text.css('font-size') %>'
 		name='text-content'/>
 </label><br>
 
@@ -44,7 +43,7 @@
     <option class='font-family-option'>Verdana, Geneva, sans-serif</option>
   </select>
 </label><br>
-
+<!--
 <label>Text Alignment
   <select
     data-css='text-align'
@@ -54,33 +53,33 @@
     <option class='text-align-option'>right</option>
     <option class='text-align-option'>justify</option>
   </select>
-</label><br>
+</label><br> -->
 
 <label>Font-weight
-  <label>Normal
-  <input
-	  class='font-weight-option'
-		type='radio'
-		name='text-content'
-		data-css='font-weight'
-		value='normal'>
-  </label>
-
   <label>Bold
-  <input
-	  class='font-weight-option'
-		type='radio'
-		name='text-content'
-		data-css='font-weight'
-		value='bold'>
+    <input
+      class='font-weight-option'
+      type='radio'
+      name='text-content'
+      data-css='font-weight'
+      value='bold'>
   </label>
 </label><br>
+
+  <label>Normal
+    <input
+  	  class='font-weight-option'
+  		type='radio'
+  		name='text-content'
+  		data-css='font-weight'
+  		value='normal'>
+  </label>
 
 <label>Color
   <input
 		type='text'
     data-css='color'
-    value='<%= $field.find('.text-content').css('color') %>'
+    value='<%= $text.css('color') || 'black' %>'
 		name='text-content'/>
 </label><br>
 
@@ -88,7 +87,7 @@
   <input
 		type='text'
     data-css='background-color'
-    value='<%= $field.find('.text-content').css('color') %>'
+    value='<%= $text.css('background-color') || 'white'%>'
 		name='text-content'/>
 </label><br>
 
