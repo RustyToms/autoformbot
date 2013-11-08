@@ -29,18 +29,16 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
 
   parseClick: function(event){
     console.log("in FormSidebarDropdown#parseClick");
-    var that = this;
     if($(event.target).hasClass('add-option')){
       this.numOptions = this.$el.find('.select-option-config').length + 1;
       this.makeSidebar();
     } else {
-      that.updateField();
+      this.updateField();
     }
   },
 
   makeSidebar: function(){
     console.log('in FormSidebarDropdown#makeSidebar');
-    var that = this;
     var $editField = $('.editing');
     if ($editField.length){
       this.$field = $editField;

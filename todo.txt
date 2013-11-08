@@ -29,6 +29,5 @@ Form Options
 - url to redirect to on form submission
 
 ------------ Unresolved Issues -------------------------------
-- Radio buttons after a few keystrokes focus is taken away from them when editing and they don't get edited in the sidebar correctly.
 - Remove text-alignment option if form is draggable
 - scroll form to newly added field

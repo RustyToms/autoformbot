@@ -1,7 +1,6 @@
 AFB.Views.FormSidebarRadio = Backbone.View.extend({
   $seed: $(JST['forms/fields/radio']()),
 
-
   addField: function(){
 		console.log("adding radio button field");
     this.model.addField(this.$seed);
@@ -10,102 +9,103 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 
   render: function(){
     console.log("rendering FormSidebarRadio");
-    this.$field = ($(this.field) || this.$seed.prop('outerHTML'));
-    var numOptions = this.$field.find('.radio-option').length || 1;
-    var label = this.$field.find('.radio-label').text().trim();
-    var required = this.$field.hasClass('required');
+    this.$field = $(this.field || this.$seed.prop('outerHTML'));
+    this.numOptions = this.$field.find('.radio-option').length || 1;
+    var that = this;
 
-    this.$el.html(JST['forms/sidebars/radio_options']({
-      label: label,
-			required: required
-    }));
-
-    this.makeSidebar(numOptions);
-
-    if(this.$field.find('.radio-option').first().css('display') === 'block'){
-      this.$el.find('input.vertical').attr('checked', 'true');
-      this.$el.find('input.horizontal').removeAttr('checked');
-    }
+    $(function(){
+      that.makeSidebar();
+    });
     return this;
   },
 
   updateValues: function(event){
     console.log("in FormSidebarRadio#updateValues");
-    console.log(event.target);
 
 		if ($(event.target).hasClass('radio-label')){
-
       this.model.updateHTML('.editing .radio-label', event.target.value);
-      var numOptions = this.$el.find('.radio-option-config').length;
-      this.makeSidebar(numOptions);
-
-		} else if ($(event.target).hasClass('option-name')) {
-			console.log($(event.target).prop("outerHTML"));
-
-			var selector = '.editing .' + event.target.name + '-label';
-			this.model.updateHTML(selector, event.target.value);
-		} else {
-      this.model.updateValues(event);
-    }
+      this.model.updateAttribute('.editing .radio-option input',
+        'name', event.target.value);
+		}
+    this.updateField();
   },
 
   parseClick: function(event){
     console.log("in FormSidebarRadio#parseClick");
     if($(event.target).hasClass('add-option')){
-      var numOptions = this.$el.find('.radio-option-config').length + 1;
-      this.makeSidebar(numOptions);
+      this.numOptions = this.$el.find('.radio-option-config').length + 1;
+      this.makeSidebar();
     } else {
-      this.model.updateValues(event);
+      this.updateField();
     }
   },
 
   makeSidebar: function(numOptions){
     console.log('in Radio makeSidebar');
-		numOptions = (numOptions || 1);
-
-    $form = $(this.model.get('form_text'));
-    this.$field = $form.find('.editing');
-    var display = ""; //will be used to remember if display is block, making options render vertically
-    var $options = this.$el.find('.radios');
-		$options.find('.radio-option-config').remove();
-    $preexisting = $.makeArray($form.find('.editing .radio-option'));
+    var $editField = $('.editing');
+    if ($editField.length){
+      this.$field = $editField;
+    }
+myField = this.$field;
+    $preexisting = $.makeArray(this.$field.find('.radio-option'));
     var label = this.$field.find('.radio-label').text().trim();
-    this.$field.find('span.radio').empty();
+    var required = this.$field.hasClass('required');
+    var klass = label.replace(/[^_a-zA-Z0-9-]/g, '_');
 
-    for(var i=0; i<numOptions; i++){
-      var $currentOption = $($preexisting.shift());
-			var klass = label.replace(/[^_a-zA-Z0-9-]/g, '_') + i;
-			console.log("klass is " + klass);
-      var optionName = "";
-      var value = "";
+    this.$el.html(JST['forms/sidebars/radio_options']({
+      label: label,
+      required: required
+    }));
 
-      if($currentOption.length){
-        optionName = $currentOption.find('label').text().trim();
-        value = $currentOption.find('input').val();
-        display = $currentOption.css('display');
+    if(this.$field.find('.radio-option').first().css('display') === 'block'){
+      this.$el.find('input.vertical').attr('checked', 'true');
+      this.$el.find('input.horizontal').removeAttr('checked');
+    }
+
+    var $options = this.$el.find('.radios');
+
+    for(var i=0; i<this.numOptions; i++){
+      var optionName = "Option name";
+
+      if($preexisting.length){
+        optionName = $($preexisting.shift()).find('input').val();
       }
 
-      console.log("display value is " + display);
-
-      var radioOption = JST['forms/fields/radio_option']({
-        name: "results[" + label + "]",
-        klass: klass,
-        optionName: optionName,
-        value: value
-      });
-
-      this.$field.find('span.radio').append($(radioOption));
-
       var optionOption = JST['forms/sidebars/radio_option']({
-        klass: klass,
+        klass: klass + i,
         optionName: optionName,
-        value: value,
         i: i
       });
       $options.append($(optionOption));
     }
+  },
 
+  updateField: function(){
+    console.log('in FormSidebarRadio#updateField');
+    this.$field = $('.editing');
+
+    var $options = this.$el.find('.radio-option-config');
+    var label = this.$el.find(".radio-label").val();
+    var $radio = this.$field.find('.radio');
+    var klass = label.replace(/[^_a-zA-Z0-9-]/g, '_');
+    $radio.empty();
+
+    $options.each(function(index){
+        var radioOption = JST['forms/fields/radio_option']({
+        name: label,
+        klass: klass + index,
+        value: $(this).find('input').val()
+      });
+
+      $radio.append(radioOption);
+    });
+
+    var display = 'inline';
+    if (this.$el.find('.vertical').prop('checked')){
+      display = 'block';
+    }
     this.$field.find('.radio-option').css('display', display);
-    this.model.set('form_text', $form.prop('outerHTML'));
+
+    this.parentView.localSaveForm(this.parentView);
   }
 });
