@@ -9,66 +9,84 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
 
   render: function(){
     console.log("rendering FormSidebarDropdown");
-    this.$field = $((this.field || this.$seed));
-    var numOptions = this.$field.find('select').prop('length');
-    var label = this.$field.find('.dropdown-label').html().trim();
+    this.$field = $(this.field || this.$seed.prop('outerHTML'));
+    this.numOptions = this.$field.find('option').length || 1;
+    //this.numOptions = this.$field.find('select').prop('length') || 1;
 
-    this.$el.html(JST['forms/sidebars/dropdown_options']({
-      label: label,
-      $field: this.$field
-    }));
-
-    this.makeDropdown(numOptions);
+    this.makeSidebar();
     return this;
   },
 
   updateValues: function(event){
     console.log("in FormSidebarDropdown#updateValues");
     if ($(event.target).attr('name')=== 'dropdown-label' ){
-      var name = 'results[' + event.target.value + ']';
+      var name = event.target.value;
       this.model.updateAttribute('.editing select', 'name', name);
+      this.model.updateValues(event);
     }
-    this.model.updateValues(event);
+    this.updateField();
   },
 
   parseClick: function(event){
     console.log("in FormSidebarDropdown#parseClick");
     var that = this;
     if($(event.target).hasClass('add-option')){
-      var numOptions = this.$el.find('.select-option-config').length + 1;
-      this.makeDropdown(numOptions);
+      this.numOptions = this.$el.find('.select-option-config').length + 1;
+      this.makeSidebar();
+    } else {
+      that.updateField();
     }
   },
 
-  makeDropdown: function(numOptions){
-    $form = $(this.model.get('form_text'));
-    this.$field = $form.find('.editing');
+  makeSidebar: function(){
+    console.log('in FormSidebarDropdown#makeSidebar');
+    var that = this;
+    var $editField = $('.editing');
+    if ($editField.length){
+      this.$field = $editField;
+    }
+
+    var label = this.$field.find('.dropdown-label').html().trim();
+    var $preexisting = $.makeArray(this.$field.find('option'));
+
+    this.$el.html(JST['forms/sidebars/dropdown_options']({
+      label: label,
+      $field: this.$field
+    }));
 
     var $options = this.$el.find('.dropdowns');
-		$options.find('.select-option-config').remove();
-    $preexisting = $.makeArray($form.find('.editing option'));
 
-    for(var i=0; i<numOptions; i++){
+    for(var i=0; i<this.numOptions; i++){
       var name = "dropdownOption" + i;
       var value = "Option name";
-      $currentOption = $($preexisting.shift());
-      if($currentOption.length){
-        $currentOption.removeClass();
-        $currentOption.addClass(name);
-        value = $currentOption.text();
-      } else{
-        var option = "<option class=" + name + ">" + value + "</option>";
-        this.$field.find('select').append(option);
+      if($preexisting.length){
+        value = $($preexisting.shift()).text();
       }
 
       var optionOptions = JST['forms/sidebars/dropdown_option']({
-        i: i,
         name: name,
         value: value
       });
       $options.append($(optionOptions));
     }
+  },
 
-    this.model.set('form_text', $form.prop('outerHTML'));
+  updateField: function(){
+    console.log('in FormSidebarDropdown#updateField');
+    this.$field = $('.editing');
+
+    var $options = this.$el.find('.select-option-config');
+    var label = this.$el.find("input[name='dropdown-label']").val();
+    var $select = this.$field.find('select');
+    $select.empty();
+
+    $options.each(function(index){
+      var name = "dropdownOption" + index;
+      var value = $(this).find('input').val();
+      var option = "<option class=" + name + ">" + value + "</option>";
+      $select.append(option);
+    });
+
+    this.parentView.localSaveForm(this.parentView);
   }
 });
