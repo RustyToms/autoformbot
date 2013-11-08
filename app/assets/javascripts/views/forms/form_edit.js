@@ -83,9 +83,15 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.parentView.swapSidebar(sidebar, this.parentView);
   },
 
-	updateSidebar: function(){
+	updateSidebar: function(event){
 		console.log("updating sidebar");
 		this.parentView.localSaveForm(this.parentView);
 		this.parentView.updateSidebar();
+    $(function(){
+      $input = $(".sidebar_window input, textarea").filter(function(){
+        return $(event.target).hasClass(this.name);
+      });
+      $input.trigger('keyup');
+    });
 	}
 });
