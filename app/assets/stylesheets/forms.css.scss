@@ -356,7 +356,6 @@ a.formSelect:hover {
 /* --- FORMEDIT SIDEBAR --- */
 
 .sidebar_window {
-  background-color: lightblue;
   width: 300px;
   margin: 0 0 0 20px;
   position: absolute;
@@ -366,26 +365,41 @@ a.formSelect:hover {
 .sidebar_header {
   background-color: $very-pale-blue;
   font-size: 18px;
+  border-radius: 10px;
+  height: 50px;
 }
 
 .sidebar_header a {
   display: block;
-  float: left;
+  right: 0;
+  position: absolute;
   text-align: center;
   font-size: 22px;
   font-weight: bold;
   height: 100%;
-  width: 99px;
+  width: 100px;
+}
+
+.sidebar_header a:hover {
+  cursor: pointer;
 }
 
 .sidebar_header a:first-child {
   border-right: 1px solid black;
+  width: 50%;
+  left: 0;
 }
 
 .sidebar {
-  border: 2px dotted blue;
 }
 
+.sidebar_window .sidebar {
+  background-color: $pale-green;
+}
+
+.sidebar_window #all-fields-sidebar {
+  background-color: transparent;
+}
 /* --- FORMEDIT OTHER --- */
 
 .sidebar_window~.main {
