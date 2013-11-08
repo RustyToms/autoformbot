@@ -102,7 +102,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
     this.$field = $('.editing');
     var that = this;
     var display = 'inline';
-    var $options = this.$el.find('.checkbox-option-config');
+    var $options = this.$el.find('.checkbox-option-config').clone();
     var label = this.$el.find("input[name='checkbox-label']").val();
     var $checkboxes = this.$field.find('span.checkbox')
     $checkboxes.empty();
