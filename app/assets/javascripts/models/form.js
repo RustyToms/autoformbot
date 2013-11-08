@@ -1,20 +1,28 @@
 AFB.Models.Form = Backbone.Model.extend ({
+  initialize: function(){
+    this.silentUpdate = false;
+  },
+
+  silentSaveForm: function(){
+    var that = this;
+    $(function(){
+      that.set({'form_text': $('.outer-wrapper').prop('outerHTML')},
+        {silent: true});
+    });
+  },
 
   updateAttribute: function(selector, attribute, value){
     console.log("updating form attribute values");
 		console.log(attribute + ": " + value);
-    $form = $(this.get('form_text'));
-    console.log(selector);
-    $form.find(selector).attr(attribute, value);
-    this.set('form_text', $form.prop('outerHTML'));
+    $('.outer-wrapper').find(selector).attr(attribute, value);
+    this.silentSaveForm();
   },
 
   updateHTML: function(selector, value){
     console.log("updating form element html");
 		console.log(selector);
-    $form = $(this.get('form_text'));
-    $form.find(selector).html(value);
-    this.set('form_text', $form.prop('outerHTML'));
+    $('.outer-wrapper').find(selector).html(value);
+    this.silentSaveForm();
   },
 
 	updateCSS: function(selector, key, value){
@@ -25,10 +33,8 @@ AFB.Models.Form = Backbone.Model.extend ({
 		if(key === 'font-size'){
 			value = value + 'px';
 		}
-
-    $form = $(this.get('form_text'));
-    $form.find(selector).css(key, value);
-    this.set('form_text', $form.prop('outerHTML'));
+    $('.outer-wrapper').find(selector).css(key, value);
+    this.silentSaveForm();
 	},
 
 	updateProp: function(selector, prop, shouldCreate) {
@@ -36,14 +42,13 @@ AFB.Models.Form = Backbone.Model.extend ({
 		console.log(selector);
 		console.log(prop + shouldCreate);
 
-    $form = $(this.get('form_text'));
+    $form = $('.outer-wrapper').find(selector);
 		if (shouldCreate){
 			$form.find(selector).attr(prop, "true");
 		} else {
       $form.find(selector).removeAttr(prop);
 		}
-
-    this.set('form_text', $form.prop('outerHTML'));
+    this.silentSaveForm();
 	},
 
   updateValues: function(event) {
@@ -80,7 +85,7 @@ AFB.Models.Form = Backbone.Model.extend ({
     $form.find('.editing').removeClass('editing');
     $form.find('.move-handle').remove();
     $form.find('.delete-field').remove();
-    $form.find('.ui-draggable').draggable('destroy');
+    $form.find('.ui-draggable').removeClass('.ui-draggable');
     this.set('form_text', $form.prop('outerHTML'));
   },
 

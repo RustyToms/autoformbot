@@ -84,6 +84,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
 	updateSidebar: function(event){
+    this.model.silentUpdate = true;
+    var that = this;
 		console.log("updating sidebar");
 		this.parentView.localSaveForm(this.parentView);
 		this.parentView.updateSidebar();
@@ -92,6 +94,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
         return $(event.target).hasClass(this.name);
       });
       $input.trigger('keyup');
+      that.model.silentUpdate = false;
     });
 	}
 });
