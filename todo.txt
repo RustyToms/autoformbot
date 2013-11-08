@@ -31,7 +31,6 @@ Form Options
 ------------ Unresolved Issues -------------------------------
 - Radio buttons after a few keystrokes focus is taken away from them when editing and they don't get edited in the sidebar correctly.
 - Dropdown isn't working correctly
-- fields on the form move when flash message goes away
 - Remove text-alignment option if form is draggable
 - Remove number box, it hasn't been developed enough and is useless
 - Figure out how to properly name checkboxes

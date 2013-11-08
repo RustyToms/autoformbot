@@ -148,7 +148,9 @@ AFB.Models.Form = Backbone.Model.extend ({
 
   updateFormAction: function() {
     console.log("in Model Form#updateFormAction");
-    this.updateAttribute('form#form-itable', 'action',
+    $form = $(this.get('form_text'));
+    $form.find('form#form-itable').attr('action',
       '/results/' + this.get('id'));
+    this.set('form_text', $form.prop('outerHTML'));
   },
 });
