@@ -8,4 +8,9 @@ class StaticPagesController < ApplicationController
     end
     render :home
   end
+
+  def thank_you
+    @url = ''
+    render :thank_you
+  end
 end

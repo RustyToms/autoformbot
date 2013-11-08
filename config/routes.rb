@@ -8,6 +8,7 @@ AutoFormBot::Application.routes.draw do
   resource :static_page, only: [] do
     member do
       get "home"
+      get "thank_you"
     end
   end
 
@@ -18,6 +19,8 @@ AutoFormBot::Application.routes.draw do
   resources :results, only: [:destroy]
 
   post '/results/:form_id', to: 'results#create'
+
+  get '/thank_you', to: 'static_pages#thank_you'
 
 
 

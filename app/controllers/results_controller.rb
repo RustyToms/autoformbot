@@ -7,13 +7,16 @@ class ResultsController < ApplicationController
   def create
     @result = Result.new
     @result.form_id = params[:form_id]
-    # @result.result = params
-    # @result.result.delete("dsjo98432j3j39fp31joifed83jg03j0u9j4f98")
-    # @result.form_id = request.query_parameters[:dsjo98432j3j39fp31joifed83jg03j0u9j4f98]
-    # request.encode_params(request.request_parameters).with_indifferent_access
     @result.result = request.request_parameters
+
+    @url = Form.find(@result.form_id).url
+    @url = thank_you_url unless @url
+
     if @result.save
-      render json: @result
+      respond_to do |format|
+        format.json { render json: @result }
+        format.html { redirect_to @url}
+      end
     else
       render json: @result, status: :unprocessable_entity
     end
