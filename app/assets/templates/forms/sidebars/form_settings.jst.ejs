@@ -1,11 +1,34 @@
+
 <div class="sidebar" id="form-settings">
 
   <h2>Customize your Form</h2>
 
   <label>Url to redirect to after form submission:
-    <input type='text'
+    <input
+      type='text'
       style='display: inline-block'
-      name=''
-  </label>
+      value='<%= url %>'
+      name='redirect-url'
+    />
+  </label><br>
 
+  <label>Form width (in pixels, ie '900px'):
+    <input
+      type='text'
+      style='display: inline-block'
+      data-css='width'
+      value='<%= $form.find('form#form-itable').css('width') %>'
+      name='form#form-itable'
+    />
+  </label><br>
+
+  <label>Form minimum height (in pixels, ie '900px'):
+    <input
+      type='text'
+      style='display: inline-block'
+      data-css='min-height'
+      value='<%= $form.find('form#form-itable').css('min-height') %>'
+      name='form#form-itable'
+    />
+  </label><br>
 </div>

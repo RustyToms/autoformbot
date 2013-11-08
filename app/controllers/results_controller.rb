@@ -8,14 +8,18 @@ class ResultsController < ApplicationController
     @result = Result.new
     @result.form_id = params[:form_id]
     @result.result = request.request_parameters
-
     @url = Form.find(@result.form_id).url
-    @url = thank_you_url unless @url
 
     if @result.save
       respond_to do |format|
         format.json { render json: @result }
-        format.html { redirect_to @url}
+        format.html {
+          if @url
+            redirect_to @url
+          else
+            redirect_to thank_you_url
+          end
+        }
       end
     else
       render json: @result, status: :unprocessable_entity

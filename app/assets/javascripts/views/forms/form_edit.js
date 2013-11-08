@@ -17,7 +17,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.$el.empty();
     var $formText = $(this.model.get('form_text'));
     this.prepForm($formText);
-    this.$el.append($formText.html());
+    this.$el.append($formText.prop('outerHTML'));
 
     return this;
   },

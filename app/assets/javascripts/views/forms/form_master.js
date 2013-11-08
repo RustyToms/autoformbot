@@ -96,14 +96,14 @@ AFB.Views.FormMaster = Backbone.View.extend({
     case "move-to-add-fields":
       this.render();
       break;
-    case "move-to-field-settings":
-      var targetField = {
-        target: this.editForm.$el.find('.formEl').last()
-      };
-      this.editForm.parseClickForm(targetField);
-      break;
     case "move-to-form-settings":
-      console.log("form-settings view isn't made yet");
+      console.log("making form-settings view");
+      var formSettings = new AFB.Views.FormSettings({
+        model: this.model
+      });
+      $('.inner-wrapper').addClass('editing');
+      this.swapSidebar(formSettings, this);
+      this.localSaveForm(this);
       break;
     default:
       console.log("hit newSidebar switch default");
@@ -171,7 +171,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     $('.ui-draggable').draggable('destroy');
 
     $(function(){
-      var $form = that.$el.find('form#form-itable').closest('span');
+      var $form = that.$el.find('.outer-wrapper');
       var name = $form.find('.formName').text().trim();
 
       that.model.set({

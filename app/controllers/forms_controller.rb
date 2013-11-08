@@ -36,6 +36,7 @@ class FormsController < ApplicationController
   def update
     @form = Form.find(params[:id])
     @form.update_attributes(params[:form])
+    @form.update_url
     if @form && @form.save
       render json: @form
     else

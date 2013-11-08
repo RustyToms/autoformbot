@@ -89,10 +89,12 @@ AFB.Models.Form = Backbone.Model.extend ({
     this.removeActiveEdits();
     var text = this.get('form_text');
     var name = $(text).find('.formName').text().trim();
+    var url = this.get('url');
     var that = this;
     this.save({
       name: name,
-      form_text: text
+      form_text: text,
+      url: url
     },{
       success: function(response, model){
         console.log("save successful");
