@@ -171,7 +171,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     $('.ui-draggable').draggable('destroy');
 
     $(function(){
-      var $form = that.$el.find('form#form-itable');
+      var $form = that.$el.find('form#form-itable').closest('span');
       var name = $form.find('.formName').text().trim();
 
       that.model.set({
@@ -190,6 +190,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       $('.formEl').draggable({
         stop: function(event, ui){
           that.editForm.parseClickForm({target: ui.helper});
+          that.localSaveForm(that);
         },
         containment: 'form#form-itable',
         distance: 3,
