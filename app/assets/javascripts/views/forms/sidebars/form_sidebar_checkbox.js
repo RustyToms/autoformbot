@@ -114,7 +114,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
       var value = $(this).find('input').val();
       var checked = $(this).find('.prefilled-check').prop('checked');
       var klass = label.replace(/[^_a-zA-Z0-9-]/g, '_') + index;
-      var name = "results[" + label + "]";
+      var name = label + "[]";
 
       var checkboxOption = JST['forms/fields/checkbox_option']({
         name: name,

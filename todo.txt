@@ -33,4 +33,3 @@ Form Options
 - Dropdown isn't working correctly
 - Remove text-alignment option if form is draggable
 - Remove number box, it hasn't been developed enough and is useless
-- Figure out how to properly name checkboxes
