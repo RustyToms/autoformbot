@@ -58,8 +58,10 @@ AFB.Views.FormEdit = Backbone.View.extend({
   makeGhost: function($target) {
     console.log("making ghost in FormEdit View");
     AFB.Routers.FormRouter.matchSize($target, $target);
-    $target.closest(".formEl").empty().draggable('destroy').
-        removeClass().addClass('ghost');
+    $target.draggable('destroy');
+    $target.empty();
+    $target.removeClass();
+    $target.addClass('ghost');
     $target.css('display', 'block');
   },
 

@@ -17,7 +17,7 @@ AFB.Views.FormSidebarNumbox = Backbone.View.extend({
   updateValues: function(event){
     console.log("in FormSidebarNumbox#updateValues");
     if ($(event.target).attr('name')=== 'numbox-label' ){
-      var name = 'results[' + event.target.value + ']';
+      var name = event.target.value;
       this.model.updateAttribute('.editing .numbox', 'name', name);
     }
     this.model.updateValues(event);
