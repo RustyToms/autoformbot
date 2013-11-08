@@ -30,3 +30,4 @@ Form Options
 
 ------------ Unresolved Issues -------------------------------
 - scroll form to newly added field
+- textarea prefilled content won't sync with sidebar

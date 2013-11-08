@@ -1,4 +1,3 @@
-<% var $field = $(field) %>
 
 <div class="sidebar" id="textarea-sidebar">
 
@@ -15,7 +14,7 @@
   <input
     type='text'
     data-attribute='rows'
-    value='<%= $field.find('.textarea').attr('rows') %>'
+    value='<%= $textarea.attr('rows') %>'
     name='textarea'/>
 </label><br>
 
@@ -23,14 +22,14 @@
   <input
     type='text'
     data-attribute='cols'
-    value='<%= $field.find('.textarea').attr('cols') %>'
+    value='<%= $textarea.attr('cols') %>'
     name='textarea'/>
 </label><br>
 
 <label>Prefilled content
   <input
     type='text'
-    value='<%= $field.find('.textarea').val().trim() %>'
+    value='<%= $textarea.html().trim() %>'
     onClick="this.select()"
     name='textarea'/>
 </label>
