@@ -9,8 +9,10 @@ class Form < ActiveRecord::Base
   validates :account_id, :name, presence: true
 
 def update_url
-  unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
-  self.url = "http://#{self.url}"
+  if self.url
+    unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
+    self.url = "http://#{self.url}"
+    end
   end
 end
 
