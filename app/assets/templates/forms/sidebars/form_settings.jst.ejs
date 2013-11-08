@@ -18,7 +18,7 @@
       type='text'
       style='display: inline-block'
       data-css='width'
-      value='<%= $form.find('form#form-itable').css('width') %>'
+      value='<%= $form.css('width') %>'
       name='form#form-itable'
     />
   </label><br>
@@ -28,18 +28,83 @@
       type='text'
       style='display: inline-block'
       data-css='min-height'
-      value='<%= $form.find('form#form-itable').css('min-height') %>'
+      value='<%= $form.css('min-height') %>'
       name='form#form-itable'
     />
   </label><br>
 
-    <label>Font size (using px or em):
+    <label>Font size:
     <input
-      type='text'
+      type='number'
       style='display: inline-block'
       data-css='font-size'
-      value='<%= $form.find('form#form-itable').css('font-size') %>'
+      value='<%= $form.css('font-size') %>'
       name='form#form-itable'
     />
   </label><br>
+
+  <label>Font-family
+  <select
+    data-css='font-family'
+    name='form#form-itable'
+    <option class='font-family-option'></option>
+    <option class='font-family-option'>sans-serif</option>
+    <option class='font-family-option'>serif</option>
+    <option class='font-family-option'>monospace</option>
+    <option class='font-family-option'>cursive</option>
+    <option class='font-family-option'>fantasy</option>
+    <option class='font-family-option'>Arial, Helvetica, sans-serif</option>
+    <option class='font-family-option'>Arial Black, Gadget, sans-serif</option>
+    <option class='font-family-option'>Comic Sans MS, cursive, sans-serif</option>
+    <option class='font-family-option'>Courier New, Courier, monospace</option>
+    <option class='font-family-option'>Georgia, serif</option>
+    <option class='font-family-option'>Impact, Charcoal, sans-serif</option>
+    <option class='font-family-option'>Lucida Console, Monaco, monospace</option>
+    <option class='font-family-option'>Lucida Sans Unicode, Lucida Grande, sans-serif</option>
+    <option class='font-family-option'>Palatino Linotype, Book Antiqua, Palatino, serif</option>
+    <option class='font-family-option'>Tahoma, Geneva, sans-serif</option>
+    <option class='font-family-option'>Times New Roman, Times, serif</option>
+    <option class='font-family-option'>Trebuchet MS, Helvetica, sans-serif</option>
+    <option class='font-family-option'>Verdana, Geneva, sans-serif</option>
+  </select>
+</label><br>
+
+<label>Font-weight<br>
+  <label>Bold
+    <input
+      class='font-weight-option'
+      type='radio'
+      name='form#form-itable'
+      data-css='font-weight'
+      value='bold'>
+  </label>
+</label>
+
+  <label>Normal
+    <input
+      class='font-weight-option'
+      type='radio'
+      name='form#form-itable'
+      data-css='font-weight'
+      value='normal'>
+  </label><br>
+
+<label>Color
+  <input
+    type='text'
+    data-css='color'
+    value='<%= $form.css('color') || 'black' %>'
+    name='form#form-itable'
+  />
+</label><br>
+
+<label>Background Color
+  <input
+    type='text'
+    data-css='background-color'
+    value='<%= $form.css('background-color') || 'white' %>'
+    name='form#form-itable'
+  />
+</label><br>
+
 </div>

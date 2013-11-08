@@ -6,7 +6,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
   render: function(){
     console.log('rendering FormSettings');
     this.$el = $(JST['forms/sidebars/form_settings']({
-      $form: $(this.model.get('form_text')),
+      $form: $(this.model.get('form_text')).find('form#form-itable'),
       url: this.model.get('url')
     }));
     return this;
