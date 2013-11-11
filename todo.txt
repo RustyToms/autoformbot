@@ -1,33 +1,17 @@
-------------- Before Push to Heroku --------------------------
-Reassign form submit url
+------------ To Do -------------------------------------------
+- make add-field buttons draggable onto form
+- have spaces entered by user escaped
+- make all elements in otherForm contenteditable
+- Put in an option to just insert code
+- scroll form to newly added field
+- add selectable and try stacking again
 
-RAILS_ENV=production rake assets:clean
-RAILS_ENV=production bundle exec rake assets:precompile
---------------------------------------------------------------
+- add Results and notifications
 
-# set form to return results
-# set results to be sent to my server
-# provide code for form
-#
-# report results
-# report singular result
-#
-# add more form fields
-# allow fields to be draggable
-# allow multiple users to have access to the same account - done
-# allow multiple users to work on the same form at the same time
+- add Code-get
 
-- check out Rangy
-
-# allow margin and padding and background color and border to be changed for each field
-
-Form Submission
-- submit with AJAX request?  So that a negative response from server can cause alerts to be made?  Or just make sure the form is good before it is sent - probably
-
-
-Form Options
-- url to redirect to on form submission
+- add Account stuff
 
 ------------ Unresolved Issues -------------------------------
-- scroll form to newly added field
+- Unexpected behavior when contentediting and user generates a space
 - textarea prefilled content won't sync with sidebar

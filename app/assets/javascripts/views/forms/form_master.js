@@ -18,9 +18,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.$el.append(this.makeSidebarView(newSidebar));
 
     this.renderForm();
-
-    var that = this;
-
     this.sidebarReset(this);
 
     console.log('--- End of FormMaster view #render ---');
@@ -78,7 +75,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
 		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
       append(that.sidebar.render().$el);
-
     $sidebarHtml.append($(JST["forms/save_dup_buttons"]()));
 
     $(function(){
@@ -187,6 +183,26 @@ AFB.Views.FormMaster = Backbone.View.extend({
   makeSortable: function(that){
     $(function(){
       console.log("making fields-list elements draggable");
+
+      $('form#form-itable').droppable({
+        // accept: '.formEl',
+        // scope: 'newFields'
+      });
+
+      $('#all-fields-sidebar button').draggable({
+        start: function(event, ui){
+          console.log('a new field element is being created in FormMaster');
+          var newEl = that.sidebar.makeSidebarView(event).seed;
+          console.log(newEl);
+        },
+        // appendTo: "form#form-itable"
+        // helper: 'clone',
+        // snap: ".formEl",
+        // snapMode: 'outer',
+        // snapTolerance: 5,
+        // scope: 'newFields'
+      });
+
       $('.formEl').draggable({
         stop: function(event, ui){
           that.editForm.parseClickForm({target: ui.helper});

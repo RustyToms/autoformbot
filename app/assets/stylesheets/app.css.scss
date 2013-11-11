@@ -178,6 +178,10 @@ animation: cursorBlink 1s linear infinite;
 	font-weight: bold;
 }
 
+.ui-draggable {
+	-ms-touch-action: none;
+}
+
 .hover-div {
 	@include box-shadow(0 0 120px 80px transparent);
 	border-radius: 30px;

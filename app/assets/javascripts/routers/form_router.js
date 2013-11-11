@@ -23,7 +23,6 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       collection: AFB.formCollection,
       el: this.$seedEl
     });
-    console.log(this.$rootEl.prop('outerHTML'));
     this.$rootEl.append(this.view.render().$el);
 
   },
@@ -82,13 +81,14 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 
   formMaster: function(model){
     this.view && this.view.remove();
+    this.$rootEl.append(this.$seedEl);
     this.view = new AFB.Views.FormMaster({
       model: model,
       el: this.$seedEl,
     });
     this.view.formRouter = this;
     model.formRouter = this;
-    this.$rootEl.append(this.view.render().$el);
+    this.view.render();
     window.scrollTo(0,0);
   },
 

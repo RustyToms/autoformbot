@@ -10,6 +10,13 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
   },
 
   parseClick: function(event) {
+    var newSidebar = this.makeSidebarView(event);
+    newSidebar.addField();
+    this.parentView.render(newSidebar);
+  },
+
+  makeSidebarView: function(event) {
+    console.log("in FormSidebarInputs#makeSidebarView");
     var that = this;
     event.preventDefault();
     console.log("in FormSidebarInputs#parseClickInputs");
@@ -30,10 +37,8 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
       console.log("no target");
       return;
     }
-    var newSidebar = new AFB.Views[fieldChoices[selection]]({
+    return (new AFB.Views[fieldChoices[selection]]({
       model: that.model
-    });
-    newSidebar.addField();
-    this.parentView.render(newSidebar);
+    }));
   }
 });
