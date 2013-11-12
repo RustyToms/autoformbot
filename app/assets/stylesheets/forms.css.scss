@@ -30,6 +30,18 @@ iframe {
   text-align: left;
   display: inline-block;
 }
+
+.clear-coat {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
 /* --- LOGO --- */
 
 .corner-logo {
@@ -363,7 +375,7 @@ a.formSelect:hover {
 }
 
 .sidebar_header {
-  background-color: $very-pale-blue;
+  background-color: $pale-green;
   font-size: 18px;
   border-radius: 10px;
   height: 50px;
@@ -374,11 +386,12 @@ a.formSelect:hover {
   display: block;
   right: 0;
   position: absolute;
-  text-align: center;
+  text-align: right;
   font-size: 22px;
   font-weight: bold;
   height: 100%;
   width: 100px;
+  padding: 0 4%;
 }
 
 .sidebar_header a:hover {
@@ -387,11 +400,12 @@ a.formSelect:hover {
 
 .sidebar_header a:first-child {
   border-right: 1px solid black;
-  width: 50%;
+  width: 42%;
   left: 0;
-}
-
-.sidebar {
+  background-color: $faded-blue;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  text-align: left;
 }
 
 .sidebar_window .sidebar {
@@ -403,10 +417,19 @@ a.formSelect:hover {
 }
 /* --- FORMEDIT OTHER --- */
 
+#all-fields-sidebar h2 span {
+  background-color: white;
+  @include box-shadow(0 0 15px 10px $faded-blue, inset 0 0 10px 5px $faded-blue);
+  @include text-shadow(0 0 10px white);
+  border-radius: 10px;
+}
+
 #all-fields-sidebar div {
   display: inline-block;
-  background-color: $very-pale-blue;
+  background-color: $faded-blue;
   border: 1px solid black;
+  border-radius: 5px;
+  margin: 1px 0;
 }
 
 .sidebar_window~.main {

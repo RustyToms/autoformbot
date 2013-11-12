@@ -201,7 +201,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
           helper: function(){
             return sidebarView.$seed.clone();
           },
-          distance: 3,
+          // distance: 3,
           scope: 'newFields'
         });
       });
