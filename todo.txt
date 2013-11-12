@@ -16,6 +16,5 @@
 ------------ Unresolved Issues -------------------------------
 - Unexpected behavior when contentediting and user generates a space
 - textarea prefilled content won't sync with sidebar
-- Line between add fields and form settings (in FormEdit View) extends too far in internet explorer
 - Buttons display weird (they actually appear to display correctly) in ipad browser
 - add other form button acts strange when dragged onto form
