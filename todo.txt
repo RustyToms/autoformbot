@@ -1,5 +1,6 @@
 ------------ To Do -------------------------------------------
-- make add-field buttons draggable onto form
+- put a transparent span handle on top of the add buttons
+- put field elements inside a wrapper that doesn't take up any space
 - have spaces entered by user escaped
 - make all elements in otherForm contenteditable
 - Put in an option to just insert code
@@ -15,3 +16,6 @@
 ------------ Unresolved Issues -------------------------------
 - Unexpected behavior when contentediting and user generates a space
 - textarea prefilled content won't sync with sidebar
+- Line between add fields and form settings (in FormEdit View) extends too far in internet explorer
+- Buttons display weird (they actually appear to display correctly) in ipad browser
+- add other form button acts strange when dragged onto form

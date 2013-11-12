@@ -1,14 +1,14 @@
 AFB.Views.FormSidebarNumbox = Backbone.View.extend({
-  seed: (JST['forms/fields/numbox']()),
+  $seed: $(JST['forms/fields/numbox']()),
 
   addField: function(){
-    this.model.addField(this.seed);
+    this.model.addField(this.$seed);
   },
 
   render: function(){
     console.log("rendering FormSidebarNumbox");
     this.$el.html(JST['forms/sidebars/numbox_options']({
-      field: (this.field || this.seed)
+      field: ($(this.field) || this.$seed)
     }));
 
     return this;

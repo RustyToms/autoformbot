@@ -402,6 +402,12 @@ a.formSelect:hover {
 }
 /* --- FORMEDIT OTHER --- */
 
+#all-fields-sidebar div {
+  display: inline-block;
+  background-color: $very-pale-blue;
+  border: 1px solid black;
+}
+
 .sidebar_window~.main {
   margin: 0 0 0 350px;
   position: relative;

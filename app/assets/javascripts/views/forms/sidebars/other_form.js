@@ -1,9 +1,9 @@
 AFB.Views.OtherForm = Backbone.View.extend({
-  seed: ("<div style='min-height: 40px; min-width: 40px;" +
-    "background-color: #F0E2CA'><p><br><br><br><br></p></div>"),
+  $seed: $("<div style='min-height: 40px; min-width: 40px;" +
+    "background-color: #F0E2CA'><p><br><br></p></div>"),
 
   addField: function(){
-    this.model.addField(this.seed);
+    this.model.addField(this.$seed);
   },
 
   render: function(){

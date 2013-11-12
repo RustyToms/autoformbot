@@ -9,17 +9,10 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
     return this;
   },
 
-  parseClick: function(event) {
-    var newSidebar = this.makeSidebarView(event);
-    newSidebar.addField();
-    this.parentView.render(newSidebar);
-  },
-
   makeSidebarView: function(event) {
     console.log("in FormSidebarInputs#makeSidebarView");
     var that = this;
-    event.preventDefault();
-    console.log("in FormSidebarInputs#parseClickInputs");
+    // event.preventDefault();
     var fieldChoices = {
       "textbox" : "FormSidebarTextbox",
       "checkbox" : "FormSidebarCheckbox",
@@ -32,7 +25,7 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
       "otherForm": "OtherForm"
     };
 
-    var selection = $(event.target).closest('button').data('inputType');
+    var selection = $(event.target).closest('div').data('inputType');
     if(!selection){
       console.log("no target");
       return;

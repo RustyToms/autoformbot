@@ -1,14 +1,14 @@
 AFB.Views.FormSidebarTelnum = Backbone.View.extend({
-  seed: (JST['forms/fields/telnum']()),
+  $seed: $(JST['forms/fields/telnum']()),
 
   addField: function(){
-    this.model.addField(this.seed);
+    this.model.addField(this.$seed);
   },
 
   render: function(){
     console.log("rendering FormSidebarTelnum");
     this.$el.html(JST['forms/sidebars/telnum_options']({
-      field: (this.field || this.seed)
+      $field: ($(this.field) || this.$seed)
     }));
     return this;
   },

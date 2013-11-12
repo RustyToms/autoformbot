@@ -1,14 +1,14 @@
 AFB.Views.FormSidebarText = Backbone.View.extend({
-  seed: (JST['forms/fields/text']()),
+  $seed: $(JST['forms/fields/text']()),
 
   addField: function(){
-    this.model.addField(this.seed);
+    this.model.addField(this.$seed);
   },
 
   render: function(){
     console.log("rendering FormSidebarText");
     this.$el.html(JST['forms/sidebars/text_options']({
-      $text: $(this.field || this.seed).find('.text-content')
+      $text: ($(this.field) || this.$seed).find('.text-content')
     }));
 
     var $form = $(this.model.get('form_text'));

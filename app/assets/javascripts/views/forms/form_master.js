@@ -185,22 +185,25 @@ AFB.Views.FormMaster = Backbone.View.extend({
       console.log("making fields-list elements draggable");
 
       $('form#form-itable').droppable({
-        // accept: '.formEl',
-        // scope: 'newFields'
+        scope: 'newFields'
       });
 
-      $('#all-fields-sidebar button').draggable({
-        start: function(event, ui){
-          console.log('a new field element is being created in FormMaster');
-          var newEl = that.sidebar.makeSidebarView(event).seed;
-          console.log(newEl);
-        },
-        // appendTo: "form#form-itable"
-        // helper: 'clone',
-        // snap: ".formEl",
-        // snapMode: 'outer',
-        // snapTolerance: 5,
-        // scope: 'newFields'
+      $('#all-fields-sidebar div').each(function(){
+        var sidebarView = that.sidebar.makeSidebarView({target: this});
+        $(this).draggable({
+          stop: function(event, ui){
+            var newField = ui.helper.clone();
+            that.model.addField(newField);
+            that.render(sidebarView);
+          },
+
+          appendTo: "ul.fields-list",
+          helper: function(){
+            return sidebarView.$seed.clone();
+          },
+          distance: 3,
+          scope: 'newFields'
+        });
       });
 
       $('.formEl').draggable({
