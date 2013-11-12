@@ -8,8 +8,10 @@
   <div class="form-summary group" data-form-id="<%= form.get('id')%>">
 
     <div class="form-links group">
+      <iframe data-id=<%= form.get('id') %> scrolling='no' ></iframe>
       <a class='formSelect' data-string='formSelect'>
-        <%= form.get('name') %></a>
+        <%= form.get('name') %>
+      </a>
       <a class='index-not' data-string='sendToNotifications'>Notifications</a>
       <a class='index-edit'data-string='sendToEdit'>Edit</a>
       <a class='index-view' data-string='sendToView'>View</a>

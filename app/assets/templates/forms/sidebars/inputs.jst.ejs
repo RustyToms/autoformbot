@@ -5,17 +5,26 @@
   <div
     id="text-box-button"
     data-input-type="textbox"
-    style="padding:8px">
-      Text Box
-    <input type="text" size="10" style="width:70px; height:12px; font-size: 8" value="Text here!" disabled>
+  >Text Box
+    <input
+    type="text"
+    size="10"
+    style="width:70px; height:12px; font-size: 8"
+    value="Text here!">
+    <span class='clear-coat'></span>
+  </div>
+
+  <div
+    id="text-button"
+    data-input-type="text"
+  >Text Only
     <span class='clear-coat'></span>
   </div>
 
   <div
     id="num-box-button"
     data-input-type="numbox"
-    style="padding:8px">
-      Number Box
+  >Number Box
     <input type="text" size="5" style="height:12px; font-size: 8" value="12345" disabled>
     <span class='clear-coat'></span>
   </div>
@@ -23,8 +32,7 @@
   <div
     id="check-box-button"
     data-input-type="checkbox"
-    style="padding:8px">
-      Check Box
+  >Check Box
     <input type="checkbox" style="width:8px; height:8px" checked>
     <span class='clear-coat'></span>
   </div>
@@ -32,8 +40,7 @@
   <div
     id="tel-num-button"
     data-input-type="telnum"
-    style="padding:8px">
-      Telephone Number
+  >Telephone Number
     <input type="text" size="11" style="height:12px; font-size: 8" value="5555551234" disabled>
     <span class='clear-coat'></span>
   </div>
@@ -41,8 +48,7 @@
   <div
     id="dropdown-button"
     data-input-type="dropdown"
-    style="padding:8px">
-      Dropdown Selector
+    >Dropdown Selector
     <select size='1'>
       <option>Option1</option>
       <option>Option2</option>
@@ -52,19 +58,10 @@
   </div>
 
   <div
-    id="textarea-button"
-    data-input-type="textarea"
-    style="padding:8px">
-
-    <textarea rows='2' cols='8' id='textarea' disabled>TextArea</textarea>
-    <span class='clear-coat'></span>
-  </div>
-
-  <div
     id="radio-button"
     data-input-type='radio'
-    style="padding:5px">
-    Radio Buttons
+    style="padding:5px"
+  >Radio Buttons
     <form style='display: inline-block'>
       <label style='position: relative; top: 5px'>
        <input
@@ -72,8 +69,8 @@
           name='example'
           label='option1'
           style='border: none; height: 0.5em; position: relative; top: -6px'
-          checked>
-        Option 1
+          checked
+        >Option 1
       </label>
 
         <br>
@@ -84,26 +81,30 @@
             name='example'
             label='option1'
             style='border: none; height: 0.5em; position: relative; top: -6px; left: -1px'
-          >
-          Option 2
+        >Option 2
         </label>
     </form>
     <span class='clear-coat'></span>
   </div>
 
   <div
-    id="text-button"
-    data-input-type="text"
-    style="padding:8px">
-    Text Only
+    id="textarea-button"
+    data-input-type="textarea"
+    style="padding:3px">
+
+    <textarea
+      rows='2'
+      cols='8'
+      id='textarea'
+    >TextArea
+  </textarea>
     <span class='clear-coat'></span>
   </div>
 
-    <div
+  <div
     id="otherForm-button"
     data-input-type="otherForm"
-    style="padding:8px">
-    Insert another form!
+  >Insert another form!
     <span class='clear-coat'></span>
   </div>
 

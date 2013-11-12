@@ -13,7 +13,21 @@ AFB.Views.FormIndex = Backbone.View.extend({
     this.$el.html(JST["forms/index"]({
       forms: AFB.formCollection
     }));
+    this.makeFormImages();
     return this;
+  },
+
+  makeFormImages: function(){
+    $(function(){
+      $('iframe').each(function(){
+        var iframe = $(this).get(0).contentWindow.document;
+        var form = AFB.formCollection.get($(this).data('id'));
+        var $formText = $(JST['forms/form_wrapper']()).
+          append($(form.get('form_text')));
+        $(iframe).find('body').css('margin', '0').
+          html($formText.prop('outerHTML'));
+      });
+    });
   },
 
   formSelect: function(formId, $target){

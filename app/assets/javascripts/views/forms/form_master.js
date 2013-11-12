@@ -190,18 +190,17 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
       $('#all-fields-sidebar div').each(function(){
         var sidebarView = that.sidebar.makeSidebarView({target: this});
+
         $(this).draggable({
           stop: function(event, ui){
             var newField = ui.helper.clone();
             that.model.addField(newField);
             that.render(sidebarView);
           },
-
           appendTo: "ul.fields-list",
           helper: function(){
             return sidebarView.$seed.clone();
           },
-          // distance: 3,
           scope: 'newFields'
         });
       });

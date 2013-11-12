@@ -13,14 +13,6 @@ a:hover {
   cursor: pointer;
 }
 
-iframe {
-  overflow: hidden;
-  margin: 25px auto;
-  top: 0;
-  // @include transform(scale(0.4, 0.4));
-  // @include transform-origin(top left);
-}
-
 .backbone-render {
   text-align: center;
   margin-top: 105px;
@@ -224,30 +216,18 @@ $formSelect-dim-sum: ($formSelect-dim + $formSelect-margin * 2 +
   @include box-shadow(0 0 25px 20px white);
 }
 
-.form-summary .formSelect{
-  background-color: $blue;
-  transition: 0.15s;
-  transition: background-color 10s 1s;
-}
-
-.form-summary:nth-child(6n) .formSelect{
- background-color: $pale-yellow;
-}
-
-.form-summary:nth-child(6n - 2) .formSelect{
- background-color: $faded-blue;
-}
-
-.form-summary:nth-child(6n - 4) .formSelect{
- background-color: $pale-green;
-}
-
-.form-summary:nth-child(6n - 3) .formSelect{
- background-color: $lighter-steel;
-}
-
-.form-summary:nth-child(6n - 1) .formSelect{
- background-color: $steel;
+iframe {
+  overflow: hidden;
+  position: absolute;
+  width: ($formSelect-dim + ($formSelect-padding * 2)) * 2;
+  height: ($formSelect-dim + ($formSelect-padding * 2)) * 2;
+  @include transform(scale(0.5));
+  top: -($formSelect-dim + ($formSelect-padding * 2)) / 2;
+  left: -($formSelect-dim + ($formSelect-padding * 2)) / 2;
+  border: 1px solid black;
+  @include box-shadow(-3px 5px 6px black);
+  border-radius: 20px;
+  //@include transform-origin(top left);
 }
 
 .form-links {
@@ -255,7 +235,15 @@ $formSelect-dim-sum: ($formSelect-dim + $formSelect-margin * 2 +
   display: block;
   width: $formSelect-dim + ($formSelect-padding * 2);
   height: $formSelect-dim + ($formSelect-padding * 2);
+  border-radius: 10px;
 }
+
+.form-links:active {
+  top: 3px;
+  left: -3px;
+  @include box-shadow(none);
+}
+
 
 .form-links a {
   transition: .30s;
@@ -278,16 +266,34 @@ a.formSelect {
   padding: $formSelect-padding;
   display: block;
   margin: 0;
-  border: 1px solid black;
   z-index: 1;
   overflow: hidden;
+  background-color: transparent;
+  transition: 0.15s;
+  transition: background-color 10s 1s;
+  @include box-shadow(none);
+  border-radius: none;
 }
 
-a.formSelect:active {
-  top: 3px;
-  left: -3px;
-  @include box-shadow(none);
-}
+// .form-summary:nth-child(6n) .formSelect{
+//  background-color: $pale-yellow;
+// }
+
+// .form-summary:nth-child(6n - 2) .formSelect{
+//  background-color: $faded-blue;
+// }
+
+// .form-summary:nth-child(6n - 4) .formSelect{
+//  background-color: $pale-green;
+// }
+
+// .form-summary:nth-child(6n - 3) .formSelect{
+//  background-color: $lighter-steel;
+// }
+
+// .form-summary:nth-child(6n - 1) .formSelect{
+//  background-color: $steel;
+// }
 
 a.formSelect:hover {
   @include box-shadow(-3px 5px 6px black, 0 0 25px 20px white);
@@ -380,6 +386,7 @@ a.formSelect:hover {
   border-radius: 10px;
   height: 50px;
   position: relative;
+  border: 1px solid black;
 }
 
 .sidebar_header a {
@@ -430,6 +437,7 @@ a.formSelect:hover {
   border: 1px solid black;
   border-radius: 5px;
   margin: 1px 0;
+  padding: 8px;
 }
 
 .sidebar_window~.main {

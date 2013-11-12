@@ -1,6 +1,4 @@
 ------------ To Do -------------------------------------------
-- put a transparent span handle on top of the add buttons
-- put field elements inside a wrapper that doesn't take up any space
 - have spaces entered by user escaped
 - make all elements in otherForm contenteditable
 - Put in an option to just insert code
