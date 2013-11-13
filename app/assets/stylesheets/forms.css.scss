@@ -224,9 +224,9 @@ iframe {
   @include transform(scale(0.5));
   top: -($formSelect-dim + ($formSelect-padding * 2)) / 2;
   left: -($formSelect-dim + ($formSelect-padding * 2)) / 2;
-  border: 1px solid black;
-  @include box-shadow(-3px 5px 6px black);
+  // @include box-shadow(-3px 3px 5px 6px black);
   border-radius: 20px;
+  background-color: white;
   //@include transform-origin(top left);
 }
 
@@ -239,11 +239,9 @@ iframe {
 }
 
 .form-links:active {
-  top: 3px;
-  left: -3px;
-  @include box-shadow(none);
+  top: 2px;
+  left: -2px;
 }
-
 
 .form-links a {
   transition: .30s;
@@ -271,10 +269,18 @@ a.formSelect {
   background-color: transparent;
   transition: 0.15s;
   transition: background-color 10s 1s;
-  @include box-shadow(none);
-  border-radius: none;
+  border-radius: 10px;
+  border: 1px solid black;
+  @include box-shadow(0 0 10px 7px $faded-blue);
 }
 
+a.formSelect:hover {
+  @include box-shadow(-3px 5px 6px black, 0 0 25px 20px white);
+}
+
+a.formSelect:active {
+  @include box-shadow(0 0 25px 20px white);
+}
 // .form-summary:nth-child(6n) .formSelect{
 //  background-color: $pale-yellow;
 // }
@@ -294,10 +300,6 @@ a.formSelect {
 // .form-summary:nth-child(6n - 1) .formSelect{
 //  background-color: $steel;
 // }
-
-a.formSelect:hover {
-  @include box-shadow(-3px 5px 6px black, 0 0 25px 20px white);
-}
 
 .form-links.clicked {
 

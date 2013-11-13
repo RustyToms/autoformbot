@@ -18,15 +18,26 @@ AFB.Views.FormIndex = Backbone.View.extend({
   },
 
   makeFormImages: function(){
-    $(function(){
-      $('iframe').each(function(){
-        var iframe = $(this).get(0).contentWindow.document;
-        var form = AFB.formCollection.get($(this).data('id'));
-        var $formText = $(JST['forms/form_wrapper']()).
-          append($(form.get('form_text')));
-        $(iframe).find('body').css('margin', '0').
-          html($formText.prop('outerHTML'));
-      });
+    console.log('in FormIndex#makeFormImages');
+    $(document).ready(function(){
+      console.log('document ready');
+      window.setTimeout(function(){
+        $('iframe').each(function(){
+          console.log("making iframe for form " + $(this).data('id'));
+          var iframe = $(this).get(0);
+          var form = AFB.formCollection.get($(this).data('id'));
+          var $formText = $(JST['forms/form_wrapper']()).
+            append($(form.get('form_text')));
+          iframe.contentWindow.document.open();
+          iframe.contentWindow.document.write($formText.prop('outerHTML'));
+          iframe.contentWindow.document.close();
+          var that = this;
+          // $(this).ready(function(){
+            $($(iframe).get(0).contentWindow.document).
+              find('body').css('margin', '0');
+          // });
+        });
+      }, 1);
     });
   },
 

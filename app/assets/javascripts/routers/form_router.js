@@ -20,7 +20,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.view && this.view.remove();
 
     this.view = new AFB.Views.FormIndex({
-      collection: AFB.formCollection,
+      // collection: AFB.formCollection,
       el: this.$seedEl
     });
     this.$rootEl.append(this.view.render().$el);
