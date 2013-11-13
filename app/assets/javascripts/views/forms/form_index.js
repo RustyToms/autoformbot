@@ -9,35 +9,27 @@ AFB.Views.FormIndex = Backbone.View.extend({
 
   render: function(){
     console.log("rendering FormIndex view");
+    var that = this;
     this.$el.empty();
     this.$el.html(JST["forms/index"]({
       forms: AFB.formCollection
     }));
-    this.makeFormImages();
+    window.setTimeout(function(){
+      $(function(){
+        that.makeFormImages();
+      });
+    }, 1);
     return this;
   },
 
   makeFormImages: function(){
     console.log('in FormIndex#makeFormImages');
-    $(document).ready(function(){
-      console.log('document ready');
-      window.setTimeout(function(){
-        $('iframe').each(function(){
-          console.log("making iframe for form " + $(this).data('id'));
-          var iframe = $(this).get(0);
-          var form = AFB.formCollection.get($(this).data('id'));
-          var $formText = $(JST['forms/form_wrapper']()).
-            append($(form.get('form_text')));
-          iframe.contentWindow.document.open();
-          iframe.contentWindow.document.write($formText.prop('outerHTML'));
-          iframe.contentWindow.document.close();
-          var that = this;
-          // $(this).ready(function(){
-            $($(iframe).get(0).contentWindow.document).
-              find('body').css('margin', '0');
-          // });
-        });
-      }, 1);
+    var $button = this.$el.find('.fi-30x');
+    $button.each(function(index){
+      var form = AFB.formCollection.get($(this).data('id'));
+      var $formText = $(JST['forms/form_wrapper']()).
+        append($(form.get('form_text')));
+      $(this).css('box-shadow', 'none').html($formText.html());
     });
   },
 
@@ -90,6 +82,7 @@ AFB.Views.FormIndex = Backbone.View.extend({
 	},
 
   parselink: function(event){
+    event.preventDefault();
     var $target = $(event.target);
     var formId = $target.closest('.form-summary').data('form-id');
     console.log('in parselink, formId is ' + formId);

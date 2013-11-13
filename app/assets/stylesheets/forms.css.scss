@@ -216,18 +216,17 @@ $formSelect-dim-sum: ($formSelect-dim + $formSelect-margin * 2 +
   @include box-shadow(0 0 25px 20px white);
 }
 
-iframe {
+.form-links .fi-30x {
   overflow: hidden;
   position: absolute;
-  width: ($formSelect-dim + ($formSelect-padding * 2)) * 2;
-  height: ($formSelect-dim + ($formSelect-padding * 2)) * 2;
-  @include transform(scale(0.5));
-  top: -($formSelect-dim + ($formSelect-padding * 2)) / 2;
-  left: -($formSelect-dim + ($formSelect-padding * 2)) / 2;
-  // @include box-shadow(-3px 3px 5px 6px black);
-  border-radius: 20px;
+  width: ($formSelect-dim + ($formSelect-padding * 2)) * 4;
+  height: ($formSelect-dim + ($formSelect-padding * 2)) * 4;
+  @include transform(scale(0.25));
+  top: -($formSelect-dim + ($formSelect-padding * 2)) * 1.5 + 1;
+  left: -($formSelect-dim + ($formSelect-padding * 2)) * 1.5 + 1;
+  border-radius: 40px;
   background-color: white;
-  //@include transform-origin(top left);
+  z-index: 1;
 }
 
 .form-links {
@@ -235,7 +234,6 @@ iframe {
   display: block;
   width: $formSelect-dim + ($formSelect-padding * 2);
   height: $formSelect-dim + ($formSelect-padding * 2);
-  border-radius: 10px;
 }
 
 .form-links:active {
@@ -264,14 +262,33 @@ a.formSelect {
   padding: $formSelect-padding;
   display: block;
   margin: 0;
-  z-index: 1;
+  z-index: 3;
   overflow: hidden;
-  background-color: transparent;
   transition: 0.15s;
   transition: background-color 10s 1s;
   border-radius: 10px;
   border: 1px solid black;
   @include box-shadow(0 0 10px 7px $faded-blue);
+  background-color: transparent;
+}
+
+.form-title-background {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.45);
+  display: block;
+  width: $formSelect-dim;
+  height: $formSelect-dim;
+  z-index: 2;
+  padding: $formSelect-padding;
+  text-align: right;
+}
+
+.form-title {
+  background-color: white;
+  border-radius: 5px;
+  @include box-shadow(0 0 5px 3px white);
+  font-weight: bold;
+  line-height: 18px;
 }
 
 a.formSelect:hover {
@@ -440,6 +457,7 @@ a.formSelect:active {
   border-radius: 5px;
   margin: 1px 0;
   padding: 8px;
+  position: relative;
 }
 
 .sidebar_window~.main {

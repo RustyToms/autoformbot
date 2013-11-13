@@ -1,4 +1,6 @@
 ------------ To Do -------------------------------------------
+- use asynchronous behavior to render forms after the index page has rendered
+- make form label in forms index move when clicked
 - have spaces entered by user escaped
 - make all elements in otherForm contenteditable
 - Put in an option to just insert code
@@ -16,3 +18,4 @@
 - textarea prefilled content won't sync with sidebar
 - Buttons display weird (they actually appear to display correctly) in ipad browser
 - add other form button acts strange when dragged onto form
+- form_text needs jquery ui stuff properly removed on save
