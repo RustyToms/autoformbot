@@ -1,11 +1,11 @@
 ------------ To Do -------------------------------------------
-- use asynchronous behavior to render forms after the index page has rendered
-- make form label in forms index move when clicked
 - have spaces entered by user escaped
+- fix numbox contenteditable and form title contenteditable
 - make all elements in otherForm contenteditable
 - Put in an option to just insert code
 - scroll form to newly added field
 - add selectable and try stacking again
+- make rails controllers not do more than 1 query for each page
 
 - add Results and notifications
 

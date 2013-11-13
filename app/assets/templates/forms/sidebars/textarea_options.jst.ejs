@@ -7,7 +7,7 @@
   <input type='text'
     name='textarea-label'
     onClick="this.select()"
-    value='<%= $field.find('.textarea-label').text().trim() %>'>
+    value='<%= $field.find('.textarea-label').text() %>'>
 </label><br>
 
 <label>Height (in number of lines)
@@ -29,7 +29,7 @@
 <label>Prefilled content
   <input
     type='text'
-    value='<%= $textarea.text().trim() %>'
+    value='<%= $textarea.text() %>'
     onClick="this.select()"
     name='textarea'/>
 </label>

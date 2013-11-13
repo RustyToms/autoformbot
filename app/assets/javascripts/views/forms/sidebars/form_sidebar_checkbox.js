@@ -60,7 +60,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
       this.$field = $editField;
     }
 
-    var label = this.$field.find('.checkbox-label').text().trim();
+    var label = this.$field.find('.checkbox-label').text();
     var required = this.$field.hasClass('required');
 
     this.$el.html(JST['forms/sidebars/checkbox_options']({

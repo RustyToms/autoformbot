@@ -44,7 +44,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
       this.$field = $editField;
     }
 
-    var label = this.$field.find('.dropdown-label').html().trim();
+    var label = this.$field.find('.dropdown-label').text();
     var $preexisting = $.makeArray(this.$field.find('option'));
 
     this.$el.html(JST['forms/sidebars/dropdown_options']({

@@ -328,6 +328,12 @@ a.formSelect:active {
     text-align: center;
   }
 
+  .form-title-background {
+    width: $formSelect-dim - 20px;
+    height: $formSelect-dim - 20px;
+    padding: $formSelect-padding + 10px;
+  }
+
   a.formSelect {
     @include box-shadow(-6px 10px 12px black);
     width: $formSelect-dim - 20px;

@@ -48,7 +48,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
     }
 myField = this.$field;
     $preexisting = $.makeArray(this.$field.find('.radio-option'));
-    var label = this.$field.find('.radio-label').text().trim();
+    var label = this.$field.find('.radio-label').text();
     var required = this.$field.hasClass('required');
     var klass = label.replace(/[^_a-zA-Z0-9-]/g, '_');
 
