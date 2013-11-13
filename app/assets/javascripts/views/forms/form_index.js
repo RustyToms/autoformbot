@@ -14,22 +14,22 @@ AFB.Views.FormIndex = Backbone.View.extend({
     this.$el.html(JST["forms/index"]({
       forms: AFB.formCollection
     }));
-    window.setTimeout(function(){
-      $(function(){
-        that.makeFormImages();
-      });
-    }, 1);
+    $(document).ready(function(){
+      that.makeFormImages();
+    });
     return this;
   },
 
   makeFormImages: function(){
     console.log('in FormIndex#makeFormImages');
     var $button = this.$el.find('.fi-30x');
+    $button.css('box-shadow', 'none');
+    var $wrapper = $(JST['forms/form_wrapper']());
+    this.$el.prepend($wrapper.find('style'));
     $button.each(function(index){
-      var form = AFB.formCollection.get($(this).data('id'));
-      var $formText = $(JST['forms/form_wrapper']()).
-        append($(form.get('form_text')));
-      $(this).css('box-shadow', 'none').html($formText.html());
+      var $form = $(AFB.formCollection.get($(this).data('id')).
+        get('form_text'));
+      $(this).append($form);
     });
   },
 
