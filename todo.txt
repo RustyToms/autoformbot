@@ -1,9 +1,6 @@
 ------------ To Do -------------------------------------------
-- have spaces entered by user escaped
-- fix numbox contenteditable and form title contenteditable
 - make all elements in otherForm contenteditable
 - Put in an option to just insert code
-- scroll form to newly added field
 - add selectable and try stacking again
 - make rails controllers not do more than 1 query for each page
 
@@ -14,8 +11,8 @@
 - add Account stuff
 
 ------------ Unresolved Issues -------------------------------
-- Unexpected behavior when contentediting and user generates a space
 - textarea prefilled content won't sync with sidebar
 - Buttons display weird (they actually appear to display correctly) in ipad browser
-- add other form button acts strange when dragged onto form
 - form_text needs jquery ui stuff properly removed on save
+- in form_edit.js, #updateSidebar, exclude checkboxes and radio buttons that
+  are not checked from updating the form

@@ -5,7 +5,7 @@ AFB.Views.FormEditTitle = Backbone.View.extend({
 		var $form = $(this.model.get('form_text'));
 		var title = $form.find('.editing .formName').text();
 		var description = $form.find('.editing .formDescription').text();
-		console.log(title);
+
     this.$el.html(JST['forms/sidebars/edit_title']({
       title: title,
       description: description
@@ -17,7 +17,7 @@ AFB.Views.FormEditTitle = Backbone.View.extend({
     console.log("in FormEditTitle#updateValues");
     this.model.updateValues(event);
     if ($(event.target).attr('name')=='formName'){
-      this.model.set('name', $(event.target).val());
+      this.model.set({name: $(event.target).val()}, {silent: true});
     }
   }
 });
