@@ -35,23 +35,32 @@ AFB.Views.FormEdit = Backbone.View.extend({
   prepForm: function($formText){
     $formText.find("label, h2, p").attr('contenteditable', 'true');
     $formText.find('input').attr('disabled', 'disabled');
-    $formText.find(".formEl:not(:has('.move-handle'))")
-      .prepend("<span class='move-handle' style='color: white; font-size:" +
-        " 20px; z-index: 999;'>\u039E</span>");
+    $targets = $formText.find('.formEl, .submit-button');
+    $targets.not($targets.has('.move-handle')).
+      prepend("<span class='move-handle' style='color: white; font-size:" +
+      " 20px; z-index: 999;'>\u039E</span>");
   },
 
   parseClickForm: function(event) {
     console.log("in parseClickForm");
     var $target = $(event.target);
+    var $formEl = $target.closest(".formEl");
 
     if($target.hasClass('delete-field')){
 
-      this.makeGhost($target.closest(".formEl"));
+      this.makeGhost($formEl);
       this.parentView.localSaveForm(this.parentView);
       this.parentView.render();
 
-    } else if (!$target.closest(".formEl").hasClass('editing')){
+    } else if ($formEl.length && !$formEl.hasClass('editing')){
       this.startEditingField($target);
+
+    } else {
+      var sidebar = new AFB.Views.FormSidebarInputs({
+        model: this.model
+      });
+      this.parentView.swapSidebar(sidebar, this.parentView);
+
     }
   },
 

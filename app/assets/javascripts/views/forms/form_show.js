@@ -6,8 +6,6 @@ AFB.Views.FormShow = Backbone.View.extend({
   render: function(){
     this.model.removeActiveEdits();
     var $form = $(this.model.get('form_text'));
-    $form.find('form#form-itable').append("<input type='submit'" +
-      "value='Submit' form='form-itable' id='form-itable-submit'>");
     this.$el.append($form);
 		// this.$el.append(JST['forms/show_form']());
 

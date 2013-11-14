@@ -206,7 +206,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
         });
       });
 
-      $('.formEl').draggable({
+      $('.formEl, .submit-button').draggable({
         stop: function(event, ui){
           that.editForm.parseClickForm({target: ui.helper});
           that.localSaveForm(that);

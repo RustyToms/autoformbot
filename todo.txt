@@ -1,6 +1,5 @@
 ------------ To Do -------------------------------------------
 - make all elements in otherForm contenteditable
-- put submit button after all the other fields, maybe put it in form edit
 - Put in an option to just insert code
 - add selectable and try stacking again
 - make rails controllers not do more than 1 query for each page
