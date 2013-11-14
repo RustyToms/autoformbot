@@ -75,7 +75,7 @@ AFB.Models.Form = Backbone.Model.extend ({
     $form.find('.editing').removeClass('editing');
     $form.find('.move-handle').remove();
     $form.find('.delete-field').remove();
-    $form.find("label, h2, p").removeAttr('contenteditable');
+    $form.find("label, h2, p, li.magicBox div").removeAttr('contenteditable');
     this.set('form_text', $form.prop('outerHTML'));
   },
 
@@ -148,7 +148,7 @@ AFB.Models.Form = Backbone.Model.extend ({
     console.log('locally saving form model');
     var that = this;
 
-    $(function(){
+    jQuery(function ($){
       var $form = $('.outer-wrapper');
       $form.find('.ui-draggable').draggable().draggable('destroy');
       $form.find('.ui-droppable').droppable().droppable('destroy');

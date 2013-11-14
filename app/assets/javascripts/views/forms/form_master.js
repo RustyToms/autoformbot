@@ -165,7 +165,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   makeSortable: function(){
     var that = this;
-    $(function(){
+    jQuery(function ($){
       console.log("making fields-list elements draggable");
 
       $('form#form-itable').droppable({

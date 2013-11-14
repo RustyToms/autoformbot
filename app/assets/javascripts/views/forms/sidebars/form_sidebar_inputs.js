@@ -12,7 +12,6 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
   makeSidebarView: function(event) {
     console.log("in FormSidebarInputs#makeSidebarView");
     var that = this;
-    // event.preventDefault();
     var fieldChoices = {
       "textbox" : "FormSidebarTextbox",
       "checkbox" : "FormSidebarCheckbox",
@@ -22,7 +21,7 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
       "numbox" : "FormSidebarNumbox",
       "radio" : "FormSidebarRadio",
       "text" : "FormSidebarText",
-      "otherForm": "OtherForm"
+      "magicBox": "MagicBox"
     };
 
     var selection = $(event.target).closest('div').data('inputType');
