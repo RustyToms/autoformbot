@@ -47,7 +47,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
     $formWrapper.find('.fi-30x').append(this.editForm.render().$el);
     this.$el.append($formWrapper);
-    this.makeSortable(this);
+    this.makeSortable();
     this.initialize();
   },
 
@@ -99,7 +99,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       });
       $('.inner-wrapper').addClass('editing');
       this.swapSidebar(formSettings, this);
-      this.localSaveForm(this);
+      this.model.localSaveForm();
       break;
     default:
       console.log("hit newSidebar switch default");
@@ -117,8 +117,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
       $form.find('.editing .' + $target.attr('name')).remove();
       this.model.set('form_text', $form.prop('outerHTML'));
-
       $target.closest('div').remove();
+      this.editForm.renderChange();
+
     } else if ($(event.target).attr('name') ==='requiredCheckbox'){
 
       this.requireField(event);
@@ -162,26 +163,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
     that.sidebarReset(that);
 	},
 
-  localSaveForm: function(that){
-    console.log('locally saving form model');
+  // localSaveForm: function(that, silence){
+  //   this.model.localSaveForm(silence);
+  //   this.makeSortable();
+  // },
 
-    $(function(){
-      var $form = that.$el.find('.outer-wrapper');
-      $form.find('.ui-draggable').draggable('destroy');
-      $form.find('.ui-droppable').droppable('destroy');
-      var name = $form.find('.formName').text().trim();
-
-      that.model.set({
-        form_text: $form.prop('outerHTML'),
-        name: name
-      },{silent: true});
-
-      $form.find('input').attr('disabled', 'disabled');
-      that.makeSortable(that);
-    });
-  },
-
-  makeSortable: function(that){
+  makeSortable: function(){
+    var that = this;
     $(function(){
       console.log("making fields-list elements draggable");
 
@@ -209,7 +197,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       $('.formEl, .submit-button').draggable({
         stop: function(event, ui){
           that.editForm.parseClickForm({target: ui.helper});
-          that.localSaveForm(that);
+          that.model.localSaveForm();
         },
         containment: 'form#form-itable',
         distance: 3,
@@ -228,7 +216,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.render();
   },
 
-  removeActiveEdits: function(that){
+  removeActiveEdits: function(){
     console.log('removing all editing classes');
     var $old = this.$el.find('.editing');
     $old.find('.delete-field').remove();

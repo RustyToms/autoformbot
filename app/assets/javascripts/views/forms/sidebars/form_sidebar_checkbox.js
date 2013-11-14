@@ -127,6 +127,6 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
     });
 
     this.$field.find('.checkbox-option').css('display', display);
-    this.parentView.localSaveForm(this.parentView);
+    this.model.localSaveForm();
   }
 });

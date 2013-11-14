@@ -106,6 +106,6 @@ myField = this.$field;
     }
     this.$field.find('.radio-option').css('display', display);
 
-    this.parentView.localSaveForm(this.parentView);
+    this.model.localSaveForm();
   }
 });

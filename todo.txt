@@ -11,6 +11,7 @@
 - add Account stuff
 
 ------------ Unresolved Issues -------------------------------
+- names of options don't get updated as label gets updated for checkboxes etc.
 - Buttons display weird (they actually appear to display correctly) in ipad browser
 - in form_edit.js, #updateSidebar, exclude checkboxes and radio buttons that
   are not checked from updating the form

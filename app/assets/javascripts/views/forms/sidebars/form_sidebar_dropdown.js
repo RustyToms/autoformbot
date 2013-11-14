@@ -85,6 +85,6 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
       $select.append(option);
     });
 
-    this.parentView.localSaveForm(this.parentView);
+    this.model.localSaveForm();
   }
 });

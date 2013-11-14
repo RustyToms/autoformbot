@@ -7,9 +7,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
   initialize: function(){
     var that = this;
     console.log('FormEdit View initialized');
-    this.listenTo(this.model, 'change', function(){
-      that.renderChange();
-    });
+    // this.on('change', function(){
+    //   that.renderChange();
+    // });
   },
 
   render: function(){
@@ -29,7 +29,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
     this.prepForm($newField);
     this.$el.find('.editing').replaceWith($newField.find('.formEl'));
-    this.parentView.makeSortable(this.parentView);
+    this.parentView.makeSortable();
   },
 
   prepForm: function($formText){
@@ -49,13 +49,13 @@ AFB.Views.FormEdit = Backbone.View.extend({
     if($target.hasClass('delete-field')){
 
       this.makeGhost($formEl);
-      this.parentView.localSaveForm(this.parentView);
+      this.model.localSaveForm();
       this.parentView.render();
 
     } else if ($formEl.length && !$formEl.hasClass('editing')){
       this.startEditingField($target);
 
-    } else {
+    } else if ($formEl.length === 0) {
       var sidebar = new AFB.Views.FormSidebarInputs({
         model: this.model
       });
@@ -67,7 +67,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   makeGhost: function($target) {
     console.log("making ghost in FormEdit View");
     AFB.Routers.FormRouter.matchSize($target, $target);
-    $target.draggable('destroy');
+    $target.draggable().draggable('destroy');
     $target.empty();
     $target.removeClass();
     $target.addClass('ghost');
@@ -76,14 +76,14 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   startEditingField: function($target){
     console.log("in FormEdit#startEditingField");
-    this.parentView.removeActiveEdits(this.parentView);
+    this.parentView.removeActiveEdits();
 
     var $formEl = $target.closest(".formEl");
     $formEl.addClass("editing").
     append("<button class='delete-field' style='position: absolute'" +
       ">X</button>");
 
-    this.parentView.localSaveForm(this.parentView);
+    this.model.localSaveForm();
     var sidebarName = $formEl.data("sidebar");
     console.log("new sidebar should be " + sidebarName);
     var sidebar = new AFB.Views[sidebarName]({
@@ -98,7 +98,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.model.silentUpdate = true;
     var that = this;
 		console.log("updating sidebar");
-		this.parentView.localSaveForm(this.parentView);
+    this.model.localSaveForm();
 		this.parentView.updateSidebar();
     $(function(){
       $input = $(".sidebar_window input, textarea").filter(function(){

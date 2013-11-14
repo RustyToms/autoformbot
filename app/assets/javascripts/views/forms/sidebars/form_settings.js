@@ -20,6 +20,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
     } else {
       this.model.updateValues(event);
       this.parentView.editForm.render();
+      this.parentView.makeSortable();
     }
   }
 

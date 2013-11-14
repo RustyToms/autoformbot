@@ -1,28 +1,29 @@
 AFB.Models.Form = Backbone.Model.extend ({
-  initialize: function(){
-    this.silentUpdate = false;
-  },
+  // initialize: function(){
+  //   this.silentUpdate = false;
+  // },
 
-  silentSaveForm: function(){
-    var that = this;
-    $(function(){
-      that.set({'form_text': $('.outer-wrapper').prop('outerHTML')},
-        {silent: true});
-    });
-  },
+  // silentSaveForm: function(){
+  //   var that = this;
+  //   $(function(){
+  //     that.set({'form_text': $('.outer-wrapper').prop('outerHTML')},
+  //       {silent: true});
+  //   });
+  // },
 
   updateAttribute: function(selector, attribute, value){
     console.log("updating form attribute values");
 		console.log(attribute + ": " + value);
     $('.outer-wrapper').find(selector).attr(attribute, value);
-    this.silentSaveForm();
+
+    this.localSaveForm();
   },
 
   updateHTML: function(selector, value){
     console.log("updating form element html");
 		console.log(selector);
     $('.outer-wrapper').find(selector).html(value);
-    this.silentSaveForm();
+    this.localSaveForm();
   },
 
 	updateCSS: function(selector, key, value){
@@ -34,7 +35,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 			value = value + 'px';
 		}
     $('.outer-wrapper').find(selector).css(key, value);
-    this.silentSaveForm();
+    this.localSaveForm();
 	},
 
 	updateProp: function(selector, prop, shouldCreate) {
@@ -48,7 +49,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 		} else {
       $form.find(selector).removeAttr(prop);
 		}
-    this.silentSaveForm();
+    this.localSaveForm();
 	},
 
   updateValues: function(event) {
@@ -153,4 +154,24 @@ AFB.Models.Form = Backbone.Model.extend ({
       '/results/' + this.get('id'));
     this.set('form_text', $form.prop('outerHTML'));
   },
+
+  localSaveForm: function(){
+    console.log('locally saving form model');
+    var that = this;
+
+    $(function(){
+      var $form = $('.outer-wrapper');
+      $form.find('.ui-draggable').draggable().draggable('destroy');
+      $form.find('.ui-droppable').droppable().droppable('destroy');
+      var name = $form.find('.formName').text().trim();
+
+      that.set({
+        form_text: $form.prop('outerHTML'),
+        name: name
+      });
+
+      $form.find('input').attr('disabled', 'disabled');
+      that.formRouter.view.makeSortable();
+    });
+  }
 });
