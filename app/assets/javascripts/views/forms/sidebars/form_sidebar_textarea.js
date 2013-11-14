@@ -7,9 +7,10 @@ AFB.Views.FormSidebarTextarea = Backbone.View.extend({
 
   render: function(){
     console.log("rendering FormSidebarTextarea");
+    var $field = $((this.field) || this.$seed);
     this.$el.html(JST['forms/sidebars/textarea_options']({
-      $field: ($(this.field) || this.$seed),
-      $textarea: ($(this.field) || this.$seed).find('textarea')
+      $field: $field,
+      $textarea: $field.find('textarea')
     }));
 
     return this;

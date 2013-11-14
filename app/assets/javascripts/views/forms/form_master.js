@@ -166,8 +166,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
     console.log('locally saving form model');
 
     $(function(){
-      $('.ui-draggable').removeClass('.ui-draggable');
       var $form = that.$el.find('.outer-wrapper');
+      $form.find('.ui-draggable').draggable('destroy');
+      $form.find('.ui-droppable').droppable('destroy');
       var name = $form.find('.formName').text().trim();
 
       that.model.set({

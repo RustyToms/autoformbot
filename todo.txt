@@ -1,5 +1,6 @@
 ------------ To Do -------------------------------------------
 - make all elements in otherForm contenteditable
+- put submit button after all the other fields, maybe put it in form edit
 - Put in an option to just insert code
 - add selectable and try stacking again
 - make rails controllers not do more than 1 query for each page
@@ -11,8 +12,6 @@
 - add Account stuff
 
 ------------ Unresolved Issues -------------------------------
-- textarea prefilled content won't sync with sidebar
 - Buttons display weird (they actually appear to display correctly) in ipad browser
-- form_text needs jquery ui stuff properly removed on save
 - in form_edit.js, #updateSidebar, exclude checkboxes and radio buttons that
   are not checked from updating the form
