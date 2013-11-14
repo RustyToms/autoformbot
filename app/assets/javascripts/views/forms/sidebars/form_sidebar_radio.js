@@ -26,8 +26,27 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
       this.model.updateHTML('.editing .radio-label', event.target.value);
       this.model.updateAttribute('.editing .radio-option input',
         'name', event.target.value);
-		}
+      this.updateField();
+      this.syncOptionNames();
+
+    } else {
+
     this.updateField();
+    }
+  },
+
+  syncOptionNames: function(){
+    console.log('syncing sidebar option names with new label');
+    var $fieldOptions = $('.editing input');
+    var $sidebarOptions = this.$el.find('.radio-option-config');
+    $fieldOptions.each(function(index){
+      var $sidebarOption = $($sidebarOptions[index]);
+      var newName = $(this).attr('id');
+
+      $sidebarOption.find('input').attr('name', newName);
+      $sidebarOption.find('button').attr('name', "radio-option:has('." +
+        newName + "')");
+    });
   },
 
   parseClick: function(event){

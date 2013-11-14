@@ -48,7 +48,6 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
       $sidebarOption.find('input').attr('name', newName);
       $sidebarOption.find('button').attr('name', "checkbox-option:has('." +
         newName + "')");
-      console.log($($sidebarOptions[index]).get(0));
     });
   },
 
