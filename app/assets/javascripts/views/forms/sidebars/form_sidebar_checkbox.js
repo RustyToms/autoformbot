@@ -28,14 +28,33 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
       var name = event.target.value + '[]';
       this.model.updateAttribute('.editing .checkbox', 'name', name);
       this.model.updateValues(event);
-    }
+      this.updateField();
+      this.syncOptionNames();
 
-    this.updateField();
+    } else {
+
+      this.updateField();
+    }
+  },
+
+  syncOptionNames: function(){
+    console.log('syncing sidebar option names with new label');
+    var $fieldOptions = $('.editing input');
+    var $sidebarOptions = this.$el.find('.checkbox-option-config');
+    $fieldOptions.each(function(index){
+      var $sidebarOption = $($sidebarOptions[index]);
+      var newName = $(this).attr('id');
+
+      $sidebarOption.find('input').attr('name', newName);
+      $sidebarOption.find('button').attr('name', "checkbox-option:has('." +
+        newName + "')");
+      console.log($($sidebarOptions[index]).get(0));
+    });
   },
 
   parseClick: function(event){
     console.log("in FormSidebarCheckbox#parseClick");
-    $target = $(event.target);
+    var $target = $(event.target);
     var that = this;
 
     if($target.hasClass('add-option')){

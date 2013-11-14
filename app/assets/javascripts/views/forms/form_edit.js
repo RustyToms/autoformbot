@@ -5,11 +5,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   initialize: function(){
-    var that = this;
     console.log('FormEdit View initialized');
-    // this.on('change', function(){
-    //   that.renderChange();
-    // });
   },
 
   render: function(){

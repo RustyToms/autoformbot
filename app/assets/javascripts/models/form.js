@@ -1,15 +1,4 @@
 AFB.Models.Form = Backbone.Model.extend ({
-  // initialize: function(){
-  //   this.silentUpdate = false;
-  // },
-
-  // silentSaveForm: function(){
-  //   var that = this;
-  //   $(function(){
-  //     that.set({'form_text': $('.outer-wrapper').prop('outerHTML')},
-  //       {silent: true});
-  //   });
-  // },
 
   updateAttribute: function(selector, attribute, value){
     console.log("updating form attribute values");

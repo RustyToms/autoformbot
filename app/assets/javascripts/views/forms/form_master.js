@@ -163,11 +163,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
     that.sidebarReset(that);
 	},
 
-  // localSaveForm: function(that, silence){
-  //   this.model.localSaveForm(silence);
-  //   this.makeSortable();
-  // },
-
   makeSortable: function(){
     var that = this;
     $(function(){
