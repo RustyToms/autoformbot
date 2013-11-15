@@ -14,6 +14,13 @@ AFB.Views.FormIndex = Backbone.View.extend({
     this.$el.html(JST["forms/index"]({
       forms: AFB.formCollection
     }));
+
+    AFB.formCollection.each(function(form){
+      that.$el.append(JST["forms/index_add_form"]({
+        form: form
+      }));
+    });
+
     $(document).ready(function(){
       that.makeFormImages();
     });
@@ -22,15 +29,20 @@ AFB.Views.FormIndex = Backbone.View.extend({
 
   makeFormImages: function(){
     console.log('in FormIndex#makeFormImages');
-    var $button = this.$el.find('.fi-30x');
-    $button.css('box-shadow', 'none');
+    var that = this;
+    var $buttons = this.$el.find('.fi-30x');
+    $buttons.css('box-shadow', 'none');
     var $wrapper = $(JST['forms/form_wrapper']());
     this.$el.prepend($wrapper.find('style'));
-    $button.each(function(index){
-      var $form = $(AFB.formCollection.get($(this).data('id')).
-        get('form_text'));
-      $(this).append($form);
+    $buttons.each(function(){
+      that.makeFormImage(this);
     });
+  },
+
+  makeFormImage: function(button){
+    var $form = $(AFB.formCollection.get($(button).data('id')).
+      get('form_text'));
+    $(button).append($form);
   },
 
   formSelect: function(formId, $target){
@@ -74,10 +86,11 @@ AFB.Views.FormIndex = Backbone.View.extend({
 		var that = this;
 		var form = AFB.formCollection.get(formId);
 		form.duplicateForm(function(newForm){
-      that.$el.find('.form-summary').last().after(
-        JST["forms/index_add_form"]({
+      var $newButton = $(JST["forms/index_add_form"]({
           form: newForm
-        }));
+      }));
+      that.$el.find('.form-summary').last().after($newButton);
+      that.makeFormImage($newButton.find('.fi-30x'));
     });
 	},
 

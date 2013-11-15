@@ -1,7 +1,4 @@
 ------------ To Do -------------------------------------------
-- MUST LOAD FORM IMAGES AFTER PAGE RENDER IF THEY HAVE MAGIC BOX CONTENT
-- redirect to formEdit view on form server save
-- Put in an option to just insert code
 - add selectable and try stacking again
 - make rails controllers not do more than 1 query for each page
 

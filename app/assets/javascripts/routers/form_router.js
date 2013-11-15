@@ -20,7 +20,6 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.view && this.view.remove();
 
     this.view = new AFB.Views.FormIndex({
-      // collection: AFB.formCollection,
       el: this.$seedEl
     });
     this.$rootEl.append(this.view.render().$el);
@@ -52,7 +51,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
         console.log("form_id is " + that.model.get('id'));
         AFB.Routers.FormRouter.myFlash("New Form created");
         that.model.updateFormAction();
-        that.navigate("forms/" + that.model.get('id') +
+        Backbone.history.navigate("forms/" + that.model.get('id') +
           "/edit", {trigger: true});
       }
 		});
