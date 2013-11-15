@@ -148,7 +148,7 @@ AFB.Models.Form = Backbone.Model.extend ({
     console.log('locally saving form model');
     var that = this;
 
-    jQuery(function ($){
+    $(function(){
       var $form = $('.outer-wrapper');
       $form.find('.ui-draggable').draggable().draggable('destroy');
       $form.find('.ui-droppable').droppable().droppable('destroy');

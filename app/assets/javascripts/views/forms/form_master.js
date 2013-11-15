@@ -165,22 +165,39 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   makeSortable: function(){
     var that = this;
-    jQuery(function ($){
+    $(function(){
       console.log("making fields-list elements draggable");
 
       $('form#form-itable').droppable({
-        scope: 'newFields'
+        scope: 'newFields',
+        tolerance: 'fit',
+        drop: function(event, ui){
+          console.log('drop successful');
+          ui.helper.data('dropped', true);
+        }
       });
 
       $('#all-fields-sidebar div').each(function(){
         var sidebarView = that.sidebar.makeSidebarView({target: this});
 
         $(this).draggable({
-          stop: function(event, ui){
-            var newField = ui.helper.clone();
-            that.model.addField(newField);
-            that.render(sidebarView);
+          start: function(event, ui){
+            ui.helper.data('dropped', false);
           },
+          stop: function(event, ui){
+            if (ui.helper.data('dropped')){
+              var newField = ui.helper.clone();
+              that.model.addField(newField);
+              that.render(sidebarView);
+            } else {
+              console.log('drop unsuccessful');
+              window.setTimeout(function(){
+                ui.helper.remove();
+              }, 500);
+            }
+
+          },
+          revert: 'invalid',
           appendTo: "ul.fields-list",
           helper: function(){
             return sidebarView.$seed.clone();
