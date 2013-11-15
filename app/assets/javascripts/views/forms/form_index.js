@@ -82,14 +82,14 @@ AFB.Views.FormIndex = Backbone.View.extend({
     AFB.Routers.FormRouter.myFlash(formName + ' deleted!');
   },
 
-	duplicateForm: function(formId){
+	duplicateForm: function(formId, $target){
 		var that = this;
 		var form = AFB.formCollection.get(formId);
 		form.duplicateForm(function(newForm){
       var $newButton = $(JST["forms/index_add_form"]({
           form: newForm
       }));
-      that.$el.find('.form-summary').last().after($newButton);
+      $target.closest('.form-summary').after($newButton);
       that.makeFormImage($newButton.find('.fi-30x'));
     });
 	},

@@ -1,5 +1,6 @@
 ------------ To Do -------------------------------------------
-- add selectable and try stacking again
+- make edit box appear below field
+- make each field have options to push to the background or put on top
 - make rails controllers not do more than 1 query for each page
 
 - add Results and notifications
@@ -7,6 +8,8 @@
 - add Code-get
 
 - add Account stuff
+
+- make duplicate of field by dragging from edit box
 
 ------------ Unresolved Issues -------------------------------
 - after creation of new form, while editing title, or after moving submit button the correct sidebar doesn't get loaded
