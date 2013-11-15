@@ -3,9 +3,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     "click .sidebar_header" : "newSidebar",
     "click .sidebar" : "sidebarClick",
     "keyup .sidebar" : "sidebarValues",
-    "change .sidebar :checked, .sidebar select" : "sidebarValues",
-    "click #save-button" : "serverSaveForm",
-    "click .duplicate-form button" : "duplicateForm"
+    "change .sidebar :checked, .sidebar select" : "sidebarValues"
   },
 
   initialize: function(){
@@ -73,9 +71,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     that.formRouter.childViews.push(that.sidebar);
 
 
-		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
-      append(that.sidebar.render().$el);
-    $sidebarHtml.append($(JST["forms/save_dup_buttons"]()));
+		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).append(that.sidebar.render().$el);
 
     $(function(){
       that.on("change", ".sidebar", that.sidebarValues);
@@ -85,9 +81,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   newSidebar: function(event){
-    event.preventDefault();
     console.log("target sidebar view is");
     console.log($(event.target).attr("id"));
+    event.preventDefault();
     switch($(event.target).attr("id")) {
     case "move-to-add-fields":
       this.render();
@@ -100,6 +96,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
       $('.inner-wrapper').addClass('editing');
       this.swapSidebar(formSettings, this);
       this.model.localSaveForm();
+      break;
+    case "save-form":
+      this.serverSaveForm();
       break;
     default:
       console.log("hit newSidebar switch default");
@@ -234,9 +233,5 @@ AFB.Views.FormMaster = Backbone.View.extend({
     $old.find('.delete-field').remove();
     $old.removeClass('editing');
     $old.find('input').removeAttr('disabled');
-  },
-
-  duplicateForm: function(event){
-    this.model.duplicateForm();
   }
 });

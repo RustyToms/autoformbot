@@ -52,7 +52,8 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
         console.log("form_id is " + that.model.get('id'));
         AFB.Routers.FormRouter.myFlash("New Form created");
         that.model.updateFormAction();
-        that.formMaster(that.model);
+        that.navigate("forms/" + that.model.get('id') +
+          "/edit", {trigger: true});
       }
 		});
   },

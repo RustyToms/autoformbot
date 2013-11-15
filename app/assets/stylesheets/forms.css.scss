@@ -397,9 +397,10 @@ a.formSelect:active {
 }
 
 /* --- FORMEDIT SIDEBAR --- */
+$sidebar-width: 300px;
 
 .sidebar_window {
-  width: 300px;
+  width: $sidebar-width;
   margin: 0 0 0 20px;
   position: absolute;
   overflow: auto;
@@ -410,6 +411,7 @@ a.formSelect:active {
   font-size: 18px;
   border-radius: 10px;
   height: 50px;
+  overflow: hidden;
   position: relative;
   border: 1px solid black;
 }
@@ -419,11 +421,12 @@ a.formSelect:active {
   right: 0;
   position: absolute;
   text-align: right;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
-  height: 100%;
+  height: 45px;
   width: 100px;
-  padding: 0 4%;
+  padding: 5px 4% 0 4%;
+  vertical-align: middle;
 }
 
 .sidebar_header a:hover {
@@ -431,13 +434,24 @@ a.formSelect:active {
 }
 
 .sidebar_header a:first-child {
-  border-right: 1px solid black;
   width: 42%;
   left: 0;
   background-color: $faded-blue;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   text-align: left;
+}
+
+.sidebar_header a:nth-child(3) {
+  width: $sidebar-width / 4;
+  display: block;
+  margin-left: $sidebar-width * 5 / 16;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  z-index: 2;
+  right: auto;
+  background-color: $pale-yellow;
+  text-align: center;
 }
 
 .sidebar_window .sidebar {
