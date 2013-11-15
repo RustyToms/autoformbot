@@ -21,10 +21,10 @@ AFB.Views.FormEdit = Backbone.View.extend({
   renderChange: function(){
     console.log("rendering FormEdit form change");
     var $newField = $('<span></span>');
-    $newField.append($(this.model.get('form_text')).find('.editing'));
+    $newField.append($(this.model.get('form_text')).find('#form-itable .editing'));
 
     this.prepForm($newField);
-    this.$el.find('.editing').replaceWith($newField.find('.formEl'));
+    this.$el.find('#form-itable .editing').replaceWith($newField.find('.formEl'));
     this.parentView.makeSortable();
   },
 

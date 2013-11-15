@@ -93,6 +93,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       var formSettings = new AFB.Views.FormSettings({
         model: this.model
       });
+      this.removeActiveEdits();
       $('.inner-wrapper').addClass('editing');
       this.swapSidebar(formSettings, this);
       this.model.localSaveForm();

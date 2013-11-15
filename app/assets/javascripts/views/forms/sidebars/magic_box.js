@@ -1,6 +1,10 @@
 AFB.Views.MagicBox = Backbone.View.extend({
   $seed: $(JST['forms/fields/magic_box']()),
 
+  eventNames: 'mouseup dragend onPaste paste click drop',
+
+  eventSelector: '#form-itable .magicBox.editing',
+
   addField: function(){
     this.model.addField(this.$seed);
   },
@@ -12,10 +16,9 @@ AFB.Views.MagicBox = Backbone.View.extend({
     }));
 
     if (!this.field || $(this.field).children('#tamper-seal').length){
-      this.parentView.$el.off('mouseup dragend onPaste paste click drop',
-        '#form-itable .magicBox.editing');
-      this.parentView.$el.on('mouseup dragend onPaste paste click drop',
-        '#form-itable .magicBox.editing', (function(){
+      //prevent listeners from piling up
+      this.parentView.$el.off(this.eventNames, this.eventSelector);
+      this.parentView.$el.on(this.eventNames, this.eventSelector, (function(){
         that.$field = $(that.field || $('#form-itable .editing'));
         that.removeShell();
       }));
@@ -44,10 +47,9 @@ AFB.Views.MagicBox = Backbone.View.extend({
     window.setTimeout(function(){
       if (that.$field.children('#tamper-seal').length){
         var $magicBox = that.$field.find('#magic-box');
-        if ($magicBox.html() && $magicBox.clone().html().trim()){
-          that.parentView.$el.off('mouseup dragend onPaste paste click drop',
-            '#form-itable .magicBox.editing');
 
+        if ($magicBox.html() && $magicBox.clone().html().trim()){
+          that.parentView.$el.off(that.eventNames, that.eventSelector);
           $magicBox.removeAttr('style');
           that.$field.children('#tamper-seal').remove();
           that.model.localSaveForm();
