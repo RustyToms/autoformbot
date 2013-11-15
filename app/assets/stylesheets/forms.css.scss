@@ -420,7 +420,7 @@ $sidebar-width: 300px;
   width: $sidebar-width;
   margin: 0 0 0 20px;
   position: absolute;
-  overflow: auto;
+  overflow: visible;
 }
 
 .sidebar_header {

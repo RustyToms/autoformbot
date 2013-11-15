@@ -207,6 +207,10 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
       $('.formEl, .submit-button').draggable({
         stop: function(event, ui){
+          //prep form to focus on dragged field as the new field being edited
+          that.model.localSaveForm();
+          that.editForm.renderChange(); //takes cursor out of old field
+          that.removeActiveEdits();
           that.editForm.parseClickForm({target: ui.helper});
           that.model.localSaveForm();
         },
