@@ -44,8 +44,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
     var $formEl = $target.closest(".formEl");
 
     if($target.hasClass('delete-field')){
-
-      this.makeGhost($formEl);
+      event.preventDefault();
+      $formEl.remove();
       this.model.localSaveForm();
       this.parentView.render();
 
@@ -59,16 +59,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
       this.parentView.swapSidebar(sidebar, this.parentView);
 
     }
-  },
-
-  makeGhost: function($target) {
-    console.log("making ghost in FormEdit View");
-    AFB.Routers.FormRouter.matchSize($target, $target);
-    $target.draggable().draggable('destroy');
-    $target.empty();
-    $target.removeClass();
-    $target.addClass('ghost');
-    $target.css('display', 'block');
   },
 
   startEditingField: function($target){

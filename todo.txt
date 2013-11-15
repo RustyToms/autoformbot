@@ -9,9 +9,9 @@
 - add Account stuff
 
 ------------ Unresolved Issues -------------------------------
-- Ghosts are making things unclickable
 - after creation of new form, while editing title, or after moving submit button the correct sidebar doesn't get loaded
 - editing title causees a scrollbar to appear in sidebar
 - Buttons display weird (they actually appear to display correctly) in ipad browser
 - in form_edit.js, #updateSidebar, exclude checkboxes and radio buttons that
   are not checked from updating the form
+-Sometimes when I delete something it tries to send me to the results controller.  ???  - I think the button was sending a request to the server with all defaults?  So now I event.preventDefault() when delete button is clicked.
