@@ -16,16 +16,17 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.$el.append(this.makeSidebarView(newSidebar));
 
     this.renderForm();
-    this.sidebarReset(this);
+    this.sidebarReset();
 
     console.log('--- End of FormMaster view #render ---');
     return this;
   },
 
-  sidebarReset: function(that){
+  sidebarReset: function(){
+    console.log('resetting sidebar');
     $(function(){
-      that.on("change", ".sidebar", that.sidebarValues);
-      $sidebar = $('.sidebar_window');
+      // that.on("change", ".sidebar", that.sidebarValues);
+      var $sidebar = $('.sidebar_window');
       $sidebar && $sidebar.css('top', $(this).scrollTop());
     });
   },
@@ -49,33 +50,31 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.initialize();
   },
 
-  makeSidebarView: function(newSidebar, that){
+  makeSidebarView: function(newSidebar){
     console.log("making sidebar");
-    that = (that || this);
-    that.off("change", ".sidebar");
-    that.sidebar && that.sidebar.remove();
+
+    // that.off("change", ".sidebar");
+    this.sidebar && this.sidebar.remove();
 
     if (newSidebar){
-      that.sidebar = newSidebar;
+      this.sidebar = newSidebar;
 
     } else {
-      that.model.removeActiveEdits();
-      that.sidebar = new AFB.Views.FormSidebarInputs({
-
-        model: that.model
-
+      this.model.removeActiveEdits();
+      this.sidebar = new AFB.Views.FormSidebarInputs({
+        model: this.model
       });
-
     }
-    that.sidebar.parentView = that;
-    that.formRouter.childViews.push(that.sidebar);
 
+    this.sidebar.parentView = this;
+    this.formRouter.childViews.push(this.sidebar);
 
-		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).append(that.sidebar.render().$el);
+		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
+      append(this.sidebar.render().$el);
 
-    $(function(){
-      that.on("change", ".sidebar", that.sidebarValues);
-    });
+    // $(function(){
+    //   that.on("change", ".sidebar", that.sidebarValues);
+    // });
 
 		return $sidebarHtml;
   },
@@ -86,6 +85,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
     event.preventDefault();
     switch($(event.target).attr("id")) {
     case "move-to-add-fields":
+      this.removeActiveEdits();
+      this.model.localSaveForm();
       this.render();
       break;
     case "move-to-form-settings":
@@ -95,7 +96,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       });
       this.removeActiveEdits();
       $('.inner-wrapper').addClass('editing');
-      this.swapSidebar(formSettings, this);
+      this.swapSidebar(formSettings);
       this.model.localSaveForm();
       break;
     case "save-form":
@@ -157,10 +158,12 @@ AFB.Views.FormMaster = Backbone.View.extend({
       replaceWith(this.sidebar.render().$el.html());
 	},
 
-	swapSidebar: function(sidebar, that){
-		var $sidebar = that.makeSidebarView(sidebar, that);
-		that.$el.find('.sidebar_window').replaceWith($sidebar);
-    that.sidebarReset(that);
+	swapSidebar: function(sidebar){
+    console.log('swapping sidebar');
+		var $sidebar = this.makeSidebarView(sidebar);
+		this.$el.find('.sidebar_window').replaceWith($sidebar);
+    this.sidebarReset();
+    console.log('done swapping sidebar');
 	},
 
   makeSortable: function(){
@@ -207,12 +210,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
       });
 
       $('.formEl, .submit-button').draggable({
+        start: function(event, ui){
+          console.log('.formEl drag started');
+          that.editForm.startEditingField(ui.helper);
+          console.log('.formEl is dragging');
+        },
         stop: function(event, ui){
-          //prep form to focus on dragged field as the new field being edited
-          that.model.localSaveForm();
-          that.editForm.renderChange(); //takes cursor out of old field
-          that.removeActiveEdits();
-          that.editForm.parseClickForm({target: ui.helper});
+          console.log('.formEl drag stopped');
           that.model.localSaveForm();
         },
         containment: 'form#form-itable',
@@ -228,15 +232,18 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   serverSaveForm: function(){
     console.log("in FormMaster#serverSaveForm");
+    this.removeActiveEdits();
+    this.model.localSaveForm();
     this.model.serverSave();
     this.render();
   },
 
   removeActiveEdits: function(){
     console.log('removing all editing classes');
+    this.$el.find('#form-filter').remove();
+    this.$el.find('#editing-spotlight').remove();
     var $old = this.$el.find('.editing');
     $old.find('.delete-field').remove();
     $old.removeClass('editing');
-    $old.find('input').removeAttr('disabled');
   }
 });

@@ -56,7 +56,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
       var sidebar = new AFB.Views.FormSidebarInputs({
         model: this.model
       });
-      this.parentView.swapSidebar(sidebar, this.parentView);
+      this.parentView.swapSidebar(sidebar);
 
     }
   },
@@ -65,12 +65,14 @@ AFB.Views.FormEdit = Backbone.View.extend({
     console.log("in FormEdit#startEditingField");
     this.parentView.removeActiveEdits();
 
+    var $form = this.$el.find('#form-itable');
     var $formEl = $target.closest(".formEl");
-    $formEl.addClass("editing").
-    append("<button class='delete-field' style='position: absolute'" +
-      ">X</button>");
 
-    this.model.localSaveForm();
+    $form.append(JST['forms/form_filter']());
+    $formEl.addClass("editing").append("<button class='delete-field'" +
+        "style='position: absolute'>X</button>");
+
+    //this.model.localSaveForm();
     var sidebarName = $formEl.data("sidebar");
     console.log("new sidebar should be " + sidebarName);
     var sidebar = new AFB.Views[sidebarName]({
@@ -78,7 +80,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     });
     sidebar.field = $formEl;
 
-    this.parentView.swapSidebar(sidebar, this.parentView);
+    this.parentView.swapSidebar(sidebar);
   },
 
 	updateSidebar: function(event){
