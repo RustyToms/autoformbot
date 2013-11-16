@@ -103,10 +103,10 @@ AFB.Views.FormEdit = Backbone.View.extend({
         filter(function(){
         return ($(event.target).attr('class').indexOf(this.name) > -1);
         // return $(event.target).hasClass(this.name);
-      });
-      $input.not(function(){
+      }).not("input[type='checkbox']");
+      // $input.not(function(){
         //should exclude checkboxes and radio buttons that are not checked
-      });
+      // });
       $input.trigger('keyup');
     });
 	}
