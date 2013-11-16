@@ -32,6 +32,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     $formText.find("label, h2, p, li.magicBox div").
       attr('contenteditable', 'true');
     $formText.find('input').attr('disabled', 'disabled');
+
     $targets = $formText.find('.formEl, .submit-button');
     $targets.not($targets.has('.move-handle')).
       prepend("<span class='move-handle' style='color: white; font-size:" +
@@ -53,6 +54,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
       this.startEditingField($target);
 
     } else if ($formEl.length === 0) {
+      // --------- Might rewrite this after Edit Box rewrite --------
+
       var sidebar = new AFB.Views.FormSidebarInputs({
         model: this.model
       });

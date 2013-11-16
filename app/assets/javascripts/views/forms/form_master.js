@@ -163,70 +163,92 @@ AFB.Views.FormMaster = Backbone.View.extend({
 		var $sidebar = this.makeSidebarView(sidebar);
 		this.$el.find('.sidebar_window').replaceWith($sidebar);
     this.sidebarReset();
-    console.log('done swapping sidebar');
 	},
 
   makeSortable: function(){
     var that = this;
-    $(function(){
-      console.log("making fields-list elements draggable");
-
-      $('form#form-itable').droppable({
-        scope: 'newFields',
-        tolerance: 'fit',
-        drop: function(event, ui){
-          console.log('drop successful');
-          ui.helper.data('dropped', true);
-        }
+    if (!this.queued){
+      this.queued = true;
+      $(function(){
+        console.log("making fields-list elements draggable");
+        that.formDroppable();
+        that.addFieldsDraggable();
+        that.formFieldsDraggable();
+        that.queued = false;
       });
+    }
+  },
 
-      $('#all-fields-sidebar div').each(function(){
-        var sidebarView = that.sidebar.makeSidebarView({target: this});
+  formDroppable: function(){
+    $('form#form-itable').droppable({
+      scope: 'newFields',
+      tolerance: 'fit',
+      drop: function(event, ui){
+        console.log('drop successful');
+        ui.helper.data('dropped', true);
+      }
+    });
+  },
 
-        $(this).draggable({
-          start: function(event, ui){
-            ui.helper.data('dropped', false);
-          },
-          stop: function(event, ui){
-            if (ui.helper.data('dropped')){
-              var newField = ui.helper.clone();
-              that.model.addField(newField);
-              that.render(sidebarView);
-            } else {
-              console.log('drop unsuccessful');
-              window.setTimeout(function(){
-                ui.helper.remove();
-              }, 500);
-            }
+  addFieldsDraggable: function(){
+    var that = this;
+    $('#all-fields-sidebar div').each(function(){
+      var sidebarView = that.sidebar.makeSidebarView({target: this});
 
-          },
-          revert: 'invalid',
-          appendTo: "ul.fields-list",
-          helper: function(){
-            return sidebarView.$seed.clone();
-          },
-          scope: 'newFields'
-        });
-      });
-
-      $('.formEl, .submit-button').draggable({
+      $(this).draggable({
         start: function(event, ui){
-          console.log('.formEl drag started');
-          that.editForm.startEditingField(ui.helper);
-          console.log('.formEl is dragging');
+          ui.helper.data('dropped', false);
         },
+
         stop: function(event, ui){
-          console.log('.formEl drag stopped');
-          that.model.localSaveForm();
+          if (ui.helper.data('dropped')){
+            var $newField = ui.helper.clone();
+            that.model.addField($newField);
+            $newField.removeClass('editing');
+            that.editForm.prepForm($newField.parent());
+            that.editForm.parseClickForm({target: $newField});
+
+          } else {
+
+            console.log('drop unsuccessful');
+            window.setTimeout(function(){
+              ui.helper.remove();
+            }, 500);
+          }
         },
-        containment: 'form#form-itable',
-        distance: 3,
-        handle: '.move-handle',
-        scrollSensitivity: 50,
-        snap: ".formEl",
-        snapMode: 'outer',
-        snapTolerance: 5
+
+        helper: function(){
+          return sidebarView.$seed.clone();
+        },
+
+        revert: 'invalid',
+        appendTo: "ul.fields-list",
+        scope: 'newFields'
       });
+    });
+  },
+
+  formFieldsDraggable: function(){
+    var that = this;
+    $('.formEl, .submit-button').draggable({
+      start: function(event, ui){
+        console.log('.formEl drag started');
+        that.editForm.startEditingField(ui.helper);
+        console.log('.formEl is dragging');
+      },
+
+      stop: function(event, ui){
+        console.log('.formEl drag stopped');
+        that.model.localSaveForm();
+      },
+
+      containment: 'form#form-itable',
+      distance: 3,
+      handle: '.move-handle',
+      scrollSensitivity: 50,
+      snap: ".formEl",
+      snapMode: 'outer',
+      snapTolerance: 5
     });
   },
 

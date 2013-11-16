@@ -477,6 +477,7 @@ $sidebar-width: 300px;
 
 .sidebar_window #all-fields-sidebar {
   background-color: transparent;
+  cursor: pointer;
 }
 /* --- FORMEDIT OTHER --- */
 
@@ -521,26 +522,7 @@ $sidebar-width: 300px;
   color: white;
   text-align: center;
   font-size: 20px;
-}
-
-.ui-sortable li{
   cursor: pointer;
-}
-
-.ui-sortable li:hover{
-  background-color: pink;
-}
-
-.ui-sortable li:hover .move-handle {
-  display: inline-block;
-}
-
-.ui-draggable {
-  cursor: pointer;
-}
-
-.ui-draggable:hover{
-  background-color: pink;
 }
 
 .ui-draggable:hover .move-handle {
