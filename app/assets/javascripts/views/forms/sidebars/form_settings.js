@@ -23,5 +23,4 @@ AFB.Views.FormSettings = Backbone.View.extend({
       this.parentView.makeSortable();
     }
   }
-
 });

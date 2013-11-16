@@ -87,20 +87,27 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
 	updateSidebar: function(event){
-    this.model.silentUpdate = true;
     var that = this;
-		console.log("updating sidebar");
+		console.log("updating sidebar, triggered with a " + event.type);
+      console.log(event.target);
     this.model.localSaveForm();
 		this.parentView.updateSidebar();
     $(function(){
-      $input = $(".sidebar_window input, textarea").filter(function(){
-        return $(event.target).hasClass(this.name);
+      // AFB.Routers.FormRouter.loop += 1;
+      // console.log(AFB.Routers.FormRouter.loop);
+      // if (AFB.Routers.FormRouter.loop > 5){
+      //   return;
+      // }
+
+      $input = $(".sidebar_window input, .sidebar_window textarea").
+        filter(function(){
+        return ($(event.target).attr('class').indexOf(this.name) > -1);
+        // return $(event.target).hasClass(this.name);
       });
       $input.not(function(){
         //should exclude checkboxes and radio buttons that are not checked
       });
       $input.trigger('keyup');
-      that.model.silentUpdate = false;
     });
 	}
 });

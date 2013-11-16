@@ -8,6 +8,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   initialize: function(){
     console.log('FormMaster View initialized');
+// AFB.Routers.FormRouter.loop = 0;
   },
 
   render: function(newSidebar, formView){
@@ -202,6 +203,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
         stop: function(event, ui){
           if (ui.helper.data('dropped')){
+
             var $newField = ui.helper.clone();
             that.model.addField($newField);
             $newField.removeClass('editing');
