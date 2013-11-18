@@ -22,13 +22,8 @@ AFB.Views.FormSidebarTextarea = Backbone.View.extend({
     if ($(event.target).attr('name') === 'textarea-label' ){
       var name = event.target.value;
       this.model.updateAttribute('.editing textarea', 'name', name);
-
-    } else if ($(event.target).data('attribute') === 'value'){
-      $('#form-itable .editing textarea').val(event.target.value);
-      this.model.localSaveForm();
-      return;
-
     }
+
     this.model.updateValues(event);
   }
 });

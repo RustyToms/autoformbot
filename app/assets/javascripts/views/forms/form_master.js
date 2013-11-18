@@ -265,7 +265,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
   removeActiveEdits: function(){
     console.log('removing all editing classes');
     this.$el.find('#form-filter').remove();
-    this.$el.find('#editing-spotlight').remove();
     var $old = this.$el.find('.editing');
     $old.find('.delete-field').remove();
     $old.removeClass('editing');

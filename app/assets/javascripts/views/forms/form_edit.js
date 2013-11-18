@@ -78,12 +78,14 @@ AFB.Views.FormEdit = Backbone.View.extend({
     //this.model.localSaveForm();
     var sidebarName = $formEl.data("sidebar");
     console.log("new sidebar should be " + sidebarName);
-    var sidebar = new AFB.Views[sidebarName]({
-      model: this.model
-    });
+    if (sidebarName){
+      var sidebar = new AFB.Views[sidebarName]({
+        model: this.model
+      });
     sidebar.field = $formEl;
 
     this.parentView.swapSidebar(sidebar);
+    }
   },
 
 	updateSidebar: function(event){

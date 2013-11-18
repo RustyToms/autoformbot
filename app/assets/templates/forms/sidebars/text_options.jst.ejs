@@ -4,21 +4,25 @@
 <h2>Customize your Text</h2>
 
 <label>Content:
+  <br>
   <textarea
 		name='text-content'
     onClick="this.select()"
+    cols='35'
   ><%= $text.text() %></textarea>
 </label><br>
 
-<label>Font-Size (digits only)
+<label>Font-Size (digits only):
   <input
 		type='number'
     data-css='font-size'
+    min='1'
+    max='999'
     value='<%= $text.css('font-size') %>'
 		name='text-content'/>
 </label><br>
 
-<label>Font-family
+<label>Font-family:
   <select
     data-css='font-family'
 		name='text-content'>
@@ -55,27 +59,32 @@
   </select>
 </label><br> -->
 
-<label>Font-weight
-  <label>Bold
+<label>Font-weight:
+  <br>
+  <label>
     <input
       class='font-weight-option'
       type='radio'
       name='text-content'
       data-css='font-weight'
       value='bold'>
+      Bold
   </label>
-</label><br>
 
-  <label>Normal
+  <label>
     <input
   	  class='font-weight-option'
   		type='radio'
   		name='text-content'
   		data-css='font-weight'
   		value='normal'>
+      Normal
   </label>
+</label>
 
-<label>Color
+<br>
+
+<label>Color:
   <input
 		type='text'
     data-css='color'
@@ -83,7 +92,7 @@
 		name='text-content'/>
 </label><br>
 
-<label>Background Color
+<label>Background Color:
   <input
 		type='text'
     data-css='background-color'
