@@ -9,8 +9,8 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
     return this;
   },
 
-  makeSidebarView: function(event) {
-    console.log("in FormSidebarInputs#makeSidebarView");
+  makeEditView: function(event) {
+    console.log("in FormSidebarInputs#makeEditView");
     var that = this;
     var fieldChoices = {
       "textbox" : "FormSidebarTextbox",

@@ -70,14 +70,46 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.sidebar.parentView = this;
     this.formRouter.childViews.push(this.sidebar);
 
-		$sidebarHtml = $(JST['forms/sidebars/sidebar_seed']()).
+		$sidebar = $(JST['forms/sidebars/sidebar_seed']()).
       append(this.sidebar.render().$el);
 
     // $(function(){
     //   that.on("change", ".sidebar", that.sidebarValues);
     // });
 
-		return $sidebarHtml;
+		return $sidebar;
+  },
+
+  makeEditBox: function(newEditBox){
+    console.log('FormMaster#makeEditBox');
+    var that = this;
+    this.editBox && this.editBox.remove();
+    this.editBox = newEditBox;
+    var $editBox = $(JST['forms/editbox_seed']()).
+      prepend(this.editBox.render().$el);
+    $('#form-itable .fields-list').append($editBox);
+
+    $(function(){
+      that.positionEditBox($editBox);
+    });
+
+
+  },
+
+  positionEditBox: function($editBox){
+    console.log('positioning the new editBox');
+    var $field = this.$el.find('.editing');
+    var x = parseInt($field.css('left'), 10) + ($field.outerWidth() / 2);
+    var left = x - ($editBox.outerWidth() / 2);
+    var top = parseInt($field.css('top'), 10) + $field.outerHeight() + 20;
+myTop = top;
+myLeft = left;
+myEditBox = $editBox;
+    $editBox.css({
+      'left': (left + 'px'),
+      'top': (top + 'px')
+    });
+    console.log('editBox top is ' + $editBox.css('top'));
   },
 
   newSidebar: function(event){
@@ -194,7 +226,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   addFieldsDraggable: function(){
     var that = this;
     $('#all-fields-sidebar div').each(function(){
-      var sidebarView = that.sidebar.makeSidebarView({target: this});
+      var editView = that.sidebar.makeEditView({target: this});
 
       $(this).draggable({
         start: function(event, ui){
@@ -220,7 +252,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
         },
 
         helper: function(){
-          return sidebarView.$seed.clone();
+          return editView.$seed.clone();
         },
 
         revert: 'invalid',
@@ -265,6 +297,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   removeActiveEdits: function(){
     console.log('removing all editing classes');
     this.$el.find('#form-filter').remove();
+    this.$el.find('#edit-box').remove();
     var $old = this.$el.find('.editing');
     $old.find('.delete-field').remove();
     $old.removeClass('editing');

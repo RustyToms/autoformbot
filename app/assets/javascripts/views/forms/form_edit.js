@@ -54,12 +54,11 @@ AFB.Views.FormEdit = Backbone.View.extend({
       this.startEditingField($target);
 
     } else if ($formEl.length === 0) {
-      // --------- Might rewrite this after Edit Box rewrite --------
 
-      var sidebar = new AFB.Views.FormSidebarInputs({
-        model: this.model
-      });
-      this.parentView.swapSidebar(sidebar);
+      // var sidebar = new AFB.Views.FormSidebarInputs({
+      //   model: this.model
+      // });
+      this.parentView.swapSidebar();
 
     }
   },
@@ -76,15 +75,15 @@ AFB.Views.FormEdit = Backbone.View.extend({
         "style='position: absolute'>X</button>");
 
     //this.model.localSaveForm();
-    var sidebarName = $formEl.data("sidebar");
-    console.log("new sidebar should be " + sidebarName);
-    if (sidebarName){
-      var sidebar = new AFB.Views[sidebarName]({
+    var editBoxName = $formEl.data("sidebar");
+    console.log("new editBox should be " + editBoxName);
+    if (editBoxName){
+      var editBox = new AFB.Views[editBoxName]({
         model: this.model
       });
-    sidebar.field = $formEl;
+    editBox.field = $formEl;
 
-    this.parentView.swapSidebar(sidebar);
+    this.parentView.makeEditBox(editBox);
     }
   },
 
@@ -95,20 +94,12 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.model.localSaveForm();
 		this.parentView.updateSidebar();
     $(function(){
-      // AFB.Routers.FormRouter.loop += 1;
-      // console.log(AFB.Routers.FormRouter.loop);
-      // if (AFB.Routers.FormRouter.loop > 5){
-      //   return;
-      // }
-
       $input = $(".sidebar_window input, .sidebar_window textarea").
         filter(function(){
         return ($(event.target).attr('class').indexOf(this.name) > -1);
         // return $(event.target).hasClass(this.name);
-      }).not("input[type='checkbox']");
-      // $input.not(function(){
+      }).not("input[type='checkbox'], input[type='radio']");
         //should exclude checkboxes and radio buttons that are not checked
-      // });
       $input.trigger('keyup');
     });
 	}
