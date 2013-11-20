@@ -86,6 +86,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
     $(function(){
       that.positionEditBox($editBox);
+      that.fieldDuplicate();
     });
   },
 
@@ -104,6 +105,38 @@ AFB.Views.FormMaster = Backbone.View.extend({
     AFB.Routers.FormRouter.positionWindow($field.add($editBox));
   },
 
+  fieldDuplicate: function(){
+    console.log('FormMaster#fieldDuplicate');
+    console.log($('.editing').clone());
+    var that = this;
+    var $copyButton = $('#duplicate-field');
+
+    $copyButton.draggable({
+      start: function(){
+        console.log('fieldDuplicate dragging started');
+        that.$el.find('#form-filter').off().remove();
+        that.$el.find('#edit-box').css('display', 'none');
+      },
+      stop: function(event, ui){
+        var newField = ui.helper.clone();
+        that.$el.find('ul.fields-list').append(newField);
+        that.model.localSaveForm();
+        that.removeActiveEdits();
+        that.editForm.prepForm(newField);
+      },
+      helper: function(){
+        return that.$el.find('.editing').clone();
+      },
+      appendTo: "ul.fields-list",
+      containment: '.fi-30x form',
+      cursorAt: { top: 3, left: -8},
+      scope: 'newFields',
+      scrollSensitivity: 50,
+      snap: ".formEl",
+      snapMode: 'outer',
+      snapTolerance: 5
+    });
+  },
 
   newSidebar: function(event){
     console.log("target sidebar view is");
@@ -143,6 +176,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
     editBoxClick: function(event){
     console.log('in FormMaster#editBoxClick');
+    var that = this;
     var $target = $(event.target);
 
     if ($target.is('button')){
@@ -156,6 +190,11 @@ AFB.Views.FormMaster = Backbone.View.extend({
         this.model.set('form_text', $form.prop('outerHTML'));
         $target.closest('div').remove();
         this.editForm.renderChange();
+
+        $(function(){
+          that.positionEditBox($('#edit-box'));
+        });
+
       } else {
         switch($target.attr('id')){
           case "save-button":
@@ -170,7 +209,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
             this.render();
           case "done-button":
             this.removeActiveEdits();
-            this.localSaveForm();
+            this.model.localSaveForm();
             break;
           default:
           console.log("Sending to editBox view parseClickForm");
@@ -290,7 +329,11 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
         revert: 'invalid',
         appendTo: "ul.fields-list",
-        scope: 'newFields'
+        scope: 'newFields',
+        scrollSensitivity: 50,
+        snap: ".formEl",
+        snapMode: 'outer',
+        snapTolerance: 5
       });
     });
   },
@@ -309,7 +352,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
         that.editForm.startEditingField(ui.helper);
       },
 
-      containment: 'form#form-itable',
+      containment: '.fi-30x form',
       distance: 3,
       handle: '.move-handle',
       scrollSensitivity: 50,

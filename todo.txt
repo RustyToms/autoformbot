@@ -1,5 +1,4 @@
 ------------ To Do -------------------------------------------
-- make edit box appear below field
 - make each field have options to push to the background or put on top
 - make rails controllers not do more than 1 query for each page
 
@@ -13,11 +12,5 @@
 
 - get rid of all ids in forms, as multiple forms are rendered in the form index
 
-- Scroll window to field being edited only if the entire edit box doesn't fit
-  in the window
-
 ------------ Unresolved Issues -------------------------------
 - Buttons display weird (they actually appear to display correctly) in ipad browser
-- in form_edit.js, #updateSidebar, exclude checkboxes and radio buttons that
-  are not checked from updating the form
--Sometimes when I delete something it tries to send me to the results controller.  ???  - I think the button was sending a request to the server with all defaults?  So now I event.preventDefault() when delete button is clicked.
