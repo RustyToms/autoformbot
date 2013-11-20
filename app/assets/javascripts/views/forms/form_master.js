@@ -2,13 +2,15 @@ AFB.Views.FormMaster = Backbone.View.extend({
   events: {
     "click .sidebar_header" : "newSidebar",
     "click .sidebar" : "sidebarClick",
+    "click #edit-box" : "editBoxClick",
     "keyup .sidebar" : "sidebarValues",
-    "change .sidebar :checked, .sidebar select" : "sidebarValues"
+    "keyup #edit-box" : "editBoxValues",
+    "change .sidebar :checked, .sidebar select" : "sidebarValues",
+    "change #edit-box :checked, #edit-box select" : "editBoxValues"
   },
 
   initialize: function(){
     console.log('FormMaster View initialized');
-// AFB.Routers.FormRouter.loop = 0;
   },
 
   render: function(newSidebar, formView){
@@ -26,7 +28,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
   sidebarReset: function(){
     console.log('resetting sidebar');
     $(function(){
-      // that.on("change", ".sidebar", that.sidebarValues);
       var $sidebar = $('.sidebar_window');
       $sidebar && $sidebar.css('top', $(this).scrollTop());
     });
@@ -53,8 +54,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   makeSidebarView: function(newSidebar){
     console.log("making sidebar");
-
-    // that.off("change", ".sidebar");
     this.sidebar && this.sidebar.remove();
 
     if (newSidebar){
@@ -73,10 +72,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
 		$sidebar = $(JST['forms/sidebars/sidebar_seed']()).
       append(this.sidebar.render().$el);
 
-    // $(function(){
-    //   that.on("change", ".sidebar", that.sidebarValues);
-    // });
-
 		return $sidebar;
   },
 
@@ -85,15 +80,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
     var that = this;
     this.editBox && this.editBox.remove();
     this.editBox = newEditBox;
-    var $editBox = $(JST['forms/editbox_seed']()).
-      prepend(this.editBox.render().$el);
-    $('#form-itable .fields-list').append($editBox);
+    var $editBox = $(JST['forms/editbox_seed']())
+    $editBox.find('#customizations').html(this.editBox.render().$el);
+    $('.fi-30x').append($editBox);
 
     $(function(){
       that.positionEditBox($editBox);
     });
-
-
   },
 
   positionEditBox: function($editBox){
@@ -101,16 +94,16 @@ AFB.Views.FormMaster = Backbone.View.extend({
     var $field = this.$el.find('.editing');
     var x = parseInt($field.css('left'), 10) + ($field.outerWidth() / 2);
     var left = x - ($editBox.outerWidth() / 2);
-    var top = parseInt($field.css('top'), 10) + $field.outerHeight() + 20;
-myTop = top;
-myLeft = left;
-myEditBox = $editBox;
+    var top = parseInt($field.css('top'), 10) + $field.outerHeight() + 30;
+
     $editBox.css({
       'left': (left + 'px'),
       'top': (top + 'px')
     });
-    console.log('editBox top is ' + $editBox.css('top'));
+
+    AFB.Routers.FormRouter.positionWindow($field.add($editBox));
   },
+
 
   newSidebar: function(event){
     console.log("target sidebar view is");
@@ -144,15 +137,47 @@ myEditBox = $editBox;
   sidebarClick: function(event){
     console.log('in FormMaster#sidebarClick');
     var $target = $(event.target);
+    this.sidebar.parseClick && this.sidebar.parseClick(event);
+    this.sidebarValues(event);
+  },
 
-    if ($target.hasClass('delete-button')){
-      console.log('deleting element');
-      var $form = $(this.model.get('form_text'));
+    editBoxClick: function(event){
+    console.log('in FormMaster#editBoxClick');
+    var $target = $(event.target);
 
-      $form.find('.editing .' + $target.attr('name')).remove();
-      this.model.set('form_text', $form.prop('outerHTML'));
-      $target.closest('div').remove();
-      this.editForm.renderChange();
+    if ($target.is('button')){
+      event.preventDefault();
+
+      if ($target.hasClass('delete-button')){
+        console.log('deleting element');
+        var $form = $(this.model.get('form_text'));
+
+        $form.find('.editing .' + $target.attr('name')).remove();
+        this.model.set('form_text', $form.prop('outerHTML'));
+        $target.closest('div').remove();
+        this.editForm.renderChange();
+      } else {
+        switch($target.attr('id')){
+          case "save-button":
+            this.serverSaveForm();
+            break;
+          case "duplicate-field":
+            break;
+          case "delete-field":
+            this.$el.find('.editing').remove();
+            this.removeActiveEdits();
+            this.model.localSaveForm();
+            this.render();
+          case "done-button":
+            this.removeActiveEdits();
+            this.localSaveForm();
+            break;
+          default:
+          console.log("Sending to editBox view parseClickForm");
+          this.editBox.parseClick && this.editBox.parseClick(event);
+          this.editBoxValues(event);
+        }
+      }
 
     } else if ($(event.target).attr('name') ==='requiredCheckbox'){
 
@@ -160,8 +185,8 @@ myEditBox = $editBox;
 
     } else {
 
-      this.sidebar.parseClick && this.sidebar.parseClick(event);
-      this.sidebarValues(event);
+      this.editBox.parseClick && this.editBox.parseClick(event);
+      this.editBoxValues(event);
 
     }
   },
@@ -171,24 +196,31 @@ myEditBox = $editBox;
     this.sidebar.updateValues && this.sidebar.updateValues(event);
   },
 
+  editBoxValues: function(event){
+    console.log("editBoxValues triggered with a " + event.type);
+    this.editBox.updateValues && this.editBox.updateValues(event);
+    this.positionEditBox($('#edit-box'));
+  },
+
   requireField: function(event){
     event.stopPropagation();
     console.log('in FormMaster#requireField');
 
-    var $form = $(this.model.get('form_text'));
-    var $target = $form.find('.editing');
+    var $target = this.$el.find('.editing');
+
     if (event.target.checked){
+      console.log("adding class required to ");
+      console.log($target);
       $target.addClass("required");
     } else {
       $target.removeClass("required");
     }
-    this.model.set('form_text', $form.prop('outerHTML'));
+    this.model.localSaveForm();
   },
 
-	updateSidebar: function(){
-		this.sidebar.field = this.$el.find('.editing');
-		this.$el.find('.sidebar_window .sidebar').
-      replaceWith(this.sidebar.render().$el.html());
+	updateEditBox: function(){
+		this.editBox.field = this.$el.find('.editing');
+		this.$el.find('.edit-box').replaceWith(this.editBox.render().$el.html());
 	},
 
 	swapSidebar: function(sidebar){
@@ -230,6 +262,7 @@ myEditBox = $editBox;
 
       $(this).draggable({
         start: function(event, ui){
+          that.removeActiveEdits();
           ui.helper.data('dropped', false);
         },
 
@@ -267,13 +300,13 @@ myEditBox = $editBox;
     $('.formEl, .submit-button').draggable({
       start: function(event, ui){
         console.log('.formEl drag started');
-        that.editForm.startEditingField(ui.helper);
-        console.log('.formEl is dragging');
+        that.removeActiveEdits();
       },
 
       stop: function(event, ui){
         console.log('.formEl drag stopped');
         that.model.localSaveForm();
+        that.editForm.startEditingField(ui.helper);
       },
 
       containment: 'form#form-itable',
@@ -296,7 +329,7 @@ myEditBox = $editBox;
 
   removeActiveEdits: function(){
     console.log('removing all editing classes');
-    this.$el.find('#form-filter').remove();
+    this.$el.find('#form-filter').off().remove();
     this.$el.find('#edit-box').remove();
     var $old = this.$el.find('.editing');
     $old.find('.delete-field').remove();

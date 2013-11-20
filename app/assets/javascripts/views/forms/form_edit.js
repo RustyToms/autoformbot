@@ -1,7 +1,7 @@
 AFB.Views.FormEdit = Backbone.View.extend({
   events: {
     "click .formEl" : "parseClickForm",
-		"keyup" : "updateSidebar"
+		"keyup" : "updateEditBox"
   },
 
   initialize: function(){
@@ -53,18 +53,12 @@ AFB.Views.FormEdit = Backbone.View.extend({
     } else if ($formEl.length && !$formEl.hasClass('editing')){
       this.startEditingField($target);
 
-    } else if ($formEl.length === 0) {
-
-      // var sidebar = new AFB.Views.FormSidebarInputs({
-      //   model: this.model
-      // });
-      this.parentView.swapSidebar();
-
     }
   },
 
   startEditingField: function($target){
     console.log("in FormEdit#startEditingField");
+    var that = this;
     this.parentView.removeActiveEdits();
 
     var $form = this.$el.find('#form-itable');
@@ -74,27 +68,31 @@ AFB.Views.FormEdit = Backbone.View.extend({
     $formEl.addClass("editing").append("<button class='delete-field'" +
         "style='position: absolute'>X</button>");
 
-    //this.model.localSaveForm();
     var editBoxName = $formEl.data("sidebar");
     console.log("new editBox should be " + editBoxName);
     if (editBoxName){
       var editBox = new AFB.Views[editBoxName]({
         model: this.model
       });
-    editBox.field = $formEl;
+      editBox.field = $formEl;
 
-    this.parentView.makeEditBox(editBox);
+      this.parentView.makeEditBox(editBox);
+      $(function(){
+        $('#form-filter').on('click', function(){
+          that.parentView.removeActiveEdits();
+        });
+      });
     }
   },
 
-	updateSidebar: function(event){
+	updateEditBox: function(event){
     var that = this;
-		console.log("updating sidebar, triggered with a " + event.type);
+		console.log("updating editBox, triggered with a " + event.type);
       console.log(event.target);
     this.model.localSaveForm();
-		this.parentView.updateSidebar();
+		this.parentView.updateEditBox();
     $(function(){
-      $input = $(".sidebar_window input, .sidebar_window textarea").
+      $input = $(".edit-box input, .edit-box textarea").
         filter(function(){
         return ($(event.target).attr('class').indexOf(this.name) > -1);
         // return $(event.target).hasClass(this.name);

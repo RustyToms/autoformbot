@@ -141,3 +141,38 @@ AFB.Routers.FormRouter.myFlash = function(msg){
     $('.backbone-flash-msgs br').last().remove();
   }, 3000);
 };
+
+AFB.Routers.FormRouter.positionWindow = function($targets){
+  console.log('in AFB.Routers.FormRouter.positionWindow');
+  // find 1/2 combined dims of target group, find 1/2 dims of window,
+  // scroll to closest offset minus the difference.
+  $(function(){
+    var targetHeight = 30;
+    var targetWidth = 0;
+    var windowHeight = $(window).height();
+    var windowWidth = $(window).width();
+    var topPos = windowHeight;
+    var leftPos = windowWidth;
+
+    $targets.each(function(){
+      var offset = $(this).offset();
+      targetHeight += $(this).outerHeight();
+      if ($(this).outerWidth() > targetWidth){
+        targetWidth = $(this).outerWidth();
+      }
+      if (offset.top < topPos) {
+        topPos = offset.top;
+      }
+      if (offset.left < leftPos) {
+        leftPos = offset.left;
+      }
+    });
+
+    var topDiff = windowHeight - targetHeight;
+    var leftDiff = windowWidth - targetWidth;
+
+    $(window).scrollTop(topPos - (topDiff / 2)).
+      scrollLeft(leftPos - (leftDiff / 2));
+
+  });
+};
