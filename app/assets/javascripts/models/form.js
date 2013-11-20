@@ -73,6 +73,7 @@ AFB.Models.Form = Backbone.Model.extend ({
     $form.find('.delete-field').remove();
     $form.find('#form-filter').off().remove();
     $form.find("label, h2, p, li.magicBox div").removeAttr('contenteditable');
+    this.formRouter.formMaster.mustPrepForm = true;
     this.set('form_text', $form.prop('outerHTML'));
   },
 

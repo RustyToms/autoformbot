@@ -80,6 +80,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
     var that = this;
     this.editBox && this.editBox.remove();
     this.editBox = newEditBox;
+    this.editBox.parentView = that;
+    this.formRouter.childViews.push(this.editBox);
+
     var $editBox = $(JST['forms/editbox_seed']())
     $editBox.find('#customizations').html(this.editBox.render().$el);
     $('.fi-30x').append($editBox);
@@ -88,6 +91,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       that.positionEditBox($editBox);
       that.fieldDuplicate();
     });
+
   },
 
   positionEditBox: function($editBox){
@@ -107,7 +111,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   fieldDuplicate: function(){
     console.log('FormMaster#fieldDuplicate');
-    console.log($('.editing').clone());
     var that = this;
     var $copyButton = $('#duplicate-field');
 
@@ -131,10 +134,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       containment: '.fi-30x form',
       cursorAt: { top: 3, left: -8},
       scope: 'newFields',
-      scrollSensitivity: 50,
-      snap: ".formEl",
-      snapMode: 'outer',
-      snapTolerance: 5
+      scrollSensitivity: 50
     });
   },
 
@@ -257,9 +257,14 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.model.localSaveForm();
   },
 
-	updateEditBox: function(){
-		this.editBox.field = this.$el.find('.editing');
-		this.$el.find('.edit-box').replaceWith(this.editBox.render().$el.html());
+	updateEditBox: function(event){
+    var $field = this.$el.find('.editing');
+    if ($field.length){
+      this.editBox.field = $field;
+      this.$el.find('.edit-box').replaceWith(this.editBox.render().$el.html());
+    } else {
+      this.editForm.startEditingField($(event.target));
+    }
 	},
 
 	swapSidebar: function(sidebar){
@@ -276,9 +281,16 @@ AFB.Views.FormMaster = Backbone.View.extend({
       $(function(){
         console.log("making fields-list elements draggable");
         that.formDroppable();
-        that.addFieldsDraggable();
         that.formFieldsDraggable();
         that.queued = false;
+        if (that.sidebar.inputsNotDraggable){
+          that.addFieldsDraggable();
+          that.sidebar.inputsNotDraggable = false;
+        }
+        if (that.mustPrepForm){
+          that.editForm.prepForm($('.fi-30x form'));
+          that.mustPrepForm = false;
+        }
       });
     }
   },
@@ -349,7 +361,12 @@ AFB.Views.FormMaster = Backbone.View.extend({
       stop: function(event, ui){
         console.log('.formEl drag stopped');
         that.model.localSaveForm();
-        that.editForm.startEditingField(ui.helper);
+        if (ui.helper.hasClass('magicBox')){
+          $(':focus').blur();
+          ui.helper.trigger('click');
+        } else {
+          that.render();
+        }
       },
 
       containment: '.fi-30x form',
@@ -374,6 +391,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     console.log('removing all editing classes');
     this.$el.find('#form-filter').off().remove();
     this.$el.find('#edit-box').remove();
+    this.editBox && this.editBox.remove();
     var $old = this.$el.find('.editing');
     $old.find('.delete-field').remove();
     $old.removeClass('editing');

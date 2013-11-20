@@ -29,6 +29,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   prepForm: function($formText){
+    console.log('**************** FormEdit#prepForm ********************')
     $formText.find("label, h2, p, li.magicBox div").
       attr('contenteditable', 'true');
     $formText.find('input').attr('disabled', 'disabled');
@@ -59,14 +60,18 @@ AFB.Views.FormEdit = Backbone.View.extend({
   startEditingField: function($target){
     console.log("in FormEdit#startEditingField");
     var that = this;
-    this.parentView.removeActiveEdits();
 
     var $form = this.$el.find('#form-itable');
     var $formEl = $target.closest(".formEl");
+    if($formEl.length < 1){
+      return;
+    }
 
+    this.parentView.removeActiveEdits();
     $form.append(JST['forms/form_filter']());
     $formEl.addClass("editing").append("<button class='delete-field'" +
         "style='position: absolute'>X</button>");
+    this.model.localSaveForm();
 
     var editBoxName = $formEl.data("sidebar");
     console.log("new editBox should be " + editBoxName);
@@ -87,15 +92,16 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
 	updateEditBox: function(event){
     var that = this;
+    if (!$(event.target).attr('class')){
+      return;
+    }
 		console.log("updating editBox, triggered with a " + event.type);
       console.log(event.target);
     this.model.localSaveForm();
-		this.parentView.updateEditBox();
+		this.parentView.updateEditBox(event);
     $(function(){
-      $input = $(".edit-box input, .edit-box textarea").
-        filter(function(){
+      $input = $('#edit-box').find('input, textarea').filter(function(){
         return ($(event.target).attr('class').indexOf(this.name) > -1);
-        // return $(event.target).hasClass(this.name);
       }).not("input[type='checkbox'], input[type='radio']");
         //should exclude checkboxes and radio buttons that are not checked
       $input.trigger('keyup');

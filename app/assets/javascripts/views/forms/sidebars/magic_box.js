@@ -44,6 +44,7 @@ AFB.Views.MagicBox = Backbone.View.extend({
   removeShell: function(){
     console.log("checking to see if content added to magic box");
     var that = this;
+    this.parentView.positionEditBox(this.$el);
     window.setTimeout(function(){
       if (that.$field.children('#tamper-seal').length){
         var $magicBox = that.$field.find('#magic-box');

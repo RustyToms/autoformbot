@@ -4,6 +4,8 @@ AFB.Views.FormSidebarInputs = Backbone.View.extend({
     this.$el = $(JST['forms/sidebars/inputs']());
   },
 
+  inputsNotDraggable: true,
+
   render: function(){
     console.log('rendering FormSidebarInputs');
     return this;
