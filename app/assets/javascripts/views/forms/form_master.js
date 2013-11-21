@@ -86,12 +86,12 @@ AFB.Views.FormMaster = Backbone.View.extend({
     var $editBox = $(JST['forms/editbox_seed']())
     $editBox.find('#customizations').html(this.editBox.render().$el);
     $('.fi-30x').append($editBox);
+    this.swapSidebar();
 
     $(function(){
       that.positionEditBox($editBox);
       that.fieldDuplicate();
     });
-
   },
 
   positionEditBox: function($editBox){
