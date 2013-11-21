@@ -83,12 +83,15 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.editBox.parentView = that;
     this.formRouter.childViews.push(this.editBox);
 
-    var $editBox = $(JST['forms/editbox_seed']())
+    var $editBox = $(JST['forms/editbox_seed']({
+      $field: newEditBox.field
+    }));
     $editBox.find('#customizations').html(this.editBox.render().$el);
     $('.fi-30x').append($editBox);
     this.swapSidebar();
 
     $(function(){
+      $editBox.tabs();
       that.positionEditBox($editBox);
       that.fieldDuplicate();
     });
@@ -239,7 +242,11 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   editBoxValues: function(event){
     console.log("editBoxValues triggered with a " + event.type);
-    this.editBox.updateValues && this.editBox.updateValues(event);
+    if ($(event.target).attr('name') === 'editing'){
+      this.model.updateValues(event);
+    } else {
+      this.editBox.updateValues && this.editBox.updateValues(event);
+    }
     this.positionEditBox($('#edit-box'));
   },
 

@@ -24,7 +24,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
 
   updateValues: function(event){
 myEvent = event;
-    console.log("in FormSidebarTextbox#updateValues");
+    console.log("in FormSidebarCheckbox#updateValues");
     if ($(event.target).attr('name')=== 'checkbox-label' ){
       var name = event.target.value + '[]';
       this.model.updateAttribute('.editing .checkbox', 'name', name);

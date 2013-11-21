@@ -1,31 +1,358 @@
-<div id='edit-box' style="min-width: 390px">
+<div id='edit-box'>
 
-<button
-  class='edit-box-button'
-  id='save-button'
-  style="background-color: #ffffc2;"
-  >Save Form</button>
+  <style>
+    .ui-helper-reset {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      line-height: 1.3;
+      text-decoration: none;
+      font-size: 100%;
+      list-style: none;
+    }
+    .ui-helper-clearfix:before,
+    .ui-helper-clearfix:after {
+      content: "";
+      display: table;
+      border-collapse: collapse;
+    }
+    .ui-helper-clearfix:after {
+      clear: both;
+    }
+    .ui-helper-clearfix {
+      min-height: 0; /* support: IE7 */
+    }
+    .ui-tabs {
+      position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+      padding: .2em;
+    }
+    .ui-tabs .ui-tabs-nav {
+      margin: 0;
+      padding: .2em .2em 0;
+    }
+    .ui-tabs .ui-tabs-nav li {
+      list-style: none;
+      float: left;
+      position: relative;
+      top: 0;
+      margin: 1px .2em 0 0;
+      border-bottom-width: 0;
+      padding: 0;
+      white-space: nowrap;
+    }
+    .ui-tabs .ui-tabs-nav li a {
+      float: left;
+      padding: .5em 1em;
+      text-decoration: none;
+    }
+    .ui-tabs .ui-tabs-nav li.ui-tabs-active {
+      margin-bottom: -1px;
+      padding-bottom: 1px;
+      background-color: #DCF8CD;
+    }
+    .ui-tabs .ui-tabs-nav li.ui-tabs-active a,
+    .ui-tabs .ui-tabs-nav li.ui-state-disabled a,
+    .ui-tabs .ui-tabs-nav li.ui-tabs-loading a {
+      cursor: text;
+      color: black;
+    }
+    .ui-tabs .ui-tabs-nav li a, /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+    .ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active a {
+      cursor: pointer;
+    }
+    .ui-tabs .ui-tabs-panel {
+      display: block;
+      border-width: 0;
+      padding: 1em 1.4em;
+      background: none;
+    }
 
-<button
-  class='edit-box-button'
-  id='delete-field'
-  style="background-color: red;"
-  >Delete this field</button>
+    /* Component containers
+    ----------------------------------*/
+    .ui-widget {
+      font-family: Verdana,Arial,sans-serif;
+      font-size: 1.1em;
+    }
+    .ui-widget .ui-widget {
+      font-size: 1em;
+    }
+    .ui-widget input,
+    .ui-widget select,
+    .ui-widget textarea,
+    .ui-widget button {
+      font-family: Verdana,Arial,sans-serif;
+      font-size: 1em;
+    }
+    .ui-widget-content {
+      border: 1px solid #a6c9e2;
+      background: #fcfdfd;
+      color: #222222;
+    }
+    .ui-widget-content a {
+      color: #222222;
+    }
+    .ui-widget-header {
+  /*    border: 1px solid #4297d7;
+      background: #2191c0 50% 50% repeat-x;*/
+      background-color: #d1e7fd;
+      color: #eaf5f7;
+      font-weight: bold;
+    }
+    .ui-widget-header a {
+      color: #eaf5f7;
+    }
 
-<span id='customizations'></span>
+    /* Interaction states
+    ----------------------------------*/
+    .ui-state-default,
+    .ui-widget-content .ui-state-default,
+    .ui-widget-header .ui-state-default {
+      border: 1px solid white;
+      background: #0078ae;
+      font-weight: normal;
+      color: #ffffff;
+    }
+    .ui-helper-reset {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      line-height: 1.3;
+      text-decoration: none;
+      font-size: 100%;
+      list-style: none;
+    }
+    .ui-helper-clearfix:before,
+    .ui-helper-clearfix:after {
+      content: "";
+      display: table;
+      border-collapse: collapse;
+    }
+    .ui-helper-clearfix:after {
+      clear: both;
+    }
+    .ui-helper-clearfix {
+      min-height: 0; /* support: IE7 */
+    }
+    /* Corner radius */
+    .ui-corner-all,
+    .ui-corner-top,
+    .ui-corner-left,
+    .ui-corner-tl {
+      border-top-left-radius: 5px;
+    }
+    .ui-corner-all,
+    .ui-corner-top,
+    .ui-corner-right,
+    .ui-corner-tr {
+      border-top-right-radius: 5px;
+    }
+    .ui-corner-all,
+    .ui-corner-bottom,
+    .ui-corner-left,
+    .ui-corner-bl {
+      border-bottom-left-radius: 5px;
+    }
+    .ui-corner-all,
+    .ui-corner-bottom,
+    .ui-corner-right,
+    .ui-corner-br {
+      border-bottom-right-radius: 5px;
+    }
+   #edit-box {
+    position: absolute;
+    -webkit-box-shadow: -3px 5px 6px black;
+    -moz-box-shadow: -3px 5px 6px black;
+    box-shadow: -3px 5px 6px black;
+    background-color: #DCF8CD;
+    z-index: 6;
+    padding: 0 10px 10px 10px;
+    border: 2px solid black;
+    transition: none;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+    min-width: 400px;
+  }
+  .fi-30x .edit-box-button {
+    margin-top: 10px;
+    line-height: 2;
+    font-weight: bold;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    border-radius: 8px;
+  }
+  #delete-field, #done-button {
+    float: right;
+  }
+  #edit-box td {
+    text-align: right;
+    padding: 2px;
+    white-space: nowrap;
+  }
+  #edit-box td + td {
+    text-align: left;
+  }
+  </style>
 
-<div
-  class='edit-box-button'
-  id='duplicate-field'
-  style="background-color: #d1e7fd; display: inline-block;
-    border: 2px solid black; padding: 2px;"
-  >
-  Drag a copy of this field from here</div>
+  <ul>
+    <li><a href="#customizations">Basic Customization</a></li>
+    <li><a href="#styling">Styling Options</a></li>
+  </ul>
 
-<button
-  class='edit-box-button'
-  id='done-button'
-  style="background-color: white;"
-  >Done editing</button>
+  <div
+    class='edit-box-button'
+    id='duplicate-field'
+    style="background-color: #d1e7fd; display: inline-block;
+      border: 2px solid black; padding: 2px;"
+    >
+    Drag a copy of this field from here</div>
+
+  <button
+    class='edit-box-button'
+    id='done-button'
+    style="background-color: white;"
+    >Done editing</button>
+
+  <span id='customizations'></span>
+
+  <span id='styling'>
+    <h3>Styling Options</h3>
+    <table>
+      <tr>
+        <td>
+          <label>Font-Size:</label>
+        </td>
+        <td>
+          <input
+            type='number'
+            data-css='font-size'
+            min='1'
+            max='999'
+            value='<%= parseInt($field.css('font-size')) %>'
+            name='editing'/>
+            (digits only)
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>Font-family:</label>
+        </td>
+        <td>
+          <select
+            data-css='font-family'
+            name='editing'>
+            <option class='font-family-option'></option>
+            <option class='font-family-option'>
+              sans-serif</option>
+            <option class='font-family-option'>
+              serif</option>
+            <option class='font-family-option'>
+              monospace</option>
+            <option class='font-family-option'>
+              cursive</option>
+            <option class='font-family-option'>
+              fantasy</option>
+            <option class='font-family-option'>
+              Arial, Helvetica, sans-serif</option>
+            <option class='font-family-option'>
+              Arial Black, Gadget, sans-serif</option>
+            <option class='font-family-option'>
+              Comic Sans MS, cursive, sans-serif</option>
+            <option class='font-family-option'>
+              Courier New, Courier, monospace</option>
+            <option class='font-family-option'>
+              Georgia, serif</option>
+            <option class='font-family-option'>
+              Impact, Charcoal, sans-serif</option>
+            <option class='font-family-option'>
+              Lucida Console, Monaco, monospace</option>
+            <option class='font-family-option'>
+              Lucida Sans Unicode, Lucida Grande, sans-serif</option>
+            <option class='font-family-option'>
+              Palatino Linotype, Book Antiqua, Palatino, serif</option>
+            <option class='font-family-option'>
+              Tahoma, Geneva, sans-serif</option>
+            <option class='font-family-option'>
+              Times New Roman, Times, serif</option>
+            <option class='font-family-option'>
+              Trebuchet MS, Helvetica, sans-serif</option>
+            <option class='font-family-option'>
+              Verdana, Geneva, sans-serif</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>Font-weight:</label>
+        </td>
+        <td>
+          <label>
+            <input
+              class='font-weight-option'
+              type='radio'
+              name='editing'
+              data-css='font-weight'
+              value='bold'>
+              Bold
+          </label>
+
+          <label>
+            <input
+              class='font-weight-option'
+              type='radio'
+              name='editing'
+              data-css='font-weight'
+              value='normal'>
+              Normal
+          </label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>Color:</label>
+        </td>
+        <td>
+          <input
+            type='text'
+            data-css='color'
+            value='<%= $field.css('color') || 'black' %>'
+            name='editing'/>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>Background<br>Color:</label>
+        </td>
+        <td>
+          <br>
+          <input
+            type='text'
+            data-css='background-color'
+            value='<%= $field.css('background-color') || 'white'%>'
+            name='editing'/>
+        </td>
+      </tr>
+    </table>
+  </span>
+
+  <button
+    class='edit-box-button'
+    id='save-button'
+    style="background-color: #ffffc2;"
+    >Save Form</button>
+
+  <button
+    class='edit-box-button'
+    id='delete-field'
+    style="background-color: red;"
+    >Delete this field</button>
 
 </div>
