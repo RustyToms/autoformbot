@@ -130,7 +130,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
       display = 'block';
     }
     this.$field.find('.radio-option').css('display', display);
-
+    this.parentView.editForm.prepForm(this.$field);
     this.model.localSaveForm();
   }
 });

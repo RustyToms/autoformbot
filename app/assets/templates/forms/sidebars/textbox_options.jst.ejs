@@ -1,41 +1,61 @@
 
 <div id="textbox-sidebar">
 
-<h2>Customize your Textbox</h2>
+<h3>Customize your Textbox</h3>
 
-<label>Label:
-  <input type='text'
-    name='textbox-label'
-    onClick="this.select()"
-    value='<%= $field.find('.textbox-label').text() %>'>
-</label><br>
+  <table>
+    <tr>
+      <td>
+        <label>Label:</label>
+      </td>
+      <td>
+        <input type='text'
+          name='textbox-label'
+          onClick="this.select()"
+          value='<%= $field.find('.textbox-label').text() %>'>
+      </td>
+    </tr>
 
-<label>Width:
-  <input
-    type='text'
-    data-attribute='size'
-    value='<%= $field.find('.textbox').attr('size') %>'
-    name='textbox'/>
-</label><br>
+    <tr>
+      <td>
+        <label>Width:</label>
+      </td>
+      <td>
+        <input
+          type='text'
+          data-attribute='size'
+          value='<%= $field.find('.textbox').attr('size') %>'
+          name='textbox'/>
+      </td>
+    </tr>
 
-<label>Prefilled content:
-  <input
-    type='text'
-    data-attribute='value'
-    value='<%= $field.find('.textbox').val() %>'
-    onClick="this.select()"
-    name='textbox'/>
-</label><br>
+    <tr>
+      <td>
+        <label>Prefilled content:</label>
+      </td>
+      <td>
+        <input
+          type='text'
+          data-attribute='value'
+          value='<%= $field.find('.textbox').val() %>'
+          onClick="this.select()"
+          name='textbox'/>
+      </td>
+    </tr>
 
-<label>
-  <input
-    type='checkbox'
-    name='requiredCheckbox'
-    <% if($field.hasClass('required')) { %>
-      <%= 'checked' %>
-      <% } %>
-  />
-    Required Field
-</label>
-
+    <tr>
+      <td>
+        <label>
+          <input
+            type='checkbox'
+            name='requiredCheckbox'
+            <% if($field.hasClass('required')) { %>
+              <%= 'checked' %>
+              <% } %>
+          />
+            Required Field
+        </label>
+      </td>
+    </tr>
+  </table>
 </div>

@@ -1,56 +1,58 @@
-
 <div id="radio-sidebar">
 
-<h2>Customize your Radio Buttons</h2>
+  <h3>Customize your Radio Buttons</h3>
 
-<label
-    style="display: inline-block"
->Label
-  <input type='text'
-    class='radio-label'
-    name='radio-label'
-    onClick="this.select()"
-    value='<%= label %>'>
-</label>
+  <table>
+    <tr>
+      <td>
+        <label>Label:&nbsp&nbsp
+          <input type='text'
+            class='radio-label'
+            name='radio-label'
+            onClick="this.select()"
+            value='<%= label %>'>
+        </label>
 
-<button class='add-option'>Add an Option</button>
+        <button class='add-option'>Add an Option</button>
+      </td>
+    </tr>
+  </table>
 
-<br>
+  <table class='radios'></table>
 
-<div class='radios'></div>
+  <label>How should the options be displayed? <br>
+  	<label>
+  	<input
+      type='radio'
+      class='vertical'
+  	  name='radio-option'
+  		data-css='display'
+  		value='block'>
+  		Vertical
+  	</label>
 
-<label>How should the options be displayed? <br>
-	<label>
-	<input
-    type='radio'
-    class='vertical'
-	  name='radio-option'
-		data-css='display'
-		value='block'>
-		Vertical
-	</label>
+  	<label>
+  	<input
+  	  type='radio'
+      class='horizontal'
+  		name='radio-option'
+  		data-css='display'
+  		value='inline'
+  		checked>
+  	Horizontal
+  	</label>
+  </label>
 
-	<label>
-	<input
-	  type='radio'
-    class='horizontal'
-		name='radio-option'
-		data-css='display'
-		value='inline'
-		checked>
-	Horizontal
-	</label>
-</label>
+  <br>
 
-<br>
-
-<label>
-  <input
-    type='checkbox'
-    name='requiredCheckbox'
-    <% if(required) { %>
-      <%= 'checked' %>
-      <% } %>
-  />
-    Required Field
-</label>
+  <label>
+    <input
+      type='checkbox'
+      name='requiredCheckbox'
+      <% if(required) { %>
+        <%= 'checked' %>
+        <% } %>
+    />
+      Required Field
+  </label>
+</div>

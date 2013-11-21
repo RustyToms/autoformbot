@@ -1,15 +1,20 @@
-<div class='select-option-config'>
-  <label
-    style="display: inline-block"
-  >Option <input
-      type='text'
-      value='<%= value %>'
-      onClick="this.select()"
-      name='<%= name %>'/><br>
-  </label>
+<tr>
+  <td>
+    <div class='select-option-config'>
+      <label
+        style="display: inline-block"
+      >Option:
+        <input
+          type='text'
+          value='<%= value %>'
+          onClick="this.select()"
+          name='<%= name %>'/>
+      </label>
 
-  <button
-    class='delete-button delete-option'
-    name='<%= name %>'
-  >Delete</button>
-</div>
+      <button
+        class='delete-button delete-option'
+        name='<%= name %>'
+      >Delete</button>
+    </div>
+  </td>
+</tr>

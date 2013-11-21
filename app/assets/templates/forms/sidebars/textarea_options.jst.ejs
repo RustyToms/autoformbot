@@ -1,41 +1,60 @@
-
 <div id="textarea-sidebar">
 
-<h2>Customize your Textarea</h2>
+  <h3>Customize your Textarea</h3>
 
-<label>Label:
-  <input type='text'
-    name='textarea-label'
-    onClick="this.select()"
-    value='<%= $field.find('.textarea-label').text() %>'>
-</label><br>
+  <table>
+    <tr>
+      <td>
+        <label>Label:</label>
+      </td>
+      <td>
+        <input type='text'
+          name='textarea-label'
+          onClick="this.select()"
+          value='<%= $field.find('.textarea-label').text() %>'>
+      </td>
+    </tr>
 
-<label>Height (in number of lines)
-  <input
-    type='text'
-    data-attribute='rows'
-    value='<%= $textarea.attr('rows') %>'
-    name='textarea'/>
-</label><br>
+    <tr>
+      <td>
+        <label>Height (in number of lines)</label>
+      </td>
+      <td>
+        <input
+          type='text'
+          data-attribute='rows'
+          value='<%= $textarea.attr('rows') %>'
+          name='textarea'/>
+      </td>
+    </tr>
 
-<label>Width (in number of characters)
-  <input
-    type='text'
-    data-attribute='cols'
-    value='<%= $textarea.attr('cols') %>'
-    name='textarea'/>
-</label>
+    <tr>
+      <td>
+        <label>Width (in number of characters)</label>
+      </td>
+      <td>
+        <input
+          type='text'
+          data-attribute='cols'
+          value='<%= $textarea.attr('cols') %>'
+          name='textarea'/>
+      </td>
+    </tr>
 
-<br>
-
-<label>
-  <input
-    type='checkbox'
-    name='requiredCheckbox'
-    <% if($field.hasClass('required')) { %>
-      <%= 'checked' %>
-      <% } %>/>
-    Required Field
-</label>
-
+    <tr>
+      <td>
+        <label>
+          <input
+            type='checkbox'
+            name='requiredCheckbox'
+            <% if($field.hasClass('required')) { %>
+              <%= 'checked' %>
+              <% } %>/>
+            Required Field
+        </label>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </table>
 </div>

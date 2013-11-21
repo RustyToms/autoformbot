@@ -1,34 +1,35 @@
-<div class='checkbox-option-config'>
-  <label
-      style="display: inline-block"
-  >Option
-    <input type='text'
-      name='<%= klass %>'
-      data-attribute='value'
-			class='option-name'
-      onClick="this.select()"
-      value='<%= value %>'>
-  </label>
+<tr>
+  <td>
+    <div class='checkbox-option-config'>
+      <label
+          style="display: inline-block"
+      >Option:
+        <input type='text'
+          name='<%= klass %>'
+          data-attribute='value'
+          class='option-name'
+          onClick="this.select()"
+          value='<%= value %>'>
+      </label>
 
-  <button
-    class='delete-button delete-option'
-    name="checkbox-option:has('.<%= klass %>')"
-  >Delete</button>
+      <button
+        class='delete-button delete-option'
+        name="checkbox-option:has('.<%= klass %>')"
+      >Delete</button>
 
-  <br>
+      <br>
 
-	<label>
-	  <input
-	    type='checkbox'
-	    class="prefilled-check"
-			name='<%= klass %>'
-	    <% if(checked) { %>
-	      <%= 'checked' %>
-	     <% } %>
-	    />
-	  Prefilled check
-	</label>
-
-  <br>
-
-</div>
+      <label>
+        <input
+          type='checkbox'
+          class="prefilled-check"
+          name='<%= klass %>'
+          <% if(checked) { %>
+            <%= 'checked' %>
+           <% } %>
+          />
+        Prefilled check
+      </label>
+    </div>
+  </td>
+</tr>

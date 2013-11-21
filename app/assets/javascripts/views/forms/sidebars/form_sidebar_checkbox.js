@@ -128,7 +128,7 @@ console.log('new value shoule be ' + event.target.value);
     var display = 'inline';
     var $options = this.$el.find('.checkbox-option-config').clone();
     var label = this.$el.find("input[name='checkbox-label']").val();
-    var $checkboxes = this.$field.find('span.checkbox')
+    var $checkboxes = this.$field.find('span.checkbox');
     $checkboxes.empty();
 
     if (this.$el.find('.vertical').prop('checked')){
@@ -151,6 +151,7 @@ console.log('new value shoule be ' + event.target.value);
     });
 
     this.$field.find('.checkbox-option').css('display', display);
+    this.parentView.editForm.prepForm(this.$field);
     this.model.localSaveForm();
   }
 });

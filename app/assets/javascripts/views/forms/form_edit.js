@@ -29,10 +29,10 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   prepForm: function($formText){
-    console.log('**************** FormEdit#prepForm ********************')
+    console.log('**************** FormEdit#prepForm ********************');
     $formText.find("label, h2, p, li.magicBox div").
       attr('contenteditable', 'true');
-    $formText.find('input').attr('disabled', 'disabled');
+    $formText.find('input, textarea').attr('disabled', 'disabled');
 
     $targets = $formText.find('.formEl, .submit-button');
     $targets.not($targets.has('.move-handle')).

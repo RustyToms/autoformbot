@@ -106,7 +106,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
       'top': (top + 'px')
     });
 
-    AFB.Routers.FormRouter.positionWindow($field.add($editBox));
+    if (!$field.hasClass('magicBox')){
+      AFB.Routers.FormRouter.positionWindow($field.add($editBox));
+    }
   },
 
   fieldDuplicate: function(){

@@ -1,55 +1,60 @@
 <div id="checkbox-sidebar">
 
-<h2>Customize your Checkboxes</h2>
+  <h3>Customize your Checkboxes</h3>
 
-<label>Label:
-  <input type='text'
-		style='display: inline-block'
-    name='checkbox-label'
-    onClick="this.select()"
-    value='<%= label %>'>
-</label>
+  <table>
+    <tr>
+      <td>
+        <label>Label:&nbsp&nbsp
+          <input
+            type='text'
+            style='display: inline-block'
+            name='checkbox-label'
+            onClick="this.select()"
+            value='<%= label %>'>
+        </label>
 
-<button class='add-option'>Add an Option</button>
+        <button class='add-option'>Add an Option</button>
+      </td>
+    </tr>
+  </table>
 
-<br>
+  <table class='checkboxes'></table>
 
-<div class='checkboxes'></div>
+  <label>How should the options be displayed? <br>
+  	<label>
+  	<input
+      type='radio'
+      class='vertical'
+  	  name='checkbox-option'
+  		data-css='display'
+  		value='block'>
+  		Vertical
+  	</label>
 
-<label>How should the options be displayed? <br>
-	<label>
-	<input
-    type='radio'
-    class='vertical'
-	  name='checkbox-option'
-		data-css='display'
-		value='block'>
-		Vertical
-	</label>
+  	<label>
+  	<input
+  	  type='radio'
+      class='horizontal'
+  		name='checkbox-option'
+  		data-css='display'
+  		value='inline'
+  		checked>
+  	Horizontal
+  	</label>
+  </label>
 
-	<label>
-	<input
-	  type='radio'
-    class='horizontal'
-		name='checkbox-option'
-		data-css='display'
-		value='inline'
-		checked>
-	Horizontal
-	</label>
-</label>
+  <br>
 
-<br>
-
-<label>
-  <input
-    type='checkbox'
-    name='requiredCheckbox'
-    <% if(required) { %>
-      <%= 'checked' %>
-      <% } %>
-  />
-    At least one option must be checked
-</label>
+  <label>
+    <input
+      type='checkbox'
+      name='requiredCheckbox'
+      <% if(required) { %>
+        <%= 'checked' %>
+        <% } %>
+    />
+      At least one option must be checked
+  </label>
 
 </div>

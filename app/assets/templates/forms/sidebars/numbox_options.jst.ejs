@@ -1,48 +1,75 @@
-
 <div id="numbox-sidebar">
 
-<h2>Customize your Number box</h2>
+  <h3>Customize your Number box</h3>
 
-<label>Label:
-  <input type='text'
-    onClick='this.select()'
-    name='numbox-label'
-    value='<%=$field.find('.numbox-label').text()%>'></label><br>
+  <table>
+    <tr>
+      <td>
+        <label>Label:</label>
+      </td>
+      <td>
+        <input type='text'
+          onClick='this.select()'
+          name='numbox-label'
+          value='<%=$field.find('.numbox-label').text()%>'>
+      </td>
+    </tr>
 
-<label>Minimum Value:
-  <input
-    type='number'
-    data-attribute='min'
-    value='<%= $field.find('.numbox').attr('min') %>'
-    name='numbox'/>
-</label><br>
+    <tr>
+      <td>
+        <label>Minimum Value:</label>
+      </td>
+      <td>
+        <input
+          type='number'
+          data-attribute='min'
+          value='<%= $field.find('.numbox').attr('min') %>'
+          name='numbox'/>
+      </td>
+    </tr>
 
-<label>Maximum Value:
-  <input
-    type='number'
-    data-attribute='max'
-    value='<%= $field.find('.numbox').attr('max') %>'
-    name='numbox'/>
-</label><br>
+    <tr>
+      <td>
+        <label>Maximum Value:</label>
+      </td>
+      <td>
+        <input
+          type='number'
+          data-attribute='max'
+          value='<%= $field.find('.numbox').attr('max') %>'
+          name='numbox'/>
+      </td>
+    </tr>
 
-<label>Prefilled content:
-  <input
-    type='number'
-    onClick='this.select()'
-    data-attribute='value'
-    value='<%= $field.find('.numbox').val() %>'
-    name='numbox'/>
-</label><br>
+    <tr>
+      <td>
+        <label>Prefilled content:</label>
+      </td>
+      <td>
+        <input
+          type='number'
+          onClick='this.select()'
+          data-attribute='value'
+          value='<%= $field.find('.numbox').val() %>'
+          name='numbox'/>
+      </td>
+    </tr>
 
-<label>
-  <input
-    type='checkbox'
-    name='requiredCheckbox'
-    <% if($field.hasClass('required')) { %>
-      <%= 'checked' %>
-      <% } %>
-  />
-    Required Field
-</label>
-
+    <tr>
+      <td>
+        <label>
+          <input
+            type='checkbox'
+            name='requiredCheckbox'
+            <% if($field.hasClass('required')) { %>
+              <%= 'checked' %>
+              <% } %>
+          />
+            Required Field
+        </label>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </table>
 </div>

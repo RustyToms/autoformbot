@@ -1,41 +1,63 @@
 
 <div id="textbox-sidebar">
 
-<h2>Customize Your Telephone Number Field</h2>
+<h3>Customize Your Telephone Number Field</h3>
 
-<label>Label:
-  <input type='text'
-    name='telnum-label'
-    onClick="this.select()"
-    value='<%= $field.find('.telnum-label').text() %>'>
-</label><br>
+  <table>
+    <tr>
+      <td>
+        <label>Label:</label>
+      </td>
+      <td>
+        <input type='text'
+          name='telnum-label'
+          onClick="this.select()"
+          value='<%= $field.find('.telnum-label').text() %>'>
+      </td>
+    </tr>
 
-<label>Maximum number of characters:
-  <input
-    type='text'
-    data-attribute='maxlength'
-    value='<%= $field.find('.telnum').attr('maxlength') %>'
-    name='telnum'/>
-</label><br>
+    <tr>
+      <td>
+        <label>Max number of characters:</label>
+      </td>
+      <td>
+        <input
+          type='text'
+          data-attribute='maxlength'
+          value='<%= $field.find('.telnum').attr('maxlength') %>'
+          name='telnum'/>
+      </td>
+    </tr>
 
-<label>Prefilled content:
-  <input
-    type='text'
-    data-attribute='value'
-    value='<%= $field.find('.telnum').val() %>'
-    onClick="this.select()"
-    name='telnum'/>
-</label><br>
+    <tr>
+      <td>
+        <label>Prefilled content:</label>
+      </td>
+      <td>
+        <input
+          type='text'
+          data-attribute='value'
+          value='<%= $field.find('.telnum').val() %>'
+          onClick="this.select()"
+          name='telnum'/>
+      </td>
+    </tr>
 
-<label>
-  <input
-    type='checkbox'
-    name='requiredCheckbox'
-    <% if($field.hasClass('required')) { %>
-      <%= 'checked' %>
-      <% } %>
-  />
-    Required Field
-</label>
-
+    <tr>
+      <td>
+        <label>
+          <input
+            type='checkbox'
+            name='requiredCheckbox'
+            <% if($field.hasClass('required')) { %>
+              <%= 'checked' %>
+              <% } %>
+          />
+            Required Field
+        </label>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </table>
 </div>
