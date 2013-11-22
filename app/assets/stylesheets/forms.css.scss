@@ -182,6 +182,7 @@ $formSelect-padding: 20px;
 $formSelect-margin: 50px;
 $formSelect-dim-sum: ($formSelect-dim + $formSelect-margin * 2 +
   $formSelect-padding * 2);
+$formLink-padding: 5px;
 
 .form-summary {
   display: inline-block;
@@ -253,8 +254,9 @@ $formSelect-dim-sum: ($formSelect-dim + $formSelect-margin * 2 +
 
 .form-links a {
   transition: .30s;
-  height: 50px;
-  width: 50px;
+  height: 50px - $formLink-padding * 2;
+  width: 50px - $formLink-padding * 2;
+  padding: $formLink-padding;
   background-color: white;
   display: inline-block;
   position: absolute;
@@ -279,21 +281,10 @@ a.formSelect {
   border-radius: 10px;
   border: 1px solid black;
   @include box-shadow(0 0 10px 7px $faded-blue);
-  background-color: transparent;
-}
-
-.form-title-background {
-  position: absolute;
   background-color: rgba(255, 255, 255, 0.45);
-  display: block;
-  width: $formSelect-dim;
-  height: $formSelect-dim;
-  z-index: 2;
-  padding: $formSelect-padding;
-  text-align: right;
 }
 
-.form-title {
+.form-preview-title {
   background-color: white;
   border-radius: 5px;
   @include box-shadow(0 0 5px 3px white);
@@ -308,25 +299,6 @@ a.formSelect:hover {
 a.formSelect:active {
   @include box-shadow(0 0 25px 20px white);
 }
-// .form-summary:nth-child(6n) .formSelect{
-//  background-color: $pale-yellow;
-// }
-
-// .form-summary:nth-child(6n - 2) .formSelect{
-//  background-color: $faded-blue;
-// }
-
-// .form-summary:nth-child(6n - 4) .formSelect{
-//  background-color: $pale-green;
-// }
-
-// .form-summary:nth-child(6n - 3) .formSelect{
-//  background-color: $lighter-steel;
-// }
-
-// .form-summary:nth-child(6n - 1) .formSelect{
-//  background-color: $steel;
-// }
 
 .form-links.clicked {
   top: 2px;
@@ -334,16 +306,10 @@ a.formSelect:active {
 
   a {
     margin: 0;
-    height: 50px + $formSelect-padding;
-    width: 50px + $formSelect-padding;
-    z-index: 2;
+    height: 50px + $formSelect-padding - $formLink-padding * 2;
+    width: 50px + $formSelect-padding - $formLink-padding * 2;
+    z-index: 3;
     text-align: center;
-  }
-
-  .form-title-background {
-    width: $formSelect-dim - 20px;
-    height: $formSelect-dim - 20px;
-    padding: $formSelect-padding + 10px;
   }
 
   a.formSelect {
@@ -354,46 +320,49 @@ a.formSelect:active {
   }
 
   a.index-edit {
-    width: $formSelect-margin + $formSelect-padding + $formSelect-dim/2;
+    width: $formSelect-margin + $formSelect-padding + $formSelect-dim/2
+      - $formLink-padding * 2;
     top: -$formSelect-margin;
     left: -$formSelect-margin;
     background-color: $blue;
   }
 
   a.index-view {
-    height: $formSelect-dim;
+    height: $formSelect-dim - $formLink-padding * 2;
     right: -$formSelect-margin;
     top: $formSelect-padding;
     background-color: $pale-yellow;
   }
 
   a.index-results {
-    height: $formSelect-dim;
+    height: $formSelect-dim - $formLink-padding * 2;
     left: -$formSelect-margin;
     top: $formSelect-padding;
+    background-color: $lighter-steel;
   }
 
   a.index-code {
-    width: $formSelect-dim-sum / 3;
+    width: $formSelect-dim-sum / 3 - $formLink-padding * 2;
     bottom: -$formSelect-margin;
     left: -$formSelect-margin;
   }
 
   a.index-not {
-    width: $formSelect-margin + $formSelect-padding + $formSelect-dim/2;
+    width: $formSelect-margin + $formSelect-padding + $formSelect-dim/2
+       - $formLink-padding * 2;
     top: -$formSelect-margin;
     right: -$formSelect-margin;
   }
 
   a.index-delete {
     background-color: red;
-    width: $formSelect-dim-sum / 3;
+    width: $formSelect-dim-sum / 3 - $formLink-padding * 2;
     bottom: -$formSelect-margin;
     right: -$formSelect-margin;
   }
 
   a.index-dup {
-    width: $formSelect-dim-sum / 3;
+    width: $formSelect-dim-sum / 3 - $formLink-padding * 2;
     bottom: -$formSelect-margin;
     left: $formSelect-margin * 2 / 3;
     background-color: $light-green;
@@ -512,16 +481,16 @@ $sidebar-width: 300px;
 }
 
 .move-handle {
-  left: -20px;
+  left: -30px;
   top: 0;
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   display: none;
   background-color: grey;
   color: white;
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
   cursor: pointer;
 }
 

@@ -47,15 +47,14 @@ AFB.Views.FormIndex = Backbone.View.extend({
   },
 
   formSelect: function(formId, $target){
-    if ($target.closest('.form-links').hasClass('clicked')){
+    console.log('FormIndex#formSelect');
+    var $clicked = this.$el.find('.clicked');
+    $target = $target.closest('.form-links');
 
-      this.$el.find('.clicked').removeClass('clicked');
-
-    } else {
-
-      this.$el.find('.clicked').removeClass('clicked');
-      $target.closest('.form-links').addClass('clicked');
+    if (!$target.hasClass('clicked')){
+      $target.addClass('clicked');
     }
+    $clicked.removeClass('clicked');
   },
 
   sendToNew: function(){
@@ -72,6 +71,11 @@ AFB.Views.FormIndex = Backbone.View.extend({
   sendToView: function(formId){
     console.log('FormIndex#sendToView');
     Backbone.history.navigate('forms/' + formId, {trigger: true});
+  },
+
+  sendToResults: function(formId){
+    console.log('FormIndex#sendToResults');
+    Backbone.history.navigate('forms/' + formId + '/results', {trigger: true});
   },
 
   deleteForm: function(formId){

@@ -11,7 +11,8 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     'index' : "index",
     'forms/new' : "formNew",
     "forms/:id" : "formShow",
-    "forms/:id/edit" : "formEdit"
+    "forms/:id/edit" : "formEdit",
+    "forms/:id/results" : "formResults"
   },
 
   index: function(){
@@ -70,6 +71,21 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
       });
     this.$rootEl.append(this.view.render().$el);
     window.scrollTo(0,0);
+  },
+
+  formResults: function(id) {
+    console.log("in FormRouter#formResults for form #" + id);
+    // var showModel = AFB.formCollection.get(id);
+    // var View = AFB.Views.FormShow;
+    // this.cleanRootEl();
+    // this.view && this.view.remove();
+    // console.log(this.$rootEl.prop('outerHTML'));
+    // this.view = new View({
+    //     model: showModel,
+    //     el: JST['forms/form_wrapper']()
+    //   });
+    // this.$rootEl.append(this.view.render().$el);
+    // window.scrollTo(0,0);
   },
 
   formEdit: function(id) {

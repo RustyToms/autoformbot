@@ -37,7 +37,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     $targets = $formText.find('.formEl, .submit-button');
     $targets.not($targets.has('.move-handle')).
       prepend("<span class='move-handle' style='color: white; font-size:" +
-      " 20px; z-index: 999;'>\u039E</span>");
+      " 30px; z-index: 999;'>\u039E</span>");
   },
 
   parseClickForm: function(event) {

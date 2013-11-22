@@ -2,10 +2,14 @@
 
 <div class="form-links group">
   <div data-id=<%= form.get('id')%> class='fi-30x' scrolling='no' ></div>
-  <span class='form-title-background'>
-    <span class='form-title'><%= form.get('name') %></span>
-  </span>
-  <a class='formSelect' data-string='formSelect'></a>
+
+  <a class='formSelect' data-string='formSelect'>
+    <span
+      class='form-preview-title'
+      data-string='formSelect'
+      ><%= form.get('name') %>
+    </span>
+  </a>
   <a class='index-not' data-string='sendToNotifications'>Notifications</a>
   <a class='index-edit'data-string='sendToEdit'>Edit</a>
   <a class='index-view' data-string='sendToView'>View</a>
