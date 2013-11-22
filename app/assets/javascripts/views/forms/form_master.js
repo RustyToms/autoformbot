@@ -88,7 +88,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
     }));
     $editBox.find('#customizations').html(this.editBox.render().$el);
     $('.fi-30x').append($editBox);
-    this.swapSidebar();
+    if ($('#all-fields-sidebar').length === 0){
+      this.swapSidebar();
+    }
 
     $(function(){
       $editBox.tabs();
@@ -216,6 +218,16 @@ AFB.Views.FormMaster = Backbone.View.extend({
             this.removeActiveEdits();
             this.model.localSaveForm();
             break;
+          case "pull-front":
+            $(".fi-30x form ul").append($('.fi-30x .editing'));
+            AFB.Routers.FormRouter.myFlash("Field moved to the front");
+            this.model.localSaveForm();
+            break;
+            case "push-back":
+              $(".fi-30x form ul").prepend($('.fi-30x .editing'));
+              AFB.Routers.FormRouter.myFlash("Field moved to the back");
+              this.model.localSaveForm();
+              break;
           default:
           console.log("Sending to editBox view parseClickForm");
           this.editBox.parseClick && this.editBox.parseClick(event);
@@ -281,6 +293,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 		var $sidebar = this.makeSidebarView(sidebar);
 		this.$el.find('.sidebar_window').replaceWith($sidebar);
     this.sidebarReset();
+    this.addFieldsDraggable();
 	},
 
   makeSortable: function(){

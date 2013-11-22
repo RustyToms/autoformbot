@@ -1,5 +1,5 @@
-
   <%= stylesheet_link_tag    "forms", :media => "all" %>
+
 <header>
   <a href="<%= root_url %>" class='corner-logo'>
     <div class= 'corner-logo-box'>
@@ -33,6 +33,8 @@
   data-account-id="<%= @account.id %>">
   <%= @forms.to_json.html_safe %>
 </script>
+
+<%= javascript_include_tag "application" %>
 
 <script>
 $(function(){

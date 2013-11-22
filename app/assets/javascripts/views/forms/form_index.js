@@ -40,9 +40,10 @@ AFB.Views.FormIndex = Backbone.View.extend({
   },
 
   makeFormImage: function(button){
-    var $form = $(AFB.formCollection.get($(button).data('id')).
-      get('form_text'));
-    $(button).append($form);
+    var model = AFB.formCollection.get($(button).data('id'));
+    model.removeActiveEdits();
+    var form = model.get('form_text');
+    $(button).append(form);
   },
 
   formSelect: function(formId, $target){
