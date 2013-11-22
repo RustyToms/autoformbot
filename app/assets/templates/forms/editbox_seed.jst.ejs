@@ -200,9 +200,20 @@
     text-align: left;
     padding: 0 0 0 4px;
   }
-
+  #edit-box .style-group:nth-child(even) {
+    background-color: #d1e7fd;
+  }
+  #edit-box .style-option {
+    padding: 3px;
+    float: left;
+  }
   #edit-box input {
     text-align: left;
+  }
+  .fi-30x .tip {
+    font-weight: bold;
+    font-size: 12px;
+    font-style: italic;
   }
   </style>
 
@@ -225,215 +236,221 @@
     style="background-color: white;"
     >Done editing</button>
 
-  <span id='customizations'></span>
+  <div id='customizations'></div>
 
-  <span
+  <div
     id="styling"
-    style="width: 500px; display: block; height: 302px;">
+    style="width: 500px;">
 
     <h3>Styling Options</h3>
 
-    <div
-      class="style-option"
-      style="position: absolute; left: 16px; top: 131px;
-        display: inline-block; padding: 3px;">
-      <label>Font-Size (digits only):
-        <input
-          type="number"
-          data-css="font-size"
-          min="1"
-          max="999"
-          value="16"
-          name="editing">
-      </label>
-    </div>
-
-    <div
-      class="style-option"
-      style="position: absolute; display: inline-block; left: 284px;
-        top: 137px; padding: 3px;">
-      <label>Font-weight:
-        <label>
+    <div class='style-group group'>
+      <div class="style-option">
+        <label>Font-Size <span class='tip'>(digits only)</span>:
           <input
-            class="font-weight-option"
-            type="radio"
-            name="editing"
-            data-css="font-weight"
-            value="bold">
-            Bold
+            type="number"
+            data-css="font-size"
+            min="1"
+            max="999"
+            value="<%= parseInt($field.css('font-size')) %>"
+            name="editing">
         </label>
+      </div>
 
-        <label>
-          <input
-            class="font-weight-option"
-            type="radio"
-            name="editing"
-            data-css="font-weight"
-            value="normal">
-            Normal
+      <div
+        class="style-option"
+        style="float: right; padding: 8px 3px 7px 3px;">
+        <label>Font-Weight:
+          <label>
+            <input
+              class="font-weight-option"
+              type="radio"
+              name="editing"
+              data-css="font-weight"
+              value="bold">
+              Bold
+          </label>
+
+          <label>
+            <input
+              class="font-weight-option"
+              type="radio"
+              name="editing"
+              data-css="font-weight"
+              value="normal">
+              Normal
+          </label>
         </label>
-      </label>
-    </div>
+      </div>
 
-    <div
-      class="style-option"
-      style="position: absolute; display: inline-block; padding: 3px;
-        left: 16px; top: 162px;">
-      <label>Font-family:</label>
-      <select data-css="font-family" name="editing">
-        <option class="font-family-option"></option>
-        <option class="font-family-option">
-          sans-serif</option>
-        <option class="font-family-option">
-          serif</option>
-        <option class="font-family-option">
-          monospace</option>
-        <option class="font-family-option">
-          cursive</option>
-        <option class="font-family-option">
-          fantasy</option>
-        <option class="font-family-option">
-          Arial, Helvetica, sans-serif</option>
-        <option class="font-family-option">
-          Arial Black, Gadget, sans-serif</option>
-        <option class="font-family-option">
-          Comic Sans MS, cursive, sans-serif</option>
-        <option class="font-family-option">
-          Courier New, Courier, monospace</option>
-        <option class="font-family-option">
-          Georgia, serif</option>
-        <option class="font-family-option">
-          Impact, Charcoal, sans-serif</option>
-        <option class="font-family-option">
-          Lucida Console, Monaco, monospace</option>
-        <option class="font-family-option">
-          Lucida Sans Unicode, Lucida Grande, sans-serif</option>
-        <option class="font-family-option">
-          Palatino Linotype, Book Antiqua, Palatino, serif</option>
-        <option class="font-family-option">
-          Tahoma, Geneva, sans-serif</option>
-        <option class="font-family-option">
-          Times New Roman, Times, serif</option>
-        <option class="font-family-option">
-          Trebuchet MS, Helvetica, sans-serif</option>
-        <option class="font-family-option">
-          Verdana, Geneva, sans-serif</option>
-      </select>
-    </div>
-
-    <div
-      class="style-option"
-      style="position: absolute; display: inline-block; padding: 3px;
-        left: 16px; top: 189px;">
-      <label>Color:
-        <input
-          type="text"
-          data-css="color"
-          value="rgb(0, 0, 0)"
-          name="editing">
-          &nbsp;(Use RGB or color names, like 'red')
-      </label>
-    </div>
-
-    <div
-      class="style-option"
-      style="width: 500px; position: absolute; display: inline-block;
-        padding: 3px; left: 16px; top: 220px;">
-      <label>Background Color:
-        <input
-          type="text"
-          data-css="background-color"
-          value="rgb(255, 192, 203)"
-          name="editing">
-      </label>
-    </div>
-
-    <div
-      class="style-option"
-      style="position: absolute; display: inline-block; padding: 3px;
-        left: 16px; top: 250.578125px;">
-      <label>Padding:
-        <input
-          type="text"
-          data-css="padding"
-          value="0px"
-          name="editing">
-        (px, em, or %)
-      </label>
-    </div>
-
-    <div
-      class="style-option"
-      style="position: absolute; display: inline-block; padding: 3px;
-      left: 16px; top: 281.578125px;">
-      <label>Border:
-        <select data-css="border-style" name="editing">
-          <option class="border-style-option"></option>
-          <option class="border-style-option">none</option>
-          <option class="border-style-option">solid</option>
-          <option class="border-style-option">hidden</option>
-          <option class="border-style-option">dotted</option>
-          <option class="border-style-option">dashed</option>
-          <option class="border-style-option">double</option>
-          <option class="border-style-option">groove</option>
-          <option class="border-style-option">ridge</option>
-          <option class="border-style-option">inset</option>
-          <option class="border-style-option">outset</option>
+      <div class="style-option">
+        <label>Font-Family:</label>
+        <select data-css="font-family" name="editing">
+          <option class="font-family-option"></option>
+          <option class="font-family-option">
+            sans-serif</option>
+          <option class="font-family-option">
+            serif</option>
+          <option class="font-family-option">
+            monospace</option>
+          <option class="font-family-option">
+            cursive</option>
+          <option class="font-family-option">
+            fantasy</option>
+          <option class="font-family-option">
+            Arial, Helvetica, sans-serif</option>
+          <option class="font-family-option">
+            Arial Black, Gadget, sans-serif</option>
+          <option class="font-family-option">
+            Comic Sans MS, cursive, sans-serif</option>
+          <option class="font-family-option">
+            Courier New, Courier, monospace</option>
+          <option class="font-family-option">
+            Georgia, serif</option>
+          <option class="font-family-option">
+            Impact, Charcoal, sans-serif</option>
+          <option class="font-family-option">
+            Lucida Console, Monaco, monospace</option>
+          <option class="font-family-option">
+            Lucida Sans Unicode, Lucida Grande, sans-serif</option>
+          <option class="font-family-option">
+            Palatino Linotype, Book Antiqua, Palatino, serif</option>
+          <option class="font-family-option">
+            Tahoma, Geneva, sans-serif</option>
+          <option class="font-family-option">
+            Times New Roman, Times, serif</option>
+          <option class="font-family-option">
+            Trebuchet MS, Helvetica, sans-serif</option>
+          <option class="font-family-option">
+            Verdana, Geneva, sans-serif</option>
         </select>
-      </label>
+      </div>
     </div>
 
-    <div
-      class="style-option"
-      style="position: absolute; display: inline-block; padding: 3px;
-        left: 259px; top: 277.578125px;">
-      <label>Border width:
-        <input
-          type="number"
-          data-css="border-width"
-          min="1"
-          max="999"
-          value="0"
-          name="editing">
-        (digits only)
-      </label>
+    <div class='style-group group'>
+      <div class="style-option">
+        <label>Color:
+          <input
+            type="text"
+            data-css="color"
+            value="<%= $field.css('color') || 'black' %>"
+            name="editing">
+            <span class='tip'>(Use RGB or color names, like red)</span>
+        </label>
+      </div>
+
+      <div class="style-option">
+        <label>Background Color:
+          <input
+            type="text"
+            data-css="background-color"
+            name="editing">
+        </label>
+      </div>
+
+      <div class="style-option">
+        <label>Padding:
+          <input
+            type="text"
+            data-css="padding"
+            value="<%= $field.css('padding')%>"
+            name="editing">
+          <span class='tip'>(px, em, or %)</span>
+        </label>
+      </div>
     </div>
 
-    <div
-      class="style-option"
-      style="position: absolute; display: inline-block; padding: 3px;
-        left: 16px; top: 308.578125px;">
-      <label>Border color:
-        <input
-          type="text"
-          data-css="border-color"
-          value="rgb(0, 0, 0)"
-          name="editing">
-      </label>
+    <div class='style-group group'>
+      <div class="style-option">
+        <label>Border Type:
+          <select data-css="border-style" name="editing">
+            <option class="border-style-option"></option>
+            <option class="border-style-option">none</option>
+            <option class="border-style-option">solid</option>
+            <option class="border-style-option">hidden</option>
+            <option class="border-style-option">dotted</option>
+            <option class="border-style-option">dashed</option>
+            <option class="border-style-option">double</option>
+            <option class="border-style-option">groove</option>
+            <option class="border-style-option">ridge</option>
+            <option class="border-style-option">inset</option>
+            <option class="border-style-option">outset</option>
+          </select>
+        </label>
+      </div>
+
+      <div
+        class="style-option"
+        style="float: right;">
+        <label>Border Width:
+          <input
+            type="number"
+            data-css="border-width"
+            min="1"
+            max="999"
+            value="<%= parseInt($field.css('border-width')) %>"
+            name="editing">
+          <span class='tip'>(digits only)</span>
+        </label>
+      </div>
+
+      <div class="style-option">
+        <label>Border color:
+          <input
+            type="text"
+            data-css="border-color"
+            value="<%= $field.css('border-color') || 'black' %>"
+            size='18'
+            name="editing">
+          <span class='tip'>Both border type and width are needed</span>
+        </label>
+      </div>
     </div>
 
-    <div
-      class="style-option"
-      style="position: absolute; display: inline-block; left: 37px;
-        top: 342px;">
-      <button
-        class="edit-box-button"
-        id="pull-front">
-        Pull to the front
-      </button>
-    </div>
+    <div class='style-group group'>
+      <div class="style-option">
+        <label>Width:
+          <input
+            type="text"
+            size='10'
+            data-css="width"
+            value="<%= $field.css('width')%>"
+            name="editing">
+          <span class='tip'>(px, em, or %)</span>
+        </label>
+      </div>
 
-    <div
-      class="style-option"
-      style="position: absolute; display: inline-block; left: 267.609375px;
-        top: 342px;">
-      <button
-        class="edit-box-button"
-        id="push-back">
-        Push to the background
-      </button>
+      <div class="style-option" style='float: right;'>
+        <label>Height:
+          <input
+            type="text"
+            size='10'
+            data-css="height"
+            value="<%= $field.css('height')%>"
+            name="editing">
+          <span class='tip'>(px, em, or %)</span>
+        </label>
+      </div>
+
+      <div class="style-option">
+        <button
+          class="edit-box-button"
+          id="pull-front">
+          Pull to the front
+        </button>
+      </div>
+
+      <div
+        class="style-option"
+        style="float: right;">
+        <button
+          class="edit-box-button"
+          id="push-back">
+          Push to the background
+        </button>
+      </div>
     </div>
-  </span>
+  </div>
 
   <button
     class='edit-box-button'

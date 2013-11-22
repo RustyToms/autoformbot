@@ -1,5 +1,4 @@
 ------------ To Do -------------------------------------------
-- make each field have options to push to the background or put on top
 - make rails controllers not do more than 1 query for each page
 
 - add Results and notifications

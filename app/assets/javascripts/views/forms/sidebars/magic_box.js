@@ -30,11 +30,11 @@ AFB.Views.MagicBox = Backbone.View.extend({
   parseClick: function(event){
     console.log("in MagicBox#parseClick");
     if (event.target.id === 'add-HTML'){
-      var $code = this.$el.find('#magic-box-code');
+      var $code = this.$el.find('.magicbox-div-code');
       console.log("adding this to the magic box: " + $code.val());
 
       this.$field = $(this.field || $('#form-itable .editing'));
-      this.$field.find('#magic-box').append($($code.val()));
+      this.$field.find('.magicbox-div').append($($code.val()));
       $code.val('');
       this.removeShell();
       this.model.localSaveForm();
@@ -47,7 +47,7 @@ AFB.Views.MagicBox = Backbone.View.extend({
     this.parentView.positionEditBox(this.$el);
     window.setTimeout(function(){
       if (that.$field.children('#tamper-seal').length){
-        var $magicBox = that.$field.find('#magic-box');
+        var $magicBox = that.$field.find('.magicbox-div');
 
         if ($magicBox.html() && $magicBox.clone().html().trim()){
           that.parentView.$el.off(that.eventNames, that.eventSelector);
