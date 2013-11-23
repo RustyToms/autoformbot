@@ -61,11 +61,9 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   formShow: function(id) {
     console.log("in FormRouter#formShow for form #" + id);
 		var showModel = AFB.formCollection.get(id);
-    var View = AFB.Views.FormShow;
     this.cleanRootEl();
     this.view && this.view.remove();
-    console.log(this.$rootEl.prop('outerHTML'));
-    this.view = new View({
+    this.view = new AFB.Views.FormShow({
         model: showModel,
         el: JST['forms/form_wrapper']()
       });
@@ -76,34 +74,14 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   formResults: function(id) {
     console.log("in FormRouter#formResults for form #" + id);
     var form = AFB.formCollection.get(id);
-    results = new AFB.Collections.Results();
-    results.fetch({
-      data: {form_id: form.get('id')},
-      success: function(collection, response, options){
-        console.log("in FormRouter#formResults success");
-        console.log(collection);
-        console.log(response);
-        console.log(options);
-        form.set('results', collection);
-      },
-      error: function(collection, response, options){
-        console.log("in FormRouter#formResults error");
-        console.log(collection);
-        console.log(response);
-        console.log(options);
-      }
-    });
-    console.log(results);
-    // var View = AFB.Views.FormShow;
-    // this.cleanRootEl();
-    // this.view && this.view.remove();
-    // console.log(this.$rootEl.prop('outerHTML'));
-    // this.view = new View({
-    //     model: showModel,
-    //     el: JST['forms/form_wrapper']()
-    //   });
-    // this.$rootEl.append(this.view.render().$el);
-    // window.scrollTo(0,0);
+    this.cleanRootEl();
+    this.view && this.view.remove();
+    this.view = new AFB.Views.FormResults({
+        model: form
+      });
+    this.view.form = form;
+    this.$rootEl.append(this.view.render().$el);
+    window.scrollTo(0,0);
   },
 
   formEdit: function(id) {

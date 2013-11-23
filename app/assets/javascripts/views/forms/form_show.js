@@ -17,11 +17,9 @@ AFB.Views.FormShow = Backbone.View.extend({
     event.preventDefault();
     var that = this;
 
-    var $form = that.$el.find('#form-itable').clone();
-    $form.find('#form-itable-submit').remove();
+    var $form = $('.fi-30x form');
     var form_id = that.model.get('id');
     console.log(form_id);
-    myForm = $form;
     $.ajax({
       url: '/results/' + form_id,
       type: 'POST',

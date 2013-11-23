@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <% _.each(headers, function(question){ %>
+      <th><%- question %></th>
+    <% }); %>
+  </tr>
+
+  <% _.each(resultsTable, function(result){ %>
+    <tr>
+      <% _.each(headers, function(question){ %>
+        <td><%- (result[question] || "") %></td>
+      <% }); %>
+    </tr>
+  <% }); %>
+
+</table>
