@@ -6,11 +6,12 @@ AFB.Views.FormMaster = Backbone.View.extend({
     "keyup .sidebar" : "sidebarValues",
     "keyup #edit-box" : "editBoxValues",
     "change .sidebar :checked, .sidebar select" : "sidebarValues",
-    "change #edit-box :checked, #edit-box select" : "editBoxValues"
+    "change #edit-box :checked, #edit-box select" : "editBoxValues",
   },
 
   initialize: function(){
     console.log('FormMaster View initialized');
+my = this;
   },
 
   render: function(newSidebar, formView){
@@ -95,6 +96,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     $(function(){
       $editBox.tabs();
       that.positionEditBox($editBox);
+      AFB.Routers.FormRouter.positionWindow(newEditBox.field.add($editBox));
       that.fieldDuplicate();
     });
   },
@@ -110,10 +112,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
       'left': (left + 'px'),
       'top': (top + 'px')
     });
-
-    if (!$field.hasClass('magicBox')){
-      AFB.Routers.FormRouter.positionWindow($field.add($editBox));
-    }
   },
 
   fieldDuplicate: function(){
