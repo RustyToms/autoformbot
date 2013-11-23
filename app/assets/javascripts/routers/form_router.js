@@ -109,6 +109,8 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   formEdit: function(id) {
     console.log('in FormRouter#formEdit for form #' + id);
 		var editModel = AFB.formCollection.get(id);
+    // update updated_at so that it is properly sorted when index is called
+    editModel.save();
     this.cleanRootEl();
     this.formMaster(editModel);
   },

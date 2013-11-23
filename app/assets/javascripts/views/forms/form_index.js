@@ -11,10 +11,9 @@ AFB.Views.FormIndex = Backbone.View.extend({
     console.log("rendering FormIndex view");
     var that = this;
     this.$el.empty();
-    this.$el.html(JST["forms/index"]({
-      forms: AFB.formCollection
-    }));
+    this.$el.html(JST["forms/index"]());
 
+    AFB.formCollection.sort();
     AFB.formCollection.each(function(form){
       that.$el.append(JST["forms/index_add_form"]({
         form: form
@@ -87,14 +86,14 @@ AFB.Views.FormIndex = Backbone.View.extend({
     AFB.Routers.FormRouter.myFlash(formName + ' deleted!');
   },
 
-	duplicateForm: function(formId, $target){
+	duplicateForm: function(formId){
 		var that = this;
 		var form = AFB.formCollection.get(formId);
 		form.duplicateForm(function(newForm){
       var $newButton = $(JST["forms/index_add_form"]({
           form: newForm
       }));
-      $target.closest('.form-summary').after($newButton);
+      $('.new-form-link').after($newButton);
       that.makeFormImage($newButton.find('.fi-30x'));
     });
 	},

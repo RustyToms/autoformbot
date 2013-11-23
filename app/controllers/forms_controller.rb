@@ -21,6 +21,7 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
     @form.update_attributes(params[:form])
     @form.update_url
+    @form.updated_at = DateTime.now
     if @form && @form.save
       render json: @form
     else

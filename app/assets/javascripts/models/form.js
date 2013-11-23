@@ -59,7 +59,6 @@ AFB.Models.Form = Backbone.Model.extend ({
 		} else {
       this.updateHTML(selector, value);
     }
-    this.formRouter.openModel = this;
   },
 
   addField: function(field){
@@ -150,6 +149,7 @@ AFB.Models.Form = Backbone.Model.extend ({
   localSaveForm: function(){
     console.log('locally saving form model');
     var that = this;
+    this.formRouter.openModel = this;
 
     $(function(){
       var $form = $('.outer-wrapper');
