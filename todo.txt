@@ -1,4 +1,5 @@
 ------------ To Do -------------------------------------------
+- update position, but don't scroll screen when editing field inside edit box?
 - make rails controllers not do more than 1 query for each page
 
 - add Results and notifications

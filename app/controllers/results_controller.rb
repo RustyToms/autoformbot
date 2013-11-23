@@ -1,7 +1,8 @@
 class ResultsController < ApplicationController
 
   def index
-
+    @results = Result.find_by_form_id(params[:form_id])
+    render json: @results
   end
 
   def create
@@ -27,7 +28,12 @@ class ResultsController < ApplicationController
   end
 
   def destroy
-
+    @result = Result.find(params[:id]);
+    if @result.destroy
+      render json: @result
+    else
+      render json: @result, status: :unprocessable_entity
+    end
   end
 
 end

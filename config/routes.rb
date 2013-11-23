@@ -12,19 +12,15 @@ AutoFormBot::Application.routes.draw do
     end
   end
 
-  resources :forms
+  resources :forms, only: [:new, :create, :update, :destroy]
 
   resources :accounts
 
-  resources :results, only: [:destroy]
+  resources :results, only: [:destroy, :index]
 
   post '/results/:form_id', to: 'results#create'
 
   get '/thank_you', to: 'static_pages#thank_you'
-
-
-
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

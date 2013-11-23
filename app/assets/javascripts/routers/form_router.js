@@ -75,7 +75,25 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 
   formResults: function(id) {
     console.log("in FormRouter#formResults for form #" + id);
-    // var showModel = AFB.formCollection.get(id);
+    var form = AFB.formCollection.get(id);
+    results = new AFB.Collections.Results();
+    results.fetch({
+      data: {form_id: form.get('id')},
+      success: function(collection, response, options){
+        console.log("in FormRouter#formResults success");
+        console.log(collection);
+        console.log(response);
+        console.log(options);
+        form.set('results', collection);
+      },
+      error: function(collection, response, options){
+        console.log("in FormRouter#formResults error");
+        console.log(collection);
+        console.log(response);
+        console.log(options);
+      }
+    });
+    console.log(results);
     // var View = AFB.Views.FormShow;
     // this.cleanRootEl();
     // this.view && this.view.remove();
