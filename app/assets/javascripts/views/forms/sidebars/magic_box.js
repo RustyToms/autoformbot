@@ -13,6 +13,7 @@ AFB.Views.MagicBox = Backbone.View.extend({
     var that = this;
     console.log("rendering FormSidebarMagicBox");
     this.$el.html(JST['forms/sidebars/magic_box']({
+      $field: $(that.field).find('.magicbox-div')
     }));
 
     if (!this.field || $(this.field).children('#tamper-seal').length){
@@ -30,12 +31,11 @@ AFB.Views.MagicBox = Backbone.View.extend({
   parseClick: function(event){
     console.log("in MagicBox#parseClick");
     if (event.target.id === 'add-HTML'){
-      var $code = this.$el.find('.magicbox-div-code');
+      var $code = this.$el.find('#magic-box-code');
       console.log("adding this to the magic box: " + $code.val());
 
       this.$field = $(this.field || $('#form-itable .editing'));
-      this.$field.find('.magicbox-div').append($($code.val()));
-      $code.val('');
+      this.$field.find('.magicbox-div').html($($code.val()));
       this.removeShell();
       this.model.localSaveForm();
     }
