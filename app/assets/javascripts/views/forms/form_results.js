@@ -23,6 +23,8 @@ AFB.Views.FormResults = Backbone.View.extend({
       headers: this.headers,
       resultsTable: this.resultsTable
     }));
+    AFB.Routers.FormRouter.matchSize(this.$el.find('.results-box'),
+      this.$el.find('.results-table'));
   },
 
   fetchResults: function(){

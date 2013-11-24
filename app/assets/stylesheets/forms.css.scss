@@ -506,6 +506,10 @@ $sidebar-width: 300px;
   margin-right: 30px;
 }
 /* --- FormResults --- */
+.results-box {
+  margin: auto;
+}
+
 .results-table {
   background-color: white;
 }
@@ -518,7 +522,7 @@ $sidebar-width: 300px;
 .results-table th {
   border: 2px solid white;
   padding: 5px 5px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -538,7 +542,7 @@ $sidebar-width: 300px;
 .results-table td {
   border: 2px solid white;
   padding: 5px 5px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .results-table .results-row:hover {
