@@ -1,7 +1,11 @@
 AFB.Views.FormResults = Backbone.View.extend({
+  events: {
+    "click .results-table": "cellClick"
+  },
+
   render: function(){
     console.log("FormResults#render");
-    this.$el.empty()
+    this.$el.empty();
     this.$el.html('<h1 class="page-title" >Fetching Results for "' +
       this.model.get('name') + '"...</h1>');
     this.fetchResults();
@@ -13,8 +17,9 @@ AFB.Views.FormResults = Backbone.View.extend({
     console.log(this.results);
     console.log(this.resultsTable);
     console.log(this.headers);
-    this.$el.empty
+    this.$el.empty;
     this.$el.html(JST['forms/results']({
+      name: this.model.get('name'),
       headers: this.headers,
       resultsTable: this.resultsTable
     }));
@@ -57,5 +62,27 @@ AFB.Views.FormResults = Backbone.View.extend({
       that.resultsTable.push(hash);
       console.log(that.resultsTable);
     });
+  },
+
+  cellClick: function(event){
+    console.log('FormResults#cellClick');
+    var $cell = $(event.target);
+    if ($cell.is('td')){
+      if ($cell.closest('.results-table').find('td.clicked:first-child').
+          length < 1){
+        $cell.closest('.results-table').find('.clicked').
+          removeClass('clicked');
+      }
+      $cell.siblings('td').andSelf().toggleClass('clicked');
+    } else if ($cell.is('th')  && !$cell.is('th:first-child')){
+      if ($cell.siblings('.clicked').andSelf('.clicked').length < 1){
+        $cell.closest('.results-table').find('.clicked').
+          removeClass('clicked');
+      }
+      var n = $cell.prevAll().length + 1;
+      $cell.closest('.results-table').find("td:nth-child(" + n + ")")
+        .toggleClass('clicked');
+      $cell.toggleClass('clicked');
+    }
   }
 });

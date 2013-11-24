@@ -191,7 +191,7 @@ $formLink-padding: 5px;
   margin: $formSelect-margin;
 }
 
-.new-form-link {
+.new-form-link, .boxed-title {
   display: block;
   position: relative;
   height: 60px;
@@ -217,7 +217,7 @@ $formLink-padding: 5px;
   z-index: 2;
 }
 
-.new-form-link:hover {
+.new-form-link:hover, .boxed-title:hover {
   @include box-shadow(-3px 5px 6px black, 0 0 25px 20px white);
 }
 
@@ -504,4 +504,57 @@ $sidebar-width: 300px;
 
 .fi-30x {
   margin-right: 30px;
+}
+/* --- FormResults --- */
+.results-table {
+  background-color: white;
+}
+
+.results-header {
+  background-color: $blue;
+  padding: 0px;
+}
+
+.results-table th {
+  border: 2px solid white;
+  padding: 5px 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.results-row {
+  background-color: $pale-steel;
+  padding: 0px;
+}
+
+.results-row:nth-child(3n + 1) {
+  background-color: $background-blue;
+}
+
+.results-row:nth-child(3n + 2) {
+  background-color: $very-pale-blue;
+}
+
+.results-table td {
+  border: 2px solid white;
+  padding: 5px 5px;
+  font-size: 12px;
+}
+
+.results-table .results-row:hover {
+  background-color: pink;
+}
+
+.results-table th:nth-child(n + 2),
+.results-table td:first-child {
+  cursor: pointer;
+}
+
+.results-table td:hover{
+  color: white;
+  background-color: black;
+}
+
+.results-table td.clicked {
+  background-color: rgba(255, 255, 0, 0.5);
 }

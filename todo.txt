@@ -1,7 +1,13 @@
 ------------ To Do -------------------------------------------
+- seed results header from form not from results
+- Have checkbox options each be their own column
+- Have header and first column track with scroll
+- Make background of results be a fixed position version of the form
+  pushed to the background and covered with clear coat
+
 - make rails controllers not do more than 1 query for each page
 
-- add Results and notifications
+- add notifications
 
 - add Code-get
 
