@@ -4,6 +4,7 @@
 - Have header and first column track with scroll
 - Make background of results be a fixed position version of the form
   pushed to the background and covered with clear coat
+- Allow sorting by column
 
 - make rails controllers not do more than 1 query for each page
 
