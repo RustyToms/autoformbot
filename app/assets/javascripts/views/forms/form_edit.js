@@ -30,8 +30,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   prepForm: function($formText){
     console.log('**************** FormEdit#prepForm ********************');
-    $formText.find("label, h2, p, li.magicBox div").
-      wrapInner('<span class="span-wrap" contenteditable="true" ></span>');
+    $formText.find("label, h2, p, li.magicBox div").not(function(){
+      return $(this).parent().hasClass('span-wrap');
+    }).wrap('<span class="span-wrap" contenteditable="true" ></span>');
       // attr('contenteditable', 'true');
     $formText.find('input, textarea').attr('disabled', 'disabled');
 
@@ -96,10 +97,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     if (!$(event.target).attr('class')){
       return;
     } else if ($(event.target).hasClass('span-wrap')){
-      var $spanWrap = $(event.target);
-      var $parent = $spanWrap.parent().clone().css('display', 'none');
-      $spanWrap.parent().removeClass().after($parent);
-      event.target = $parent.get(0);
+      event.target = $(event.target).children().get(0);
     }
 		console.log("updating editBox, triggered with a " + event.type);
       console.log(event.target);
@@ -111,8 +109,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
       }).not("input[type='checkbox'], input[type='radio']");
         //should exclude checkboxes and radio buttons that are not checked
       $input.trigger('keyup');
-      $spanWrap.parent().attr('class', ($parent.attr('class')));
-      $parent.remove();
     });
 	}
 });
