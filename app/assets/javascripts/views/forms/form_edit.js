@@ -85,6 +85,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
       this.parentView.makeEditBox(editBox);
       $(function(){
+        console.log('document ready, adding form-filter click listener')
         $('#form-filter').on('click', function(){
           that.parentView.removeActiveEdits();
         });
@@ -104,6 +105,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.model.localSaveForm();
 		this.parentView.updateEditBox(event);
     $(function(){
+      console.log('document ready, triggering keyups in editbox');
       $input = $('#edit-box').find('input, textarea').filter(function(){
         return ($(event.target).attr('class').indexOf(this.name) > -1);
       }).not("input[type='checkbox'], input[type='radio']");

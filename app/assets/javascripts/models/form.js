@@ -1,4 +1,5 @@
 AFB.Models.Form = Backbone.Model.extend ({
+  localSaveCount: 0,
 
   updateAttribute: function(selector, attribute, value){
     console.log("updating form attribute values");
@@ -152,8 +153,14 @@ AFB.Models.Form = Backbone.Model.extend ({
     console.log('locally saving form model');
     var that = this;
     this.formRouter.openModel = this;
+    this.localSaveCount += 1;
+    var uniqueSave = this.localSaveCount;
 
     $(function(){
+      if (uniqueSave != that.localSaveCount) {
+        return; // makes sure this is only run once if they get stacked up
+      }
+      console.log('document ready, locally saving form, uniqueSave is ' + uniqueSave);
       var $form = $('.outer-wrapper');
       $form.find('.ui-draggable').draggable().draggable('destroy');
       $form.find('.ui-droppable').droppable().droppable('destroy');

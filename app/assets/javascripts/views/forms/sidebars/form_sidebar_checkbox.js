@@ -23,7 +23,6 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
   },
 
   updateValues: function(event){
-myEvent = event;
     console.log("in FormSidebarCheckbox#updateValues");
     if ($(event.target).attr('name')=== 'checkbox-label' ){
       var name = event.target.value + '[]';
@@ -32,9 +31,7 @@ myEvent = event;
       this.updateField();
       this.syncOptionNames();
 
-    } else if (this.$field.find('label:focus').length) {
-console.log('new value shoule be ' + event.target.value);
-
+    } else if (this.$field.find(':focus').length) {
       this.$field.find("input#" + $(event.target).attr('name')).
         val(event.target.value);
     } else {

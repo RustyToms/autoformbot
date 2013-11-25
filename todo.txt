@@ -19,4 +19,3 @@
 - get rid of all ids in forms, as multiple forms are rendered in the form index
 
 ------------ Unresolved Issues -------------------------------
-- Buttons display weird (they actually appear to display correctly) in ipad browser

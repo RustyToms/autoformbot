@@ -27,8 +27,9 @@ my = this;
   },
 
   sidebarReset: function(){
-    console.log('resetting sidebar');
+    console.log('resetting sidebar position');
     $(function(){
+      console.log('document ready, resetting sidebar position');
       var $sidebar = $('.sidebar_window');
       $sidebar && $sidebar.css('top', $(this).scrollTop());
     });
@@ -94,6 +95,7 @@ my = this;
     }
 
     $(function(){
+      console.log('document ready, positioning editbox and window');
       $editBox.tabs();
       that.positionEditBox($editBox);
       AFB.Routers.FormRouter.positionWindow(newEditBox.field.add($editBox));
@@ -197,6 +199,7 @@ my = this;
         this.editForm.renderChange();
 
         $(function(){
+          console.log('document ready, positioning editbox');
           that.positionEditBox($('#edit-box'));
         });
 
@@ -300,7 +303,7 @@ my = this;
     if (!this.queued){
       this.queued = true;
       $(function(){
-        console.log("making fields-list elements draggable");
+        console.log("document ready, making fields-list elements draggable");
         that.formDroppable();
         that.formFieldsDraggable();
         that.queued = false;
