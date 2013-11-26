@@ -15,12 +15,12 @@ AFB.Views.MagicBox = Backbone.View.extend({
     this.$el.html(JST['forms/sidebars/magic_box']({
       $field: $(that.field).find('.magicbox-div')
     }));
+    this.removeShell();
 
-    if (!this.field || $(this.field).children('#tamper-seal').length){
+    if ($(this.field).children('.tamper-seal').length){
       //prevent listeners from piling up
       this.parentView.$el.off(this.eventNames, this.eventSelector);
       this.parentView.$el.on(this.eventNames, this.eventSelector, (function(){
-        that.$field = $(that.field || $('#form-itable .editing'));
         that.removeShell();
       }));
     }
@@ -34,8 +34,7 @@ AFB.Views.MagicBox = Backbone.View.extend({
       var $code = this.$el.find('#magic-box-code');
       console.log("adding this to the magic box: " + $code.val());
 
-      this.$field = $(this.field || $('#form-itable .editing'));
-      this.$field.find('.magicbox-div').html($($code.val()));
+      $(this.field).find('.magicbox-div').html($($code.val()));
       this.removeShell();
       this.model.localSaveForm();
     }
@@ -46,13 +45,11 @@ AFB.Views.MagicBox = Backbone.View.extend({
     var that = this;
     this.parentView.positionEditBox(this.$el);
     window.setTimeout(function(){
-      if (that.$field.children('#tamper-seal').length){
-        var $magicBox = that.$field.find('.magicbox-div');
-
+      var $magicBox = $(that.field).children('.tamper-seal');
+      if ($magicBox.length){
         if ($magicBox.html() && $magicBox.clone().html().trim()){
           that.parentView.$el.off(that.eventNames, that.eventSelector);
-          $magicBox.removeAttr('style');
-          that.$field.children('#tamper-seal').remove();
+          $magicBox.removeClass('tamper-seal').removeAttr('style');
           that.model.localSaveForm();
         }
       }

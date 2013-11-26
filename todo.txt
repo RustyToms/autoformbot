@@ -14,8 +14,6 @@
 
 - add Account stuff
 
-- make duplicate of field by dragging from edit box
-
 - get rid of all ids in forms, as multiple forms are rendered in the form index
 
 ------------ Unresolved Issues -------------------------------
