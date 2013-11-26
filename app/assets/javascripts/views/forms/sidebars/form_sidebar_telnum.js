@@ -23,6 +23,8 @@ AFB.Views.FormSidebarTelnum = Backbone.View.extend({
       var size = parseInt(event.target.value, 10) + 3;
       this.model.updateAttribute('.editing .telnum', 'size', size);
     }
-    this.model.updateValues(event);
+    if ( $(this.field).find(':focus').length < 1){
+      this.model.updateValues(event);
+    }
   }
 });

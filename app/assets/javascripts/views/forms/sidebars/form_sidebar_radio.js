@@ -23,7 +23,9 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
     console.log("in FormSidebarRadio#updateValues");
 
 		if ($(event.target).hasClass('radio-label')){
-      this.model.updateHTML('.editing .radio-label', event.target.value);
+      if ( $(this.field).find(':focus').length < 1){
+        this.model.updateHTML('.editing .radio-label', event.target.value);
+      }
       this.model.updateAttribute('.editing .radio-option input',
         'name', event.target.value);
       this.updateField();
@@ -93,7 +95,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
       var optionName = "Option name";
 
       if($preexisting.length){
-        optionName = $($preexisting.shift()).find('label').text();
+        optionName = $($preexisting.shift()).find('label span').text();
       }
 
       var optionOption = JST['forms/sidebars/radio_option']({

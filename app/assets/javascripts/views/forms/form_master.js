@@ -260,7 +260,6 @@ my = this;
     } else {
       this.editBox.updateValues && this.editBox.updateValues(event);
     }
-    //this.editForm.prepForm($('.editing'));
     this.positionEditBox($('#edit-box'));
   },
 

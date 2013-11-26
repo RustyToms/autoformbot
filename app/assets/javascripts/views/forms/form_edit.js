@@ -30,10 +30,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
   prepForm: function($formText){
     console.log('**************** FormEdit#prepForm ********************');
-    $formText.find("label, h2, p, li.magicBox div").not(function(){
-      return $(this).parent().hasClass('span-wrap');
-    }).wrap('<span class="span-wrap" contenteditable="true" ></span>');
-      // attr('contenteditable', 'true');
+    $formText.find(".label, label span").attr('contenteditable', 'true');
     $formText.find('input, textarea').attr('disabled', 'disabled');
 
     $targets = $formText.find('.formEl, .submit-button');
@@ -46,6 +43,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     console.log("in parseClickForm");
     var $target = $(event.target);
     var $formEl = $target.closest(".formEl");
+console.log($(':focus').prop('outerHTML'));
 
     if($target.hasClass('delete-field')){
       event.preventDefault();
@@ -56,6 +54,10 @@ AFB.Views.FormEdit = Backbone.View.extend({
     } else if ($formEl.length && !$formEl.hasClass('editing')){
       this.startEditingField($target);
 
+    }
+
+    if ($target.attr('contenteditable')){
+      $target.focus();
     }
   },
 
@@ -97,11 +99,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
     var that = this;
     if (!$(event.target).attr('class')){
       return;
-    } else if ($(event.target).hasClass('span-wrap')){
-      event.target = $(event.target).children().get(0);
     }
 		console.log("updating editBox, triggered with a " + event.type);
-      console.log(event.target);
+    console.log(event.target);
     this.model.localSaveForm();
 		this.parentView.updateEditBox(event);
     $(function(){

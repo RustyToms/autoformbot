@@ -27,7 +27,9 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
     if ($(event.target).attr('name')=== 'checkbox-label' ){
       var name = event.target.value + '[]';
       this.model.updateAttribute('.editing .checkbox', 'name', name);
-      this.model.updateValues(event);
+      if ( this.$field.find(':focus').length < 1){
+        this.model.updateValues(event);
+      }
       this.updateField();
       this.syncOptionNames();
 
@@ -105,7 +107,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
 
       if($preexisting.length){
         var $currentOption = $($preexisting.shift());
-        value = $currentOption.find('label').text();
+        value = $currentOption.find('label span').text();
 				checked = $currentOption.find('input').get(0).hasAttribute('checked');
       }
 

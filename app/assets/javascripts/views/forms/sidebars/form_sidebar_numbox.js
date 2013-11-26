@@ -20,6 +20,8 @@ AFB.Views.FormSidebarNumbox = Backbone.View.extend({
       var name = event.target.value;
       this.model.updateAttribute('.editing .numbox', 'name', name);
     }
-    this.model.updateValues(event);
+    if ( $(this.field).find(':focus').length < 1){
+      this.model.updateValues(event);
+    }
   }
 });

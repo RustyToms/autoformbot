@@ -20,6 +20,8 @@ AFB.Views.FormSidebarTextbox = Backbone.View.extend({
       var name = event.target.value;
       this.model.updateAttribute('.editing .textbox', 'name', name);
     }
-    this.model.updateValues(event);
+    if ( $(this.field).find(':focus').length < 1){
+      this.model.updateValues(event);
+    }
   }
 });

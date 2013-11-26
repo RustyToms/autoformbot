@@ -16,7 +16,9 @@ AFB.Views.FormEditTitle = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormEditTitle#updateValues");
-    this.model.updateValues(event);
+    if ( $(this.field).find(':focus').length < 1){
+      this.model.updateValues(event);
+    }
     if ($(event.target).attr('name')=='formName'){
       this.model.set({name: $(event.target).val()}, {silent: true});
     }
