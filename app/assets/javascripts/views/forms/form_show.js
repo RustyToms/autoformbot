@@ -1,13 +1,12 @@
 AFB.Views.FormShow = Backbone.View.extend({
   events: {
-    'click #form-itable-submit': 'submitForm'
+    'click .submit-button input': 'submitForm'
   },
 
   render: function(){
     this.model.removeActiveEdits();
     var $form = $(this.model.get('form_text'));
     this.$el.append($form);
-		// this.$el.append(JST['forms/show_form']());
 
     return this;
   },
@@ -18,6 +17,12 @@ AFB.Views.FormShow = Backbone.View.extend({
     var that = this;
 
     var $form = $('.fi-30x form');
+    var $submit = $form.find('.submit-button input');
+    $submit.attr({
+      disabled: 'true',
+      value: 'Submitting..'
+    });
+
     var form_id = that.model.get('id');
     console.log(form_id);
     $.ajax({
@@ -36,6 +41,7 @@ AFB.Views.FormShow = Backbone.View.extend({
     console.log(status);
     console.log(object);
     AFB.Routers.FormRouter.myFlash('Form submitted!');
+    $('.submit-button input').val('Submit').removeAttr('disabled');
   },
 
   submissionError: function(object, errorMsg){
@@ -45,5 +51,6 @@ AFB.Views.FormShow = Backbone.View.extend({
     console.log(object.responseText);
     AFB.Routers.FormRouter.myFlash(errorMsg + ": " + object.status +
       "  Your form was not submitted");
+    $('.submit-button input').val('Submit').removeAttr('disabled');
   }
 });

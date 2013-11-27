@@ -345,6 +345,7 @@ a.formSelect:active {
     width: $formSelect-dim-sum / 3 - $formLink-padding * 2;
     bottom: -$formSelect-margin;
     left: -$formSelect-margin;
+    background-color: $light-green;
   }
 
   a.index-not {
@@ -365,7 +366,7 @@ a.formSelect:active {
     width: $formSelect-dim-sum / 3 - $formLink-padding * 2;
     bottom: -$formSelect-margin;
     left: $formSelect-margin * 2 / 3;
-    background-color: $light-green;
+    background-color: $very-pale-blue;
   }
 
   a.formSelect:active {
