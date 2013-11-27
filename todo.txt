@@ -27,4 +27,3 @@
 
 IE issues:
 - new textarea doesnt work right
-- editbox styling options doesn't look right
