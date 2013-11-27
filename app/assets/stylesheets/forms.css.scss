@@ -38,10 +38,10 @@ a:hover {
 
 .corner-logo {
   display: inline-block;
-  margin: 10px auto 0 auto;
+  padding: 5px 0;
   height: 36px;
   line-height: 1;
-  border-radius: 10px;
+  border-bottom-right-radius: 10px;
   background-color: white;
   @include box-shadow(0 0 15px 10px white);
 }
@@ -76,8 +76,7 @@ a:hover {
 
 .corner-logo .blinking-cursor {
   background-color: #000;
-  display: inline-block;
-  position: absolute;
+  display: block;
   height: 23px;
   margin: 1px 0;
   float: left;
