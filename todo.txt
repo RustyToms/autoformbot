@@ -24,4 +24,7 @@
 
 ------------ Unresolved Issues -------------------------------
 - If form title is deleted the name of the form is lost and it can't be saved
-- The logo and magic box pasted forms lose some of their CSS in the hosted form but not in the formShow backbone view, at least in IE
+
+IE issues:
+- new textarea doesnt work right
+- editbox styling options doesn't look right

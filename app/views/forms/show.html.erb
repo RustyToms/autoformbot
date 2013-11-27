@@ -1,33 +1,33 @@
-<%= stylesheet_link_tag    "forms", :media => "all" %>
-
 <style>
 
-  main {
+  .fi-30x-host {
     display: block;
     text-align: center;
   }
 
-  main div {
+  .fi-30x-host .fi-30x-host-div {
     display: inline-block;
   }
 
-  .plug {
+  .fi-30x-site-plug {
     margin: 8px 0 40px 0;
     text-align: center;
   }
 
-  .left-top-corner {
+  .fi-30x-left-top-corner {
     position: absolute;
     left: 0;
     top: 0;
   }
 </style>
 
-<h4 class='plug'>
+<%= stylesheet_link_tag    "forms", :media => "all" %>
+
+<h4 class='fi-30x-site-plug'>
   <a href="http://form-itable.com">Form powered by Form-itable.com</a>
 </h4>
 
-<div class='left-top-corner'>
+<div class='fi-30x-left-top-corner'>
   <a href="http://form-itable.com" class='corner-logo'>
     <div class= 'corner-logo-box'>
       <h1 id='corner-logo-part1'>Form</h1>
@@ -39,8 +39,8 @@
   </a>
 </div>
 
-<main class='group'>
-  <div>
+<main class='group fi-30x-host'>
+  <div class='fi-30x-host-div'>
     <%= @form_wrapper.html_safe %>
 
       <%= @form.form_text.html_safe %>
