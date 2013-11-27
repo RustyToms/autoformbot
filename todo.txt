@@ -8,7 +8,7 @@
 
 - Choose:
   We host:
-    Provide link, explain options
+    Provide link, explain options - DONE
   You host:
     Would you like a webpage or just the form HTML?
       HTML - Provide a box with the form HTML text selected
@@ -18,10 +18,10 @@
 
 - add notifications
 
-- add Code-get
-
 - add Account stuff
 
 - get rid of all ids in forms, as multiple forms are rendered in the form index
 
 ------------ Unresolved Issues -------------------------------
+- If form title is deleted the name of the form is lost and it can't be saved
+- The logo and magic box pasted forms lose some of their CSS in the hosted form but not in the formShow backbone view, at least in IE
