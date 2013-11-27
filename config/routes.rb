@@ -12,7 +12,7 @@ AutoFormBot::Application.routes.draw do
     end
   end
 
-  resources :forms, only: [:new, :create, :update, :destroy]
+  resources :forms, only: [:show, :create, :update, :destroy]
 
   resources :accounts
 

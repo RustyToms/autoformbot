@@ -1,11 +1,10 @@
 class FormsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:show]
 
-  def new
-    @form = Form.new
-    @form.account_id = current_user.account.id
-    @form.set_name
-    render :new
+  def show
+    @form = Form.find(params[:id])
+    @form_wrapper = @form.make_form_wrapper
+    render :show
   end
 
   def create

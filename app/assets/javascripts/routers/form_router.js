@@ -113,7 +113,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.view && this.view.remove();
     this.view = new AFB.Views.FormCode({
       model: form,
-      el: this.$seedEl
+      el: this.$seedEl.clone()
     });
     this.$rootEl.append(this.view.render().$el);
     window.scrollTo(0,0);

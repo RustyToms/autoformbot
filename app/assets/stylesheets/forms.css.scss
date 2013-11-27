@@ -191,20 +191,30 @@ $formLink-padding: 5px;
   margin: $formSelect-margin;
 }
 
-.new-form-link, .boxed-title {
+.new-form-link, .message-box {
   display: block;
   position: relative;
-  height: 60px;
-  width: 300px;
   background-color: $light-green;
   border: 2px solid black;
   @include box-shadow(-3px 5px 6px black);
   font-weight: bold;
-  font-size: 20px;
-  line-height: 60px;
   border-radius: 10px;
   text-align: center;
   margin: 15px auto;
+}
+
+.message-box {
+  padding: 15px;
+  min-width: 500px;
+  display: inline-block;
+  max-width: 80%;
+}
+
+.new-form-link {
+  height: 60px;
+  width: 300px;
+  font-size: 20px;
+  line-height: 60px;
 }
 
 .new-form-link a {
@@ -217,7 +227,7 @@ $formLink-padding: 5px;
   z-index: 2;
 }
 
-.new-form-link:hover, .boxed-title:hover {
+.new-form-link:hover, .message-box:hover {
   @include box-shadow(-3px 5px 6px black, 0 0 25px 20px white);
 }
 

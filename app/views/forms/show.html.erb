@@ -1,0 +1,199 @@
+<style>
+  /* --- RESET --- */
+  html, body, div, span, applet, object,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, main, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video, label {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    color: inherit;
+    line-height: 1;
+  }
+
+  a:visited {
+    font: inherit;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
+
+  ol, ul {
+    list-style: none;
+  }
+
+  blockquote, q {
+    quotes: none;
+  }
+
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  html {
+    background-color: #effaff;
+  }
+
+  .group:after {
+  content: "";
+  clear: both;
+  display: table;
+  }
+
+  /* --- LOGO --- */
+
+  @keyframes cursorBlink {
+    24% {
+      opacity: 1;
+    }
+
+    25% {
+      opacity: 0;
+    }
+
+    74% {
+      opacity: 0;
+    }
+
+    75% {
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes cursorBlink {
+    24% {
+      opacity: 1;
+    }
+
+    25% {
+      opacity: 0;
+    }
+
+    74% {
+      opacity: 0;
+    }
+
+    75% {
+      opacity: 1;
+    }
+  }
+
+  .blinking-cursor {
+    animation: cursorBlink 1s linear infinite;
+    -webkit-animation: cursorBlink 1s linear infinite;
+    /* Safari and Chrome */
+  }
+
+  .corner-logo {
+    display: inline-block;
+    padding-top: 10px;
+    height: 36px;
+    line-height: 1;
+    border-radius: 10px;
+    background-color: white;
+    -webkit-box-shadow: 0 0 15px 10px white;
+    -moz-box-shadow: 0 0 15px 10px white;
+    box-shadow: 0 0 15px 10px white;
+  }
+
+  .corner-logo-box {
+    position: relative;
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  .corner-logo h1 {
+    font-size: 22px;
+    display: block;
+    float: left;
+    margin-top: 2px;
+  }
+
+  #corner-logo-part1 {
+    margin: 6px 4px 0 0;
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  .corner-logo-box2 {
+    display: inline-block;
+    position: relative;
+    -webkit-box-shadow: 0 0 3px 1px #8fcbfb;
+    -moz-box-shadow: 0 0 3px 1px #8fcbfb;
+    box-shadow: 0 0 3px 1px #8fcbfb;
+    padding: 0px 25px 0px 2px;
+    margin: 3px 1px 0 0;
+    border: 2px groove #8fcbfb;
+  }
+
+  .corner-logo .blinking-cursor {
+    background-color: #000;
+    display: block;
+    height: 23px;
+    margin: 1px 0;
+    float: left;
+    width: 1px;
+    line-height: 1;
+  }
+
+  main {
+    display: block;
+    text-align: center;
+  }
+
+  main div {
+    display: inline-block;
+  }
+
+  .plug {
+    margin: 12px 10px;
+    float: left;
+  }
+</style>
+
+<a href="http://form-itable.com" class='corner-logo'>
+  <div class='plug'>Form hosted by:</div>
+
+  <div class= 'corner-logo-box'>
+    <h1 id='corner-logo-part1'>Form</h1>
+    <div class='corner-logo-box2'>
+      <h1 id='corner-logo-part2'>-itable</h1>
+      <div class='blinking-cursor'></div>
+    </div>
+  </div>
+</a>
+
+<main class='group'>
+  <div>
+    <%= @form_wrapper.html_safe %>
+
+      <%= @form.form_text.html_safe %>
+
+    </div>  <!-- closes .fi-30x div from form_wrapper -->
+  </div>
+</main>

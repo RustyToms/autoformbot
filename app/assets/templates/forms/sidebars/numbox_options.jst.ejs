@@ -9,7 +9,7 @@
       </td>
       <td>
         <input type='text'
-          onClick='this.select()'
+          onClick="$(this).select()"
           name='numbox-label'
           value='<%=$field.find('.numbox-label').text()%>'>
       </td>
@@ -48,7 +48,7 @@
       <td>
         <input
           type='number'
-          onClick='this.select()'
+          onClick="$(this).select()"
           data-attribute='value'
           value='<%= $field.find('.numbox').val() %>'
           name='numbox'/>
