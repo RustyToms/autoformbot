@@ -26,4 +26,3 @@
 - If form title is deleted the name of the form is lost and it can't be saved
 
 IE issues:
-- new textarea doesnt work right

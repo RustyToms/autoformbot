@@ -54,12 +54,6 @@ class AccountsController < ApplicationController
     end
   end
 
-
-  def edit
-
-  end
-
-
   def update
     @account = Account.find(params[:id])
     @account.update_attributes(params[:account])
@@ -81,10 +75,6 @@ class AccountsController < ApplicationController
     else
       redirect_to new_account_url
     end
-  end
-
-  def destroy
-
   end
 
 end

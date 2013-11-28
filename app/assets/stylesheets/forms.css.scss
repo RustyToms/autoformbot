@@ -351,30 +351,26 @@ a.formSelect:active {
   }
 
   a.index-code {
-    width: $formSelect-dim-sum / 3 - $formLink-padding * 2;
-    bottom: -$formSelect-margin;
-    left: -$formSelect-margin;
-    background-color: $light-green;
-  }
-
-  a.index-not {
     width: $formSelect-margin + $formSelect-padding + $formSelect-dim/2
        - $formLink-padding * 2;
     top: -$formSelect-margin;
     right: -$formSelect-margin;
+    background-color: $light-green;
   }
 
   a.index-delete {
     background-color: red;
-    width: $formSelect-dim-sum / 3 - $formLink-padding * 2;
+    width: $formSelect-margin + $formSelect-padding + $formSelect-dim/2
+      - $formLink-padding * 2;
     bottom: -$formSelect-margin;
     right: -$formSelect-margin;
   }
 
   a.index-dup {
-    width: $formSelect-dim-sum / 3 - $formLink-padding * 2;
+    width: $formSelect-margin + $formSelect-padding + $formSelect-dim/2
+      - $formLink-padding * 2;
     bottom: -$formSelect-margin;
-    left: $formSelect-margin * 2 / 3;
+    left: -$formSelect-margin;
     background-color: $very-pale-blue;
   }
 
