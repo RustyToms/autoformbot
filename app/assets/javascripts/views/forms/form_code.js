@@ -17,16 +17,22 @@ AFB.Views.FormCode = Backbone.View.extend({
     console.log("FormCode#hostChoice");
     var that = this;
     choice = this.$el.find('.host-option:checked').val();
+
     if (choice === 'link'){
+
       this.$el.find('.link-info').css('display', 'block');
       this.$el.find('.code-info').css('display', 'none');
+
       $(function(){
         that.$el.find('iframe').contents().find('body').
           html($(that.$el.find('#link-code').val()).attr('target', '_blank'));
-      })
+      });
+
     } else if (choice === 'code'){
+
       this.$el.find('.link-info').css('display', 'none');
       this.$el.find('.code-info').css('display', 'block');
+
     }
   }
 

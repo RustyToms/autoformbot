@@ -319,7 +319,7 @@ my = this;
   },
 
   formDroppable: function(){
-    $('form#form-itable').droppable({
+    $('form.form').first().droppable({
       scope: 'newFields',
       tolerance: 'fit',
       drop: function(event, ui){

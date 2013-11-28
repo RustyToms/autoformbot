@@ -18,8 +18,8 @@
       type='text'
       style='display: inline-block'
       data-css='width'
-      value='<%= $form.css('width') %>'
-      name='form#form-itable'
+      value="<%= $form.css('width') %>"
+      name='form:first'
     />
   </label><br>
 
@@ -28,8 +28,8 @@
       type='text'
       style='display: inline-block'
       data-css='height'
-      value='<%= $form.css('height') %>'
-      name='form#form-itable'
+      value="<%= $form.css('height') %>"
+      name='form:first'
     />
   </label><br>
 
@@ -38,15 +38,15 @@
       type='number'
       style='display: inline-block'
       data-css='font-size'
-      value='<%= $form.css('font-size') %>'
-      name='form#form-itable'
+      value="<%= parseInt($form.css('font-size')) %>"
+      name='form:first'
     />
   </label><br>
 
   <label>Font-family
   <select
     data-css='font-family'
-    name='form#form-itable'
+    name='form:first'
     <option class='font-family-option'></option>
     <option class='font-family-option'>sans-serif</option>
     <option class='font-family-option'>serif</option>
@@ -67,46 +67,46 @@
     <option class='font-family-option'>Trebuchet MS, Helvetica, sans-serif</option>
     <option class='font-family-option'>Verdana, Geneva, sans-serif</option>
   </select>
-</label><br>
+  </label><br>
 
-<label>Font-weight<br>
-  <label>
-    <input
-      class='font-weight-option'
-      type='radio'
-      name='form#form-itable'
-      data-css='font-weight'
-      value='bold'>
-    Bold
+  <label>Font-weight<br>
+    <label>
+      <input
+        class='font-weight-option'
+        type='radio'
+        name='form:first'
+        data-css='font-weight'
+        value='bold'>
+      Bold
+    </label>
   </label>
-</label>
 
   <label>
     <input
       class='font-weight-option'
       type='radio'
-      name='form#form-itable'
+      name='form:first'
       data-css='font-weight'
       value='normal'>
     Normal
   </label><br>
 
-<label>Color
-  <input
-    type='text'
-    data-css='color'
-    value='<%= $form.css('color') || 'black' %>'
-    name='form#form-itable'
-  />
-</label><br>
+  <label>Color
+    <input
+      type='text'
+      data-css='color'
+      value='<%= $form.css('color') || 'black' %>'
+      name='form:first'
+    />
+  </label><br>
 
-<label>Background Color
-  <input
-    type='text'
-    data-css='background-color'
-    value='<%= $form.css('background-color') || 'white' %>'
-    name='form#form-itable'
-  />
-</label><br>
+  <label>Background Color
+    <input
+      type='text'
+      data-css='background-color'
+      value='<%= $form.css('background-color') || 'white' %>'
+      name='form:first'
+    />
+  </label><br>
 
 </div>

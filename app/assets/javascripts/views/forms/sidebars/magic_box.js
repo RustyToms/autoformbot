@@ -3,7 +3,7 @@ AFB.Views.MagicBox = Backbone.View.extend({
 
   eventNames: 'mouseup dragend onPaste paste click drop',
 
-  eventSelector: '#form-itable .magicBox.editing',
+  eventSelector: 'form.form .magicBox.editing',
 
   addField: function(){
     this.model.addField(this.$seed);

@@ -17,7 +17,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
 
 
     $(function(){
-      that.makeSidebar($('form#form-itable'));
+      that.makeSidebar($('form.form').first());
     });
     return this;
   },
@@ -64,7 +64,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
     if($target.hasClass('add-option')){
       this.numOptions = this.$el.find('.checkbox-option-config').length + 1;
       $(function(){
-        that.makeSidebar($(this).find('form#form-itable'));
+        that.makeSidebar($(this).find('form.form').first());
         that.updateField();
       });
 

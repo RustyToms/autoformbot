@@ -63,7 +63,7 @@ AFB.Models.Form = Backbone.Model.extend ({
   },
 
   addField: function(field){
-    $('#form-itable .fields-list').append(field);
+    $('form.form .fields-list').append(field);
     this.localSaveForm();
   },
 
@@ -142,7 +142,7 @@ AFB.Models.Form = Backbone.Model.extend ({
   updateFormAction: function() {
     console.log("in Model Form#updateFormAction");
     $form = $(this.get('form_text'));
-    $form.find('form#form-itable').attr('action',
+    $form.find('form.form').first().attr('action',
       '/results/' + this.get('id'));
     this.set('form_text', $form.prop('outerHTML'));
   },
