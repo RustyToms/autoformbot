@@ -20,8 +20,6 @@
 
 - add Account stuff
 
-- get rid of all ids in forms, as multiple forms are rendered in the form index
-
 ------------ Unresolved Issues -------------------------------
 - If form title is deleted the name of the form is lost and it can't be saved
 

@@ -24,8 +24,10 @@ AFB.Views.FormCode = Backbone.View.extend({
       this.$el.find('.code-info').css('display', 'none');
 
       $(function(){
+        that.$link = (that.$link || that.$el.find('.form-link'));
         that.$el.find('iframe').contents().find('body').
-          html($(that.$el.find('#link-code').val()).attr('target', '_blank'));
+          html(that.$link);
+        that.$link.off().on('click', that.openForm);
       });
 
     } else if (choice === 'code'){
@@ -34,6 +36,12 @@ AFB.Views.FormCode = Backbone.View.extend({
       this.$el.find('.code-info').css('display', 'block');
 
     }
+  },
+
+  openForm: function(event){
+    event.preventDefault();
+    console.log($(this).attr('href'));
+    window.open($(this).attr('href'));
   }
 
 });

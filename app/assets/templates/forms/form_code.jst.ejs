@@ -59,28 +59,17 @@
     <br>
     <br>
     <label>
-      Here is the html for a link redirect to your form:
+      Here is a link to your form that you may copy and paste:
       <br>
-      <input
-        type='text'
-        onClick="$(this).select()"
-        size='80'
-        id='link-code'
-        readonly
-        value="<a href=<%- 'http://' + document.location.host + '/forms/' +
-          form.get('id') %>><%- form.get('name') %></a>">
+      <a
+        class='form-link'
+        href=<%- 'http://' + document.location.host + '/forms/' +
+          form.get('id') %>
+        ><%- form.get('name') %></a>
+
+        <iframe
+          style='width: 500px; height: 50px; background-color: white;'>
+        </iframe>
     </label>
-
-    <br>
-    <br>
-
-    <p>Here is what the link will look like, you can click on it to see what your users will see:</p>
-
-    <br>
-
-    <iframe
-      style='width: 500px; height: 50px; background-color: white;'>
-    </iframe>
-
   </span>
 </div>
