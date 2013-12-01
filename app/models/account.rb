@@ -4,6 +4,7 @@ class Account < ActiveRecord::Base
   has_many :forms, dependent: :destroy
   has_many :user_accounts, dependent: :destroy, inverse_of: :account
   has_many :users, through: :user_accounts, source: :user
+  has_many :results, through: :forms, source: :results
 
   before_validation :chomp_url_name
   validates :url_name, :plan_type, presence: true

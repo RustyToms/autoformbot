@@ -20,7 +20,9 @@
 
 - add Account stuff
 
+- Get rid of user_forms table in db
+
 ------------ Unresolved Issues -------------------------------
 - If form title is deleted the name of the form is lost and it can't be saved
-
+- Can get results from any form if logged in to any account.  All forms from form controller should only be found by searching through the account's forms, not all forms.
 IE issues:

@@ -1,7 +1,8 @@
 class ResultsController < ApplicationController
 
   def index
-    @results = Result.find_all_by_form_id(params[:form_id])
+    @results = Form.includes(:results).joins(:users).
+      where(users: {id: current_user.id}).find(params[:form_id]).results
     render json: @results
   end
 
@@ -28,7 +29,7 @@ class ResultsController < ApplicationController
   end
 
   def destroy
-    @result = Result.find(params[:id]);
+    @result = current_user.results.where(id: params[:id])
     if @result.destroy
       render json: @result
     else

@@ -3,8 +3,14 @@ class FormsController < ApplicationController
 
   def show
     @form = Form.find(params[:id])
+
     @form_wrapper = @form.make_form_wrapper
-    render :show
+    # if params[:download]
+    #   send_data(render_to_string :show, filename: "#{@form.name}.html",
+    #     type: "text/html")
+    # else
+      render :show
+    # end
   end
 
   def create
@@ -17,27 +23,32 @@ class FormsController < ApplicationController
   end
 
   def update
-    @form = Form.find(params[:id])
+    @form = get_form(params[:id])
+    unless @form
+      render json: params, status: :unprocessable_entity, status: :not_found
+    end
     @form.update_attributes(params[:form])
     @form.update_url
     @form.updated_at = DateTime.now
-    if @form && @form.save
+
+    if @form.save
       render json: @form
     else
-      if @form
-        render json: @form.errors.full_messages, status: :unprocessable_entity
-      else
-        render json: params, status: :unprocessable_entity, status: :not_found
-      end
+      render json: @form.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @form = Form.find(params[:id])
-    if @form.destroy
+    @form = get_form(params[:id])
+    if @form && @form.destroy
       render json: @form
     else
       render json: @form, status: :unprocessable_entity
     end
+  end
+
+  def get_form(form_id)
+    Form.joins(:users).readonly(false).where(users: {id: current_user.id}).
+      find(form_id)
   end
 end
