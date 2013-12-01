@@ -56,16 +56,15 @@ class AccountsController < ApplicationController
 
   def update
     @account = Account.find(params[:id])
+    unless @account
+      render json: params, status: :unprocessable_entity, status: :not_found
+    end
+
     @account.update_attributes(params[:account])
-    if @account && @account.save
+    if @account.save
       render json: @account
     else
-      if @account
-        render json: @account.errors.full_messages,
-          status: :unprocessable_entity
-      else
-        render json: params, status: :unprocessable_entity, status: :not_found
-      end
+      render json: @account.errors.full_messages, status: :unprocessable_entity
     end
   end
 
