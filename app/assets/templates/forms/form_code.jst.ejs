@@ -71,5 +71,15 @@
           style='width: 500px; height: 50px; background-color: white;'>
         </iframe>
     </label>
+
+    <label>
+      Click link to download the form as a webpage:
+      <br>
+      <a
+        href=<%- 'http://' + document.location.host + '/forms/' +
+          form.get('id') + '?download=true'%>
+        >Download<%- ' ' + form.get('name') + ' ' %>as a webpage</a>
+    </label>
+    <br>
   </span>
 </div>

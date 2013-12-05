@@ -5,12 +5,13 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
 
     @form_wrapper = @form.make_form_wrapper
-    # if params[:download]
-    #   send_data(render_to_string :show, filename: "#{@form.name}.html",
-    #     type: "text/html")
-    # else
+    if params[:download]
+      send_data render_to_string(:show),
+        type: "text/html",
+        :disposition => "attachment; filename=#{@form.name}.html"
+    else
       render :show
-    # end
+    end
   end
 
   def create
@@ -25,7 +26,7 @@ class FormsController < ApplicationController
   def update
     @form = get_form(params[:id])
     unless @form
-      render json: params, status: :unprocessable_entity, status: :not_found
+      render json: params, status: :not_found
     end
     @form.update_attributes(params[:form])
     @form.update_url

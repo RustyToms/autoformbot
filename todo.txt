@@ -18,9 +18,11 @@
 
 - add Account stuff
 
-- Get rid of user_forms table in db
+- Don't log user out when they submit a form
 
 ------------ Unresolved Issues -------------------------------
 - If form title is deleted the name of the form is lost and it can't be saved
+  (Effectively the form title cannot be deleted from the server, the form will
+  always reappear with the form title when the forms index is refreshed)
 
 IE issues:
