@@ -14,9 +14,6 @@ AFB.Views.FormResults = Backbone.View.extend({
 
   renderResults: function(){
     console.log("FormResults#renderResults");
-    console.log(this.results);
-    console.log(this.resultsTable);
-    console.log(this.headers);
     this.$el.empty;
     this.$el.html(JST['forms/results']({
       name: this.model.get('name'),
@@ -50,19 +47,21 @@ AFB.Views.FormResults = Backbone.View.extend({
 
   parseResults: function(){
     console.log('FormResults#parseResults');
-    console.log(this.results.length);
     var that = this;
     this.headers = {};
     this.resultsTable = [];
     this.results.each(function(result){
       var hash = $.parseJSON(result.get('result'));
+      var lastChecked = that.model.get('results_checked_at');
       console.log(hash);
       result.set('result', hash);
       _.each(hash, function(answer, question){
         that.headers[question] = question;
       });
-      that.resultsTable.push(hash);
-      console.log(that.resultsTable);
+      that.resultsTable.push({
+        'hash': hash,
+        'new': (!lastChecked || result.get('created_at') > lastChecked)
+      });
     });
   },
 
