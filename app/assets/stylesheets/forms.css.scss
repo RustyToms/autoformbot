@@ -567,3 +567,18 @@ $sidebar-width: 300px;
 .results-table td.clicked {
   background-color: rgba(255, 255, 0, 0.5);
 }
+/* --- FORMCODE --- */
+
+.form-code a.form-link{
+  color: rgb(0, 0, 238);
+  height: auto;
+  text-decoration: underline;
+  font-family: Times;
+}
+
+.form-code a.form-link:visited{
+  color: rgb(85, 26, 139);
+  height: auto;
+  text-decoration: underline;
+  font-family: Times;
+}

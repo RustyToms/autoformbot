@@ -1,85 +1,62 @@
-<div class='message-box group' style='text-align: left; width: 500px;'>
+<div
+  class='message-box form-code group'
+  style='text-align: left; width: 500px;'>
+
   <h2>Code for "<%- form.get('name') %>"</h2>
-  <p>Would you like to get the HTML for the code and use it yourself, or would you like us to host the form for you?</p>
+
+  <p>You can host your form on Form-itable.com or you can host it on your own website.  Either way, when someone submits the form the results will be posted to your account here at Form-itable.com and your users will be redirected to the url you assigned for this form.</p>
+
+  <h3>If you would like Form-itable.com to host the form:</h3>
+
+  <label>
+    Here is the url that will link to your form
+    <br>
+    <input
+      type='text'
+      onClick="$(this).select()"
+      size='80'
+      readonly
+      value="http://form-itable.com/forms/<%- form.get('id') %>">
+  </label>
+  <br>
+  <br>
+  Here is a link to your form that you may copy and paste
+  <br>
+
+  <a
+    class='form-link'
+    href=<%- 'http://' + document.location.host + '/forms/' +
+      form.get('id') %>
+    ><%- form.get('name') %></a>
+
 
   <br>
 
-  <p>Either way, when someone submits the form the results will be posted to your account here at Form-itable.com and your users will be redirected to the url you assigned for this form.</p>
+  <h3>If you would like to host the form yourself:</h3>
+
+  <form
+    method='get'
+    action=<%- 'http://' + document.location.host + '/forms/' +
+        form.get('id') + '?download=true'%>
+    >
+
+    <input type='hidden' name='download' value='true'>
+
+    <input
+      type='submit'
+      value="Download <%- form.get('name') %> as a webpage">
+
+  </form>
 
   <br>
 
-  <span class="hosting-choice">
-    <span
-      class="radio-option"
-      style="display: block;">
-
-      <input
-       type="radio"
-       id="host-option0"
-       class="host-option"
-       name="host-option"
-       value="code">
-
-      <label for="host-option0">
-        Give me the code for the form, I will host it myself
-      </label>
-    </span>
-
-    <span
-      class="radio-option"
-      style="display: block;">
-
-      <input
-        type="radio"
-        id="host-option1"
-        class="host-option"
-       name="host-option"
-        value="link">
-
-      <label
-        for="host-option1">
-        I want to host the form on Form-itable.com, just give me the link
-      </label>
-    </span>
-  </span>
-
-  <br>
-
-  <span class='link-info' style='display: none;'>
-    <label>
-      Here is the url that will link to your form:
-      <br>
-      <input
-        type='text'
+  <label>
+    Or you can copy the form HTML from here
+    <br>
+      <textarea
+        class='formcode-textarea'
         onClick="$(this).select()"
-        size='80'
-        readonly
-        value="http://form-itable.com/forms/<%- form.get('id') %>">
-    </label>
-    <br>
-    <br>
-    <label>
-      Here is a link to your form that you may copy and paste:
-      <br>
-      <a
-        class='form-link'
-        href=<%- 'http://' + document.location.host + '/forms/' +
-          form.get('id') %>
-        ><%- form.get('name') %></a>
-
-        <iframe
-          style='width: 500px; height: 50px; background-color: white;'>
-        </iframe>
-    </label>
-
-    <label>
-      Click link to download the form as a webpage:
-      <br>
-      <a
-        href=<%- 'http://' + document.location.host + '/forms/' +
-          form.get('id') + '?download=true'%>
-        >Download<%- ' ' + form.get('name') + ' ' %>as a webpage</a>
-    </label>
-    <br>
-  </span>
+        style='width: 500px; height: 300px; background-color: white;'>
+  </label>
+  <br>
 </div>
