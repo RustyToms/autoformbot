@@ -6,14 +6,6 @@
   pushed to the background and covered with clear coat
 - Allow sorting by column
 
-- Choose:
-  We host:
-    Provide link, explain options - DONE
-  You host:
-    Would you like a webpage or just the form HTML?
-      HTML - Provide a box with the form HTML text selected
-      Webpage - Either provide the HTML text, or allow the page to be downloaded or emailed
-
 - add notifications
 
 - add Account stuff
