@@ -28,6 +28,7 @@ AFB.Views.FormShow = Backbone.View.extend({
     $.ajax({
       url: '/results/' + form_id,
       type: 'POST',
+      context: that,
       dataType: 'json',
       data: $form.serialize(),
       success: this.submissionSuccess,
@@ -42,6 +43,7 @@ AFB.Views.FormShow = Backbone.View.extend({
     console.log(object);
     AFB.Routers.FormRouter.myFlash('Form submitted!');
     $('.submit-button input').val('Submit').removeAttr('disabled');
+    this.model.set('new_results', this.model.get('new_results') + 1);
   },
 
   submissionError: function(object, errorMsg){

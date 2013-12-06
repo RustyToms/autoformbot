@@ -1,6 +1,6 @@
 AFB.Views.FormIndex = Backbone.View.extend({
   events: {
-  'click a': 'parselink'
+  'click a, .new-results-count': 'parselink'
   },
 
   initialize: function(){
@@ -40,11 +40,14 @@ AFB.Views.FormIndex = Backbone.View.extend({
 
   makeFormImage: function(button){
     var model = AFB.formCollection.get($(button).data('id'));
-    model.removeActiveEdits();
     var form = model.get('form_text');
+    var newResults = model.get('new_results');
+    model.removeActiveEdits();
     $(button).append(form);
-    $(button).append("<span class='new-results-count'>" +
-      model.get('new_results') + "</span>");
+    if (newResults){
+      $(button).after("<span class='new-results-count' data-string=" +
+        "'sendToResults'>" + newResults + "</span>");
+    }
   },
 
   formSelect: function(formId, $target){
@@ -76,6 +79,7 @@ AFB.Views.FormIndex = Backbone.View.extend({
 
   sendToResults: function(formId){
     console.log('FormIndex#sendToResults');
+    AFB.formCollection.get(formId).set('new_results', 0);
     Backbone.history.navigate('forms/' + formId + '/results', {trigger: true});
   },
 

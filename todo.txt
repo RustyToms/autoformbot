@@ -6,8 +6,6 @@
   pushed to the background and covered with clear coat
 - Allow sorting by column
 
-- add notifications
-
 - add Account stuff
 
 - Don't log user out when they submit a form

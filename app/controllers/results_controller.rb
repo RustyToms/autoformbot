@@ -1,7 +1,7 @@
 class ResultsController < ApplicationController
 
   def index
-    @form = Form.includes(:results).joins(:users).
+    @form = Form.includes(:results).joins(:users).readonly(false).
       where(users: {id: current_user.id}).find(params[:form_id])
     @results = @form.results
     @form.results_checked_at = Time.now
