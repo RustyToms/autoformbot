@@ -28,22 +28,12 @@
   </div>
 </main>
 
-<script type="application/json"
-  id="bootstrapped_form_json"
-  data-account-id="<%= @account.id %>">
-  <%= @forms.to_json.html_safe %>
-</script>
-
 <%= javascript_include_tag "application" %>
 
 <script>
-$(function(){
-  var $bootstrap = $('#bootstrapped_form_json');
-  window.ACCOUNT_ID = $bootstrap.data('accountId');
-  var forms = JSON.parse($bootstrap.html());
-  console.log(forms);
 
-  window.AFB.initialize($('.backbone-render'), forms)
+  window.ACCOUNT_ID = "<%= @account.id %>"
+  window.AFB.initialize($('.backbone-render'), <%= @forms.to_json.html_safe %>)
 
   $(window).scroll(function(){
     var $header = $('header');
@@ -62,5 +52,4 @@ $(function(){
     $('header').css('left', 0);
   });
 
-});
 </script>

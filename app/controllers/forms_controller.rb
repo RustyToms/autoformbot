@@ -49,6 +49,7 @@ class FormsController < ApplicationController
   end
 
   def get_form(form_id)
+    # only finds a form if it is in the current user's account
     Form.joins(:users).readonly(false).where(users: {id: current_user.id}).
       find(form_id)
   end

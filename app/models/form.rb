@@ -1,5 +1,6 @@
 class Form < ActiveRecord::Base
   attr_accessible :account_id, :form_text, :name, :result_summary, :url
+  attr_accessor :new_results
 
   belongs_to :account
   has_many :results, dependent: :destroy
@@ -22,4 +23,7 @@ class Form < ActiveRecord::Base
     form_wrapper.sub('</div>', '')
   end
 
+  def attributes
+    super.merge('new_results' => self.new_results)
+  end
 end

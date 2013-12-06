@@ -1,14 +1,11 @@
 class AccountsController < ApplicationController
   before_filter :authenticate_user!, only: [:show, :edit, :update, :destroy]
 
-  def index
-
-  end
-
-
   def show
     @account = Account.find_by_url_name(params[:id])
-    @forms = @account.forms
+    @forms = @account.forms.includes(:results)
+    count_new_results
+
     render :show
   end
 
@@ -54,6 +51,7 @@ class AccountsController < ApplicationController
     end
   end
 
+
   def update
     @account = Account.find(params[:id])
     unless @account
@@ -68,6 +66,7 @@ class AccountsController < ApplicationController
     end
   end
 
+
   def check_for_account
     if current_user && current_user.account
       redirect_to account_url(current_user.account.url_name)
@@ -76,4 +75,15 @@ class AccountsController < ApplicationController
     end
   end
 
+  def count_new_results
+    @forms.each do |form|
+      form.new_results = 0
+      form.results.each do |result|
+        unless form.results_checked_at &&
+          result.created_at < form.results_checked_at
+          form.new_results += 1
+        end
+      end
+    end
+  end
 end

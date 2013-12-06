@@ -43,6 +43,8 @@ AFB.Views.FormIndex = Backbone.View.extend({
     model.removeActiveEdits();
     var form = model.get('form_text');
     $(button).append(form);
+    $(button).append("<span class='new-results-count'>" +
+      model.get('new_results') + "</span>");
   },
 
   formSelect: function(formId, $target){

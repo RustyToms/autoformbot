@@ -1,8 +1,11 @@
 class ResultsController < ApplicationController
 
   def index
-    @results = Form.includes(:results).joins(:users).
-      where(users: {id: current_user.id}).find(params[:form_id]).results
+    @form = Form.includes(:results).joins(:users).
+      where(users: {id: current_user.id}).find(params[:form_id])
+    @results = @form.results
+    @form.results_checked_at = Time.now
+    @form.save
     render json: @results
   end
 
