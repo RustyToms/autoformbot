@@ -21,6 +21,7 @@ end
 
 group :production do
   gem 'newrelic_rpm'
+  gem 'postmark-rails'
 end
 
   gem 'sass-rails',   '~> 3.2.3'

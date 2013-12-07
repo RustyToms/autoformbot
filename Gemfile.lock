@@ -99,6 +99,12 @@ GEM
     pg (0.17.0)
     pg (0.17.0-x86-mingw32)
     polyglot (0.3.3)
+    postmark (1.0.1)
+      json
+      rake
+    postmark-rails (0.5.2)
+      actionmailer (>= 3.0.0)
+      postmark (~> 1.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -166,6 +172,7 @@ DEPENDENCIES
   letter_opener
   newrelic_rpm
   pg
+  postmark-rails
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
