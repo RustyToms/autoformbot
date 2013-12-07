@@ -42,6 +42,8 @@ class AccountsController < ApplicationController
     if @account.save
       sign_in(@user)
       redirect_to account_url(@account.url_name)
+      welcome_msg = UserMailer.welcome_email(@user)
+      welcome_msg.deliver!
     else
       User.find(@user.id).delete
       flash.delete(:notice)

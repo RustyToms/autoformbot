@@ -4,9 +4,12 @@
 - Have header and first column track with scroll
 - Make background of results be a fixed position version of the form
   pushed to the background and covered with clear coat
+
 - Allow sorting by column
 
-- add Account stuff
+- email user when a form is submitted
+
+- add Account stuff, allow a user to change their email address
 
 - Don't log user out when they submit a form
 
