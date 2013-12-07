@@ -9,12 +9,14 @@ class UserMailer < ActionMailer::Base
     )
   end
 
-  def new_result(user, result)
+  def new_result(user, result, form, hash)
     @user = user
     @result = result
+    @form = form
+    @hash = hash
     mail(
       to: user.email,
-      subject: 'New submission for form "#{@result.form.name}"'
+      subject: "New submission for form \"#{@form.name}\""
     )
   end
 end

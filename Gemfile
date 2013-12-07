@@ -8,10 +8,13 @@ gem 'rails', '3.2.13'
 
 
 gem 'backbone-on-rails', '~> 1.1'
-gem 'ejs'
+gem 'compass-rails'
 gem 'devise', '>= 3.1.0'
+gem 'ejs'
 gem 'figaro'
+gem 'jquery-rails'
 gem 'pg'
+gem 'sass-rails',   '~> 3.2.3'
 
 group :development do
   gem 'better_errors'
@@ -24,8 +27,6 @@ group :production do
   gem 'postmark-rails'
 end
 
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'compass-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -33,8 +34,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
  gem 'bcrypt-ruby', '~> 3.0.0'
