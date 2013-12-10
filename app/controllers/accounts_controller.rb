@@ -53,7 +53,7 @@ class AccountsController < ApplicationController
         welcome_msg = UserMailer.welcome_email(@user)
         welcome_msg.deliver!
       rescue
-        p "Problem sending welcome message to #{user.email}"
+        p "Problem sending welcome message to #{@user.email}"
       end
     else
       User.find(@user.id).delete
