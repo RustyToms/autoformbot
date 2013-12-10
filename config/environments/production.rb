@@ -50,7 +50,7 @@ AutoFormBot::Application.configure do
   config.assets.precompile << 'forms.css'
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :postmark
   config.action_mailer.postmark_settings = {
     :api_key => ENV['POSTMARK_API_KEY'] }

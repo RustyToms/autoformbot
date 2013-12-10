@@ -2,7 +2,13 @@ class AccountsController < ApplicationController
   before_filter :authenticate_user!, only: [:show, :edit, :update, :destroy]
 
   def show
-    @account = Account.find_by_url_name(params[:id])
+    @account = current_user.account
+     unless @account.url_name == params[:id]
+      flash[:notice] = "Access Denied"
+      redirect_to home_static_page_url
+      return
+    end
+
     @forms = @account.forms.includes(:results)
     count_new_results
 
@@ -55,9 +61,11 @@ class AccountsController < ApplicationController
 
 
   def update
-    @account = Account.find(params[:id])
-    unless @account
-      render json: params, status: :unprocessable_entity, status: :not_found
+    @account = current_user.account
+     unless @account.id == params[:id]
+      flash[:notice] = "Access Denied"
+      redirect_to home_static_page_url
+      return
     end
 
     @account.update_attributes(params[:account])
@@ -88,4 +96,5 @@ class AccountsController < ApplicationController
       end
     end
   end
+
 end

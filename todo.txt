@@ -1,4 +1,6 @@
 ------------ To Do -------------------------------------------
+- Allow user to select whether or not they get email results from a form
+
 - seed results header from form not from results
 - Have checkbox options each be their own column
 - Have header and first column track with scroll
@@ -6,8 +8,6 @@
   pushed to the background and covered with clear coat
 
 - Allow sorting by column
-
-- email user when a form is submitted
 
 - add Account stuff, allow a user to change their email address
 
