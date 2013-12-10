@@ -4,8 +4,9 @@ class AccountsController < ApplicationController
   def show
     @account = current_user.account
      unless @account.url_name == params[:id]
-      flash[:notice] = "Access Denied"
-      redirect_to home_static_page_url
+      render text: "Access Denied"
+      # flash[:notice] = "Access Denied"
+      # redirect_to home_static_page_url
       return
     end
 
@@ -48,8 +49,12 @@ class AccountsController < ApplicationController
     if @account.save
       sign_in(@user)
       redirect_to account_url(@account.url_name)
-      welcome_msg = UserMailer.welcome_email(@user)
-      welcome_msg.deliver!
+      begin
+        welcome_msg = UserMailer.welcome_email(@user)
+        welcome_msg.deliver!
+      rescue
+        p "Problem sending welcome message to #{user.email}"
+      end
     else
       User.find(@user.id).delete
       flash.delete(:notice)

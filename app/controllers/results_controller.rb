@@ -28,9 +28,13 @@ class ResultsController < ApplicationController
       end
       @hash = request.request_parameters
       @form.users.each do |user|
-        result_msg = UserMailer.new_result(user, @result, @form,
-          request.request_parameters)
-        result_msg.deliver!
+        begin
+          result_msg = UserMailer.new_result(user, @result, @form,
+            request.request_parameters)
+          result_msg.deliver!
+        rescue
+          p "Problem sending result to #{user.email}"
+        end
       end
     else
       render json: @result, status: :unprocessable_entity
