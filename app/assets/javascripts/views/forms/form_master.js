@@ -284,9 +284,9 @@ my = this;
     if ($field.length){
       this.editBox.field = $field;
       this.$el.find('.edit-box').replaceWith(this.editBox.render().$el.html());
-    } else {
-      this.editForm.startEditingField($(event.target));
-    }
+    } // else {
+    //   this.editForm.startEditingField($(event.target).closest(".formEl"));
+    // }
 	},
 
 	swapSidebar: function(sidebar){

@@ -59,7 +59,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
       this.parentView.render();
 
     } else if ($formEl.length && !$formEl.hasClass('editing')){
-      this.startEditingField($target);
+      this.startEditingField($formEl);
       event.stopPropagation && event.stopPropagation();
     }
 
@@ -68,36 +68,31 @@ AFB.Views.FormEdit = Backbone.View.extend({
     }
   },
 
-  startEditingField: function($target){
+  startEditingField: function($formEl){
     console.log("in FormEdit#startEditingField");
-    var that = this;
-
-    var $form = this.$el.find('form.form').first();
-    var $formEl = $target.closest(".formEl");
-    if($formEl.length < 1){
-      return;
-    }
-
-    this.parentView.removeActiveEdits();
-    $form.append(JST['forms/form_filter']());
-    $formEl.addClass("editing").append("<button class='delete-field'" +
-        "style='position: absolute'>X</button>");
-    this.model.localSaveForm();
-
     var editBoxName = $formEl.data("sidebar");
     console.log("new editBox should be " + editBoxName);
-    if (editBoxName){
-      var editBox = new AFB.Views[editBoxName]({
-        model: this.model
-      });
-      editBox.field = $formEl;
 
-      this.parentView.makeEditBox(editBox);
-      $(function(){
-        console.log('document ready, adding form-filter click listener');
-        $(document).on('click', that, that.stopEditing);
-      });
-    }
+    var editBox = new AFB.Views[editBoxName]({
+      model: this.model
+    });
+    editBox.field = $formEl;
+
+    this.prepField($formEl);
+    this.parentView.makeEditBox(editBox);
+  },
+
+  prepField: function($formEl){
+  // pops the selected field up above a darkened form, adds a listener to
+  // detect a click outside the field or editbox, signalling the end of editing
+    var that = this;
+    this.$el.find('form').first().append(JST['forms/form_filter']());
+    $formEl.addClass("editing").append("<button class='delete-field'" +
+        "style='position: absolute'>X</button>");
+    $(function(){
+      console.log('document ready, adding form-filter click listener');
+      $(document).on('click', that, that.stopEditing);
+    });
   },
 
 	updateEditBox: function(event){
@@ -111,10 +106,11 @@ AFB.Views.FormEdit = Backbone.View.extend({
 		this.parentView.updateEditBox(event);
     $(function(){
       console.log('document ready, triggering keyups in editbox');
+    // spoofs a keyup event in editbox fields linked to the modified form field
       $input = $('#edit-box').find('input, textarea').filter(function(){
         return ($(event.target).attr('class').indexOf(this.name) > -1);
       }).not("input[type='checkbox'], input[type='radio']");
-        //should exclude checkboxes and radio buttons that are not checked
+
       $input.trigger('keyup');
     });
 	}
