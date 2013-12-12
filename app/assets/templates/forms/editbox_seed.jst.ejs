@@ -326,13 +326,13 @@
 
     <div class='style-group group'>
       <div class="style-option">
-        <label>Color:
+        <label>Text Color:
           <input
             type="text"
             data-css="color"
             value="<%= $field.css('color') || 'black' %>"
             name="editing">
-            <span class='tip'>(Use RGB or color names, like red)</span>
+            <span class='tip'>(RGB or color names, like red)</span>
         </label>
       </div>
 
@@ -386,7 +386,8 @@
             min="1"
             max="999"
             size='5'
-            value="<%= parseInt($field.css('border-width')) %>"
+            value="<%= (parseInt($field.css('border-width')) ||
+              $field.css('border-width', '1')) %>"
             name="editing">
           <span class='tip'>(digits only)</span>
         </label>

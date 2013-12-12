@@ -8,6 +8,14 @@ AFB.Views.FormEdit = Backbone.View.extend({
     console.log('FormEdit View initialized');
   },
 
+  stopEditing: function(event){
+    console.log('FormEdit#stopEditing');
+    if ($(event.target).closest('#edit-box, .editing').length < 1){
+      $(document).off('click', this.stopEditing);
+      event.data.parentView.removeActiveEdits();
+    }
+  },
+
   render: function(){
     console.log("rendering FormEdit view");
     this.$el.empty();
@@ -43,7 +51,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
     console.log("in parseClickForm");
     var $target = $(event.target);
     var $formEl = $target.closest(".formEl");
-console.log($(':focus').prop('outerHTML'));
 
     if($target.hasClass('delete-field')){
       event.preventDefault();
@@ -53,7 +60,7 @@ console.log($(':focus').prop('outerHTML'));
 
     } else if ($formEl.length && !$formEl.hasClass('editing')){
       this.startEditingField($target);
-
+      event.stopPropagation && event.stopPropagation();
     }
 
     if ($target.attr('contenteditable')){
@@ -87,10 +94,8 @@ console.log($(':focus').prop('outerHTML'));
 
       this.parentView.makeEditBox(editBox);
       $(function(){
-        console.log('document ready, adding form-filter click listener')
-        $('#form-filter').on('click', function(){
-          that.parentView.removeActiveEdits();
-        });
+        console.log('document ready, adding form-filter click listener');
+        $(document).on('click', that, that.stopEditing);
       });
     }
   },

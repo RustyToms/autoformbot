@@ -362,8 +362,9 @@ my = this;
           return editView.$seed.clone();
         },
 
-        revert: 'invalid',
         appendTo: "ul.fields-list",
+        distance: 0,
+        revert: 'invalid',
         scope: 'newFields',
         scrollSensitivity: 50,
         snap: ".formEl",
