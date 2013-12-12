@@ -25,7 +25,7 @@ end
 group :production do
   gem 'newrelic_rpm'
   gem 'postmark-rails'
-  gem 'rails_stdout_logging'
+  gem 'rails_12factor'
 end
 
 # Gems used only for assets and not required

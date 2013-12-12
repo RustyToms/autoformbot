@@ -4,9 +4,8 @@ class AccountsController < ApplicationController
   def show
     @account = current_user.account
      unless @account.url_name == params[:id]
-      render text: "Access Denied"
-      # flash[:notice] = "Access Denied"
-      # redirect_to home_static_page_url
+      flash[:notice] = "Access Denied"
+      redirect_to home_static_page_url
       return
     end
 
