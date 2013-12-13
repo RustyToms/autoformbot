@@ -8,14 +8,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
     console.log('FormEdit View initialized');
   },
 
-  stopEditing: function(event){
-    console.log('FormEdit#stopEditing');
-    if ($(event.target).closest('#edit-box, .editing').length < 1){
-      $(document).off('click', this.stopEditing);
-      event.data.parentView.removeActiveEdits();
-    }
-  },
-
   render: function(){
     console.log("rendering FormEdit view");
     this.$el.empty();
@@ -24,6 +16,18 @@ AFB.Views.FormEdit = Backbone.View.extend({
     this.$el.append($formText.prop('outerHTML'));
 
     return this;
+  },
+
+  clickToStopEditing: function(){
+    $(document).on('click', this, this.stopEditing);
+  },
+
+  stopEditing: function(event){
+    console.log('FormEdit#stopEditing');
+    if ($(event.target).closest('#edit-box, .formEl').length === 0){
+      $(document).off('click', this.stopEditing);
+      event.data.parentView.removeActiveEdits();
+    }
   },
 
   renderChange: function(){
@@ -59,6 +63,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
       this.parentView.render();
 
     } else if ($formEl.length && !$formEl.hasClass('editing')){
+      this.parentView.removeActiveEdits();
       this.startEditingField($formEl);
       event.stopPropagation && event.stopPropagation();
     }
@@ -80,19 +85,14 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
     this.prepField($formEl);
     this.parentView.makeEditBox(editBox);
+    this.clickToStopEditing();
   },
 
   prepField: function($formEl){
-  // pops the selected field up above a darkened form, adds a listener to
-  // detect a click outside the field or editbox, signalling the end of editing
-    var that = this;
+  // pops the selected field up above a darkened form
     this.$el.find('form').first().append(JST['forms/form_filter']());
     $formEl.addClass("editing").append("<button class='delete-field'" +
         "style='position: absolute'>X</button>");
-    $(function(){
-      console.log('document ready, adding form-filter click listener');
-      $(document).on('click', that, that.stopEditing);
-    });
   },
 
 	updateEditBox: function(event){

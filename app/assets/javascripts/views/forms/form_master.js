@@ -96,7 +96,11 @@ my = this;
 
     $(function(){
       console.log('document ready, positioning editbox and window');
-      $editBox.tabs();
+      $editBox.tabs({
+        activate: function(){
+          AFB.Routers.FormRouter.positionWindow($editBox.add('.editing'));
+        }
+      });
       that.positionEditBox($editBox);
       AFB.Routers.FormRouter.positionWindow(newEditBox.field.add($editBox));
       that.fieldDuplicate();
@@ -104,8 +108,16 @@ my = this;
   },
 
   positionEditBox: function($editBox){
-    console.log('positioning the new editBox');
+    console.log('FormMaster#positionEditBox');
     var $field = this.$el.find('.editing');
+    var editingForm = $field.hasClass('inner-wrapper');
+    if (editingForm){
+      $field = $field.find('li[data-sidebar="FormEditTitle"]').first();
+      $saveButton = $editBox.find('#save-button').detach();
+      $editBox.find('.edit-box-button, button').remove();
+      $editBox.find('.sidebar h2').first().append($saveButton);
+      $saveButton.css('margin-left', '20px');
+    }
     var x = parseInt($field.css('left'), 10) + ($field.outerWidth() / 2);
     var left = x - ($editBox.outerWidth() / 2);
     var top = parseInt($field.css('top'), 10) + $field.outerHeight() + 30;
@@ -114,6 +126,10 @@ my = this;
       'left': (left + 'px'),
       'top': (top + 'px')
     });
+
+    if (editingForm){
+      AFB.Routers.FormRouter.positionWindow($field.add($editBox));
+    }
   },
 
   fieldDuplicate: function(){
@@ -157,13 +173,20 @@ my = this;
       break;
     case "move-to-form-settings":
       console.log("making form-settings view");
+      event.stopPropagation();
+      this.removeActiveEdits();
       var formSettings = new AFB.Views.FormSettings({
         model: this.model
       });
-      this.removeActiveEdits();
-      $('.inner-wrapper').addClass('editing');
-      this.swapSidebar(formSettings);
-      this.model.localSaveForm();
+      formSettings.field = $('.inner-wrapper');
+      formSettings.field.addClass('editing');
+
+      this.makeEditBox(formSettings);
+      this.editForm.clickToStopEditing();
+      AFB.Routers.FormRouter.positionWindow($('#edit-box'));
+
+      // this.swapSidebar(formSettings);
+      // this.model.localSaveForm();
       break;
     case "save-form":
       this.serverSaveForm();
@@ -188,6 +211,7 @@ my = this;
 
     if ($target.is('button')){
       event.preventDefault();
+      event.stopPropagation();
 
       if ($target.hasClass('delete-button')){
         console.log('deleting element');
@@ -391,6 +415,7 @@ my = this;
         } else {
           that.render();
         }
+        $(document).off('click', that.editForm.stopEditing);
       },
 
       containment: '.fi-30x form',

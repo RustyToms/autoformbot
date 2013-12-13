@@ -178,8 +178,8 @@ AFB.Routers.FormRouter.positionWindow = function($targets){
     var targetWidth = 0;
     var windowHeight = $(window).height();
     var windowWidth = $(window).width();
-    var topPos = windowHeight;
-    var leftPos = windowWidth;
+    var topPos = $targets.first().offset().top;
+    var leftPos = $targets.first().offset().left;
 
     $targets.each(function(){
       var offset = $(this).offset();
@@ -198,8 +198,9 @@ AFB.Routers.FormRouter.positionWindow = function($targets){
     var topDiff = windowHeight - targetHeight;
     var leftDiff = windowWidth - targetWidth;
 
-    $(window).scrollTop(topPos - (topDiff / 2)).
-      scrollLeft(leftPos - (leftDiff / 2));
+    $(window).scrollTop(topPos - (
+      targetHeight > windowHeight - 100 ? 100 : (topDiff / 2)
+      )).scrollLeft(leftPos - (leftDiff / 2));
 
   });
 };
