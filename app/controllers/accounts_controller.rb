@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
   def show
     @account = current_user.account
      unless @account.url_name == params[:id]
-      flash[:notice] = "Access Denied"
+      flash.now[:notice] = "Access Denied"
       redirect_to home_static_page_url
       return
     end
@@ -33,11 +33,11 @@ class AccountsController < ApplicationController
 
     @account = Account.find_by_url_name(params[:account][:url_name])
     if @account
-      flash[:notice] = "#{@user.email} joined account #{@account.url_name}!"
+      flash.now[:notice] = "#{@user.email} joined account #{@account.url_name}!"
     else
       @account = Account.new(params[:account])
       @account.url_name = @account.url_name.gsub(' ', '')
-      flash[:notice] = "Account #{@account.url_name} created by #{@user.email}!"
+      flash.now[:notice] = "Account #{@account.url_name} created by #{@user.email}!"
     end
 
     @account.user_accounts.build(
@@ -67,7 +67,7 @@ class AccountsController < ApplicationController
   def update
     @account = current_user.account
      unless @account.id == params[:id]
-      flash[:notice] = "Access Denied"
+      flash.now[:notice] = "Access Denied"
       redirect_to home_static_page_url
       return
     end

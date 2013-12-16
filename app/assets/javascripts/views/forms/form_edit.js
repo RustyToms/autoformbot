@@ -45,7 +45,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     $formText.find(".label, label span").attr('contenteditable', 'true');
     $formText.find('input, textarea').attr('disabled', 'disabled');
 
-    $targets = $formText.find('.formEl, .submit-button');
+    var $targets = $formText.find('.formEl, .submit-button');
     $targets.not($targets.has('.move-handle')).
       prepend("<span class='move-handle' style='color: white; font-size:" +
       " 30px; z-index: 999;'>\u039E</span>");
@@ -113,5 +113,25 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
       $input.trigger('keyup');
     });
-	}
+	},
+
+  alignField: function($field, alignment){
+    if (alignment === 'left'){
+      $field.css({
+        left: '0',
+        right: 'auto'
+        });
+    } else if (alignment === 'right'){
+      $field.css({
+        left: 'auto',
+        right: '0'
+      });
+    } else if (alignment === 'center'){
+      var width = $field.offsetParent().outerWidth();
+      $field.css({
+        left: (width - $field.outerWidth()) / 2,
+        right: 'auto'
+      });
+    }
+  }
 });

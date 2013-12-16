@@ -22,7 +22,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
       if ($(event.target).attr('data-css') === 'width'){
         console.log('data-css width detected');
         $title = $('li[data-sidebar="FormEditTitle"]').first();
-        var formWidth = $title.closest('form').outerWidth();
+        var formWidth = $title.offsetParent().outerWidth();
         var calc = $title.outerWidth() + parseInt($title.css('left'), 10) * 2;
         centered = ((formWidth - 2) < calc && calc < (formWidth + 2));
       }
@@ -32,12 +32,10 @@ AFB.Views.FormSettings = Backbone.View.extend({
       this.parentView.makeSortable();
 
       if (centered) {
-        $title = $('li[data-sidebar="FormEditTitle"]');
-        $title.first().position({
-          my: 'center top',
-          at: 'center top+10',
-          of: $title.closest('form')
-        });
+        $title = $('li[data-sidebar="FormEditTitle"]').first();
+        var width = $title.offsetParent().outerWidth();
+        $title.css('left', 0); // make sure $title is the proper width
+        $title.css('left', (width - $title.outerWidth()) / 2);
       }
     }
   }

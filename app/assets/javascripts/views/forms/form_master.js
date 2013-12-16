@@ -11,7 +11,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   initialize: function(){
     console.log('FormMaster View initialized');
-my = this;
   },
 
   render: function(newSidebar, formView){
@@ -71,7 +70,7 @@ my = this;
     this.sidebar.parentView = this;
     this.formRouter.childViews.push(this.sidebar);
 
-		$sidebar = $(JST['forms/sidebars/sidebar_seed']()).
+		var $sidebar = $(JST['forms/sidebars/sidebar_seed']()).
       append(this.sidebar.render().$el);
 
 		return $sidebar;
@@ -113,18 +112,20 @@ my = this;
     var editingForm = $field.hasClass('inner-wrapper');
     if (editingForm){
       $field = $field.find('li[data-sidebar="FormEditTitle"]').first();
-      $saveButton = $editBox.find('#save-button').detach();
+      var $saveButton = $editBox.find('#save-button').detach();
       $editBox.find('.edit-box-button, button').remove();
       $editBox.find('.sidebar h2').first().append($saveButton);
       $saveButton.css('margin-left', '20px');
     }
-    var x = parseInt($field.css('left'), 10) + ($field.outerWidth() / 2);
+    var x = (parseInt($field.css('left'), 10) || 0) +
+      ($field.outerWidth() / 2);
     var left = x - ($editBox.outerWidth() / 2);
-    var top = parseInt($field.css('top'), 10) + $field.outerHeight() + 30;
+    var top = (parseInt($field.css('top'), 10) || 0) +
+      $field.outerHeight() + 30;
 
     $editBox.css({
-      'left': (left + 'px'),
-      'top': (top + 'px')
+      'left': left + 'px',
+      'top': top + 'px'
     });
 
     if (editingForm){
@@ -206,6 +207,7 @@ my = this;
 
     editBoxClick: function(event){
     console.log('in FormMaster#editBoxClick');
+
     var that = this;
     var $target = $(event.target);
 
@@ -410,12 +412,12 @@ my = this;
         console.log('.formEl drag stopped');
         that.model.localSaveForm();
         if (ui.helper.hasClass('magicBox')){
-          $(':focus').blur();
+          ui.helper.find(':focus').blur();
           ui.helper.trigger('click');
         } else {
           that.render();
+          $(document).off('click', that.editForm.stopEditing);
         }
-        $(document).off('click', that.editForm.stopEditing);
       },
 
       containment: '.fi-30x form',
