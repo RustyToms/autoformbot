@@ -46,7 +46,7 @@ AFB.Models.Form = Backbone.Model.extend ({
     console.log("in formmodel#updateValues");
 
     var selector = '.editing .' + $(event.target).attr('name');
-    if ($(event.target).attr('name') === 'editing'){
+    if ($.inArray($(event.target).attr('name'), ['editing', 'form']) > -1){
       selector = '.editing';
     }
     var value = $(event.target).val();

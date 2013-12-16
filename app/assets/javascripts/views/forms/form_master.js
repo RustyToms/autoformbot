@@ -35,7 +35,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   renderForm: function(){
-    this.editForm && this.editForm.remove();
+    this.removeView(this.editForm);
     var $formWrapper = $("<div class='main' ></div>");
     $formWrapper.html(JST['forms/form_wrapper']());
     this.editForm = new AFB.Views.FormEdit({
@@ -55,7 +55,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   makeSidebarView: function(newSidebar){
     console.log("making sidebar");
-    this.sidebar && this.sidebar.remove();
+    this.removeView(this.sidebar);
 
     if (newSidebar){
       this.sidebar = newSidebar;
@@ -79,7 +79,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   makeEditBox: function(newEditBox){
     console.log('FormMaster#makeEditBox');
     var that = this;
-    this.editBox && this.editBox.remove();
+    this.removeView(this.editBox);
     this.editBox = newEditBox;
     this.editBox.parentView = that;
     this.formRouter.childViews.push(this.editBox);
@@ -89,10 +89,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
     }));
     $editBox.find('#customizations').html(this.editBox.render().$el);
     $('.fi-30x').append($editBox);
-    if ($('#all-fields-sidebar').length === 0){
-      this.swapSidebar();
-    }
-
+    // if ($('#all-fields-sidebar').length === 0){
+    //   this.swapSidebar();
+    // }
     $(function(){
       console.log('document ready, positioning editbox and window');
       $editBox.tabs({
@@ -101,6 +100,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
         }
       });
       that.positionEditBox($editBox);
+alert(' now here');
       AFB.Routers.FormRouter.positionWindow(newEditBox.field.add($editBox));
       that.fieldDuplicate();
     });
@@ -109,7 +109,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
   positionEditBox: function($editBox){
     console.log('FormMaster#positionEditBox');
     var $field = this.$el.find('.editing');
-    var editingForm = $field.hasClass('inner-wrapper');
+    var editingForm = $field.is('form');
+
     if (editingForm){
       $field = $field.find('li[data-sidebar="FormEditTitle"]').first();
       var $saveButton = $editBox.find('#save-button').detach();
@@ -127,7 +128,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       'left': left + 'px',
       'top': top + 'px'
     });
-
+// alert('beep boop');
     if (editingForm){
       AFB.Routers.FormRouter.positionWindow($field.add($editBox));
     }
@@ -168,18 +169,19 @@ AFB.Views.FormMaster = Backbone.View.extend({
     event.preventDefault();
     switch($(event.target).attr("id")) {
     case "move-to-add-fields":
-      this.removeActiveEdits();
+      // this.removeActiveEdits();
       this.model.localSaveForm();
       this.render();
       break;
     case "move-to-form-settings":
       console.log("making form-settings view");
       event.stopPropagation();
+      $(document).off('click', this.editForm.stopEditing);
       this.removeActiveEdits();
       var formSettings = new AFB.Views.FormSettings({
         model: this.model
       });
-      formSettings.field = $('.inner-wrapper');
+      formSettings.field = $('.inner-wrapper form').first();
       formSettings.field.addClass('editing');
 
       this.makeEditBox(formSettings);
@@ -315,13 +317,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
     // }
 	},
 
-	swapSidebar: function(sidebar){
-    console.log('swapping sidebar');
-		var $sidebar = this.makeSidebarView(sidebar);
-		this.$el.find('.sidebar_window').replaceWith($sidebar);
-    this.sidebarReset();
-    this.addFieldsDraggable();
-	},
+	// swapSidebar: function(sidebar){
+ //    console.log('swapping sidebar');
+	// 	var $sidebar = this.makeSidebarView(sidebar);
+	// 	this.$el.find('.sidebar_window').replaceWith($sidebar);
+ //    this.sidebarReset();
+ //    this.addFieldsDraggable();
+	// },
 
   makeSortable: function(){
     var that = this;
@@ -442,9 +444,17 @@ AFB.Views.FormMaster = Backbone.View.extend({
     console.log('removing all editing classes');
     this.$el.find('#form-filter').off().remove();
     this.$el.find('#edit-box').remove();
-    this.editBox && this.editBox.remove();
+    this.removeView(this.editBox);
     var $old = this.$el.find('.editing');
     $old.find('.delete-field').remove();
     $old.removeClass('editing');
+  },
+
+  removeView: function(view){
+    if (view){
+      var i = _.indexOf(this.formRouter.childViews, view);
+      this.formRouter.childViews.splice(i, 1);
+      view.remove();
+    }
   }
 });

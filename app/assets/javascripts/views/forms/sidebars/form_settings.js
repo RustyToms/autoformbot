@@ -31,7 +31,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
       this.parentView.editForm.render();
       this.parentView.makeSortable();
 
-      if (centered) {
+      if (centered === true) {
         $title = $('li[data-sidebar="FormEditTitle"]').first();
         var width = $title.offsetParent().outerWidth();
         $title.css('left', 0); // make sure $title is the proper width
