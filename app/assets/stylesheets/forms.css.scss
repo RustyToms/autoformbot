@@ -34,6 +34,10 @@ a:hover {
   background-color: rgba(255, 255, 255, 0.01);
   border: none;
 }
+
+.button {
+  cursor: pointer;
+}
 /* --- LOGO --- */
 
 .corner-logo {
@@ -428,46 +432,29 @@ $sidebar-width: 300px;
   border: 1px solid black;
 }
 
-.sidebar_header a {
+.sidebar_header div {
   display: block;
   right: 0;
-  position: absolute;
   text-align: right;
   font-size: 20px;
   font-weight: bold;
   height: 45px;
-  width: 100px;
-  padding: 5px 4% 0 4%;
+  width: 129px;
+  padding: 5px 10px 0 10px;
   vertical-align: middle;
+  background-color: transparent;
+  float: right;
+  text-align: right;
 }
 
-.sidebar_header a:hover {
-  cursor: pointer;
-}
-
-.sidebar_header a:first-child {
-  width: 42%;
-  left: 0;
-  background-color: $faded-blue;
+.sidebar_header div:first-child {
+  float: left;
+  background-color: $pale-yellow;
+  width: 128px;
+  border-right: 1px solid black;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   text-align: left;
-}
-
-.sidebar_header a:nth-child(3) {
-  width: $sidebar-width / 4;
-  display: block;
-  margin-left: $sidebar-width * 5 / 16;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  z-index: 2;
-  right: auto;
-  background-color: $pale-yellow;
-  text-align: center;
-}
-
-.sidebar_window .sidebar {
-  background-color: $pale-green;
 }
 
 .sidebar_window #all-fields-sidebar {

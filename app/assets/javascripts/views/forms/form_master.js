@@ -1,11 +1,12 @@
 AFB.Views.FormMaster = Backbone.View.extend({
   events: {
-    "click .sidebar_header" : "newSidebar",
-    "click .sidebar" : "sidebarClick",
+    "click #save-form" : "serverSaveForm",
+    "click #form-settings" : "formSettings",
+    // "click .sidebar" : "sidebarClick",
     "click #edit-box" : "editBoxClick",
-    "keyup .sidebar" : "sidebarValues",
+    // "keyup .sidebar" : "sidebarValues",
     "keyup #edit-box" : "editBoxValues",
-    "change .sidebar :checked, .sidebar select" : "sidebarValues",
+    // "change .sidebar :checked, .sidebar select" : "sidebarValues",
     "change #edit-box :checked, #edit-box select" : "editBoxValues",
   },
 
@@ -16,7 +17,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
   render: function(newSidebar, formView){
     console.log('rendering FormMaster view');
     this.$el.empty();
-    this.$el.append(this.makeSidebarView(newSidebar));
+    this.$el.append(JST['forms/masterview_seed']());
+    // this.$el.append(this.makeSidebarView(newSidebar));
 
     this.renderForm();
     this.sidebarReset();
@@ -49,32 +51,33 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
     $formWrapper.find('.fi-30x').append(this.editForm.render().$el);
     this.$el.append($formWrapper);
+    this.addFieldsDraggable();
     this.makeSortable();
-    this.initialize();
+    // this.initialize();
   },
 
-  makeSidebarView: function(newSidebar){
-    console.log("making sidebar");
-    this.removeView(this.sidebar);
+  // makeSidebarView: function(newSidebar){
+  //   console.log("making sidebar");
+  //   this.removeView(this.sidebar);
 
-    if (newSidebar){
-      this.sidebar = newSidebar;
+  //   if (newSidebar){
+  //     this.sidebar = newSidebar;
 
-    } else {
-      this.model.removeActiveEdits();
-      this.sidebar = new AFB.Views.FormSidebarInputs({
-        model: this.model
-      });
-    }
+  //   } else {
+  //     this.model.removeActiveEdits();
+  //     this.sidebar = new AFB.Views.FormSidebarInputs({
+  //       model: this.model
+  //     });
+  //   }
 
-    this.sidebar.parentView = this;
-    this.formRouter.childViews.push(this.sidebar);
+  //   this.sidebar.parentView = this;
+  //   this.formRouter.childViews.push(this.sidebar);
 
-		var $sidebar = $(JST['forms/sidebars/sidebar_seed']()).
-      append(this.sidebar.render().$el);
+		// var $sidebar = $(JST['forms/sidebars/sidebar_seed']()).
+  //     append(this.sidebar.render().$el);
 
-		return $sidebar;
-  },
+		// return $sidebar;
+  // },
 
   makeEditBox: function(newEditBox){
     console.log('FormMaster#makeEditBox');
@@ -100,7 +103,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
         }
       });
       that.positionEditBox($editBox);
-alert(' now here');
       AFB.Routers.FormRouter.positionWindow(newEditBox.field.add($editBox));
       that.fieldDuplicate();
     });
@@ -118,17 +120,13 @@ alert(' now here');
       $editBox.find('.sidebar h2').first().append($saveButton);
       $saveButton.css('margin-left', '20px');
     }
-    var x = (parseInt($field.css('left'), 10) || 0) +
-      ($field.outerWidth() / 2);
-    var left = x - ($editBox.outerWidth() / 2);
-    var top = (parseInt($field.css('top'), 10) || 0) +
-      $field.outerHeight() + 30;
 
-    $editBox.css({
-      'left': left + 'px',
-      'top': top + 'px'
+    $editBox.position({
+      my: 'center top',
+      at: 'center bottom+20',
+      of: $field
     });
-// alert('beep boop');
+
     if (editingForm){
       AFB.Routers.FormRouter.positionWindow($field.add($editBox));
     }
@@ -163,49 +161,28 @@ alert(' now here');
     });
   },
 
-  newSidebar: function(event){
-    console.log("target sidebar view is");
-    console.log($(event.target).attr("id"));
-    event.preventDefault();
-    switch($(event.target).attr("id")) {
-    case "move-to-add-fields":
-      // this.removeActiveEdits();
-      this.model.localSaveForm();
-      this.render();
-      break;
-    case "move-to-form-settings":
-      console.log("making form-settings view");
-      event.stopPropagation();
-      $(document).off('click', this.editForm.stopEditing);
-      this.removeActiveEdits();
-      var formSettings = new AFB.Views.FormSettings({
-        model: this.model
-      });
-      formSettings.field = $('.inner-wrapper form').first();
-      formSettings.field.addClass('editing');
+  formSettings: function(event){
+    console.log('FormMaster#formSettings');
+    event.stopPropagation();
+    $(document).off('click', this.editForm.stopEditing);
+    this.removeActiveEdits();
+    var formSettings = new AFB.Views.FormSettings({
+      model: this.model
+    });
+    formSettings.field = $('.inner-wrapper form').first();
+    formSettings.field.addClass('editing');
 
-      this.makeEditBox(formSettings);
-      this.editForm.clickToStopEditing();
-      AFB.Routers.FormRouter.positionWindow($('#edit-box'));
-
-      // this.swapSidebar(formSettings);
-      // this.model.localSaveForm();
-      break;
-    case "save-form":
-      this.serverSaveForm();
-      break;
-    default:
-      console.log("hit newSidebar switch default");
-      this.render();
-    }
+    this.makeEditBox(formSettings);
+    this.editForm.clickToStopEditing();
+    AFB.Routers.FormRouter.positionWindow($('#edit-box'));
   },
 
-  sidebarClick: function(event){
-    console.log('in FormMaster#sidebarClick');
-    var $target = $(event.target);
-    this.sidebar.parseClick && this.sidebar.parseClick(event);
-    this.sidebarValues(event);
-  },
+  // sidebarClick: function(event){
+  //   console.log('in FormMaster#sidebarClick');
+  //   var $target = $(event.target);
+  //   this.sidebar.parseClick && this.sidebar.parseClick(event);
+  //   this.sidebarValues(event);
+  // },
 
     editBoxClick: function(event){
     console.log('in FormMaster#editBoxClick');
@@ -276,10 +253,10 @@ alert(' now here');
     }
   },
 
-  sidebarValues: function(event){
-    console.log("sidebarValues triggered with a " + event.type);
-    this.sidebar.updateValues && this.sidebar.updateValues(event);
-  },
+  // sidebarValues: function(event){
+  //   console.log("sidebarValues triggered with a " + event.type);
+  //   this.sidebar.updateValues && this.sidebar.updateValues(event);
+  // },
 
   editBoxValues: function(event){
     console.log("editBoxValues triggered with a " + event.type);
@@ -334,10 +311,10 @@ alert(' now here');
         that.formDroppable();
         that.formFieldsDraggable();
         that.queued = false;
-        if (that.sidebar.inputsNotDraggable){
-          that.addFieldsDraggable();
-          that.sidebar.inputsNotDraggable = false;
-        }
+        // if (that.sidebar.inputsNotDraggable){
+        //   that.addFieldsDraggable();
+        //   that.sidebar.inputsNotDraggable = false;
+        // }
         if (that.mustPrepForm){
           that.editForm.prepForm($('.fi-30x form'));
           that.mustPrepForm = false;
@@ -359,46 +336,44 @@ alert(' now here');
 
   addFieldsDraggable: function(){
     var that = this;
-    $('#all-fields-sidebar div').each(function(){
-      var editView = that.sidebar.makeEditView({target: this});
 
-      $(this).draggable({
-        start: function(event, ui){
-          that.removeActiveEdits();
-          ui.helper.data('dropped', false);
-        },
+    $('#all-fields-sidebar div').draggable({
+      start: function(event, ui){
+        that.removeActiveEdits();
+        ui.helper.data('dropped', false);
+      },
 
-        stop: function(event, ui){
-          if (ui.helper.data('dropped')){
+      stop: function(event, ui){
+        if (ui.helper.data('dropped')){
 
-            var $newField = ui.helper.clone();
-            that.model.addField($newField);
-            $newField.removeClass('editing');
-            that.editForm.prepForm($newField.parent());
-            that.editForm.parseClickForm({target: $newField});
+          var $newField = ui.helper.clone();
+          that.model.addField($newField);
+          $newField.removeClass('editing');
+          that.editForm.prepForm($newField.parent());
+          that.editForm.parseClickForm({target: $newField});
 
-          } else {
+        } else {
 
-            console.log('drop unsuccessful');
-            window.setTimeout(function(){
-              ui.helper.remove();
-            }, 500);
-          }
-        },
+          console.log('drop unsuccessful');
+          window.setTimeout(function(){
+            ui.helper.remove();
+          }, 500);
+        }
+      },
 
-        helper: function(){
-          return editView.$seed.clone();
-        },
+      helper: function(){
+        console.log(this);
+        return $(JST['forms/fields/' + $(this).closest('div').data('fieldTemplate')]());
+      },
 
-        appendTo: "ul.fields-list",
-        distance: 0,
-        revert: 'invalid',
-        scope: 'newFields',
-        scrollSensitivity: 50,
-        snap: ".formEl",
-        snapMode: 'outer',
-        snapTolerance: 5
-      });
+      appendTo: "ul.fields-list",
+      distance: 0,
+      revert: 'invalid',
+      scope: 'newFields',
+      scrollSensitivity: 50,
+      snap: ".formEl",
+      snapMode: 'outer',
+      snapTolerance: 5
     });
   },
 
