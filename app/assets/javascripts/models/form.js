@@ -74,7 +74,8 @@ AFB.Models.Form = Backbone.Model.extend ({
     $form.find('.editing').removeClass('editing');
     $form.find('.move-handle').remove();
     $form.find('.delete-field').remove();
-    $form.find('#form-filter').off().remove();
+    $form.find('#form-filter').remove();
+    $(document).off('click', this.formRouter.formMaster.editForm.stopEditing);
     $form.find(".label, label span").removeAttr('contenteditable');
     if (this.formRouter && this.formRouter.formMaster){
       this.formRouter.formMaster.mustPrepForm = true;

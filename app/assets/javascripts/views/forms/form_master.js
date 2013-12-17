@@ -1,7 +1,7 @@
 AFB.Views.FormMaster = Backbone.View.extend({
   events: {
     "click #save-form" : "serverSaveForm",
-    "click #form-settings" : "formSettings",
+    "click #form-settings-button" : "formSettings",
     // "click .sidebar" : "sidebarClick",
     "click #edit-box" : "editBoxClick",
     // "keyup .sidebar" : "sidebarValues",
@@ -21,20 +21,19 @@ AFB.Views.FormMaster = Backbone.View.extend({
     // this.$el.append(this.makeSidebarView(newSidebar));
 
     this.renderForm();
-    this.sidebarReset();
+//    this.sidebarReset();
 
     console.log('--- End of FormMaster view #render ---');
     return this;
   },
 
-  sidebarReset: function(){
-    console.log('resetting sidebar position');
-    $(function(){
-      console.log('document ready, resetting sidebar position');
-      var $sidebar = $('.sidebar_window');
-      $sidebar && $sidebar.css('top', $(this).scrollTop());
-    });
-  },
+  // sidebarReset: function(){
+  //   console.log('resetting sidebar position');
+  //   $(function(){
+  //     console.log('document ready, resetting sidebar position');
+  //     $('.sidebar_window').css('top', $(this).scrollTop());
+  //   });
+  // },
 
   renderForm: function(){
     this.removeView(this.editForm);
@@ -140,7 +139,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     $copyButton.draggable({
       start: function(){
         console.log('fieldDuplicate dragging started');
-        that.$el.find('#form-filter').off().remove();
+        that.$el.find('#form-filter').remove();
         that.$el.find('#edit-box').css('display', 'none');
       },
       stop: function(event, ui){
@@ -164,12 +163,11 @@ AFB.Views.FormMaster = Backbone.View.extend({
   formSettings: function(event){
     console.log('FormMaster#formSettings');
     event.stopPropagation();
-    $(document).off('click', this.editForm.stopEditing);
     this.removeActiveEdits();
     var formSettings = new AFB.Views.FormSettings({
       model: this.model
     });
-    formSettings.field = $('.inner-wrapper form').first();
+    formSettings.field = $('.outer-wrapper form').first();
     formSettings.field.addClass('editing');
 
     this.makeEditBox(formSettings);
@@ -286,10 +284,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
 	updateEditBox: function(event){
     var $field = this.$el.find('.editing');
-    if ($field.length){
-      this.editBox.field = $field;
-      this.$el.find('.edit-box').replaceWith(this.editBox.render().$el.html());
-    } // else {
+    $field.length && (this.editBox.field = $field);
+    this.$el.find('.edit-box').replaceWith(this.editBox.render().$el.html());
+    // } else {
     //   this.editForm.startEditingField($(event.target).closest(".formEl"));
     // }
 	},
@@ -393,7 +390,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
           ui.helper.trigger('click');
         } else {
           that.render();
-          $(document).off('click', that.editForm.stopEditing);
         }
       },
 
@@ -417,7 +413,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   removeActiveEdits: function(){
     console.log('removing all editing classes');
-    this.$el.find('#form-filter').off().remove();
+    this.$el.find('#form-filter').remove();
+    $(document).off('click', this.editForm.stopEditing);
     this.$el.find('#edit-box').remove();
     this.removeView(this.editBox);
     var $old = this.$el.find('.editing');

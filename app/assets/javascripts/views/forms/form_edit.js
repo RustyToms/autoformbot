@@ -25,7 +25,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
   stopEditing: function(event){
     console.log('FormEdit#stopEditing');
     if ($(event.target).closest('#edit-box, .formEl').length === 0){
-      $(document).off('click', this.stopEditing);
       event.data.parentView.removeActiveEdits();
     }
   },
