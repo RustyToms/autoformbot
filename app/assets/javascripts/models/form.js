@@ -70,17 +70,24 @@ AFB.Models.Form = Backbone.Model.extend ({
   removeActiveEdits: function(){
     console.log('removing all editing classes');
     var $form = $(this.get('form_text'));
+    this.standardEditRemoval($form);
+
     $form.find('input, textarea').removeAttr('disabled');
-    $form.find('.editing').removeClass('editing');
     $form.find('.move-handle').remove();
-    $form.find('.delete-field').remove();
-    $form.find('#form-filter').remove();
-    $(document).off('click', this.formRouter.formMaster.editForm.stopEditing);
     $form.find(".label, label span").removeAttr('contenteditable');
     if (this.formRouter && this.formRouter.formMaster){
       this.formRouter.formMaster.mustPrepForm = true;
     }
     this.set('form_text', $form.prop('outerHTML'));
+  },
+
+  standardEditRemoval: function($form){
+    console.log('Form.js#standardEditRemoval');
+    $form.find('#form-filter').remove();
+    $(document).off('click');
+    $form.find('.editing').removeClass('editing');
+    $form.find('.delete-field').remove();
+    $form.find('#edit-box').remove();
   },
 
   serverSave: function(){
