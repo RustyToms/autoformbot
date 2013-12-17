@@ -103,14 +103,10 @@ AFB.Models.Form = Backbone.Model.extend ({
     },{
       success: function(response, model){
         console.log("save successful");
-        console.log(model);
-        console.log(response);
-        console.log(that.get('id'));
         AFB.Routers.FormRouter.myFlash('Form saved');
       },
       error: function(response, model){
         console.log("error: " + response.responseText);
-        console.log(model);
         AFB.Routers.FormRouter.myFlash("error: " + response.responseText);
       }
     });

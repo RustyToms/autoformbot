@@ -55,6 +55,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
         that.model.updateFormAction();
         Backbone.history.navigate("forms/" + that.model.get('id') +
           "/edit", {trigger: true});
+        $('#form-settings-button').trigger('click');
       }
 		});
   },
@@ -142,13 +143,13 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   }
 });
 
-AFB.Routers.FormRouter.fitContent = function(matchSelect, targetSelect){
-  $(function(){
-    var $match = $(matchSelect);
-    var $target = $(targetSelect);
-    AFB.Routers.FormRouter.matchSize($match, $target);
-  });
-};
+// AFB.Routers.FormRouter.fitContent = function(matchSelect, targetSelect){
+//   $(function(){
+//     var $match = $(matchSelect);
+//     var $target = $(targetSelect);
+//     AFB.Routers.FormRouter.matchSize($match, $target);
+//   });
+// };
 
 AFB.Routers.FormRouter.matchSize = function ($match, $target){
   var width = $target.outerWidth();
@@ -201,6 +202,5 @@ AFB.Routers.FormRouter.positionWindow = function($targets){
     $(window).scrollTop(topPos - (
       targetHeight > windowHeight - 100 ? 100 : (topDiff / 2)
       )).scrollLeft(leftPos - (leftDiff / 2));
-
   });
 };
