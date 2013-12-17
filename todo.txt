@@ -7,8 +7,6 @@
 - Make background of results be a fixed position version of the form
   pushed to the background and covered with clear coat
 
-- get rid of little delete button on editing
-
 - Allow sorting by column
 
 - add Account stuff, allow a user to change their email address

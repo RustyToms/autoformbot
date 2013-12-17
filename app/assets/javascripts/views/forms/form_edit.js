@@ -55,13 +55,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
     var $target = $(event.target);
     var $formEl = $target.closest(".formEl");
 
-    if($target.hasClass('delete-field')){
-      event.preventDefault();
-      $formEl.remove();
-      this.model.localSaveForm();
-      this.parentView.render();
-
-    } else if ($formEl.length && !$formEl.hasClass('editing')){
+    if ($formEl.length && !$formEl.hasClass('editing')){
       this.parentView.removeActiveEdits();
       this.startEditingField($formEl);
       event.stopPropagation && event.stopPropagation();
@@ -90,8 +84,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   prepField: function($formEl){
   // pops the selected field up above a darkened form
     this.$el.find('form').first().append(JST['forms/form_filter']());
-    $formEl.addClass("editing").append("<button class='delete-field'" +
-        "style='position: absolute'>X</button>");
+    $formEl.addClass("editing");
   },
 
 	updateEditBox: function(event){
