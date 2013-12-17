@@ -94,6 +94,10 @@ AFB.Views.FormMaster = Backbone.View.extend({
     // if ($('#all-fields-sidebar').length === 0){
     //   this.swapSidebar();
     // }
+    if (newEditBox.field.data("sidebar") === 'FormEditTitle'){
+      $editBox.find('#delete-field').remove();
+    }
+
     $(function(){
       console.log('document ready, positioning editbox and window');
       $editBox.tabs({
