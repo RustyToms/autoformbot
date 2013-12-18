@@ -1,0 +1,17 @@
+<% var email = email || "" %>
+
+<div
+  class='email-address'>
+  <input type='text'
+    class='email-notify'
+    onClick="$(this).select()"
+    size='40'
+    value='<%- email %>'>
+
+  <button
+    class='delete-address email-notify'
+  >Remove</button>
+
+  <br>
+
+</div>

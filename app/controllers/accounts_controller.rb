@@ -72,8 +72,7 @@ class AccountsController < ApplicationController
       return
     end
 
-    @account.update_attributes(params[:account])
-    if @account.save
+    if @account.update_attributes(params[:account])
       render json: @account
     else
       render json: @account.errors.full_messages, status: :unprocessable_entity

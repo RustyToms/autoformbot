@@ -7,7 +7,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     // "keyup .sidebar" : "sidebarValues",
     "keyup #edit-box" : "editBoxValues",
     // "change .sidebar :checked, .sidebar select" : "sidebarValues",
-    "change #edit-box :checked, #edit-box select" : "editBoxValues",
+    // "change #edit-box :checked, #edit-box select" : "editBoxValues",
   },
 
   initialize: function(){

@@ -17,11 +17,32 @@
     <input
       type='text'
       style='display: inline-block'
-      value='<%= url %>'
+      value='<%- url %>'
       name='redirect-url'
       onClick="$(this).select()"
     />
   </label><br>
+
+  <label>
+    <input
+      type='checkbox'
+      class='email-notify'
+      id='email-notification'
+      <% if (notify) { %>
+        <%= "checked" %>
+      <% } %>
+      >
+    Check to receive results by email when a form is submitted
+  </label><br>
+
+  <div class='email-addresses'>
+    Email addresses to send results to:<br>
+
+    <button class='email-notify add-address'>Add another address</button>
+
+    <br>
+
+  </div>
 
   <label>Form width (using px, em, or %):
     <input

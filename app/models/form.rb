@@ -7,14 +7,7 @@ class Form < ActiveRecord::Base
   has_many :users, through: :account, source: :users
 
   validates :account_id, :name, presence: true
-
-  def update_url
-    unless self.url.blank?
-      unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
-        self.url = "http://#{self.url}"
-      end
-    end
-  end
+  before_update :update_url
 
   def make_form_wrapper
     form_wrapper_file = open("app/assets/templates/forms/form_wrapper.jst.ejs")
@@ -25,5 +18,15 @@ class Form < ActiveRecord::Base
 
   def attributes
     super.merge('new_results' => self.new_results)
+  end
+
+  private
+
+  def update_url
+    unless self.url.blank?
+      unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
+        self.url = "http://#{self.url}"
+      end
+    end
   end
 end

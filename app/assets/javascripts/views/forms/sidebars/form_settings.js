@@ -5,21 +5,53 @@ AFB.Views.FormSettings = Backbone.View.extend({
 
   render: function(){
     console.log('rendering FormSettings');
+    var notify = $.inArray('email', this.model.get('notify_by')) > -1;
+
     this.$el = $(JST['forms/sidebars/form_settings']({
       $form: $(this.model.get('form_text')).find('form.form').first(),
-      url: this.model.get('url')
+      url: this.model.get('url'),
+      notify: notify
     }));
+
+    this.renderEmails();
+    this.showOrHideEmails(notify);
     return this;
+  },
+
+  renderEmails: function(){
+    console.log('FormSettings#renderEmails');
+    var emails = this.model.get('emails') || [''];
+    var $emailAddresses = this.$el.find('.email-addresses');
+    $.each(emails, function(i, email){
+      $emailAddresses.append(JST['forms/sidebars/email_address']({
+        email: email
+      }));
+    });
+  },
+
+  showOrHideEmails: function(show){
+    console.log('FormSettings#showOrHideEmails ' + show);
+    if(show === true){
+      this.$el.find('.email-addresses').show();
+    } else {
+      this.$el.find('.email-addresses').hide();
+    }
   },
 
   updateValues: function(event){
     console.log('in FormSettings#updateValues');
     var $title = $('li[data-sidebar="FormEditTitle"]').first();
     var centered = [];
+
     if ($(event.target).attr('name') === 'redirect-url'){
 
       console.log("setting new redirect url to " + $(event.target).val());
       this.model.set({'url': $(event.target).val()}, {silent: true});
+
+    } else if ($(event.target).hasClass('email-notify')){
+
+      this.emailValues(event);
+      return;
 
     } else if ($(event.target).attr('name')=='formName'){
 
@@ -62,5 +94,47 @@ AFB.Views.FormSettings = Backbone.View.extend({
     return ((width - 2) < calc && calc < (width + 2));
   },
 
+  emailValues: function(event){
+    console.log('FormSettings#emailValues');
+    if ($(event.target).hasClass('delete-address') && event.type === 'click'){
 
+      var $emailAddresses = $(event.target).closest('.email-addresses');
+      $(event.target).closest('.email-address').remove();
+      this.updateEmails($emailAddresses);
+
+    } else if ($(event.target).hasClass('add-address') &&
+      event.type === 'click'){
+// console.log(JST['forms/sidebars/email_address']());
+      $(event.target).parent().append(JST['forms/sidebars/email_address']());
+
+    } else if ($(event.target).attr('id') === "email-notification"){
+
+      var notify_by = this.model.get('notify_by') || [];
+      var i = $.inArray('email', notify_by);
+
+      if (i > -1){
+        notify_by.splice(i, 1);
+      }
+
+      if (event.target.checked){
+        notify_by.push('email');
+      }
+
+      this.showOrHideEmails(event.target.checked);
+      this.model.set('notify_by', notify_by);
+
+    } else {
+
+      this.updateEmails($(event.target).closest('.email-addresses'));
+
+    }
+  },
+
+  updateEmails: function($emailAddresses){
+    var emails = [];
+    $emailAddresses.find('input.email-notify').each(function(){
+        emails.push($(this).val());
+      });
+    this.model.set('emails', emails);
+  }
 });
