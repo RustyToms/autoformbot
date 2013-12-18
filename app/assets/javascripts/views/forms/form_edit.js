@@ -70,13 +70,13 @@ AFB.Views.FormEdit = Backbone.View.extend({
     console.log("in FormEdit#startEditingField");
     var editBoxName = $formEl.data("sidebar");
     console.log("new editBox should be " + editBoxName);
+    this.prepField($formEl);
 
     var editBox = new AFB.Views[editBoxName]({
       model: this.model
     });
     editBox.field = $formEl;
 
-    this.prepField($formEl);
     this.parentView.makeEditBox(editBox);
     this.clickToStopEditing();
   },

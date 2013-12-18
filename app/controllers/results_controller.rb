@@ -19,10 +19,10 @@ class ResultsController < ApplicationController
       respond_to do |format|
         format.json { render json: @result }
         format.html {
-          if @form.url
-            redirect_to @form.url
-          else
+          if @form.url.blank?
             redirect_to thank_you_url
+          else
+            redirect_to @form.url
           end
         }
       end
