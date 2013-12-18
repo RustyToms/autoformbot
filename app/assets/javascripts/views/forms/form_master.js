@@ -102,7 +102,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
       console.log('document ready, positioning editbox and window');
       $editBox.tabs({
         activate: function(){
-          AFB.Routers.FormRouter.positionWindow($editBox.add('.editing'));
+          AFB.Routers.FormRouter.positionWindow(
+            $editBox.add(that.editBox.field));
         }
       });
       that.positionEditBox($editBox);
@@ -113,13 +114,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   positionEditBox: function($editBox){
     console.log('FormMaster#positionEditBox');
-    var $field = this.$el.find('.editing');
+    var $field = $('.editing').first();
     var editingForm = $field.is('form');
 
     if (editingForm){
       $field = $field.find('li[data-sidebar="FormEditTitle"]').first();
       var $saveButton = $editBox.find('#save-button').detach();
-      $editBox.find('.edit-box-button, button').remove();
+      $editBox.find('.edit-box-button, a[href="#size-position"]').remove();
       $editBox.find('.sidebar h2').first().append($saveButton);
       $saveButton.css('margin-left', '20px');
     }
@@ -133,6 +134,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     if (editingForm){
       AFB.Routers.FormRouter.positionWindow($field.add($editBox));
     }
+
   },
 
   fieldDuplicate: function(){
@@ -154,7 +156,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
         that.editForm.prepForm(newField);
       },
       helper: function(){
-        return that.$el.find('.editing').clone();
+        return that.editBox.field.clone();
       },
       appendTo: "ul.fields-list",
       containment: '.fi-30x form',
@@ -177,6 +179,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.makeEditBox(formSettings);
     this.editForm.clickToStopEditing();
     AFB.Routers.FormRouter.positionWindow($('#edit-box'));
+    $('.move-handle').css('z-index', '5');
   },
 
   // sidebarClick: function(event){
@@ -218,7 +221,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
           case "duplicate-field":
             break;
           case "delete-field":
-            this.$el.find('.editing').remove();
+            this.editBox.field.remove();
             this.removeActiveEdits();
             this.model.localSaveForm();
             this.render();
@@ -227,19 +230,28 @@ AFB.Views.FormMaster = Backbone.View.extend({
             this.model.localSaveForm();
             break;
           case "pull-front":
-            $(".fi-30x form ul").append($('.fi-30x .editing'));
+            $(".fi-30x form ul").append(this.editBox.field);
             AFB.Routers.FormRouter.myFlash("Field moved to the front");
             this.model.localSaveForm();
             break;
-            case "push-back":
-              $(".fi-30x form ul").prepend($('.fi-30x .editing'));
-              AFB.Routers.FormRouter.myFlash("Field moved to the back");
-              this.model.localSaveForm();
-              break;
+          case "push-back":
+            $(".fi-30x form ul").prepend(this.editBox.field);
+            AFB.Routers.FormRouter.myFlash("Field moved to the back");
+            this.model.localSaveForm();
+            break;
           default:
-          console.log("Sending to editBox view parseClickForm");
-          this.editBox.parseClick && this.editBox.parseClick(event);
-          this.editBoxValues(event);
+            if ($target.hasClass('alignment')){
+              this.editForm.alignField(
+                this.editBox.field, $target.data('align'));
+              this.positionEditBox($('#edit-box'));
+              AFB.Routers.FormRouter.positionWindow($('#edit-box').
+                add(this.editBox.field));
+              this.
+              break;
+            }
+            console.log("Sending to editBox view parseClickForm");
+            this.editBox.parseClick && this.editBox.parseClick(event);
+            this.editBoxValues(event);
         }
       }
 
@@ -287,9 +299,10 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
 	updateEditBox: function(event){
-    var $field = this.$el.find('.editing');
+    console.log("FormMaster#updateEditBox***********");
+    var $field = this.$el.find('.editing').first();
     $field.length && (this.editBox.field = $field);
-    this.$el.find('.edit-box').replaceWith(this.editBox.render().$el.html());
+    this.$el.find('#edit-box #customizations').html(this.editBox.render().$el);
     // } else {
     //   this.editForm.startEditingField($(event.target).closest(".formEl"));
     // }

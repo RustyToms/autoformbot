@@ -172,7 +172,7 @@
     -moz-border-radius: 15px;
     -khtml-border-radius: 15px;
     border-radius: 15px;
-    min-width: 400px;
+    width: 500px;
   }
   .fi-30x .edit-box-button {
     margin-top: 10px;
@@ -218,6 +218,7 @@
   <ul>
     <li><a href="#customizations">Basic Customization</a></li>
     <li><a href="#styling">Styling Options</a></li>
+    <li><a href="#size-position">Size and Position</a></li>
   </ul>
 
   <div
@@ -237,8 +238,7 @@
   <div id='customizations'></div>
 
   <div
-    id="styling"
-    style="width: 500px;">
+    id="styling">
 
     <div class='style-group group'>
       <div class="style-option">
@@ -405,7 +405,9 @@
         </label>
       </div>
     </div>
+  </div>
 
+  <div id='size-position'>
     <div class='style-group group'>
       <div class="style-option">
         <label>Width:
@@ -430,7 +432,51 @@
           <span class='tip'>(px, em, or %)</span>
         </label>
       </div>
+    </div>
 
+    <div class='style-group group'>
+      <table style='width: 100%'>
+        <tr>
+          <td>
+            <div
+              class="style-option"
+              style= "float: left">
+              <button
+                class="alignment"
+                data-align="left">
+                Align left
+              </button>
+            </div>
+          </td>
+
+          <td style="text-align: center">
+            <div
+              class="style-option"
+              style="width: 100%;">
+              <button
+                class="alignment"
+                data-align="center">
+                Align center
+              </button>
+            </div>
+          </td>
+
+          <td>
+            <div
+              class="style-option"
+              style='float: right'>
+              <button
+                class="alignment"
+                data-align="right">
+                Align right
+              </button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class='style-group group'>
       <div class="style-option">
         <button
           id="pull-front">

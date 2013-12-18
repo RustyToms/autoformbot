@@ -26,7 +26,6 @@ AFB.Views.FormSettings = Backbone.View.extend({
         centered[1][0] = $('.form').first().children('.submit-button');
         var formWidth = centered[0][0].offsetParent().outerWidth();
         $.each(centered, function(i, el){
-          console.log(el);
           var calc = el[0].outerWidth() + parseInt(el[0].css('left'), 10) * 2;
           el[1] = ((formWidth - 2) < calc && calc < (formWidth + 2));
         });

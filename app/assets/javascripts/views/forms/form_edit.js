@@ -108,18 +108,21 @@ AFB.Views.FormEdit = Backbone.View.extend({
 	},
 
   alignField: function($field, alignment){
+    console.log("FormEdit#alignField " + alignment);
+    console.log($field);
+    var $container = $field.offsetParent();
     if (alignment === 'left'){
       $field.css({
-        left: '0',
+        left: $container.css('padding-left'),
         right: 'auto'
         });
     } else if (alignment === 'right'){
       $field.css({
         left: 'auto',
-        right: '0'
+        right: $container.css('padding-right')
       });
     } else if (alignment === 'center'){
-      var width = $field.offsetParent().outerWidth();
+      var width = $container.outerWidth();
       $field.css({
         left: (width - $field.outerWidth()) / 2,
         right: 'auto'
