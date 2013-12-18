@@ -204,3 +204,11 @@ AFB.Routers.FormRouter.positionWindow = function($targets){
       )).scrollLeft(leftPos - (leftDiff / 2));
   });
 };
+
+AFB.Routers.FormRouter.centerEl = function($el){
+  var width = $el.offsetParent().outerWidth();
+  $el.css({
+    left: (width - $el.outerWidth()) / 2,
+    right: 'auto'
+  });
+}

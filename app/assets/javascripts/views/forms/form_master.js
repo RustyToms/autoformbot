@@ -397,6 +397,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       start: function(event, ui){
         console.log('.formEl drag started');
         that.removeActiveEdits();
+        ui.helper.css('right', 'auto');
       },
 
       stop: function(event, ui){

@@ -3,6 +3,14 @@
 
   <h2>Customize your Form</h2>
 
+  <label>New Form Name:
+    <input
+      id="new-form-name"
+      onClick="$(this).select()"
+      name="formName"
+      value="<%= $form.find('.formEl .formName').first().text() %>">
+  </label><br>
+
   <label>Url to redirect to after form submission:
     <input
       type='text'

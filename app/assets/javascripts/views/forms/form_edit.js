@@ -122,11 +122,12 @@ AFB.Views.FormEdit = Backbone.View.extend({
         right: $container.css('padding-right')
       });
     } else if (alignment === 'center'){
-      var width = $container.outerWidth();
-      $field.css({
-        left: (width - $field.outerWidth()) / 2,
-        right: 'auto'
-      });
+      AFB.Routers.FormRouter.centerEl($field);
+      // var width = $container.outerWidth();
+      // $field.css({
+      //   left: (width - $field.outerWidth()) / 2,
+      //   right: 'auto'
+      // });
     }
   }
 });
