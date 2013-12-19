@@ -21,6 +21,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
   renderEmails: function(){
     console.log('FormSettings#renderEmails');
     var emails = this.model.get('emails');
+    emails[0] = (emails[0] ? emails[0] : "");
     var $emailAddresses = this.$el.find('.email-addresses');
     $.each(emails, function(i, email){
       $emailAddresses.append(JST['forms/sidebars/email_address']({
@@ -112,7 +113,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
       var notify_by = this.model.get('notify_by') || {};
 
       if (notify_by['email']){
-        notify_by.splice(i, 1);
+        delete notify_by['email'];
       }
 
       if (event.target.checked){

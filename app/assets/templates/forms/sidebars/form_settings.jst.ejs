@@ -2,40 +2,51 @@
 <div class="sidebar" id="form-settings">
 
   <h2>Customize your Form</h2>
+  <div class='style-option'>
+    <label>New Form Name:
+      <input
+        id="new-form-name"
+        onClick="$(this).select()"
+        name="formName"
+        value="<%= $form.find('.formEl .formName').first().text() %>">
+    </label>
+  </div>
 
-  <label>New Form Name:
-    <input
-      id="new-form-name"
-      onClick="$(this).select()"
-      name="formName"
-      value="<%= $form.find('.formEl .formName').first().text() %>">
-  </label><br>
+  <br>
 
-  <label>
-    <span style='font-weight: bold;'>
-      URL to send user to on form submit:</span>
-    <input
-      type='text'
-      style='display: inline-block'
-      value='<%- url %>'
-      name='redirect-url'
-      onClick="$(this).select()"
-    />
-  </label><br>
+  <div class='style-option'>
+    <label>
+      <span style='font-weight: bold;'>
+        URL to send user to on form submit:</span>
+      <input
+        type='text'
+        style='display: inline-block'
+        value='<%- url %>'
+        name='redirect-url'
+        onClick="$(this).select()"
+      />
+    </label>
+  </div>
 
-  <label>
-    <input
-      type='checkbox'
-      class='email-notify'
-      id='email-notification'
-      <% if (notify) { %>
-        <%= "checked" %>
-      <% } %>
-      >
-    Check to receive results by email when a form is submitted
-  </label><br>
+  <br>
 
-  <div class='email-addresses'>
+  <div class='style-option'>
+    <label>
+      <input
+        type='checkbox'
+        class='email-notify'
+        id='email-notification'
+        <% if (notify) { %>
+          <%= "checked" %>
+        <% } %>
+        >
+      Check to receive results by email when a form is submitted
+    </label>
+  </div>
+
+  <br>
+
+  <div class='email-addresses style-option'>
     Email addresses to send results to:<br>
 
     <button class='email-notify add-address'>Add another address</button>
@@ -44,23 +55,32 @@
 
   </div>
 
-  <label>Form width (using px, em, or %):
-    <input
-      type='text'
-      style='display: inline-block'
-      data-css='width'
-      value="<%= $form.css('width') %>"
-      name='form'
-    />
-  </label><br>
+  <div class='style-option'>
+    <label>Form width (using px, em, or %):
+      <input
+        type='text'
+        style='display: inline-block'
+        data-css='width'
+        value="<%= $form.css('width') %>"
+        name='form'
+      />
+    </label>
+  </div>
 
-  <label>Form height (using px, em, %, or auto):
-    <input
-      type='text'
-      style='display: inline-block'
-      data-css='height'
-      value="<%= $form.css('height') %>"
-      name='form'
-    />
-  </label><br>
+  <br>
+
+  <div class='style-option'>
+    <label>Form height (using px, em, %, or auto):
+      <input
+        type='text'
+        style='display: inline-block'
+        data-css='height'
+        value="<%= $form.css('height') %>"
+        name='form'
+      />
+    </label>
+  </div>
+
+  <br>
+
 </div>
