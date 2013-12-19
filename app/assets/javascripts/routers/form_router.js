@@ -43,7 +43,9 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.model.set({
       account_id: window.ACCOUNT_ID,
       name: "Untitled Form",
-			form_text: $form.prop('outerHTML')
+			form_text: $form.prop('outerHTML'),
+      notify_by: "{}",
+      emails: "{}"
     });
 
     AFB.formCollection.add(this.model);

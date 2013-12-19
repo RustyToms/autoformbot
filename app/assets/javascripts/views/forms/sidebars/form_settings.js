@@ -5,7 +5,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
 
   render: function(){
     console.log('rendering FormSettings');
-    var notify = $.inArray('email', this.model.get('notify_by')) > -1;
+    var notify = this.model.get('notify_by')['email'];
 
     this.$el = $(JST['forms/sidebars/form_settings']({
       $form: $(this.model.get('form_text')).find('form.form').first(),
@@ -20,7 +20,8 @@ AFB.Views.FormSettings = Backbone.View.extend({
 
   renderEmails: function(){
     console.log('FormSettings#renderEmails');
-    var emails = this.model.get('emails') || [''];
+    var emails = this.model.get('emails');
+console.log(emails);
     var $emailAddresses = this.$el.find('.email-addresses');
     $.each(emails, function(i, email){
       $emailAddresses.append(JST['forms/sidebars/email_address']({
@@ -109,15 +110,14 @@ AFB.Views.FormSettings = Backbone.View.extend({
 
     } else if ($(event.target).attr('id') === "email-notification"){
 
-      var notify_by = this.model.get('notify_by') || [];
-      var i = $.inArray('email', notify_by);
+      var notify_by = this.model.get('notify_by') || {};
 
-      if (i > -1){
+      if (notify_by['email']){
         notify_by.splice(i, 1);
       }
 
       if (event.target.checked){
-        notify_by.push('email');
+        notify_by['email'] = true;
       }
 
       this.showOrHideEmails(event.target.checked);
@@ -131,9 +131,10 @@ AFB.Views.FormSettings = Backbone.View.extend({
   },
 
   updateEmails: function($emailAddresses){
-    var emails = [];
-    $emailAddresses.find('input.email-notify').each(function(){
-        emails.push($(this).val());
+    console.log('FormSettings#updateEmails');
+    var emails = {};
+    $emailAddresses.find('input.email-notify').each(function(index){
+        emails[index] = $(this).val();
       });
     this.model.set('emails', emails);
   }

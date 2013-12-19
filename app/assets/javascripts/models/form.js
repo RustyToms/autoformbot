@@ -1,4 +1,28 @@
 AFB.Models.Form = Backbone.Model.extend ({
+
+  initialize: function(attributes){
+    this.attributes.notify_by = JSON.parse(attributes.notify_by);
+    this.attributes.emails = JSON.parse(attributes.emails);
+  },
+
+  parse: function(response){
+    response.notify_by = JSON.parse(response.notify_by);
+    response.emails = JSON.parse(response.emails);
+
+    return response;
+  },
+
+  toJSON: function(options){
+    var attributes = _.clone(this.attributes);
+    if (typeof attributes.notify_by != 'string'){
+      attributes.notify_by = JSON.stringify(attributes.notify_by);
+    }
+    if (typeof attributes.emails != 'string'){
+      attributes.emails = JSON.stringify(attributes.emails);
+    }
+    return attributes;
+  },
+
   localSaveCount: 0,
 
   updateAttribute: function(selector, attribute, value){
@@ -97,9 +121,9 @@ AFB.Models.Form = Backbone.Model.extend ({
     var url = this.get('url');
     var that = this;
     this.save({
-      name: name,
-      form_text: text,
-      url: url
+      // name: name,
+      // form_text: text,
+      // url: url
     },{
       success: function(response, model){
         console.log("save successful");
