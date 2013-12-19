@@ -1,8 +1,12 @@
 AFB.Models.Form = Backbone.Model.extend ({
 
   initialize: function(attributes){
-    this.attributes.notify_by = JSON.parse(attributes.notify_by);
-    this.attributes.emails = JSON.parse(attributes.emails);
+    if (typeof attributes.notify_by === 'string'){
+      this.attributes.notify_by = JSON.parse(attributes.notify_by);
+    }
+    if (typeof attributes.emails === 'string'){
+      this.attributes.emails = JSON.parse(attributes.emails);
+    }
   },
 
   parse: function(response){
@@ -141,11 +145,8 @@ AFB.Models.Form = Backbone.Model.extend ({
 		console.log("duplicating form");
     var that = this;
 
-		var newModel = new AFB.Models.Form({
-			form_text: this.get('form_text'),
-			name: this.get('name'),
-			account_id: window.ACCOUNT_ID
-		});
+		var newModel = new AFB.Models.Form(this.attributes);
+    newModel.unset('id');
 
 		AFB.formCollection.add(newModel);
 		newModel.save({},{

@@ -21,7 +21,6 @@ AFB.Views.FormSettings = Backbone.View.extend({
   renderEmails: function(){
     console.log('FormSettings#renderEmails');
     var emails = this.model.get('emails');
-console.log(emails);
     var $emailAddresses = this.$el.find('.email-addresses');
     $.each(emails, function(i, email){
       $emailAddresses.append(JST['forms/sidebars/email_address']({
@@ -105,7 +104,7 @@ console.log(emails);
 
     } else if ($(event.target).hasClass('add-address') &&
       event.type === 'click'){
-// console.log(JST['forms/sidebars/email_address']());
+
       $(event.target).parent().append(JST['forms/sidebars/email_address']());
 
     } else if ($(event.target).attr('id') === "email-notification"){

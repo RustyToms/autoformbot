@@ -32,7 +32,6 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log("In FormRouter#formNew");
     this.cleanRootEl();
     this.$rootEl.html(this.$seedEl.clone());
-    this.model = new AFB.Models.Form();
     this.setUpModel();
   },
 
@@ -40,7 +39,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log("setting up form model");
 		var that = this;
     var $form = $(JST["forms/new_form_seed"]());
-    this.model.set({
+    this.model = new AFB.Models.Form({
       account_id: window.ACCOUNT_ID,
       name: "Untitled Form",
 			form_text: $form.prop('outerHTML'),
