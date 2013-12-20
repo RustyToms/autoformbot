@@ -56,6 +56,7 @@
         <div class='home-page-button'>Log Out
           <a href="/users/sign_out" data-method="delete" rel="nofollow"></a>
         </div>
+      </div>
 
       <% else %>
 
@@ -67,9 +68,16 @@
   		    <a class='sign-up-button' href="<%= new_user_registration_url %>">
           </a>
         </div>
+      </div>
+
+      <div class='demo-button-wrapper'>
+        <div class='home-page-button'>Log in with this demo account!
+          <a class='demo-button' href="<%= account_url('demo') %>"></a>
+        </div>
+      </div>
 
       <% end %>
-			</div>
+
     </div>
 
     <div class='sign-in hidden'>

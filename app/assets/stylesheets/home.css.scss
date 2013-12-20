@@ -114,6 +114,16 @@ main.home-page-content {
 	border: 3px ridge grey;
 }
 
+.demo-button-wrapper {
+  text-align: center;
+  margin: 15px auto;
+
+  .home-page-button {
+  	width: 320px;
+  	background-color: $pale-green;
+  }
+}
+
 .disclaimer {
 	width: 500px;
 	margin: 50px auto;
