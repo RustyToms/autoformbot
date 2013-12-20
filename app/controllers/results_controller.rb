@@ -26,14 +26,15 @@ class ResultsController < ApplicationController
           end
         }
       end
-      @hash = request.request_parameters
-      @form.users.each do |user|
-        begin
-          result_msg = UserMailer.new_result(user, @result, @form,
-            request.request_parameters)
-          result_msg.deliver!
-        rescue
-          p "Problem sending result to #{user.email}"
+      if JSON.parse(@form.notify_by)['email']
+        @hash = request.request_parameters
+        JSON.parse(@form.emails).each_value do |email|
+          begin
+            result_msg = UserMailer.new_result(email, @result, @form, @hash)
+            result_msg.deliver!
+          rescue
+            p "Problem sending result to #{user.email}"
+          end
         end
       end
     else
