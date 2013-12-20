@@ -433,7 +433,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     console.log('removing all editing classes');
     this.model.standardEditRemoval(this.$el.find('.fi-30x').first());
     // this.$el.find('#form-filter').remove();
-    // $(document).off('click', this.editForm.stopEditing);
+    // $(document).off('click', this.model.stopEditing);
     // this.$el.find('#edit-box').remove();
     this.removeView(this.editBox);
     // var $old = this.$el.find('.editing');

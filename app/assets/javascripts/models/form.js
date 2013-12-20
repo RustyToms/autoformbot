@@ -112,9 +112,16 @@ AFB.Models.Form = Backbone.Model.extend ({
   standardEditRemoval: function($form){
     console.log('Form.js#standardEditRemoval');
     $form.find('#form-filter').remove();
-    $(document).off('click');
+    $(document).off('click', this.stopEditing);
     $form.find('.editing').removeClass('editing');
     $form.find('#edit-box').remove();
+  },
+
+  stopEditing: function(event){
+    console.log('FormEdit#stopEditing');
+    if ($(event.target).closest('#edit-box, .formEl').length === 0){
+      event.data.parentView.removeActiveEdits();
+    }
   },
 
   serverSave: function(){
