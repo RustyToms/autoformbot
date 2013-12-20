@@ -14,7 +14,11 @@ AutoFormBot::Application.routes.draw do
 
   resources :forms, only: [:show, :create, :update, :destroy]
 
-  resources :accounts
+  resources :accounts do
+    collection do
+      get "demo"
+    end
+  end
 
   resources :results, only: [:destroy, :index]
 

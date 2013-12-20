@@ -64,6 +64,13 @@ class AccountsController < ApplicationController
   end
 
 
+  def demo
+    @account = make_demo_account
+    sign_in(@account.users.first)
+    redirect_to account_url(@account.url_name)
+  end
+
+
   def update
     @account = current_user.account
      unless @account.id == params[:id]
@@ -98,6 +105,44 @@ class AccountsController < ApplicationController
         end
       end
     end
+  end
+
+  def make_demo_account
+    old_demo = Account.where(url_name: 'demo1').first
+
+    unless old_demo.blank?
+      user = old_demo.users.first
+      old_demo.destroy
+    end
+
+    if user.blank?
+      user = User.find(12)
+    end
+
+    source = Account.includes(:forms).where(url_name: 'demo').first
+    demo1 = source.dup
+    demo1.url_name = 'demo1'
+    demo1.save!
+
+    demo1.users<<(user)
+
+    demo1.save!
+
+
+    source.forms.each do |form|
+      attributes = {}
+      form.attributes.each do |key, value|
+        if Form.accessible_attributes.include?(key)
+          attributes[key] = value
+        end
+      end
+
+      attributes["account_id"] = demo1.id
+      demo1.forms.build(attributes)
+    end
+
+    demo1.save!
+    demo1
   end
 
 end
