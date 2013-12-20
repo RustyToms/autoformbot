@@ -107,6 +107,7 @@ class AccountsController < ApplicationController
     end
   end
 
+
   def make_demo_account
     old_demo = Account.where(url_name: 'demo1').first
 
@@ -116,10 +117,10 @@ class AccountsController < ApplicationController
     end
 
     if user.blank?
-      user = User.find(12)
+      user = User.find(1)
     end
 
-    source = Account.includes(:forms).where(url_name: 'demo').first
+    source = Account.includes(:forms).where(url_name: 'demo_seed').first
     demo1 = source.dup
     demo1.url_name = 'demo1'
     demo1.save!
