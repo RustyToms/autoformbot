@@ -26,19 +26,26 @@ class ResultsController < ApplicationController
           end
         }
       end
+
       if JSON.parse(@form.notify_by)['email']
         @hash = request.request_parameters
-        JSON.parse(@form.emails).each_value do |email|
+        emails = JSON.parse(@form.emails)
+
+        emails.each_value do |email|
           begin
-            result_msg = UserMailer.new_result(email, @result, @form, @hash)
-            result_msg.deliver!
+            msg = UserMailer.new_result(email, @result, @form, @hash)
+            msg.deliver!
           rescue
-            p "Problem sending result to #{email}"
+            puts "Problem sending result to #{email}"
           end
         end
+
       end
+
     else
+
       render json: @result, status: :unprocessable_entity
+
     end
   end
 

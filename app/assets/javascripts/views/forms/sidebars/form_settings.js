@@ -134,8 +134,12 @@ AFB.Views.FormSettings = Backbone.View.extend({
     console.log('FormSettings#updateEmails');
     var emails = {};
     $emailAddresses.find('input.email-notify').each(function(index){
-        emails[index] = $(this).val();
-      });
+myEl = $(this);
+      if ($(this).val()) {
+        emails[emails.length] = $(this).val();
+      }
+    });
     this.model.set('emails', emails);
+myEmails = this.model.get('emails');
   }
 });
