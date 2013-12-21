@@ -40,6 +40,7 @@ AFB.Views.FormIndex = Backbone.View.extend({
 
   makeFormImage: function(button){
     var model = AFB.formCollection.get($(button).data('id'));
+    model.updateFormAction(); // if form id changes, change it in the form
     var newResults = model.get('new_results');
     model.removeActiveEdits();
     var form = model.get('form_text');

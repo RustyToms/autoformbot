@@ -33,7 +33,7 @@ class ResultsController < ApplicationController
             result_msg = UserMailer.new_result(email, @result, @form, @hash)
             result_msg.deliver!
           rescue
-            p "Problem sending result to #{user.email}"
+            p "Problem sending result to #{email}"
           end
         end
       end

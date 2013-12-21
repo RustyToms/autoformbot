@@ -127,15 +127,8 @@ AFB.Models.Form = Backbone.Model.extend ({
   serverSave: function(){
     console.log('in Form model saving to the server');
     this.removeActiveEdits();
-    var text = this.get('form_text');
-    var name = $(text).find('.formName').text().trim();
-    var url = this.get('url');
     var that = this;
-    this.save({
-      // name: name,
-      // form_text: text,
-      // url: url
-    },{
+    this.save({},{
       success: function(response, model){
         console.log("save successful");
         AFB.Routers.FormRouter.myFlash('Form saved');
