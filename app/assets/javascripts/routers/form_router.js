@@ -10,10 +10,46 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     '' : "index",
     'index' : "index",
     'forms/new' : "formNew",
-    "forms/:id" : "formShow",
-    "forms/:id/edit" : "formEdit",
-    "forms/:id/results" : "formResults",
-    "forms/:id/code" : "formCode"
+    'forms/:id/:name' : 'specificForm',
+    "forms/:id" : "specificForm",
+    ":name" : "catchAll"
+  },
+
+  catchAll: function(){
+    Backbone.history.navigate("", {trigger: true});
+  },
+
+  specificForm: function(id, name) {
+    console.log("FormRouter#specificForm id#" + id + " : " + name);
+    var form = AFB.formCollection.get(id);
+    var routes = {
+      'edit': this.formEdit,
+      'results': this.formResults,
+      'code': this.formCode
+    };
+
+    if(!form){
+      AFB.Routers.FormRouter.myFlash("Sorry, couldn't find that form");
+      Backbone.history.navigate("", {trigger: true});
+      return;
+    }
+
+    this.cleanRootEl();
+    this.view && this.view.remove();
+
+    if (name){
+      var route = routes[name];
+
+      if(route){
+        route.call(this, form);
+      } else {
+        this.catchAll();
+      }
+
+    } else {
+      this.formShow(form);
+    }
+    window.scrollTo(0,0);
   },
 
   index: function(){
@@ -61,64 +97,44 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 		});
   },
 
-  formShow: function(id) {
-    console.log("in FormRouter#formShow for form #" + id);
-		var showModel = AFB.formCollection.get(id);
-    this.cleanRootEl();
-    this.view && this.view.remove();
+  formShow: function(form) {
+    console.log("in FormRouter#formShow for form #" + form.id);
     this.view = new AFB.Views.FormShow({
-        model: showModel,
+        model: form,
         el: JST['forms/form_wrapper']()
       });
     this.$rootEl.append(this.view.render().$el);
-    window.scrollTo(0,0);
   },
 
-  formResults: function(id) {
-    console.log("in FormRouter#formResults for form #" + id);
-    var form = AFB.formCollection.get(id);
-    this.cleanRootEl();
-    this.view && this.view.remove();
+  formResults: function(form) {
+    console.log("in FormRouter#formResults for form #" + form.id);
     this.view = new AFB.Views.FormResults({
         model: form
       });
     this.$rootEl.append(this.view.render().$el);
-    window.scrollTo(0,0);
   },
 
-  formEdit: function(id) {
-    console.log('in FormRouter#formEdit for form #' + id);
-		var editModel = AFB.formCollection.get(id);
+  formEdit: function(form) {
+    console.log('in FormRouter#formEdit for form #' + form.id);
     // update updated_at so that it is properly sorted when index is called
-    editModel.save();
-    this.cleanRootEl();
-    this.formMaster(editModel);
-  },
-
-  formMaster: function(model){
-    this.view && this.view.remove();
+    form.save();
     this.$rootEl.append(this.$seedEl);
     this.view = new AFB.Views.FormMaster({
-      model: model,
+      model: form,
       el: this.$seedEl,
     });
     this.view.formRouter = this;
-    model.formRouter = this;
+    form.formRouter = this;
     this.view.render();
-    window.scrollTo(0,0);
   },
 
-  formCode: function(id){
-    console.log('in FormRouter#formCode for form #' + id);
-    var form = AFB.formCollection.get(id);
-    this.cleanRootEl();
-    this.view && this.view.remove();
+  formCode: function(form){
+    console.log('in FormRouter#formCode for form #' + form.id);
     this.view = new AFB.Views.FormCode({
       model: form,
       el: this.$seedEl.clone()
     });
     this.$rootEl.append(this.view.render().$el);
-    window.scrollTo(0,0);
   },
 
   saveModel: function(){
@@ -141,16 +157,17 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     this.$rootEl.undelegate();
 
     this.initialize(this.$rootEl);
+  },
+
+  modelDoesntExist: function(model){
+
+    if(!model){
+      AFB.Routers.FormRouter.myFlash("Sorry, couldn't find that form");
+      Backbone.history.navigate("", {trigger: true});
+    }
+    return !model;
   }
 });
-
-// AFB.Routers.FormRouter.fitContent = function(matchSelect, targetSelect){
-//   $(function(){
-//     var $match = $(matchSelect);
-//     var $target = $(targetSelect);
-//     AFB.Routers.FormRouter.matchSize($match, $target);
-//   });
-// };
 
 AFB.Routers.FormRouter.matchSize = function ($match, $target){
   var width = $target.outerWidth();
