@@ -4,5 +4,5 @@ class Result < ActiveRecord::Base
   belongs_to :form
   belongs_to :account
 
-  validates :form_id, :result, presence: true
+  # validates :form_id, :result, presence: true
 end

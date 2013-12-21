@@ -15,6 +15,7 @@ gem 'figaro'
 gem 'jquery-rails'
 gem 'pg'
 gem 'sass-rails',   '~> 3.2.3'
+gem 'deep_cloneable', '~> 1.6.0'
 
 group :development do
   gem 'better_errors'

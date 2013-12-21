@@ -7,7 +7,7 @@ class Form < ActiveRecord::Base
   has_many :results, dependent: :destroy
   has_many :users, through: :account, source: :users
 
-  validates :account_id, :name, presence: true
+  # validates :account_id, :name, presence: true
   before_update :update_url
 
   def make_form_wrapper
@@ -29,5 +29,6 @@ class Form < ActiveRecord::Base
         self.url = "http://#{self.url}"
       end
     end
+    true
   end
 end

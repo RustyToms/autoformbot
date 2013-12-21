@@ -110,6 +110,7 @@ class AccountsController < ApplicationController
 
   def make_demo_account
     old_demo = Account.where(url_name: 'demo1').first
+    user = {}
 
     unless old_demo.blank?
       user = old_demo.users.first
@@ -120,30 +121,12 @@ class AccountsController < ApplicationController
       user = User.find(1)
     end
 
-    source = Account.includes(:forms).where(url_name: 'demo_seed').first
-    demo1 = source.dup
+    source = Account.includes(:results).where(url_name: 'demo_seed').first
+    # duplicate account with associated models courtesy of deep_cloneable gem
+    demo1 = source.dup include: {forms: :results}
     demo1.url_name = 'demo1'
-    demo1.save!
-
     demo1.users<<(user)
-
-    demo1.save!
-
-
-    source.forms.each do |form|
-      attributes = {}
-      form.attributes.each do |key, value|
-        if Form.accessible_attributes.include?(key)
-          attributes[key] = value
-        end
-      end
-
-      attributes["account_id"] = demo1.id
-      demo1.forms.build(attributes)
-    end
-
     demo1.save!
     demo1
   end
-
 end

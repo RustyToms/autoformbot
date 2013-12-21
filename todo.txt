@@ -15,8 +15,6 @@
 
 - Don't log user out when they submit a form
 
-- make some results for demo form
-
 ------------ Unresolved Issues -------------------------------
 - Find out why newlines are being added just before </form>
 
