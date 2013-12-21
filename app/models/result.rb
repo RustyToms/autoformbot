@@ -1,8 +1,7 @@
 class Result < ActiveRecord::Base
   attr_accessible :form_id, :result
 
-  belongs_to :form
-  belongs_to :account
+  belongs_to :form, inverse_of: :results
 
-  # validates :form_id, :result, presence: true
+  validates :form, :result, presence: true
 end

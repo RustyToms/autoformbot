@@ -3,11 +3,11 @@ class Form < ActiveRecord::Base
     :notify_by, :emails
   attr_accessor :new_results
 
-  belongs_to :account
-  has_many :results, dependent: :destroy
+  belongs_to :account, inverse_of: :forms
+  has_many :results, inverse_of: :form, dependent: :destroy
   has_many :users, through: :account, source: :users
 
-  # validates :account_id, :name, presence: true
+  validates :account, :name, presence: true
   before_update :update_url
 
   def make_form_wrapper
