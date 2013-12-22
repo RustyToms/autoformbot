@@ -18,4 +18,5 @@ class Account < ActiveRecord::Base
     self.url_name = self.url_name.chomp
     true
   end
+
 end

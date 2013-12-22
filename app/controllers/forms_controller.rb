@@ -31,6 +31,7 @@ class FormsController < ApplicationController
     @form.updated_at = DateTime.now
 
     if @form.update_attributes(params[:form])
+      @form.count_new_results
       render json: @form
     else
       render json: @form.errors.full_messages, status: :unprocessable_entity

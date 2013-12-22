@@ -21,6 +21,17 @@ class Form < ActiveRecord::Base
     super.merge('new_results' => self.new_results)
   end
 
+  def count_new_results
+    self.new_results = 0
+    self.results.each do |result|
+      unless self.results_checked_at &&
+        result.created_at < self.results_checked_at
+        self.new_results += 1
+      end
+    end
+  end
+
+
   private
 
   def update_url

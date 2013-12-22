@@ -118,6 +118,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
     console.log('in FormRouter#formEdit for form #' + form.id);
     // update updated_at so that it is properly sorted when index is called
     form.save();
+
     this.$rootEl.append(this.$seedEl);
     this.view = new AFB.Views.FormMaster({
       model: form,

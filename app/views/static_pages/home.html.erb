@@ -46,6 +46,12 @@
 
   		<p><span class='bold'>Use Form-itable to make the form.</span>  We'll host the form for you or give you the code for you to use how you like.  Whenever a form is filled out, the data gets sent to our servers automatically.  We can email you the results or you can log in and check them yourself!  It's easy and it's free!</p>
 
+      <div class='demo-button-wrapper'>
+        <div class='home-page-button'>Log in to the demo account!
+          <a class='demo-button' href="<%= account_url('demo') %>"></a>
+        </div>
+      </div>
+
   		<div class='sign-in-sign-up group'>
   		<% if user_signed_in? %>
 
@@ -67,12 +73,6 @@
         <div class='home-page-button'>Sign Up!
   		    <a class='sign-up-button' href="<%= new_user_registration_url %>">
           </a>
-        </div>
-      </div>
-
-      <div class='demo-button-wrapper'>
-        <div class='home-page-button'>Log in with this demo account!
-          <a class='demo-button' href="<%= account_url('demo') %>"></a>
         </div>
       </div>
 

@@ -10,7 +10,7 @@ class AccountsController < ApplicationController
     end
 
     @forms = @account.forms.includes(:results)
-    count_new_results
+    @forms.each { |form| form.count_new_results }
 
     render :show
   end
@@ -92,18 +92,6 @@ class AccountsController < ApplicationController
       redirect_to account_url(current_user.account.url_name)
     else
       redirect_to new_account_url
-    end
-  end
-
-  def count_new_results
-    @forms.each do |form|
-      form.new_results = 0
-      form.results.each do |result|
-        unless form.results_checked_at &&
-          result.created_at < form.results_checked_at
-          form.new_results += 1
-        end
-      end
     end
   end
 
