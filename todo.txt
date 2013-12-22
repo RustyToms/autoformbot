@@ -21,8 +21,6 @@
 - Find out why the server log shows that the params contain two copies of the
   form text when a form is saved
 
-- font-family isn't working
-
 IE issues:
 
 this area is strangely empty...
