@@ -6,7 +6,7 @@
           style="display: inline-block"
       >Option:
         <input type='text'
-          name='<%= klass %>'
+          name='<%= "." + klass %>'
           data-attribute='value'
           class='option-name'
           onClick="$(this).select()"
@@ -15,7 +15,7 @@
 
       <button
         class='delete-button delete-option'
-        name="radio-option:has('.<%= klass %>')"
+        name=".radio-option:has('.<%= klass %>')"
       >Delete</button>
     </div>
   </td>

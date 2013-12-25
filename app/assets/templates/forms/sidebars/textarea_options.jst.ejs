@@ -9,7 +9,7 @@
       </td>
       <td>
         <input type='text'
-          name='textarea-label'
+          name='.textarea-label'
           onClick="$(this).select()"
           value='<%= $field.find('.textarea-label').text() %>'>
       </td>
@@ -24,7 +24,7 @@
           type='text'
           data-attribute='rows'
           value='<%= $textarea.attr('rows') %>'
-          name='textarea'/>
+          name='.textarea'/>
       </td>
     </tr>
 
@@ -37,7 +37,7 @@
           type='text'
           data-attribute='cols'
           value='<%= $textarea.attr('cols') %>'
-          name='textarea'/>
+          name='.textarea'/>
       </td>
     </tr>
 
@@ -46,7 +46,7 @@
         <label>
           <input
             type='checkbox'
-            name='requiredCheckbox'
+            name='.requiredCheckbox'
             <% if($field.hasClass('required')) { %>
               <%= 'checked' %>
               <% } %>/>

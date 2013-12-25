@@ -17,7 +17,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarDropdown#updateValues");
-    if ($(event.target).attr('name')=== 'dropdown-label' ){
+    if ($(event.target).attr('name') === '.dropdown-label' ){
       var name = event.target.value;
       this.model.updateAttribute('.editing select', 'name', name);
       if ( $(this.field).find(':focus').length < 1){
@@ -74,7 +74,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
     this.$field = $('.editing');
 
     var $options = this.$el.find('.select-option-config');
-    var label = this.$el.find("input[name='dropdown-label']").val();
+    var label = this.$el.find("input[name='.dropdown-label']").val();
     var $select = this.$field.find('select');
     $select.empty();
 

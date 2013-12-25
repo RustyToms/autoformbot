@@ -15,7 +15,7 @@ AFB.Views.FormSidebarTelnum = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarTelnum#updateValues");
-    if ($(event.target).attr('name')=== 'telnum-label' ){
+    if ($(event.target).attr('name') === '.telnum-label' ){
       var name = event.target.value;
       this.model.updateAttribute('.editing .telnum', 'name', name);
     } else if($(event.target).data('attribute') === 'maxlength' ){

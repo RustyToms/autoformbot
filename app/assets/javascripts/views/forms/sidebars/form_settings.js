@@ -54,7 +54,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
       this.emailValues(event);
       return;
 
-    } else if ($(event.target).attr('name')=='formName'){
+    } else if ($(event.target).attr('name') ==='.formName'){
 
       centered[0] = this.isCentered($title);
       this.model.updateValues(event);

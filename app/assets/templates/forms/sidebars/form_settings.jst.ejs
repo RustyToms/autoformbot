@@ -8,7 +8,7 @@
       <input
         id="new-form-name"
         onClick="$(this).select()"
-        name="formName"
+        name=".formName"
         value="<%= $form.find('.formEl .formName').first().text() %>">
     </label>
   </div>
@@ -65,7 +65,7 @@
         style='display: inline-block'
         data-css='width'
         value="<%= $form.css('width') %>"
-        name='form'
+        name=' '
       />
     </label>
   </div>
@@ -79,7 +79,7 @@
         style='display: inline-block'
         data-css='height'
         value="<%= $form.css('height') %>"
-        name='form'
+        name=' '
       />
     </label>
   </div>

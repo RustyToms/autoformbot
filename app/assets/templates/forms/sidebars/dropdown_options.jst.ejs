@@ -7,7 +7,7 @@
       <td>
         <label>Label:&nbsp&nbsp
           <input type='text'
-            name='dropdown-label'
+            name='.dropdown-label'
             onClick="$(this).select()"
             value='<%= label %>'>
         </label>
@@ -22,7 +22,7 @@
   <label>
     <input
       type='checkbox'
-      name='requiredCheckbox'
+      name='.requiredCheckbox'
       <% if($field.hasClass('required')) { %>
         <%= 'checked' %>
         <% } %>

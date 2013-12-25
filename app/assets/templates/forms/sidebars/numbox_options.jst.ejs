@@ -10,7 +10,7 @@
       <td>
         <input type='text'
           onClick="$(this).select()"
-          name='numbox-label'
+          name='.numbox-label'
           value='<%=$field.find('.numbox-label').text()%>'>
       </td>
     </tr>
@@ -24,7 +24,7 @@
           type='number'
           data-attribute='min'
           value='<%= $field.find('.numbox').attr('min') %>'
-          name='numbox'/>
+          name='.numbox'/>
       </td>
     </tr>
 
@@ -37,7 +37,7 @@
           type='number'
           data-attribute='max'
           value='<%= $field.find('.numbox').attr('max') %>'
-          name='numbox'/>
+          name='.numbox'/>
       </td>
     </tr>
 
@@ -51,7 +51,7 @@
           onClick="$(this).select()"
           data-attribute='value'
           value='<%= $field.find('.numbox').val() %>'
-          name='numbox'/>
+          name='.numbox'/>
       </td>
     </tr>
 
@@ -60,7 +60,7 @@
         <label>
           <input
             type='checkbox'
-            name='requiredCheckbox'
+            name='.requiredCheckbox'
             <% if($field.hasClass('required')) { %>
               <%= 'checked' %>
               <% } %>

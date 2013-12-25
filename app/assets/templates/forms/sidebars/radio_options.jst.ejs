@@ -8,7 +8,7 @@
         <label>Label:&nbsp&nbsp
           <input type='text'
             class='radio-label'
-            name='radio-label'
+            name='.radio-label'
             onClick="$(this).select()"
             value='<%= label %>'>
         </label>
@@ -25,7 +25,7 @@
   	<input
       type='radio'
       class='vertical'
-  	  name='radio-option'
+  	  name='.radio-option'
   		data-css='display'
   		value='block'>
   		Vertical
@@ -35,7 +35,7 @@
   	<input
   	  type='radio'
       class='horizontal'
-  		name='radio-option'
+  		name='.radio-option'
   		data-css='display'
   		value='inline'
   		checked>
@@ -48,7 +48,7 @@
   <label>
     <input
       type='checkbox'
-      name='requiredCheckbox'
+      name='.requiredCheckbox'
       <% if(required) { %>
         <%= 'checked' %>
         <% } %>

@@ -189,75 +189,33 @@ AFB.Views.FormMaster = Backbone.View.extend({
   //   this.sidebarValues(event);
   // },
 
-    editBoxClick: function(event){
+  editBoxClick: function(event){
     console.log('in FormMaster#editBoxClick');
-
-    var that = this;
     var $target = $(event.target);
 
     if ($target.is('button')){
-      event.preventDefault();
-      event.stopPropagation();
 
-      if ($target.hasClass('delete-button')){
-        console.log('deleting element');
-        var $form = $(this.model.get('form_text'));
+      this.parseButtonClick(event);
 
-        $form.find('.editing .' + $target.attr('name')).remove();
-        this.model.set('form_text', $form.prop('outerHTML'));
-        $target.closest('div').remove();
-        this.editForm.renderChange();
-
-        $(function(){
-          console.log('document ready, positioning editbox');
-          that.positionEditBox($('#edit-box'));
-        });
-
-      } else {
-        switch($target.attr('id')){
-          case "save-button":
-            this.serverSaveForm();
-            break;
-          case "duplicate-field":
-            break;
-          case "delete-field":
-            this.editBox.field.remove();
-            this.removeActiveEdits();
-            this.model.localSaveForm();
-            this.render();
-          case "done-button":
-            this.removeActiveEdits();
-            this.model.localSaveForm();
-            break;
-          case "pull-front":
-            $(".fi-30x form ul").append(this.editBox.field);
-            AFB.Routers.FormRouter.myFlash("Field moved to the front");
-            this.model.localSaveForm();
-            break;
-          case "push-back":
-            $(".fi-30x form ul").prepend(this.editBox.field);
-            AFB.Routers.FormRouter.myFlash("Field moved to the back");
-            this.model.localSaveForm();
-            break;
-          default:
-            if ($target.hasClass('alignment')){
-              this.editForm.alignField(
-                this.editBox.field, $target.data('align'));
-              this.positionEditBox($('#edit-box'));
-              AFB.Routers.FormRouter.positionWindow($('#edit-box').
-                add(this.editBox.field));
-              this.
-              break;
-            }
-            console.log("Sending to editBox view parseClickForm");
-            this.editBox.parseClick && this.editBox.parseClick(event);
-            this.editBoxValues(event);
-        }
-      }
-
-    } else if ($(event.target).attr('name') ==='requiredCheckbox'){
+    } else if ($target.attr('name') === '.requiredCheckbox'){
 
       this.requireField(event);
+
+    } else if ($target.is(':checkbox')){
+
+      if ($target.is(':checked')){
+        $target.val($target.data('checked'));
+      } else {
+        $target.val($target.data('unchecked'));
+      }
+      this.model.updateValues(event);
+
+    } else if ($target.hasClass('ui-tabs-anchor')){
+
+      var that = this;
+      window.setTimeout(function(){
+        that.positionEditBox($('#edit-box'));
+      }, 0);
 
     } else {
 
@@ -267,6 +225,77 @@ AFB.Views.FormMaster = Backbone.View.extend({
     }
   },
 
+  parseButtonClick: function(event) {
+    console.log('FormMaster#parseButtonClick');
+    event.preventDefault();
+    event.stopPropagation();
+    var $target = $(event.target);
+
+    if ($target.hasClass('delete-button')){
+
+      this.deleteOption($target);
+
+    } else {
+
+      switch($target.attr('id')){
+        case "save-button":
+          this.serverSaveForm();
+          break;
+        case "duplicate-field":
+          break;
+        case "delete-field":
+          this.editBox.field.remove();
+          this.removeActiveEdits();
+          this.model.localSaveForm();
+          this.render();
+          break;
+        case "done-button":
+          this.removeActiveEdits();
+          this.model.localSaveForm();
+          break;
+        case "pull-front":
+          $(".fi-30x form ul").append(this.editBox.field);
+          AFB.Routers.FormRouter.myFlash("Field moved to the front");
+          this.model.localSaveForm();
+          break;
+        case "push-back":
+          $(".fi-30x form ul").prepend(this.editBox.field);
+          AFB.Routers.FormRouter.myFlash("Field moved to the back");
+          this.model.localSaveForm();
+          break;
+        default:
+          if ($target.hasClass('alignment')){
+            this.editForm.alignField(
+              this.editBox.field, $target.data('align'));
+            this.positionEditBox($('#edit-box'));
+            AFB.Routers.FormRouter.positionWindow($('#edit-box').
+              add(this.editBox.field));
+            break;
+          }
+          console.log("Sending to editBox view parseClickForm");
+          this.editBox.parseClick && this.editBox.parseClick(event);
+          this.editBoxValues(event);
+      }
+    }
+  },
+
+  deleteOption: function($target){
+    console.log('deleting element');
+    var that = this;
+    var $form = $(this.model.get('form_text'));
+
+    $form.find('.editing ' + $target.attr('name')).remove();
+    this.model.set('form_text', $form.prop('outerHTML'));
+    $target.closest('div').remove();
+    this.editForm.renderChange();
+    this.model.localSaveForm();
+
+    $(function(){
+      console.log('document ready, positioning editbox');
+      that.positionEditBox($('#edit-box'));
+    });
+  },
+
   // sidebarValues: function(event){
   //   console.log("sidebarValues triggered with a " + event.type);
   //   this.sidebar.updateValues && this.sidebar.updateValues(event);
@@ -274,7 +303,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   editBoxValues: function(event){
     console.log("editBoxValues triggered with a " + event.type);
-    if ($(event.target).attr('name') === 'editing'){
+
+    if ($(event.target).attr('name') === '') {
       this.model.updateValues(event);
     } else {
       this.editBox.updateValues && this.editBox.updateValues(event);

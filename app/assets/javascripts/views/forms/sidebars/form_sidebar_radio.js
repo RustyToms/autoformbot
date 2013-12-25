@@ -31,11 +31,11 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
       this.updateField();
       this.syncOptionNames();
 
-    } else if ($(event.target).hasClass('option-name') &&
-      this.$field.find(':focus').length) {
+    } else if (this.$field.find(':focus').length) {
 
-      this.$field.find("input#" + $(event.target).attr('name')).
-        val(event.target.value);
+console.log($(event.target).attr('name'));
+      this.$field.find("input#" + $(event.target).attr('name').
+        replace(/^\./, '')).val(event.target.value);
 
     } else {
 
@@ -45,14 +45,15 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 
   syncOptionNames: function(){
     console.log('syncing sidebar option names with new label');
+console.log($('.editing').get(0));
     var $fieldOptions = $('.editing input');
     var $sidebarOptions = this.$el.find('.radio-option-config');
     $fieldOptions.each(function(index){
       var $sidebarOption = $($sidebarOptions[index]);
-      var newName = $(this).attr('id');
+      var newName = "." + $(this).attr('id');
 
       $sidebarOption.find('input').attr('name', newName);
-      $sidebarOption.find('button').attr('name', "radio-option:has('." +
+      $sidebarOption.find('button').attr('name', ".radio-option:has('" +
         newName + "')");
     });
   },

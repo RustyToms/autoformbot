@@ -250,19 +250,66 @@
             max="999"
             size='5'
             value="<%= parseInt($field.css('font-size')) %>"
-            name="editing">
+            name="">
         </label>
       </div>
 
       <div
         class="style-option"
         style="float: right; padding: 8px 3px 7px 3px;">
-        <label>Font-Weight:
+
+        <label>
+          <input
+            class='font-weight-option'
+            name=''
+            type='checkbox'
+            data-css='font-weight'
+            data-checked='bold'
+            data-unchecked='normal'
+            <% if ($field.css('font-weight') === 'bold'){ %>
+              <%= 'checked' %>
+            <% } %>
+          > Bold
+        </label>
+
+        &nbsp&nbsp&nbsp
+
+        <label>
+          <input
+            class='font-style-option'
+            name=''
+            type='checkbox'
+            data-css='font-style'
+            data-checked='italic'
+            data-unchecked='normal'
+            <% if ($field.css('font-style') === 'italic'){ %>
+              <%= 'checked' %>
+            <% } %>
+          > Italics
+        </label>
+
+        &nbsp&nbsp&nbsp
+
+        <label>
+          <input
+            class='text-decoration-option'
+            name=''
+            type='checkbox'
+            data-css='text-decoration'
+            data-checked='underline'
+            data-unchecked='none'
+            <% if ($field.css('text-decoration').indexOf('underline') > -1){ %>
+              <%= 'checked' %>
+            <% } %>
+          > Underline
+        </label>
+
+<!--         <label>Font-Weight:
           <label>
             <input
               class="font-weight-option"
               type="radio"
-              name="editing"
+              name=""
               data-css="font-weight"
               value="bold">
               Bold
@@ -272,17 +319,17 @@
             <input
               class="font-weight-option"
               type="radio"
-              name="editing"
+              name=""
               data-css="font-weight"
               value="normal">
               Normal
           </label>
-        </label>
+        </label> -->
       </div>
 
       <div class="style-option">
         <label>Font-Family:</label>
-        <select data-css="font-family" name="editing">
+        <select data-css="font-family" name="">
           <option class="font-family-option"></option>
           <option class="font-family-option">
             sans-serif</option>
@@ -331,7 +378,7 @@
             type="text"
             data-css="color"
             value="<%= $field.css('color') || 'black' %>"
-            name="editing">
+            name="">
             <span class='tip'>(RGB or color names, like red)</span>
         </label>
       </div>
@@ -341,7 +388,7 @@
           <input
             type="text"
             data-css="background-color"
-            name="editing">
+            name="">
         </label>
       </div>
 
@@ -351,7 +398,7 @@
             type="text"
             data-css="padding"
             value="<%= $field.css('padding')%>"
-            name="editing">
+            name="">
           <span class='tip'>(px, em, or %)</span>
         </label>
       </div>
@@ -360,7 +407,7 @@
     <div class='style-group group'>
       <div class="style-option">
         <label>Border Type:
-          <select data-css="border-style" name="editing">
+          <select data-css="border-style" name="">
             <option class="border-style-option"></option>
             <option class="border-style-option">none</option>
             <option class="border-style-option">solid</option>
@@ -388,7 +435,7 @@
             size='5'
             value="<%= (parseInt($field.css('border-width')) ||
               $field.css('border-width', '1')) %>"
-            name="editing">
+            name="">
           <span class='tip'>(digits only)</span>
         </label>
       </div>
@@ -400,8 +447,7 @@
             data-css="border-color"
             value="<%= $field.css('border-color') || 'black' %>"
             size='18'
-            name="editing">
-          <span class='tip'>Both border type and width are needed</span>
+            name="">
         </label>
       </div>
     </div>
@@ -416,7 +462,7 @@
             size='7'
             data-css="width"
             value="<%= $field.css('width')%>"
-            name="editing">
+            name="">
           <span class='tip'>(px, em, or %)</span>
         </label>
       </div>
@@ -428,7 +474,7 @@
             size='7'
             data-css="height"
             value="<%= $field.css('height')%>"
-            name="editing">
+            name="">
           <span class='tip'>(px, em, or %)</span>
         </label>
       </div>

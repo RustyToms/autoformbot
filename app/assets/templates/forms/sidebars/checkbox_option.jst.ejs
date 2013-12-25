@@ -5,7 +5,7 @@
           style="display: inline-block"
       >Option:
         <input type='text'
-          name='<%= klass %>'
+          name='<%= "." + klass %>'
           data-attribute='value'
           class='option-name'
           onClick="$(this).select()"
@@ -14,7 +14,7 @@
 
       <button
         class='delete-button delete-option'
-        name="checkbox-option:has('.<%= klass %>')"
+        name=".checkbox-option:has('.<%= klass %>')"
       >Delete</button>
 
       <br>
@@ -23,7 +23,7 @@
         <input
           type='checkbox'
           class="prefilled-check"
-          name='<%= klass %>'
+          name='<%= "." + klass %>'
           <% if(checked) { %>
             <%= 'checked' %>
            <% } %>

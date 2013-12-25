@@ -24,18 +24,24 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
 
   updateValues: function(event){
     console.log("in FormSidebarCheckbox#updateValues");
-    if ($(event.target).attr('name')=== 'checkbox-label' ){
-      var name = event.target.value + '[]';
+
+    if ($(event.target).attr('name') === '.checkbox-label' ){
+
+      var name = $(event.target).val() + '[]';
       this.model.updateAttribute('.editing .checkbox', 'name', name);
       if ( this.$field.find(':focus').length < 1){
+
         this.model.updateValues(event);
+
       }
       this.updateField();
       this.syncOptionNames();
 
     } else if (this.$field.find(':focus').length) {
-      this.$field.find("input#" + $(event.target).attr('name')).
-        val(event.target.value);
+
+      this.$field.find("input#" + $(event.target).attr('name').
+        replace(/^\./, '')).val(event.target.value);
+
     } else {
 
       this.updateField();
@@ -48,10 +54,10 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
     var $sidebarOptions = this.$el.find('.checkbox-option-config');
     $fieldOptions.each(function(index){
       var $sidebarOption = $($sidebarOptions[index]);
-      var newName = $(this).attr('id');
+      var newName = "." + $(this).attr('id');
 
       $sidebarOption.find('input').attr('name', newName);
-      $sidebarOption.find('button').attr('name', "checkbox-option:has('." +
+      $sidebarOption.find('button').attr('name', ".checkbox-option:has('" +
         newName + "')");
     });
   },
@@ -126,7 +132,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
     var that = this;
     var display = 'inline';
     var $options = this.$el.find('.checkbox-option-config').clone();
-    var label = this.$el.find("input[name='checkbox-label']").val();
+    var label = this.$el.find("input[name='.checkbox-label']").val();
     var $checkboxes = this.$field.find('span.checkbox');
     $checkboxes.empty();
 

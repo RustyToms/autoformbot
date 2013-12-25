@@ -82,18 +82,23 @@ AFB.Views.FormEdit = Backbone.View.extend({
 
 	updateEditBox: function(event){
     var that = this;
-    if (!$(event.target).attr('class')){
+    var targetClasses = $(event.target).attr('class');
+    if (!targetClasses){
       return;
     }
 		console.log("updating editBox, triggered with a " + event.type);
     console.log(event.target);
     this.model.localSaveForm();
 		this.parentView.updateEditBox(event);
+
     $(function(){
       console.log('document ready, triggering keyups in editbox');
     // spoofs a keyup event in editbox fields linked to the modified form field
-      $input = $('#edit-box').find('input, textarea').filter(function(){
-        return ($(event.target).attr('class').indexOf(this.name) > -1);
+      $input = $('#customizations').find('input, textarea').filter(function(){
+
+        var className = $(this).attr('name').replace(/^\./, '');
+        return (targetClasses.indexOf(className) > -1);
+
       }).not("input[type='checkbox'], input[type='radio']");
 
       $input.trigger('keyup');
