@@ -264,6 +264,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
             this.editForm.alignField(
               this.editBox.field, $target.data('align'));
             this.positionEditBox($('#edit-box'));
+            this.model.localSaveForm();
             AFB.Routers.FormRouter.positionWindow($('#edit-box').
               add(this.editBox.field));
             break;
@@ -283,8 +284,9 @@ AFB.Views.FormMaster = Backbone.View.extend({
     $form.find('.editing ' + $target.attr('name')).remove();
     this.model.set('form_text', $form.prop('outerHTML'));
     $target.closest('div').remove();
-    this.editForm.renderChange();
-    this.model.localSaveForm();
+    var $newField = this.editForm.renderChange();
+    this.removeActiveEdits();
+    this.editForm.startEditingField($newField);
 
     $(function(){
       console.log('document ready, positioning editbox');

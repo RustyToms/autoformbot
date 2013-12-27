@@ -1,12 +1,9 @@
 ------------ To Do -------------------------------------------
-- Allow user to select whether or not they get email results from a form
-
 - seed results header from form not from results
 - Have checkbox options each be their own column
 - Have header and first column track with scroll
 - Make background of results be a fixed position version of the form
   pushed to the background and covered with clear coat
-
 - Allow sorting by column
 
 - add Account stuff, allow a user to change their email address
@@ -18,8 +15,6 @@
 
 - Find out why the server log shows that the params contain two copies of the
   form text when a form is saved
-
-- editbox - alignment doesn't work after an option has been deleted
 
 IE issues:
 
