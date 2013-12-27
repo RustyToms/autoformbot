@@ -318,8 +318,10 @@ AFB.Views.FormMaster = Backbone.View.extend({
       console.log("adding class required to ");
       console.log($target);
       $target.addClass("required");
+      $target.find('input, textarea, select').attr('required', 'required');
     } else {
       $target.removeClass("required");
+      $target.find('input, textarea, select').removeAttr('required');
     }
     this.model.localSaveForm();
   },
