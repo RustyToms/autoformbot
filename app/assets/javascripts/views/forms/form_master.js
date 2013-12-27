@@ -10,10 +10,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
     "change #edit-box select" : "editBoxValues",
   },
 
-  initialize: function(){
-    console.log('FormMaster View initialized');
-  },
-
   render: function(newSidebar, formView){
     console.log('rendering FormMaster view');
     this.$el.empty();

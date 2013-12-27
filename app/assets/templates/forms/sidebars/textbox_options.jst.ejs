@@ -12,7 +12,7 @@
         <input type='text'
           name='.textbox-label'
           onClick="$(this).select()"
-          value='<%= $field.find('.textbox-label').text() %>'>
+          value='<%= $field.find(".textbox-label").text() %>'>
       </td>
     </tr>
 
@@ -22,9 +22,26 @@
       </td>
       <td>
         <input
-          type='text'
+          type='number'
+          min='1'
+          max='999'
           data-attribute='size'
-          value='<%= $field.find('.textbox').attr('size') %>'
+          value='<%= $field.find(".textbox").attr("size") %>'
+          name='.textbox'/>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label>Max number of characters:</label>
+      </td>
+      <td>
+        <input
+          type='number'
+          min='1'
+          max='999'
+          data-attribute='maxlength'
+          value='<%= $field.find(".textbox").attr("maxlength") %>'
           name='.textbox'/>
       </td>
     </tr>
@@ -37,7 +54,7 @@
         <input
           type='text'
           data-attribute='value'
-          value='<%= $field.find('.textbox').val() %>'
+          value='<%= $field.find(".textbox").val() %>'
           onClick="$(this).select()"
           name='.textbox'/>
       </td>

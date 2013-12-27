@@ -33,7 +33,6 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 
     } else if (this.$field.find(':focus').length) {
 
-console.log($(event.target).attr('name'));
       this.$field.find("input#" + $(event.target).attr('name').
         replace(/^\./, '')).val(event.target.value);
 
@@ -45,7 +44,6 @@ console.log($(event.target).attr('name'));
 
   syncOptionNames: function(){
     console.log('syncing sidebar option names with new label');
-console.log($('.editing').get(0));
     var $fieldOptions = $('.editing input');
     var $sidebarOptions = this.$el.find('.radio-option-config');
     $fieldOptions.each(function(index){

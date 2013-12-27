@@ -9,8 +9,6 @@
 
 - Allow sorting by column
 
-- Add 'max number of characters' to textbox, delete telnum field
-
 - add Account stuff, allow a user to change their email address
 
 - Don't log user out when they submit a form
