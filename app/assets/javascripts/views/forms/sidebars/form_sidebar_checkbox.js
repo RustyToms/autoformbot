@@ -128,12 +128,12 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
 
   updateField: function(){
     console.log("updating checkboxes in form");
-    this.$field = $('.editing');
+    this.$field = $('.editing').first();
     var that = this;
     var display = 'inline';
     var $options = this.$el.find('.checkbox-option-config').clone();
     var label = this.$el.find("input[name='.checkbox-label']").val();
-    var $checkboxes = this.$field.find('span.checkbox');
+    var $checkboxes = this.$field.find('span.checkbox').clone();
     $checkboxes.empty();
 
     if (this.$el.find('.vertical').prop('checked')){
@@ -155,7 +155,9 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
       $checkboxes.append($(checkboxOption));
     });
 
-    this.$field.find('.checkbox-option').css('display', display);
+    $checkboxes.find('.checkbox-option').css('display', display);
+
+    this.$field.find('span.checkbox').replaceWith($checkboxes);
     this.parentView.editForm.prepForm(this.$field);
     this.model.localSaveForm();
   }

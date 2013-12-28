@@ -71,11 +71,11 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
 
   updateField: function(){
     console.log('in FormSidebarDropdown#updateField');
-    this.$field = $('.editing');
+    this.$field = $('.editing').first();
 
     var $options = this.$el.find('.select-option-config');
     var label = this.$el.find("input[name='.dropdown-label']").val();
-    var $select = this.$field.find('select');
+    var $select = this.$field.find('select').clone();
     $select.empty();
 
     $options.each(function(index){
@@ -85,6 +85,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
       $select.append(option);
     });
 
+    this.$field.find('select').replaceWith($select);
     this.model.localSaveForm();
   }
 });

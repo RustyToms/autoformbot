@@ -108,11 +108,11 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 
   updateField: function(){
     console.log('in FormSidebarRadio#updateField');
-    this.$field = $('.editing');
+    this.$field = $('.editing').first();
 
     var $options = this.$el.find('.radio-option-config');
     var label = this.$el.find(".radio-label").val();
-    var $radio = this.$field.find('.radio');
+    var $radio = this.$field.find('.radio').clone();
     var klass = label.replace(/[^_a-zA-Z0-9-]/g, '_');
     $radio.empty();
 
@@ -130,7 +130,9 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
     if (this.$el.find('.vertical').prop('checked')){
       display = 'block';
     }
-    this.$field.find('.radio-option').css('display', display);
+    $radio.find('.radio-option').css('display', display);
+
+    this.$field.find('.radio').replaceWith($radio);
     this.parentView.editForm.prepForm(this.$field);
     this.model.localSaveForm();
   }

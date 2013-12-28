@@ -22,16 +22,6 @@ AFB.Views.FormEdit = Backbone.View.extend({
     $(document).on('click', this, this.model.stopEditing);
   },
 
-  renderChange: function(){
-    console.log("rendering FormEdit form change");
-    var $newField = $(this.model.get('form_text')).find('.editing').first();
-
-    this.prepForm($newField.wrap('<span>'));
-    this.$el.find('.editing').first().replaceWith($newField);
-    this.parentView.makeSortable();
-    return($newField);
-  },
-
   prepForm: function($formText){
     console.log('**************** FormEdit#prepForm ********************');
     $formText.find(".label, label span").attr('contenteditable', 'true');
