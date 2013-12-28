@@ -83,7 +83,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
   makeSidebar: function($form){
     console.log('in Checkbox makeSidebar');
     var that = this;
-    var $editField = $form.find('.editing');
+    var $editField = $form.find('.editing').first();
 
     if ($editField.length){
       this.$field = $editField;

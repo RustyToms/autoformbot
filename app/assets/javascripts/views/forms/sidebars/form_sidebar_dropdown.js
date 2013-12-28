@@ -9,7 +9,6 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
     console.log("rendering FormSidebarDropdown");
     this.$field = $(this.field || this.$seed.prop('outerHTML'));
     this.numOptions = this.$field.find('option').length || 1;
-    //this.numOptions = this.$field.find('select').prop('length') || 1;
 
     this.makeSidebar();
     return this;
@@ -39,7 +38,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
 
   makeSidebar: function(){
     console.log('in FormSidebarDropdown#makeSidebar');
-    var $editField = $('.editing');
+    var $editField = $('.editing').first();
     if ($editField.length){
       this.$field = $editField;
     }

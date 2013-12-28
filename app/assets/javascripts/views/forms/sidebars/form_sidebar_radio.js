@@ -68,7 +68,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
 
   makeSidebar: function(numOptions){
     console.log('in Radio makeSidebar');
-    var $editField = $('.editing');
+    var $editField = $('.editing').first();
     if ($editField.length){
       this.$field = $editField;
     }

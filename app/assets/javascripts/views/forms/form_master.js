@@ -2,11 +2,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
   events: {
     "click #save-form" : "serverSaveForm",
     "click #form-settings-button" : "formSettings",
-    // "click .sidebar" : "sidebarClick",
     "click #edit-box" : "editBoxClick",
-    // "keyup .sidebar" : "sidebarValues",
     "keyup #edit-box" : "editBoxValues",
-    // "change .sidebar :checked, .sidebar select" : "sidebarValues",
     "change #edit-box select" : "editBoxValues",
   },
 
@@ -14,22 +11,11 @@ AFB.Views.FormMaster = Backbone.View.extend({
     console.log('rendering FormMaster view');
     this.$el.empty();
     this.$el.append(JST['forms/masterview_seed']());
-    // this.$el.append(this.makeSidebarView(newSidebar));
-
     this.renderForm();
-//    this.sidebarReset();
 
     console.log('--- End of FormMaster view #render ---');
     return this;
   },
-
-  // sidebarReset: function(){
-  //   console.log('resetting sidebar position');
-  //   $(function(){
-  //     console.log('document ready, resetting sidebar position');
-  //     $('.sidebar_window').css('top', $(this).scrollTop());
-  //   });
-  // },
 
   renderForm: function(){
     this.removeView(this.editForm);
@@ -48,31 +34,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.$el.append($formWrapper);
     this.addFieldsDraggable();
     this.makeSortable();
-    // this.initialize();
   },
-
-  // makeSidebarView: function(newSidebar){
-  //   console.log("making sidebar");
-  //   this.removeView(this.sidebar);
-
-  //   if (newSidebar){
-  //     this.sidebar = newSidebar;
-
-  //   } else {
-  //     this.model.removeActiveEdits();
-  //     this.sidebar = new AFB.Views.FormSidebarInputs({
-  //       model: this.model
-  //     });
-  //   }
-
-  //   this.sidebar.parentView = this;
-  //   this.formRouter.childViews.push(this.sidebar);
-
-		// var $sidebar = $(JST['forms/sidebars/sidebar_seed']()).
-  //     append(this.sidebar.render().$el);
-
-		// return $sidebar;
-  // },
 
   makeEditBox: function(newEditBox){
     console.log('FormMaster#makeEditBox');
@@ -87,9 +49,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     }));
     $editBox.find('#customizations').html(this.editBox.render().$el);
     $('.fi-30x').append($editBox);
-    // if ($('#all-fields-sidebar').length === 0){
-    //   this.swapSidebar();
-    // }
+
     if (newEditBox.field.data("sidebar") === 'FormEditTitle'){
       $editBox.find('#delete-field').remove();
     }
@@ -177,13 +137,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
     AFB.Routers.FormRouter.positionWindow($('#edit-box'));
     $('.move-handle').css('z-index', '5');
   },
-
-  // sidebarClick: function(event){
-  //   console.log('in FormMaster#sidebarClick');
-  //   var $target = $(event.target);
-  //   this.sidebar.parseClick && this.sidebar.parseClick(event);
-  //   this.sidebarValues(event);
-  // },
 
   editBoxClick: function(event){
     console.log('in FormMaster#editBoxClick');
@@ -294,11 +247,6 @@ AFB.Views.FormMaster = Backbone.View.extend({
     });
   },
 
-  // sidebarValues: function(event){
-  //   console.log("sidebarValues triggered with a " + event.type);
-  //   this.sidebar.updateValues && this.sidebar.updateValues(event);
-  // },
-
   editBoxValues: function(event){
     console.log("editBoxValues triggered with a " + event.type);
 
@@ -333,18 +281,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
     var $field = this.$el.find('.editing').first();
     $field.length && (this.editBox.field = $field);
     this.$el.find('#edit-box #customizations').html(this.editBox.render().$el);
-    // } else {
-    //   this.editForm.startEditingField($(event.target).closest(".formEl"));
-    // }
-	},
 
-	// swapSidebar: function(sidebar){
- //    console.log('swapping sidebar');
-	// 	var $sidebar = this.makeSidebarView(sidebar);
-	// 	this.$el.find('.sidebar_window').replaceWith($sidebar);
- //    this.sidebarReset();
- //    this.addFieldsDraggable();
-	// },
+	},
 
   makeSortable: function(){
     var that = this;
@@ -355,10 +293,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
         that.formDroppable();
         that.formFieldsDraggable();
         that.queued = false;
-        // if (that.sidebar.inputsNotDraggable){
-        //   that.addFieldsDraggable();
-        //   that.sidebar.inputsNotDraggable = false;
-        // }
+
         if (that.mustPrepForm){
           that.editForm.prepForm($('.fi-30x form'));
           that.mustPrepForm = false;
@@ -462,13 +397,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   removeActiveEdits: function(){
     console.log('removing all editing classes');
     this.model.standardEditRemoval(this.$el.find('.fi-30x').first());
-    // this.$el.find('#form-filter').remove();
-    // $(document).off('click', this.model.stopEditing);
-    // this.$el.find('#edit-box').remove();
     this.removeView(this.editBox);
-    // var $old = this.$el.find('.editing');
-    // $old.find('.delete-field').remove();
-    // $old.removeClass('editing');
   },
 
   removeView: function(view){
