@@ -38,11 +38,18 @@ AFB.Views.FormEdit = Backbone.View.extend({
     var $target = $(event.target);
     var $formEl = $target.closest(".formEl");
 
-    if ($formEl.length && !$target.hasClass('move-handle') &&
-      !$formEl.hasClass('editing')){
-      this.parentView.removeActiveEdits();
-      this.startEditingField($formEl);
-      event.stopPropagation && event.stopPropagation();
+    if ($formEl.length && !$target.hasClass('move-handle')){
+      if ($formEl.hasClass('editing')){
+
+        $('#edit-box').find('a[href="#customizations"]').trigger('click');
+
+      } else {
+
+        this.parentView.removeActiveEdits();
+        this.startEditingField($formEl);
+        event.stopPropagation && event.stopPropagation();
+
+      }
     }
 
     if ($target.attr('contenteditable')){
