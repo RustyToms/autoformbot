@@ -13,7 +13,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
     console.log("rendering FormSidebarCheckbox");
     var that = this;
     this.$field = $(this.field || this.$seed.prop('outerHTML'));
-    this.numOptions = (this.$field.find('.checkbox-option').length || 1);
+    this.numOptions = this.$field.find('.checkbox-option').length;
 
 
     $(function(){

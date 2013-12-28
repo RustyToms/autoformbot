@@ -8,7 +8,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
   render: function(){
     console.log("rendering FormSidebarDropdown");
     this.$field = $(this.field || this.$seed.prop('outerHTML'));
-    this.numOptions = this.$field.find('option').length || 1;
+    this.numOptions = this.$field.find('option').length;
 
     this.makeSidebar();
     return this;
