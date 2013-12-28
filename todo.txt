@@ -10,8 +10,9 @@
 
 - Don't log user out when they submit a form
 
+- form validations in Results#create
+
 ------------ Unresolved Issues -------------------------------
-- Find out why newlines are being added just before </form>
 
 - Find out why the server log shows that the params contain two copies of the
   form text when a form is saved

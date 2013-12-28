@@ -328,44 +328,70 @@
       </div>
 
       <div class="style-option">
+        <% var font = $field.css('font-family'); %>
         <label>Font-Family:</label>
         <select data-css="font-family" name="">
           <option class="font-family-option"></option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'sans-serif' ? 'selected' : '' %>>
             sans-serif</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'serif' ? 'selected' : '' %>>
             serif</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'monospace' ? 'selected' : '' %>>
             monospace</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'cursive' ? 'selected' : '' %>>
             cursive</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'fantasy' ? 'selected' : '' %>>
             fantasy</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Arial, Helvetica, sans-serif' ? 'selected' : '' %>>
             Arial, Helvetica, sans-serif</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Arial Black, Gadget, sans-serif' ?
+              'selected' : '' %>>
             Arial Black, Gadget, sans-serif</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Comic Sans MS, cursive, sans-serif' ?
+              'selected' : '' %>>
             Comic Sans MS, cursive, sans-serif</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Courier New, Courier, monospace' ?
+              'selected' : '' %>>
             Courier New, Courier, monospace</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Georgia, serif' ? 'selected' : '' %>>
             Georgia, serif</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Impact, Charcoal, sans-serif' ? 'selected' : '' %>>
             Impact, Charcoal, sans-serif</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Lucida Console, Monaco, monospace' ?
+              'selected' : '' %>>
             Lucida Console, Monaco, monospace</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Lucida Sans Unicode, Lucida Grande, sans-serif' ?
+              'selected' : '' %>>
             Lucida Sans Unicode, Lucida Grande, sans-serif</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Palatino Linotype, Book Antiqua, Palatino, serif' ?
+              'selected' : '' %>>
             Palatino Linotype, Book Antiqua, Palatino, serif</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Tahoma, Geneva, sans-serif' ? 'selected' : '' %>>
             Tahoma, Geneva, sans-serif</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Times New Roman, Times, serif' ? 'selected' : '' %>>
             Times New Roman, Times, serif</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Trebuchet MS, Helvetica, sans-serif' ?
+              'selected' : '' %>>
             Trebuchet MS, Helvetica, sans-serif</option>
-          <option class="font-family-option">
+          <option class="font-family-option"
+            <%= font === 'Verdana, Geneva, sans-serif' ? 'selected' : '' %>>
             Verdana, Geneva, sans-serif</option>
         </select>
       </div>
@@ -388,6 +414,7 @@
           <input
             type="text"
             data-css="background-color"
+  <% /* The background color is temporarily changed while being edited */ %>
             name="">
         </label>
       </div>
@@ -406,19 +433,29 @@
 
     <div class='style-group group'>
       <div class="style-option">
+        <% var style = $field.css('border-style'); %>
         <label>Border Type:
           <select data-css="border-style" name="">
-            <option class="border-style-option"></option>
-            <option class="border-style-option">none</option>
-            <option class="border-style-option">solid</option>
-            <option class="border-style-option">hidden</option>
-            <option class="border-style-option">dotted</option>
-            <option class="border-style-option">dashed</option>
-            <option class="border-style-option">double</option>
-            <option class="border-style-option">groove</option>
-            <option class="border-style-option">ridge</option>
-            <option class="border-style-option">inset</option>
-            <option class="border-style-option">outset</option>
+            <option class="border-style-option"
+              <%= style === 'none' ? 'selected' : '' %>>none</option>
+            <option class="border-style-option"
+              <%= style === 'solid' ? 'selected' : '' %>>solid</option>
+            <option class="border-style-option"
+              <%= style === 'hidden' ? 'selected' : '' %>>hidden</option>
+            <option class="border-style-option"
+              <%= style === 'dotted' ? 'selected' : '' %>>dotted</option>
+            <option class="border-style-option"
+              <%= style === 'dashed' ? 'selected' : '' %>>dashed</option>
+            <option class="border-style-option"
+              <%= style === 'double' ? 'selected' : '' %>>double</option>
+            <option class="border-style-option"
+              <%= style === 'groove' ? 'selected' : '' %>>groove</option>
+            <option class="border-style-option"
+              <%= style === 'ridge' ? 'selected' : '' %>>ridge</option>
+            <option class="border-style-option"
+              <%= style === 'inset' ? 'selected' : '' %>>inset</option>
+            <option class="border-style-option"
+              <%= style === 'outset' ? 'selected' : '' %>>outset</option>
           </select>
         </label>
       </div>

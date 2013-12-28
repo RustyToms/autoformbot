@@ -48,7 +48,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
     var $target = $(event.target);
     var $formEl = $target.closest(".formEl");
 
-    if ($formEl.length && !$formEl.hasClass('editing')){
+    if ($formEl.length && !$target.hasClass('move-handle') &&
+      !$formEl.hasClass('editing')){
       this.parentView.removeActiveEdits();
       this.startEditingField($formEl);
       event.stopPropagation && event.stopPropagation();

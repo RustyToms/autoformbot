@@ -112,7 +112,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     console.log('FormMaster#positionEditBox');
     var $field = $('.editing').first();
     var editingForm = $field.is('form');
-
+console.log($field.get(0));
     if (editingForm){
       $field = $field.find('li[data-sidebar="FormEditTitle"]').first();
       var $saveButton = $editBox.find('#save-button').detach();
@@ -120,7 +120,8 @@ AFB.Views.FormMaster = Backbone.View.extend({
       $editBox.find('.sidebar h2').first().append($saveButton);
       $saveButton.css('margin-left', '20px');
     }
-
+console.log($field);
+console.log($field.get(0));
     $editBox.position({
       my: 'center top',
       at: 'center bottom+20',

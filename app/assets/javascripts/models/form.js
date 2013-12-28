@@ -73,9 +73,6 @@ AFB.Models.Form = Backbone.Model.extend ({
   updateValues: function(event) {
     console.log("in formmodel#updateValues");
     var selector = '.editing ' + $(event.target).attr('name');
-    // if ($.inArray($(event.target).attr('name'), ['form']) > -1){
-    //   selector = '.editing';
-    // }
     var value = $(event.target).val();
     var attribute = $(event.target).data('attribute');
 		var cssAttribute = $(event.target).data('css');
@@ -117,7 +114,7 @@ AFB.Models.Form = Backbone.Model.extend ({
   },
 
   stopEditing: function(event){
-    console.log('FormEdit#stopEditing');
+    console.log('form.js#stopEditing');
     if ($(event.target).closest('#edit-box, .formEl').length === 0){
       event.data.parentView.removeActiveEdits();
     }
@@ -125,8 +122,13 @@ AFB.Models.Form = Backbone.Model.extend ({
 
   serverSave: function(){
     console.log('in Form model saving to the server');
-    this.removeActiveEdits();
     var that = this;
+    this.removeActiveEdits();
+    // get rid of newlines created by adding and removing the form filter
+    var $form = $(this.get('form_text'));
+    $form.find('form').first().html($form.find('form').first().html().trim());
+    this.set('form_text', $form.prop('outerHTML'));
+
     this.save({},{
       success: function(response, model){
         console.log("save successful");
@@ -189,8 +191,8 @@ AFB.Models.Form = Backbone.Model.extend ({
       var $form = $('.outer-wrapper');
       $form.find('.ui-draggable').draggable().draggable('destroy');
       $form.find('.ui-droppable').droppable().droppable('destroy');
-      var name = $form.find('.formName').text().trim();
 
+      var name = $form.find('.formName').text().trim();
       that.set({
         form_text: $form.prop('outerHTML'),
         name: name
