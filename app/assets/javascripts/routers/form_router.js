@@ -230,4 +230,4 @@ AFB.Routers.FormRouter.centerEl = function($el){
     left: (width - $el.outerWidth()) / 2,
     right: 'auto'
   });
-}
+};
