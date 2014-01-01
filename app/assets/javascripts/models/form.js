@@ -122,7 +122,6 @@ AFB.Models.Form = Backbone.Model.extend ({
 
   serverSave: function(){
     console.log('in Form model saving to the server');
-    var that = this;
     this.removeActiveEdits();
     // get rid of newlines created by adding and removing the form filter
     var $form = $(this.get('form_text'));
@@ -130,22 +129,22 @@ AFB.Models.Form = Backbone.Model.extend ({
     this.set('form_text', $form.prop('outerHTML'));
 
     this.save({},{
-      success: function(response, model){
+      success: function(model, response, options){
         console.log("save successful");
         AFB.Routers.FormRouter.myFlash('Form saved');
       },
-      error: function(response, model){
-        console.log("error: " + response.responseText);
-        AFB.Routers.FormRouter.myFlash("error: " + response.responseText);
+      error: function(model, xhr, options){
+        console.log("error: " + xhr.responseText);
+
+        $.each(xhr.responseJSON, function(i, value){
+          AFB.Routers.FormRouter.myFlash("error: " + value);
+        });
       }
     });
-
   },
 
 	duplicateForm: function(callback){
 		console.log("duplicating form");
-    var that = this;
-
 		var newModel = new AFB.Models.Form(this.attributes);
     newModel.unset('id');
 
