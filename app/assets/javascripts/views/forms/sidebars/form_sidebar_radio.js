@@ -2,13 +2,13 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
   $seed: $(JST['forms/fields/radio']()),
 
   addField: function(){
-		console.log("adding radio button field");
+		// console.log("adding radio button field");
     this.model.addField(this.$seed);
   },
 
 
   render: function(){
-    console.log("rendering FormSidebarRadio");
+    // console.log("rendering FormSidebarRadio");
     this.$field = $(this.field || this.$seed.prop('outerHTML'));
     this.numOptions = this.$field.find('.radio-option').length;
     var that = this;
@@ -20,7 +20,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
   },
 
   updateValues: function(event){
-    console.log("in FormSidebarRadio#updateValues");
+    // console.log("in FormSidebarRadio#updateValues");
 
 		if ($(event.target).hasClass('radio-label')){
       if ( $(this.field).find(':focus').length < 1){
@@ -43,7 +43,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
   },
 
   syncOptionNames: function(){
-    console.log('syncing sidebar option names with new label');
+    // console.log('syncing sidebar option names with new label');
     var $fieldOptions = $('.editing input');
     var $sidebarOptions = this.$el.find('.radio-option-config');
     $fieldOptions.each(function(index){
@@ -57,7 +57,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
   },
 
   parseClick: function(event){
-    console.log("in FormSidebarRadio#parseClick");
+    // console.log("in FormSidebarRadio#parseClick");
     if($(event.target).hasClass('add-option')){
       this.numOptions = this.$el.find('.radio-option-config').length + 1;
       this.makeSidebar();
@@ -67,7 +67,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
   },
 
   makeSidebar: function(numOptions){
-    console.log('in Radio makeSidebar');
+    // console.log('in Radio makeSidebar');
     var $editField = $('.editing').first();
     if ($editField.length){
       this.$field = $editField;
@@ -107,7 +107,7 @@ AFB.Views.FormSidebarRadio = Backbone.View.extend({
   },
 
   updateField: function(){
-    console.log('in FormSidebarRadio#updateField');
+    // console.log('in FormSidebarRadio#updateField');
     this.$field = $('.editing').first();
 
     var $options = this.$el.find('.radio-option-config');

@@ -4,11 +4,11 @@ AFB.Views.FormIndex = Backbone.View.extend({
   },
 
   initialize: function(){
-    console.log("initializing FormIndex view");
+    // console.log("initializing FormIndex view");
   },
 
   render: function(){
-    console.log("rendering FormIndex view");
+    // console.log("rendering FormIndex view");
     var that = this;
     this.$el.empty();
     this.$el.html(JST["forms/index"]());
@@ -27,7 +27,7 @@ AFB.Views.FormIndex = Backbone.View.extend({
   },
 
   makeFormImages: function(){
-    console.log('in FormIndex#makeFormImages');
+    // console.log('in FormIndex#makeFormImages');
     var that = this;
     var $buttons = this.$el.find('.fi-30x');
     $buttons.css('box-shadow', 'none');
@@ -52,7 +52,7 @@ AFB.Views.FormIndex = Backbone.View.extend({
   },
 
   formSelect: function(formId, $target){
-    console.log('FormIndex#formSelect');
+    // console.log('FormIndex#formSelect');
     var $clicked = this.$el.find('.clicked');
     $target = $target.closest('.form-links');
 
@@ -63,34 +63,34 @@ AFB.Views.FormIndex = Backbone.View.extend({
   },
 
   sendToNew: function(){
-    console.log('FormIndex#sendToNew');
+    // console.log('FormIndex#sendToNew');
     Backbone.history.navigate('forms/new', {trigger: true});
   },
 
   sendToEdit: function(formId){
-    console.log('FormIndex#sendToEdit');
+    // console.log('FormIndex#sendToEdit');
     Backbone.history.navigate('forms/' + formId + '/edit',
       {trigger: true});
   },
 
   sendToView: function(formId){
-    console.log('FormIndex#sendToView');
+    // console.log('FormIndex#sendToView');
     Backbone.history.navigate('forms/' + formId, {trigger: true});
   },
 
   sendToResults: function(formId){
-    console.log('FormIndex#sendToResults');
+    // console.log('FormIndex#sendToResults');
     AFB.formCollection.get(formId).set('new_results', 0);
     Backbone.history.navigate('forms/' + formId + '/results', {trigger: true});
   },
 
   sendToCode: function(formId){
-    console.log('FormsIndex#sendToCode');
+    // console.log('FormsIndex#sendToCode');
     Backbone.history.navigate('forms/' + formId + '/code', {trigger: true});
   },
 
   deleteForm: function(formId){
-    console.log('FormIndex#deleteForm');
+    // console.log('FormIndex#deleteForm');
     var form = AFB.formCollection.get(formId);
     var formName = form.get('name');
     form.destroy();
@@ -114,7 +114,7 @@ AFB.Views.FormIndex = Backbone.View.extend({
     event.preventDefault();
     var $target = $(event.target);
     var formId = $target.closest('.form-summary').data('form-id');
-    console.log('in parselink, formId is ' + formId);
+    // console.log('in parselink, formId is ' + formId);
 
     this[$target.data('string')](formId, $target);
   }

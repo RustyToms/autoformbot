@@ -5,11 +5,11 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   initialize: function(){
-    console.log('FormEdit View initialized');
+    // console.log('FormEdit View initialized');
   },
 
   render: function(){
-    console.log("rendering FormEdit view");
+    // console.log("rendering FormEdit view");
     this.$el.empty();
     var $formText = $(this.model.get('form_text'));
     this.prepForm($formText);
@@ -23,7 +23,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   prepForm: function($formText){
-    console.log('**************** FormEdit#prepForm ********************');
+    // console.log('**************** FormEdit#prepForm ********************');
     $formText.find(".label, label span").attr('contenteditable', 'true');
     $formText.find('input, textarea').attr('disabled', 'disabled');
 
@@ -34,7 +34,7 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   parseClickForm: function(event) {
-    console.log("in parseClickForm");
+    // console.log("in parseClickForm");
     var $target = $(event.target);
     var $formEl = $target.closest(".formEl");
 
@@ -58,9 +58,9 @@ AFB.Views.FormEdit = Backbone.View.extend({
   },
 
   startEditingField: function($formEl){
-    console.log("in FormEdit#startEditingField");
+    // console.log("in FormEdit#startEditingField");
     var editBoxName = $formEl.data("sidebar");
-    console.log("new editBox should be " + editBoxName);
+    // console.log("new editBox should be " + editBoxName);
     this.prepField($formEl);
 
     var editBox = new AFB.Views[editBoxName]({
@@ -84,13 +84,13 @@ AFB.Views.FormEdit = Backbone.View.extend({
     if (!targetClasses){
       return;
     }
-		console.log("updating editBox, triggered with a " + event.type);
-    console.log(event.target);
+		// console.log("updating editBox, triggered with a " + event.type);
+    // console.log(event.target);
     this.model.localSaveForm();
 		this.parentView.updateEditBox(event);
 
     $(function(){
-      console.log('document ready, triggering keyups in editbox');
+      // console.log('document ready, triggering keyups in editbox');
     // spoofs a keyup event in editbox fields linked to the modified form field
       $input = $('#customizations').find('input, textarea').filter(function(){
 
@@ -104,8 +104,8 @@ AFB.Views.FormEdit = Backbone.View.extend({
 	},
 
   alignField: function($field, alignment){
-    console.log("FormEdit#alignField " + alignment);
-    console.log($field);
+    // console.log("FormEdit#alignField " + alignment);
+    // console.log($field);
     var $container = $field.offsetParent();
     if (alignment === 'left'){
 

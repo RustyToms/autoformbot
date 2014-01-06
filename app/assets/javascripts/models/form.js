@@ -30,24 +30,24 @@ AFB.Models.Form = Backbone.Model.extend ({
   localSaveCount: 0,
 
   updateAttribute: function(selector, attribute, value){
-    console.log("updating form attribute values");
-		console.log(attribute + ": " + value);
+    // console.log("updating form attribute values");
+		// console.log(attribute + ": " + value);
     $('.outer-wrapper').find(selector).attr(attribute, value);
 
     this.localSaveForm();
   },
 
   updateHTML: function(selector, value){
-    console.log("updating form element html");
-		console.log(selector);
+    // console.log("updating form element html");
+		// console.log(selector);
     $('.outer-wrapper').find(selector).html(value);
     this.localSaveForm();
   },
 
 	updateCSS: function(selector, key, value){
-		console.log("updating form element CSS");
-		console.log(selector);
-		console.log(key + ": " + value);
+		// console.log("updating form element CSS");
+		// console.log(selector);
+		// console.log(key + ": " + value);
 
 		if(key === 'font-size'){
 			value = value + 'px';
@@ -57,9 +57,9 @@ AFB.Models.Form = Backbone.Model.extend ({
 	},
 
 	updateProp: function(selector, prop, shouldCreate) {
-		console.log("updating form element property");
-		console.log(selector);
-		console.log(prop + shouldCreate);
+		// console.log("updating form element property");
+		// console.log(selector);
+		// console.log(prop + shouldCreate);
 
     $form = $('.outer-wrapper').find(selector);
 		if (shouldCreate){
@@ -71,7 +71,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 	},
 
   updateValues: function(event) {
-    console.log("in formmodel#updateValues");
+    // console.log("in formmodel#updateValues");
     var selector = '.editing ' + $(event.target).attr('name');
     var value = $(event.target).val();
     var attribute = $(event.target).data('attribute');
@@ -92,7 +92,7 @@ AFB.Models.Form = Backbone.Model.extend ({
   },
 
   removeActiveEdits: function(){
-    console.log('removing all editing classes');
+    // console.log('removing all editing classes');
     var $form = $(this.get('form_text'));
     this.standardEditRemoval($form);
 
@@ -106,7 +106,7 @@ AFB.Models.Form = Backbone.Model.extend ({
   },
 
   standardEditRemoval: function($form){
-    console.log('Form.js#standardEditRemoval');
+    // console.log('Form.js#standardEditRemoval');
     $form.find('#form-filter').remove();
     $(document).off('click', this.stopEditing);
     $form.find('.editing').removeClass('editing');
@@ -114,14 +114,14 @@ AFB.Models.Form = Backbone.Model.extend ({
   },
 
   stopEditing: function(event){
-    console.log('form.js#stopEditing');
+    // console.log('form.js#stopEditing');
     if ($(event.target).closest('#edit-box, .formEl').length === 0){
       event.data.parentView.removeActiveEdits();
     }
   },
 
   serverSave: function(){
-    console.log('in Form model saving to the server');
+    // console.log('in Form model saving to the server');
     this.removeActiveEdits();
     // get rid of newlines created by adding and removing the form filter
     var $form = $(this.get('form_text'));
@@ -130,11 +130,11 @@ AFB.Models.Form = Backbone.Model.extend ({
 
     this.save({},{
       success: function(model, response, options){
-        console.log("save successful");
+        // console.log("save successful");
         AFB.Routers.FormRouter.myFlash('Form saved');
       },
       error: function(model, xhr, options){
-        console.log("error: " + xhr.responseText);
+        // console.log("error: " + xhr.responseText);
 
         $.each(xhr.responseJSON, function(i, value){
           AFB.Routers.FormRouter.myFlash("error: " + value);
@@ -144,23 +144,23 @@ AFB.Models.Form = Backbone.Model.extend ({
   },
 
 	duplicateForm: function(callback){
-		console.log("duplicating form");
+		// console.log("duplicating form");
 		var newModel = new AFB.Models.Form(this.attributes);
     newModel.unset('id');
 
 		AFB.formCollection.add(newModel);
 		newModel.save({},{
       success: function(response){
-        console.log("save successful");
-				console.log(response);
+        // console.log("save successful");
+				// console.log(response);
 				callback && callback(newModel);
         newModel.updateFormAction();
 
         AFB.Routers.FormRouter.myFlash(newModel.get('name') + ' duplicated');
       },
       error: function(model, response){
-        console.log("error: " + response.responseText);
-        console.log(model);
+        // console.log("error: " + response.responseText);
+        // console.log(model);
         AFB.Routers.FormRouter.
           myFlash('Error duplicating ' + model.get('name'));
       }
@@ -168,7 +168,7 @@ AFB.Models.Form = Backbone.Model.extend ({
 	},
 
   updateFormAction: function() {
-    console.log("in Model Form#updateFormAction");
+    // console.log("in Model Form#updateFormAction");
     $form = $(this.get('form_text'));
     $form.find('form.form').first().attr('action',
       '/results/' + this.get('id'));
@@ -176,7 +176,7 @@ AFB.Models.Form = Backbone.Model.extend ({
   },
 
   localSaveForm: function(){
-    console.log('locally saving form model');
+    // console.log('locally saving form model');
     var that = this;
     this.formRouter.openModel = this;
     this.localSaveCount += 1;
@@ -186,7 +186,7 @@ AFB.Models.Form = Backbone.Model.extend ({
       if (uniqueSave != that.localSaveCount) {
         return; // makes sure this is only run once if they get stacked up
       }
-      console.log('document ready, locally saving form, uniqueSave is ' + uniqueSave);
+      // console.log('document ready, locally saving form, uniqueSave is ' + uniqueSave);
       var $form = $('.outer-wrapper');
       $form.find('.ui-draggable').draggable().draggable('destroy');
       $form.find('.ui-droppable').droppable().droppable('destroy');

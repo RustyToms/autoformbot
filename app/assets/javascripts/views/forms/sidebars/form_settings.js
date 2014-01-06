@@ -1,10 +1,10 @@
 AFB.Views.FormSettings = Backbone.View.extend({
   initialize: function(){
-    console.log('Initializing FormSettings view');
+    // console.log('Initializing FormSettings view');
   },
 
   render: function(){
-    console.log('rendering FormSettings');
+    // console.log('rendering FormSettings');
     var notify = this.model.get('notify_by')['email'];
 
     this.$el = $(JST['forms/sidebars/form_settings']({
@@ -19,7 +19,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
   },
 
   renderEmails: function(){
-    console.log('FormSettings#renderEmails');
+    // console.log('FormSettings#renderEmails');
     var emails = this.model.get('emails');
     emails[0] = (emails[0] ? emails[0] : "");
     var $emailAddresses = this.$el.find('.email-addresses');
@@ -31,7 +31,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
   },
 
   showOrHideEmails: function(show){
-    console.log('FormSettings#showOrHideEmails ' + show);
+    // console.log('FormSettings#showOrHideEmails ' + show);
     if(show === true){
       this.$el.find('.email-addresses').show();
     } else {
@@ -40,13 +40,13 @@ AFB.Views.FormSettings = Backbone.View.extend({
   },
 
   updateValues: function(event){
-    console.log('in FormSettings#updateValues');
+    // console.log('in FormSettings#updateValues');
     var $title = $('li[data-sidebar="FormEditTitle"]').first();
     var centered = [];
 
     if ($(event.target).attr('name') === 'redirect-url'){
 
-      console.log("setting new redirect url to " + $(event.target).val());
+      // console.log("setting new redirect url to " + $(event.target).val());
       this.model.set({'url': $(event.target).val()}, {silent: true});
 
     } else if ($(event.target).hasClass('email-notify')){
@@ -64,7 +64,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
     } else {
 
       if ($(event.target).attr('data-css') === 'width'){
-        console.log('data-css width detected');
+        // console.log('data-css width detected');
         centered[0] = this.isCentered($title);
         centered[1] = this.isCentered($('.form').first().
           children('.submit-button'));
@@ -96,7 +96,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
   },
 
   emailValues: function(event){
-    console.log('FormSettings#emailValues');
+    // console.log('FormSettings#emailValues');
     if ($(event.target).hasClass('delete-address') && event.type === 'click'){
 
       var $emailAddresses = $(event.target).closest('.email-addresses');
@@ -131,7 +131,7 @@ AFB.Views.FormSettings = Backbone.View.extend({
   },
 
   updateEmails: function($emailAddresses){
-    console.log('FormSettings#updateEmails');
+    // console.log('FormSettings#updateEmails');
     var emails = {};
     $emailAddresses.find('input.email-notify').each(function(index){
       if ($(this).val()) {

@@ -1,6 +1,6 @@
 AFB.Routers.FormRouter = Backbone.Router.extend({
   initialize: function($rootEl){
-    console.log('formrouter initialized');
+    // console.log('formrouter initialized');
     this.$rootEl = $rootEl;
     this.$seedEl = $("<section class='body group'></section>");
     this.bind("all", this.saveModel);
@@ -20,7 +20,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   specificForm: function(id, name) {
-    console.log("FormRouter#specificForm id#" + id + " : " + name);
+    // console.log("FormRouter#specificForm id#" + id + " : " + name);
     var form = AFB.formCollection.get(id);
     var routes = {
       'edit': this.formEdit,
@@ -53,7 +53,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   index: function(){
-    console.log("in FormRouter#index");
+    // console.log("in FormRouter#index");
     this.cleanRootEl();
     this.view && this.view.remove();
 
@@ -65,14 +65,14 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   formNew: function(){
-    console.log("In FormRouter#formNew");
+    // console.log("In FormRouter#formNew");
     this.cleanRootEl();
     this.$rootEl.html(this.$seedEl.clone());
     this.setUpModel();
   },
 
   setUpModel: function(){
-    console.log("setting up form model");
+    // console.log("setting up form model");
 		var that = this;
     var $form = $(JST["forms/new_form_seed"]());
     this.model = new AFB.Models.Form({
@@ -87,7 +87,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 
 		this.model.save({},{
 			success: function(response, model) {
-        console.log("form_id is " + that.model.get('id'));
+        // console.log("form_id is " + that.model.get('id'));
         AFB.Routers.FormRouter.myFlash("New Form created");
         that.model.updateFormAction();
         Backbone.history.navigate("forms/" + that.model.get('id') +
@@ -98,7 +98,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   formShow: function(form) {
-    console.log("in FormRouter#formShow for form #" + form.id);
+    // console.log("in FormRouter#formShow for form #" + form.id);
     this.view = new AFB.Views.FormShow({
         model: form,
         el: JST['forms/form_wrapper']()
@@ -107,7 +107,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   formResults: function(form) {
-    console.log("in FormRouter#formResults for form #" + form.id);
+    // console.log("in FormRouter#formResults for form #" + form.id);
     this.view = new AFB.Views.FormResults({
         model: form
       });
@@ -115,7 +115,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   formEdit: function(form) {
-    console.log('in FormRouter#formEdit for form #' + form.id);
+    // console.log('in FormRouter#formEdit for form #' + form.id);
     // update updated_at so that it is properly sorted when index is called
     form.save();
 
@@ -130,7 +130,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
   },
 
   formCode: function(form){
-    console.log('in FormRouter#formCode for form #' + form.id);
+    // console.log('in FormRouter#formCode for form #' + form.id);
     this.view = new AFB.Views.FormCode({
       model: form,
       el: this.$seedEl.clone()
@@ -140,7 +140,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 
   saveModel: function(){
     if (this.openModel){
-      console.log("in FormRouter, saving last open model");
+      // console.log("in FormRouter, saving last open model");
       this.openModel.serverSave();
       delete this.openModel;
     }
@@ -148,7 +148,7 @@ AFB.Routers.FormRouter = Backbone.Router.extend({
 
   cleanRootEl: function(){
     _.each(this.childViews, function(view){
-      console.log('removing childView');
+      // console.log('removing childView');
       view.remove();
     });
     this.childViews = [];
@@ -175,11 +175,11 @@ AFB.Routers.FormRouter.matchSize = function ($match, $target){
   $match.css('width', width);
   var height = $target.outerHeight();
   $match.css('height', height);
-  console.log('width and height are ' + width + " and " + height);
+  // console.log('width and height are ' + width + " and " + height);
 };
 
 AFB.Routers.FormRouter.myFlash = function(msg){
-  console.log("myFlash message is " + msg);
+  // console.log("myFlash message is " + msg);
   $('.backbone-flash-msgs').prepend(JST['my_flash']({
     msg: msg
   }));
@@ -190,7 +190,7 @@ AFB.Routers.FormRouter.myFlash = function(msg){
 };
 
 AFB.Routers.FormRouter.positionWindow = function($targets){
-  console.log('in AFB.Routers.FormRouter.positionWindow');
+  // console.log('in AFB.Routers.FormRouter.positionWindow');
   // find 1/2 combined dims of target group, find 1/2 dims of window,
   // scroll to closest offset minus the difference.
   $(function(){

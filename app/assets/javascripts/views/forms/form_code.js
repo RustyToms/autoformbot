@@ -1,7 +1,7 @@
 AFB.Views.FormCode = Backbone.View.extend({
 
   render: function(){
-    console.log("FormCode#render");
+    // console.log("FormCode#render");
     this.$el.css('text-align', 'center');
     this.$el.html(JST['forms/form_code']({
       form: this.model
@@ -20,7 +20,7 @@ AFB.Views.FormCode = Backbone.View.extend({
         that.$el.find('.formcode-textarea').val(formHTML);
       },
       error: function(){
-        console.log("FormCode#getFormHTML failed");
+        // console.log("FormCode#getFormHTML failed");
       }
     });
   }

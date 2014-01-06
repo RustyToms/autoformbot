@@ -6,7 +6,7 @@ AFB.Views.FormSidebarText = Backbone.View.extend({
   },
 
   render: function(){
-    console.log("rendering FormSidebarText");
+    // console.log("rendering FormSidebarText");
     this.$el.html(JST['forms/sidebars/text_options']({
       $text: $((this.field) || this.$seed).find('.text-content')
     }));
@@ -24,7 +24,7 @@ AFB.Views.FormSidebarText = Backbone.View.extend({
   },
 
   updateValues: function(event){
-    console.log("in FormSidebarText#updateValues");
+    // console.log("in FormSidebarText#updateValues");
     if ($(event.target).attr('name') === '.textbox-label' ){
       var name = 'results[' + event.target.value + ']';
       this.model.updateAttribute('.editing .textbox', 'name', name);

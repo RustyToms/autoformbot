@@ -8,12 +8,12 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   render: function(newSidebar, formView){
-    console.log('rendering FormMaster view');
+    // console.log('rendering FormMaster view');
     this.$el.empty();
     this.$el.append(JST['forms/masterview_seed']());
     this.renderForm();
 
-    console.log('--- End of FormMaster view #render ---');
+    // console.log('--- End of FormMaster view #render ---');
     return this;
   },
 
@@ -37,7 +37,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   makeEditBox: function(newEditBox){
-    console.log('FormMaster#makeEditBox');
+    // console.log('FormMaster#makeEditBox');
     var that = this;
     this.removeView(this.editBox);
     this.editBox = newEditBox;
@@ -55,7 +55,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     }
 
     $(function(){
-      console.log('document ready, positioning editbox and window');
+      // console.log('document ready, positioning editbox and window');
       $editBox.tabs({
         activate: function(){
           AFB.Routers.FormRouter.positionWindow(
@@ -69,7 +69,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   positionEditBox: function($editBox){
-    console.log('FormMaster#positionEditBox');
+    // console.log('FormMaster#positionEditBox');
     var $field = $('.editing').first();
     var editingForm = $field.is('form');
 
@@ -94,13 +94,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   fieldDuplicate: function(){
-    console.log('FormMaster#fieldDuplicate');
+    // console.log('FormMaster#fieldDuplicate');
     var that = this;
     var $copyButton = $('#duplicate-field');
 
     $copyButton.draggable({
       start: function(){
-        console.log('fieldDuplicate dragging started');
+        // console.log('fieldDuplicate dragging started');
         that.$el.find('#form-filter').remove();
         that.$el.find('#edit-box').css('display', 'none');
       },
@@ -123,7 +123,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   formSettings: function(event){
-    console.log('FormMaster#formSettings');
+    // console.log('FormMaster#formSettings');
     event.stopPropagation();
     this.removeActiveEdits();
     var formSettings = new AFB.Views.FormSettings({
@@ -139,7 +139,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   editBoxClick: function(event){
-    console.log('in FormMaster#editBoxClick');
+    // console.log('in FormMaster#editBoxClick');
     var $target = $(event.target);
 
     if ($target.is('button')){
@@ -175,7 +175,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   parseButtonClick: function(event) {
-    console.log('FormMaster#parseButtonClick');
+    // console.log('FormMaster#parseButtonClick');
     event.preventDefault();
     event.stopPropagation();
     var $target = $(event.target);
@@ -222,7 +222,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
               add(this.editBox.field));
             break;
           }
-          console.log("Sending to editBox view parseClickForm");
+          // console.log("Sending to editBox view parseClickForm");
           this.editBox.parseClick && this.editBox.parseClick(event);
           this.editBoxValues(event);
       }
@@ -230,7 +230,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   deleteOption: function($target){
-    console.log('deleting element');
+    // console.log('deleting element');
     var that = this;
     var $form = $('.fi-30x form').first();
 
@@ -242,13 +242,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
     this.makeEditBox(this.editBox);
 
     $(function(){
-      console.log('document ready, positioning editbox');
+      // console.log('document ready, positioning editbox');
       that.positionEditBox($('#edit-box'));
     });
   },
 
   editBoxValues: function(event){
-    console.log("editBoxValues triggered with a " + event.type);
+    // console.log("editBoxValues triggered with a " + event.type);
 
     if ($(event.target).attr('name') === '') {
       this.model.updateValues(event);
@@ -260,13 +260,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
   requireField: function(event){
     event.stopPropagation();
-    console.log('in FormMaster#requireField');
+    // console.log('in FormMaster#requireField');
 
     var $target = this.$el.find('.editing');
 
     if (event.target.checked){
-      console.log("adding class required to ");
-      console.log($target);
+      // console.log("adding class required to ");
+      // console.log($target);
       $target.addClass("required");
       $target.find('input, textarea, select').attr('required', 'required');
     } else {
@@ -277,7 +277,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
 	updateEditBox: function(event){
-    console.log("FormMaster#updateEditBox***********");
+    // console.log("FormMaster#updateEditBox***********");
     var $field = this.$el.find('.editing').first();
     $field.length && (this.editBox.field = $field);
     this.$el.find('#edit-box #customizations').html(this.editBox.render().$el);
@@ -289,7 +289,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
     if (!this.queued){
       this.queued = true;
       $(function(){
-        console.log("document ready, making fields-list elements draggable");
+        // console.log("document ready, making fields-list elements draggable");
         that.formDroppable();
         that.formFieldsDraggable();
         that.queued = false;
@@ -307,7 +307,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       scope: 'newFields',
       tolerance: 'fit',
       drop: function(event, ui){
-        console.log('drop successful');
+        // console.log('drop successful');
         ui.helper.data('dropped', true);
       }
     });
@@ -333,7 +333,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
 
         } else {
 
-          console.log('drop unsuccessful');
+          // console.log('drop unsuccessful');
           window.setTimeout(function(){
             ui.helper.remove();
           }, 500);
@@ -341,7 +341,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
       },
 
       helper: function(){
-        console.log(this);
+        // console.log(this);
         return $(JST['forms/fields/' + $(this).closest('div').data('fieldTemplate')]());
       },
 
@@ -360,13 +360,13 @@ AFB.Views.FormMaster = Backbone.View.extend({
     var that = this;
     $('.formEl, .submit-button').draggable({
       start: function(event, ui){
-        console.log('.formEl drag started');
+        // console.log('.formEl drag started');
         that.removeActiveEdits();
         ui.helper.css('right', 'auto');
       },
 
       stop: function(event, ui){
-        console.log('.formEl drag stopped');
+        // console.log('.formEl drag stopped');
         that.model.localSaveForm();
         if (ui.helper.hasClass('magicBox')){
           ui.helper.find(':focus').blur();
@@ -387,7 +387,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   serverSaveForm: function(){
-    console.log("in FormMaster#serverSaveForm");
+    // console.log("in FormMaster#serverSaveForm");
     this.removeActiveEdits();
     this.model.localSaveForm();
     this.model.serverSave();
@@ -395,7 +395,7 @@ AFB.Views.FormMaster = Backbone.View.extend({
   },
 
   removeActiveEdits: function(){
-    console.log('removing all editing classes');
+    // console.log('removing all editing classes');
     this.model.standardEditRemoval(this.$el.find('.fi-30x').first());
     this.removeView(this.editBox);
   },

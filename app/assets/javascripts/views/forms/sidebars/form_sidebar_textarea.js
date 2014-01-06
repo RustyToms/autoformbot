@@ -6,7 +6,7 @@ AFB.Views.FormSidebarTextarea = Backbone.View.extend({
   },
 
   render: function(){
-    console.log("rendering FormSidebarTextarea");
+    // console.log("rendering FormSidebarTextarea");
     var $field = $((this.field) || this.$seed);
     this.$el.html(JST['forms/sidebars/textarea_options']({
       $field: $field,
@@ -17,7 +17,7 @@ AFB.Views.FormSidebarTextarea = Backbone.View.extend({
   },
 
   updateValues: function(event){
-    console.log("in FormSidebarTextarea#updateValues");
+    // console.log("in FormSidebarTextarea#updateValues");
 
     if ($(event.target).attr('name') === '.textarea-label' ){
       var name = event.target.value;

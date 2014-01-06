@@ -6,7 +6,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
   },
 
   render: function(){
-    console.log("rendering FormSidebarDropdown");
+    // console.log("rendering FormSidebarDropdown");
     this.$field = $(this.field || this.$seed.prop('outerHTML'));
     this.numOptions = this.$field.find('option').length;
 
@@ -15,7 +15,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
   },
 
   updateValues: function(event){
-    console.log("in FormSidebarDropdown#updateValues");
+    // console.log("in FormSidebarDropdown#updateValues");
     if ($(event.target).attr('name') === '.dropdown-label' ){
       var name = event.target.value;
       this.model.updateAttribute('.editing select', 'name', name);
@@ -27,7 +27,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
   },
 
   parseClick: function(event){
-    console.log("in FormSidebarDropdown#parseClick");
+    // console.log("in FormSidebarDropdown#parseClick");
     if($(event.target).hasClass('add-option')){
       this.numOptions = this.$el.find('.select-option-config').length + 1;
       this.makeSidebar();
@@ -37,7 +37,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
   },
 
   makeSidebar: function(){
-    console.log('in FormSidebarDropdown#makeSidebar');
+    // console.log('in FormSidebarDropdown#makeSidebar');
     var $editField = $('.editing').first();
     if ($editField.length){
       this.$field = $editField;
@@ -69,7 +69,7 @@ AFB.Views.FormSidebarDropdown = Backbone.View.extend({
   },
 
   updateField: function(){
-    console.log('in FormSidebarDropdown#updateField');
+    // console.log('in FormSidebarDropdown#updateField');
     this.$field = $('.editing').first();
 
     var $options = this.$el.find('.select-option-config');

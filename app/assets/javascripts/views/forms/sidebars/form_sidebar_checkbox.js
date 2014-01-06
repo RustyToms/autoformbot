@@ -5,12 +5,12 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
   },
 
   addField: function(){
-    console.log('adding checkbox field');
+    // console.log('adding checkbox field');
     this.model.addField(this.$seed);
   },
 
   render: function(){
-    console.log("rendering FormSidebarCheckbox");
+    // console.log("rendering FormSidebarCheckbox");
     var that = this;
     this.$field = $(this.field || this.$seed.prop('outerHTML'));
     this.numOptions = this.$field.find('.checkbox-option').length;
@@ -23,7 +23,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
   },
 
   updateValues: function(event){
-    console.log("in FormSidebarCheckbox#updateValues");
+    // console.log("in FormSidebarCheckbox#updateValues");
 
     if ($(event.target).attr('name') === '.checkbox-label' ){
 
@@ -49,7 +49,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
   },
 
   syncOptionNames: function(){
-    console.log('syncing sidebar option names with new label');
+    // console.log('syncing sidebar option names with new label');
     var $fieldOptions = $('.editing input');
     var $sidebarOptions = this.$el.find('.checkbox-option-config');
     $fieldOptions.each(function(index){
@@ -63,7 +63,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
   },
 
   parseClick: function(event){
-    console.log("in FormSidebarCheckbox#parseClick");
+    // console.log("in FormSidebarCheckbox#parseClick");
     var $target = $(event.target);
     var that = this;
 
@@ -81,7 +81,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
   },
 
   makeSidebar: function($form){
-    console.log('in Checkbox makeSidebar');
+    // console.log('in Checkbox makeSidebar');
     var that = this;
     var $editField = $form.find('.editing').first();
 
@@ -127,7 +127,7 @@ AFB.Views.FormSidebarCheckbox = Backbone.View.extend({
   },
 
   updateField: function(){
-    console.log("updating checkboxes in form");
+    // console.log("updating checkboxes in form");
     this.$field = $('.editing').first();
     var that = this;
     var display = 'inline';

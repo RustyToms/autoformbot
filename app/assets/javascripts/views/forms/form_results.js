@@ -4,7 +4,7 @@ AFB.Views.FormResults = Backbone.View.extend({
   },
 
   render: function(){
-    console.log("FormResults#render");
+    // console.log("FormResults#render");
     this.$el.empty();
     this.$el.html('<h1 class="page-title" >Fetching Results for "' +
       this.model.get('name') + '"...</h1>');
@@ -13,7 +13,7 @@ AFB.Views.FormResults = Backbone.View.extend({
   },
 
   renderResults: function(){
-    console.log("FormResults#renderResults");
+    // console.log("FormResults#renderResults");
     this.$el.empty;
     this.$el.html(JST['forms/results']({
       name: this.model.get('name'),
@@ -25,35 +25,35 @@ AFB.Views.FormResults = Backbone.View.extend({
   },
 
   fetchResults: function(){
-    console.log('FormResults#fetchResults');
+    // console.log('FormResults#fetchResults');
     var that = this;
     this.results = new AFB.Collections.Results();
     this.results.fetch({
       data: {form_id: this.model.get('id')},
       success: function(collection, response, options){
-        console.log("in FormRouter#formResults success");
+        // console.log("in FormRouter#formResults success");
         that.model.set('results', collection);
         that.parseResults();
         that.renderResults();
       },
       error: function(collection, response, options){
-        console.log("in FormRouter#formResults error");
-        console.log(collection);
-        console.log(response);
-        console.log(options);
+        // console.log("in FormRouter#formResults error");
+        // console.log(collection);
+        // console.log(response);
+        // console.log(options);
       }
     });
   },
 
   parseResults: function(){
-    console.log('FormResults#parseResults');
+    // console.log('FormResults#parseResults');
     var that = this;
     this.headers = {};
     this.resultsTable = [];
     this.results.each(function(result){
       var hash = $.parseJSON(result.get('result'));
       var lastChecked = that.model.get('results_checked_at');
-      console.log(hash);
+      // console.log(hash);
       result.set('result', hash);
       _.each(hash, function(answer, question){
         that.headers[question] = question;
@@ -66,7 +66,7 @@ AFB.Views.FormResults = Backbone.View.extend({
   },
 
   cellClick: function(event){
-    console.log('FormResults#cellClick');
+    // console.log('FormResults#cellClick');
     var $cell = $(event.target);
     if ($cell.is('td')){
       if ($cell.closest('.results-table').find('td.clicked:first-child').
