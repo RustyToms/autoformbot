@@ -12,6 +12,8 @@
 
 - form validations in Results#create
 
+- Add tooltips
+
 ------------ Unresolved Issues -------------------------------
 
 - Find out why the server log shows that the params contain two copies of the
