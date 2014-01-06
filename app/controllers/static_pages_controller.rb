@@ -13,4 +13,8 @@ class StaticPagesController < ApplicationController
     @url = ''
     render :thank_you
   end
+
+  def resume
+    render :resume, layout: false
+  end
 end

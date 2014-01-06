@@ -9,6 +9,7 @@ AutoFormBot::Application.routes.draw do
     member do
       get "home"
       get "thank_you"
+      post "resume"
     end
   end
 
